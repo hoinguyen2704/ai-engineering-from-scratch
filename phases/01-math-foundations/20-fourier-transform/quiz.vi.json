@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Biến đổi Fourier thực hiện điều gì đối với một tín hiệu?",
+      "options": [
+        "Phân tách tín hiệu thành các sóng sine với tần số, biên độ và pha khác nhau",
+        "Loại bỏ tiếng ồn khỏi tín hiệu",
+        "Chuyển đổi tín hiệu từ tương tự sang số",
+        "Nén tín hiệu để sử dụng ít dung lượng lưu trữ hơn"
+      ],
+      "correct": 0,
+      "explanation": "Biến đổi Fourier chuyển đổi một tín hiệu từ miền thời gian sang miền tần số. Mỗi hệ số tần số X[k] cho biết biên độ và pha của một sóng sine tại tần số k. Tín hiệu được diễn đạt lại dưới dạng tổng của các sóng sine này."
+    },
+    {
+      "stage": "pre",
+      "question": "Độ phức tạp thời gian của Biến đổi Fourier Nhanh (FFT) so với DFT trực tiếp là gì?",
+      "options": [
+        "FFT là O(log N), DFT là O(N)",
+        "FFT là O(N), DFT là O(N log N)",
+        "Cả hai đều là O(N^2)",
+        "FFT là O(N log N), DFT là O(N^2)"
+      ],
+      "correct": 3,
+      "explanation": "DFT trực tiếp tính toán N đầu ra, mỗi đầu ra tổng hợp qua N đầu vào: O(N^2). FFT Cooley-Tukey chia tín hiệu thành các nửa chẵn/lẻ một cách đệ quy, thực hiện O(N) công việc ở mỗi cấp độ log2(N), cho O(N log N). Đối với N = 1 triệu, điều này là 20 triệu so với 1 triệu tỷ phép toán."
+    },
+    {
+      "stage": "post",
+      "question": "Định lý tích chập phát biểu điều gì?",
+      "options": [
+        "Tích chập trong miền thời gian bằng phép cộng trong miền tần số",
+        "Tích chập luôn làm tăng độ dài của một tín hiệu",
+        "Tích chập và tương quan là các phép toán giống hệt nhau",
+        "Tích chập trong miền thời gian bằng phép nhân từng điểm trong miền tần số"
+      ],
+      "correct": 3,
+      "explanation": "Định lý tích chập phát biểu rằng tích chập trong miền thời gian bằng phép nhân từng điểm trong miền tần số: x * h = IFFT(FFT(x) . FFT(h)). Đây là lý do tại sao tích chập dựa trên FFT có độ phức tạp là O(N log N) thay vì O(N*M) cho các kernel lớn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc thêm padding bằng số 0 vào một tín hiệu trước FFT KHÔNG làm tăng độ phân giải tần số thực sự?",
+      "options": [
+        "Padding bằng số 0 nội suy giữa các bin tần số hiện có nhưng không thể tiết lộ chi tiết tần số thiếu từ các mẫu gốc",
+        "Padding bằng số 0 giới thiệu tiếng ồn làm hủy bỏ sự cải thiện",
+        "Padding bằng số 0 chỉ hoạt động cho độ dài tín hiệu là lũy thừa của 2",
+        "Thuật toán FFT bỏ qua các mẫu đã được padding bằng số 0"
+      ],
+      "correct": 0,
+      "explanation": "Độ phân giải tần số thực sự phụ thuộc vào thời gian quan sát T = N/fs. Padding bằng số 0 thêm nhiều bin tần số hơn (lưới mịn hơn) nhưng chỉ nội suy phổ hiện có — nó tạo ra một kết quả trông mượt mà hơn mà không giải quyết được các tần số gần nhau hơn 1/T Hz."
+    },
+    {
+      "stage": "post",
+      "question": "Trong các mã hóa vị trí hình sin của Transformer gốc, tại sao các cặp chiều khác nhau được gán tần số cách đều theo hình học?",
+      "options": [
+        "Nó đảm bảo tất cả các giá trị mã hóa nằm giữa 0 và 1",
+        "Mỗi tần số cung cấp một độ phân giải khác nhau — tần số cao mã hóa vị trí tinh vi, tần số thấp mã hóa vị trí thô, tạo cho mỗi vị trí một dấu vân tay độc đáo",
+        "Khoảng cách hình học là yêu cầu của thuật toán FFT",
+        "Nó giảm chi phí tính toán của Attention"
+      ],
+      "correct": 1,
+      "explanation": "Các chiều tần số cao thay đổi nhanh chóng theo vị trí (độ phân giải tinh vi), trong khi các chiều tần số thấp thay đổi chậm (độ phân giải thô). Cùng nhau, mã hóa đa tần số cung cấp cho mỗi vị trí một mẫu độc đáo — tương tự như cách các hệ số Fourier xác định một tín hiệu một cách độc nhất."
+    }
+  ]
+}

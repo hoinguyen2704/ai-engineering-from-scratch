@@ -1,0 +1,78 @@
+{
+  "lesson": "66-reranker-cross-encoder",
+  "title": "Reranker Cross-Encoder",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt kiến trúc giữa bi-encoder và cross-encoder là gì?",
+      "options": [
+        "Bi-encoder nhúng truy vấn và tài liệu độc lập; cross-encoder đọc chuỗi (truy vấn, tài liệu) đã được nối với sự chú ý đầy đủ giữa cả hai",
+        "Bi-encoder được huấn luyện; cross-encoder thì không",
+        "Bi-encoder sử dụng cosine; cross-encoder sử dụng dot product",
+        "Cross-encoder chỉ chạy trên GPU"
+      ],
+      "correct": 0,
+      "explanation": "Sự chú ý chéo qua sự kết hợp là điều mang lại độ chính xác cho cross-encoder; bi-encoder không bao giờ thấy truy vấn và tài liệu cùng nhau."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao cross-encoder không thể được sử dụng làm bộ truy xuất chính trên một tập hợp tài liệu 10 triệu?",
+      "options": [
+        "Nó không thể nhúng văn bản",
+        "Nó yêu cầu một lần truyền tiến cho mỗi cặp (truy vấn, tài liệu), tức là 10 triệu lần truyền cho mỗi truy vấn",
+        "Nó không hỗ trợ điểm số âm",
+        "Nó yêu cầu token CLS ở cuối chuỗi"
+      ],
+      "correct": 1,
+      "explanation": "Thông lượng giảm mạnh ở quy mô tập hợp; cross-encoder chạy một lần cho mỗi cặp thay vì một lần cho mỗi tài liệu trong thời gian chỉ mục."
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của tham số N trong pipeline hai giai đoạn retrieve-then-rerank là gì?",
+      "options": [
+        "Nó là kích thước của từ vựng",
+        "Nó là kích thước ẩn của cross-encoder",
+        "Nó là số lượng lớp trong cross-encoder",
+        "Nó là số lượng ứng viên được bi-encoder trả về để cross-encoder đánh giá lại"
+      ],
+      "correct": 3,
+      "explanation": "N là hồ bơi rerank; nó giới hạn chất lượng (cross-encoder không thể vượt quá độ hồi tưởng của bi-encoder tại N) và độ trễ (cross-encoder chạy N lần truyền tiến)."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bạn phải chọn N lớn hơn K (thường là 3 lần hoặc hơn)?",
+      "options": [
+        "BM25 yêu cầu điều đó cho phép tính IDF",
+        "N nhỏ hơn làm giảm chiều nhúng",
+        "Cross-encoder yêu cầu N phải là bội số của K",
+        "Nếu N bằng K, cross-encoder không thể sắp xếp lại, chỉ có thể điều chỉnh trọng số; sự nâng cao rerank giảm xuống bằng không"
+      ],
+      "correct": 3,
+      "explanation": "Với N = K, không có gì để sắp xếp lại; công việc duy nhất của cross-encoder là chọn K đúng từ N, điều này cần N > K."
+    },
+    {
+      "stage": "check",
+      "question": "Đầu ra mean-pooling của cross-encoder làm gì trong bài học này?",
+      "options": [
+        "Tổng hợp qua phân phối từ vựng",
+        "Tính softmax qua các vị trí tài liệu",
+        "Tính trung bình các đầu ra của lớp cuối cùng qua các vị trí không phải pad và cung cấp một đầu ra tuyến tính duy nhất để tạo ra một số điểm liên quan",
+        "Cộng các chỉ số nhúng"
+      ],
+      "correct": 2,
+      "explanation": "Mean-pool qua các vị trí không phải pad, sau đó một lớp tuyến tính duy nhất xuất ra điểm số liên quan; CLS-pooling là một lựa chọn thay thế với chất lượng tương tự."
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ lỗi sản xuất nào mà việc ghi lại điểm số cross-encoder hạng 1 giúp phát hiện?",
+      "options": [
+        "Truy vấn ngoài miền: khi điểm số reranker hạng 1 thấp hơn ngưỡng cụ thể của tập hợp, mô hình đang báo hiệu rằng không có gì trong tập hợp thực sự trả lời truy vấn",
+        "Mất mạng",
+        "Trôi từ vựng trong bộ phân tách",
+        "Hỏng chỉ mục trong bi-encoder"
+      ],
+      "correct": 0,
+      "explanation": "Một điểm số hạng 1 liên tục thấp là cross-encoder đang cho bạn biết rằng hồ bơi đã truy xuất không chứa câu trả lời; bề mặt đó cho LLM như là độ tin cậy thấp."
+    }
+  ]
+}

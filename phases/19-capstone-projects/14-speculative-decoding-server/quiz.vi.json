@@ -1,0 +1,90 @@
+{
+  "lesson": "14-speculative-decoding-server",
+  "title": "Capstone 14 — Máy chủ suy diễn suy đoán",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cơ chế hai lớp nào đứng sau việc suy diễn suy đoán?",
+      "options": [
+        "Hai mô hình mục tiêu thay phiên nhau cho mỗi token",
+        "Một mô hình nhúng và một bộ tổng hợp",
+        "Một bộ nhớ truy xuất và một bộ xếp hạng lại",
+        "Một mô hình dự thảo đề xuất k token ứng cử; mô hình mục tiêu xác minh chúng trong một lần duy nhất"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "EAGLE-3 làm gì mà các dự thảo ngram không làm được?",
+      "options": [
+        "Nó hoàn toàn tránh việc phân đoạn token",
+        "Nó chỉ chạy trên CPU",
+        "Nó huấn luyện các đầu dự thảo trên trạng thái ẩn của mô hình mục tiêu để có tỷ lệ chấp nhận cao hơn",
+        "Nó thay thế mô hình mục tiêu"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao độ trễ đuôi p99 được báo cáo trên các kích thước lô 1, 8 và 32?",
+      "options": [
+        "Số token trên giây trong trạng thái ổn định có thể che giấu rằng bước xác minh khi từ chối tốn kém hơn so với suy diễn thông thường",
+        "vLLM không thể phục vụ các kích thước lô dưới 8",
+        "p99 chỉ quan trọng ở kích thước lô 32",
+        "Độ trễ đuôi không phụ thuộc vào kích thước lô"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tỷ lệ chấp nhận lại thay đổi khi phân phối lưu lượng thay đổi?",
+      "options": [
+        "Sự căn chỉnh dự thảo phụ thuộc vào phân phối đầu vào: ShareGPT, mã và dữ liệu miền thực hiện các mẫu khác nhau",
+        "Bộ lập lịch OS xáo trộn bộ nhớ GPU",
+        "Việc lượng tử hóa thay đổi trong thời gian chạy",
+        "vLLM xoay vòng các mô hình hàng giờ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tín hiệu HPA Kubernetes nào mà việc triển khai dựa vào để mở rộng?",
+      "options": [
+        "Disk IOPS",
+        "Sử dụng CPU",
+        "Thời gian chờ hàng đợi trên các yêu cầu suy diễn",
+        "Các nút tự động mở rộng cụm"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "P-EAGLE thêm gì so với EAGLE-3 tuần tự?",
+      "options": [
+        "Lượng tử hóa trọng số FP4",
+        "Loại bỏ mô hình mục tiêu",
+        "Suy đoán song song qua một cây các nhánh dự thảo được xác minh trong một lần mục tiêu",
+        "Tự động biên soạn tập dữ liệu"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mục tiêu thông lượng nào mà tiêu chí yêu cầu so với cơ sở không suy đoán?",
+      "options": [
+        "Ít nhất 2.5x với chất lượng tương đương trên hai mô hình",
+        "Bất kỳ cải thiện nào so với cơ sở",
+        "Khoảng 1.1x với chất lượng tương đương",
+        "Chính xác 10x thông lượng ở bất kỳ chất lượng nào"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt kiến trúc nào phân biệt mô hình thế giới có điều kiện hành động (Genie 3) với mô hình tạo video thuần túy (Sora 2)?",
+      "options": [
+        "Chỉ có tập dữ liệu huấn luyện là khác nhau",
+        "Mô hình thế giới chỉ hoạt động trên các cảnh 3D",
+        "Các bộ tạo video thuần túy điều kiện dựa trên một lời nhắc tại t=0 và thực hiện; mô hình thế giới có điều kiện hành động lấy một hành động tiềm ẩn hoặc rõ ràng cho mỗi khung hình để người dùng có thể điều khiển quá trình phát sinh giữa chừng",
+        "Các mô hình có điều kiện hành động nhỏ hơn"
+      ],
+      "correct": 2,
+      "explanation": "Sora 2 là tự hồi quy trên các token không-thời gian; lời nhắc của nó thiết lập cảnh nhưng bạn không thể thay đổi hướng đi giữa chừng. Genie 3 suy diễn hoặc thực hiện một hành động tiềm ẩn tại mỗi bước và điều kiện hóa dự đoán khung hình tiếp theo dựa trên nó, cho phép người dùng tương tác với thế giới mô phỏng. Tính tương tác này là điều làm cho một mô hình trở thành 'mô phỏng thế giới' thay vì một bộ tạo video."
+    },
+    {
+      "stage": "pre",
+      "question": "Chia sẻ sự chú ý trong một transformer video có nghĩa là gì?",
+      "options": [
+        "Một nửa các token bị che khuất",
+        "Sự chú ý được chia sẻ giữa các GPU",
+        "Mỗi khối thực hiện một sự chú ý tạm thời (cùng vị trí không gian, qua các khung hình) tiếp theo là một sự chú ý không gian (cùng khung hình, qua các vị trí); điều này phân tách chi phí từ O((T*H*W)^2) thành O((H*W)*T^2) + O(T*(H*W)^2) — rẻ hơn nhiều so với tích hợp chung",
+        "Chỉ một nửa các lớp chạy sự chú ý"
+      ],
+      "correct": 2,
+      "explanation": "Sự chú ý toàn phần trên các token không-thời gian là không khả thi: với T=150 token tạm thời và một lưới không gian 60x45 (2700 token không gian), tích hợp chung (T*H*W)^2 ≈ 1.6e11 cặp. Sự chú ý chia sẻ thực hiện sự chú ý tạm thời tại mỗi vị trí không gian (H*W * T^2 ≈ 6.1e7) và sự chú ý không gian tại mỗi thời điểm (T * (H*W)^2 ≈ 1.1e9) — ít hơn nhiều bậc. TimeSformer đã giới thiệu mẫu này; gần như mọi video DiT 2026 (Sora, Wan, HunyuanVideo) đều sử dụng biến thể chia sẻ hoặc cửa sổ."
+    },
+    {
+      "stage": "post",
+      "question": "Phiên bản Sora 2 năm 2026 quảng cáo tính hợp lý vật lý tốt hơn. Các chế độ thất bại cụ thể nào mà điều này nhắm đến?",
+      "options": [
+        "Trọng lượng, cân bằng, tính vĩnh cửu của đối tượng, nguyên nhân và kết quả — mô hình hiện nay xử lý các đối tượng bị rơi, các nhân vật va chạm, và 'thất bại có chủ đích' (một cú nhảy bị bỏ lỡ) một cách đáng tin cậy hơn Sora 1",
+        "Độ dài video",
+        "Kết xuất văn bản bên trong hình ảnh",
+        "Cân bằng màu sắc và độ tương phản"
+      ],
+      "correct": 0,
+      "explanation": "Các mô hình video thế hệ trước nổi tiếng thất bại trong việc ăn mì spaghetti, uống từ ly, và các cảnh đối tượng bền vững — tay sẽ đi xuyên qua các đối tượng, các vật phẩm sẽ biến mất giữa hành động. Sora 2 công khai quảng cáo những cải tiến về trọng lượng, cân bằng, tính vĩnh cửu của đối tượng, và nguyên nhân-kết quả, được đo lường so với các tiêu chuẩn hợp lý nội bộ và công khai. Đây là những thất bại chất lượng chiếm ưu thế mà lĩnh vực vẫn đang làm việc."
+    },
+    {
+      "stage": "post",
+      "question": "Trong ngăn xếp robot mới nổi (VLM + tạo video + động lực ngược), mô hình động lực ngược làm gì?",
+      "options": [
+        "Nó nhận một cặp (quan sát hiện tại, quan sát tiếp theo mong muốn từ mô hình video) và xuất ra hành động động cơ cấp thấp sẽ kết nối chúng; điều này đóng vòng giữa các quá trình phát sinh tưởng tượng và hành động thực tế",
+        "Nó gán nhãn dữ liệu huấn luyện",
+        "Nó tạo ra khung hình tiếp theo",
+        "Nó huấn luyện VLM"
+      ],
+      "correct": 0,
+      "explanation": "VLM lập kế hoạch, mô hình video tưởng tượng, và mô hình động lực ngược biến tưởng tượng thành các lệnh động cơ. Với hai quan sát liên tiếp, động lực ngược hỏi: hành động nào đã tạo ra sự chuyển tiếp này? Ngăn xếp ba thành phần này cho phép một robot huấn luyện chủ yếu trong một mô phỏng đã học, sử dụng mô hình video để tạo dữ liệu và mô hình động lực ngược để thực hiện."
+    },
+    {
+      "stage": "post",
+      "question": "Các đội lái xe tự động sử dụng mô hình thế giới (Cosmos-Drive, Gaia-2, DrivingWorld) để thay thế chi phí nào?",
+      "options": [
+        "Khấu hao phương tiện",
+        "Bảo hiểm đội xe thực tế",
+        "Thu thập dữ liệu thế giới thực tốn kém cho các trường hợp góc hiếm hoặc nguy hiểm (người đi bộ băng qua đường, đường trơn, phương tiện bất thường); video lái xe tổng hợp cung cấp dữ liệu huấn luyện và đánh giá theo yêu cầu cho những kịch bản đó",
+        "Phí đường"
+      ],
+      "correct": 2,
+      "explanation": "Việc thu thập dữ liệu lái xe cho các trường hợp góc mất hàng triệu dặm thế giới thực. Cosmos-Drive, Gaia-2, và DrivingWorld tạo ra nó dựa trên các quỹ đạo và bản đồ. Các đội sử dụng dữ liệu này để mở rộng tập huấn luyện, đánh giá các kế hoạch trong các điều kiện có thể tái tạo, và giảm rủi ro cho các kịch bản mà họ không thể lái xe một cách đạo đức trong thực tế. Thay thế một phần thu thập thế giới thực bằng tổng hợp là một trong những lợi ích sản xuất rõ ràng nhất cho các mô hình thế giới video trong năm 2026."
+    }
+  ]
+}

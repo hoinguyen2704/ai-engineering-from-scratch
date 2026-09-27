@@ -1,0 +1,90 @@
+{
+  "lesson": "08-memory-blocks-sleep-time-compute",
+  "title": "Khối Bộ Nhớ và Tính Toán Thời Gian Ngủ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba cấp độ bộ nhớ của Letta là gì?",
+      "options": [
+        "RAM, swap, đĩa",
+        "Cache, KV, lưu trữ",
+        "Core, hồi tưởng, lưu trữ",
+        "Làm việc, tập hợp, ngữ nghĩa"
+      ],
+      "correct": 2,
+      "explanation": "Letta sử dụng các cấp độ core (luôn hiển thị), recall (lịch sử cuộc trò chuyện), và archival (ngoại vi)."
+    },
+    {
+      "stage": "pre",
+      "question": "Vấn đề sản xuất nào mà tính toán thời gian ngủ nhắm đến?",
+      "options": [
+        "Giảm chi phí embedding",
+        "Phân tích JSON nhanh hơn",
+        "Độ chính xác cao hơn trong các bài toán toán học",
+        "Độ trễ đuôi do thực hiện hợp nhất bộ nhớ trên đường dẫn quan trọng"
+      ],
+      "correct": 3,
+      "explanation": "Thời gian ngủ di chuyển việc cắt tỉa/tóm tắt/hòa giải ra khỏi đường dẫn người dùng, vì vậy phản hồi chính vẫn nhanh."
+    },
+    {
+      "stage": "check",
+      "question": "Thuộc tính nào KHÔNG phải là trường khối bộ nhớ trong Letta?",
+      "options": [
+        "giới hạn",
+        "embedding_model_version",
+        "nhãn",
+        "giá trị"
+      ],
+      "correct": 1,
+      "explanation": "Các khối mang id, nhãn, giá trị, giới hạn, mô tả; phiên bản mô hình embedding không phải là một phần của sơ đồ khối."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tác nhân thời gian ngủ có thể chạy một mô hình mạnh hơn mô hình chính?",
+      "options": [
+        "Chi phí các thao tác bộ nhớ bằng một nửa token",
+        "Nó nhận được một khóa API riêng",
+        "Nó nằm ngoài đường dẫn quan trọng, vì vậy không bị hạn chế độ trễ",
+        "Nó được miễn các giới hạn tần suất"
+      ],
+      "correct": 2,
+      "explanation": "Bởi vì nó không chặn phản hồi của người dùng, tác nhân thời gian ngủ có thể chậm hơn và tốn kém hơn."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu nào mà các khối Human và Persona tổng quát hóa?",
+      "options": [
+        "Quá trình OS",
+        "Các khối có kiểu chỉnh sửa do người dùng định nghĩa tùy ý (Nhiệm vụ, Dự án, An toàn, ...)",
+        "Kênh JSON-RPC",
+        "Embedding vector"
+      ],
+      "correct": 1,
+      "explanation": "Letta tổng quát hóa hai khối MemGPT thành bất kỳ khối do người dùng định nghĩa nào với id, nhãn, giá trị, giới hạn, mô tả."
+    },
+    {
+      "stage": "post",
+      "question": "Sự trôi lặng trong mẫu này là gì?",
+      "options": [
+        "Một tác nhân chính không bao giờ thấy rằng tác nhân thời gian ngủ đã viết lại một khối bên dưới nó; sửa bằng cách phiên bản hóa và hiển thị sự khác biệt",
+        "Nâng cấp mô hình embedding",
+        "Ghi đĩa chậm",
+        "Rung tần suất giới hạn"
+      ],
+      "correct": 0,
+      "explanation": "Phiên bản hóa các khối và hiển thị sự khác biệt trong dấu vết làm cho các viết lại thời gian ngủ trở nên rõ ràng với vòng lặp chính."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì đã thay thế các token `Thought:` nội tuyến và mẫu send_message/heartbeat trong Letta V1?",
+      "options": [
+        "Lý luận bản địa phát ra trên một kênh riêng và được truyền qua các lượt",
+        "Một LLM thứ hai dành riêng cho suy nghĩ",
+        "Một lời nhắc hệ thống lớn hơn",
+        "Suy nghĩ do người dùng nhập thủ công"
+      ],
+      "correct": 0,
+      "explanation": "Letta V1 (letta_v1_agent) sử dụng lý luận bản địa cấp nhà cung cấp, không phải suy nghĩ hình dạng lời nhắc."
+    }
+  ]
+}

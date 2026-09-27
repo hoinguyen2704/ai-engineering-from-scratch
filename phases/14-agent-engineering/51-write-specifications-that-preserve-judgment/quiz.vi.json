@@ -1,0 +1,78 @@
+{
+  "lesson": "51-write-specifications-that-preserve-judgment",
+  "title": "Các Đặc Tả Giữ Lại Phán Quyết",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì là trung gian hữu ích giữa việc định nghĩa quá ít và quá nhiều?",
+      "options": [
+        "Không có kế hoạch",
+        "Một yêu cầu dài hơn",
+        "Một kịch bản triển khai hoàn chỉnh",
+        "Một hợp đồng có thể thực thi mà cố định các bất biến và bằng chứng trong khi giữ lại các lựa chọn có thể đảo ngược"
+      ],
+      "correct": 3,
+      "explanation": "Hợp đồng hạn chế kết quả và rủi ro mà không cần lập trình mọi chi tiết triển khai."
+    },
+    {
+      "stage": "check",
+      "question": "Quyết định nào thường nên được khóa?",
+      "options": [
+        "Tên biến cục bộ",
+        "Liệu hệ thống có thể ghi vào sản xuất hay không",
+        "Một phân tách tệp có thể đảo ngược",
+        "Thứ tự của các hàm trợ giúp riêng tư"
+      ],
+      "correct": 1,
+      "explanation": "Quyền lực và hành vi có hậu quả lớn yêu cầu một quyết định thuộc về con người."
+    },
+    {
+      "stage": "check",
+      "question": "Quyết định có giới hạn là gì?",
+      "options": [
+        "Đại lý không thể hành động",
+        "Đại lý có thể chọn trong các giới hạn an toàn rõ ràng",
+        "Lựa chọn là ngẫu nhiên",
+        "Không có bằng chứng"
+      ],
+      "correct": 1,
+      "explanation": "Giới hạn giữ lại phán quyết hữu ích trong khi kiểm soát rủi ro."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao nên ghép các ví dụ với các bất biến?",
+      "options": [
+        "Chúng giảm mọi sự mơ hồ",
+        "Các ví dụ chứng minh mọi quy tắc phổ quát",
+        "Chúng thay thế kết quả",
+        "Các ví dụ tiết lộ ý định trong khi các bất biến nêu rõ các điều kiện phải luôn đúng"
+      ],
+      "correct": 3,
+      "explanation": "Các trường hợp cụ thể và các ràng buộc phổ quát phục vụ các vai trò khác nhau."
+    },
+    {
+      "stage": "post",
+      "question": "Bằng chứng nào phù hợp với một tuyên bố hành trình người dùng?",
+      "options": [
+        "Một quan sát hành trình trên trình duyệt hoặc end-to-end",
+        "Một chú thích kiểu",
+        "Chỉ một bài kiểm tra đơn vị cục bộ",
+        "Một kế hoạch"
+      ],
+      "correct": 0,
+      "explanation": "Bằng chứng phải hoạt động ở cùng một lớp với tuyên bố."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần ghi lại lý do cho các quyết định đã khóa?",
+      "options": [
+        "Để ngăn chặn mọi thay đổi",
+        "Để làm cho tệp dài hơn",
+        "Để bằng chứng sau này có thể sửa đổi lựa chọn mà không cần khai thác",
+        "Để che giấu sự không chắc chắn"
+      ],
+      "correct": 2,
+      "explanation": "Các lý do có thể truy nguyên cho phép các đặc tả phát triển một cách có chủ đích."
+    }
+  ]
+}

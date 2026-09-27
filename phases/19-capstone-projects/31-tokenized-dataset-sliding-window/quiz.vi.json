@@ -1,0 +1,78 @@
+{
+  "lesson": "31-tokenized-dataset-sliding-window",
+  "title": "Tập Dữ Liệu Đã Được Token Hóa với Cửa Sổ Trượt",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hợp đồng hình dạng cho một lô huấn luyện LM nguyên nhân là gì?",
+      "options": [
+        "(B, T) id đầu vào và (B, T) id mục tiêu, trong đó mục tiêu là đầu vào được dịch sang trái một đơn vị",
+        "(B, V) vector one-hot trên từ vựng",
+        "(B, T, T) mặt nạ attention với các id đầu vào trên đường chéo",
+        "(B, 2) cặp id đầu vào và nhãn"
+      ],
+      "correct": 0,
+      "explanation": "Huấn luyện LM nguyên nhân đọc (B, T) id đầu vào và dự đoán cùng hình dạng của id mục tiêu, trong đó mục tiêu[t] = đầu vào[t+1]."
+    },
+    {
+      "stage": "check",
+      "question": "Có bao nhiêu cửa sổ có độ dài T+1 phù hợp trong một luồng id có độ dài N với bước nhảy S?",
+      "options": [
+        "max(0, 1 + (N - (T + 1)) // S)",
+        "N - T - S",
+        "(N - T) * S",
+        "N // (T + 1)"
+      ],
+      "correct": 0,
+      "explanation": "Cửa sổ đầu tiên bắt đầu từ 0. Các cửa sổ tiếp theo bắt đầu từ các bội số của S. Cửa sổ cuối cùng vẫn phải bao phủ T+1 id."
+    },
+    {
+      "stage": "check",
+      "question": "Việc giảm một nửa bước nhảy có ảnh hưởng gì đến tập dữ liệu?",
+      "options": [
+        "Nó giảm một nửa số ví dụ huấn luyện mỗi epoch",
+        "Nó loại bỏ sự chồng chéo giữa các cửa sổ liên tiếp",
+        "Nó gần như gấp đôi số ví dụ huấn luyện mỗi epoch",
+        "Nó không có ảnh hưởng gì vì các cửa sổ không bao giờ chồng chéo"
+      ],
+      "correct": 2,
+      "explanation": "Một bước nhảy nhỏ hơn tạo ra nhiều cửa sổ chồng chéo hơn, tăng số lượng ví dụ và sự đa dạng biên giới với chi phí tính toán nhiều hơn mỗi epoch."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phải truyền một torch.Generator rõ ràng cho DataLoader?",
+      "options": [
+        "Nó làm cho việc xáo trộn trở nên xác định giữa các lần chạy với cùng một hạt giống",
+        "Nó loại bỏ nhu cầu về padding lô",
+        "Nó cho phép huấn luyện đa GPU",
+        "Nó tăng tốc độ tải dữ liệu"
+      ],
+      "correct": 0,
+      "explanation": "Một bộ sinh có hạt giống tái tạo cùng một cách xáo trộn. Các lần chạy lại với cùng một hạt giống thấy các lô theo cùng một thứ tự, điều này là cần thiết cho việc so sánh hyperparameter công bằng."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tập dữ liệu trả về (input[:-1], input[1:]) từ mỗi cửa sổ có kích thước T+1?",
+      "options": [
+        "Nó loại bỏ một id để tiết kiệm bộ nhớ",
+        "Nó loại bỏ một token đặc biệt khỏi đầu vào",
+        "Đó là một đặc điểm kỳ quặc của chỉ mục tensor PyTorch",
+        "Nó thực hiện mục tiêu dịch một đơn vị để mất mát đo lường dự đoán token tiếp theo"
+      ],
+      "correct": 3,
+      "explanation": "Mục tiêu tại vị trí t là đầu vào tại vị trí t+1. Cắt cửa sổ thành [:-1] và [1:] thể hiện hợp đồng đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học lại loại bỏ các cửa sổ cuối không hoàn chỉnh thay vì padding chúng?",
+      "options": [
+        "Việc loại bỏ giữ cho mọi ví dụ có cùng độ dài nên không cần mặt nạ mất mát",
+        "Dữ liệu bị loại bỏ được phục hồi bởi epoch tiếp theo",
+        "Padding sẽ thay đổi kích thước từ vựng",
+        "Các token đã padding không được mô hình hỗ trợ"
+      ],
+      "correct": 0,
+      "explanation": "Tất cả các ví dụ đều có đúng T token theo cấu trúc, vì vậy lô là một tensor hình chữ nhật sạch và mất mát áp dụng đồng đều mà không cần mặt nạ."
+    }
+  ]
+}

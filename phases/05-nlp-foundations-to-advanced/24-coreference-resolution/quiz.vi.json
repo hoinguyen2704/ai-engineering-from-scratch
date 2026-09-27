@@ -1,0 +1,102 @@
+{
+  "lesson": "24-coreference-resolution",
+  "title": "Giải Quyết Tham Chiếu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mục tiêu của giải quyết tham chiếu là gì?",
+      "options": [
+        "Nhóm tất cả các đề cập (tên, danh từ, đại từ) liên quan đến cùng một thực thể trong thế giới thực",
+        "Trích xuất quan hệ",
+        "Gán nhãn các phần của từ loại",
+        "Dịch đại từ thành danh từ"
+      ],
+      "correct": 0,
+      "explanation": "Coref nhóm các khoảng đề cập mà tất cả đều liên quan đến cùng một thực thể."
+    },
+    {
+      "stage": "pre",
+      "question": "Loại biểu thức nào là một đề cập 'danh từ'?",
+      "options": [
+        "Một động từ",
+        "Một đại từ như 'cô ấy'",
+        "Chỉ một danh từ riêng",
+        "Một cụm danh từ như 'Giám đốc điều hành' hoặc 'công ty'"
+      ],
+      "correct": 3,
+      "explanation": "Các đề cập danh từ là cụm danh từ như 'công ty'; các đề cập đại từ là đại từ."
+    },
+    {
+      "stage": "check",
+      "question": "Kiến trúc coref hiện đại (Lee et al., 2017) là gì?",
+      "options": [
+        "Phân tích cú pháp dựa trên quy tắc chỉ",
+        "Cây quyết định",
+        "Dựa trên khoảng span: liệt kê các khoảng, chấm điểm các đề cập, sau đó chấm điểm xác suất antecedent và nhóm một cách tham lam",
+        "Truy xuất BM25"
+      ],
+      "correct": 2,
+      "explanation": "Coref neural end-to-end liệt kê các khoảng và học chấm điểm đề cập + antecedent một cách đồng thời."
+    },
+    {
+      "stage": "check",
+      "question": "CoNLL F1 trung bình cái gì?",
+      "options": [
+        "Điểm F1 của MUC, B-cubed và CEAF-phi4",
+        "Độ chính xác và độ thu hồi",
+        "F1 trên các ngôn ngữ",
+        "F1 của token và span"
+      ],
+      "correct": 0,
+      "explanation": "CoNLL F1 là trung bình của các chỉ số MUC, B-cubed và CEAF-phi4."
+    },
+    {
+      "stage": "check",
+      "question": "Bridging anaphora là gì?",
+      "options": [
+        "Một tham chiếu ngầm như 'bánh xe' ám chỉ đến bánh xe của một chiếc xe đã được đề cập trước đó",
+        "Một sự dịch sai",
+        "Một đại từ trước khi có đối tượng tham chiếu",
+        "Một đại từ không có antecedent"
+      ],
+      "correct": 0,
+      "explanation": "Bridging liên kết một đề cập với một phần của hoặc thực thể liên quan mà đã được ngầm ám chỉ nhưng không được nêu rõ."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao coref chỉ với LLM không đáng tin cậy trên các tài liệu dài?",
+      "options": [
+        "Coref yêu cầu một CFG",
+        "LLM không thể đọc văn bản",
+        "Các bộ phân tách không hoạt động",
+        "Các LLM gọi đơn lẻ quá gộp hoặc âm thầm bỏ qua các đề cập qua 50+ đoạn văn; cần có cửa sổ trượt cộng với gộp"
+      ],
+      "correct": 3,
+      "explanation": "Coref LLM cho tài liệu dài suy giảm; cửa sổ trượt với gộp giữa các cửa sổ giúp giảm thiểu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao gộp các cụm coref vào kết quả NER trước các tác vụ hạ nguồn?",
+      "options": [
+        "Yêu cầu bởi Wikidata",
+        "Để các tác vụ hạ nguồn thấy một thực thể cho mỗi cụm thay vì một cho mỗi đề cập bề mặt, cải thiện đáng kể độ bao phủ",
+        "Giảm độ trễ",
+        "Để tăng số lượng token"
+      ],
+      "correct": 1,
+      "explanation": "Nếu không gộp, NER đếm mỗi hình thức bề mặt riêng biệt và bỏ lỡ 60-80% các đề cập thực thể."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các quy tắc giới tính mã cứng là một điểm yếu trong các hệ thống coref?",
+      "options": [
+        "Chúng bị lỗi trên các đối tượng không nhị phân, tổ chức và động vật; chấm điểm học được thì mạnh mẽ hơn",
+        "Chúng không thể sử dụng các nhãn POS",
+        "Chúng yêu cầu GPU",
+        "Chúng chạy quá nhanh"
+      ],
+      "correct": 0,
+      "explanation": "Các quy tắc giới tính không hoạt động trong văn bản đa dạng về nhân khẩu học; các mô hình học được được ưa chuộng."
+    }
+  ]
+}

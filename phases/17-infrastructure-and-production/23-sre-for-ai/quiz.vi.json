@@ -1,0 +1,78 @@
+{
+  "lesson": "23-sre-for-ai",
+  "title": "SRE cho AI — Phản ứng sự cố đa tác nhân, Sổ tay vận hành, Phát hiện dự đoán",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hình dạng đa tác nhân nào mà bài học khuyến nghị cho SRE AI?",
+      "options": [
+        "Tác nhân giám sát phân chia sự cố thành các truy vấn con cho các tác nhân nhật ký, chỉ số và sổ tay chuyên biệt, sau đó tổng hợp và trình bày cho con người",
+        "Một tác nhân đơn khối sở hữu mọi thứ",
+        "Lựa chọn ngẫu nhiên một trong ba tác nhân",
+        "Hai tác nhân hoạt động nối tiếp mà không có giám sát"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tập tự động khắc phục nào mà bài học gọi là an toàn?",
+      "options": [
+        "Chỉnh sửa chính sách IAM",
+        "Thay đổi cơ sở dữ liệu",
+        "Thiết kế lại topo dịch vụ",
+        "Khởi động lại pod, hoàn nguyên một triển khai cụ thể, mở rộng một nhóm trong giới hạn đã được phê duyệt trước, kích hoạt một cờ tính năng đã được phê duyệt trước"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "NeuBird Hawkeye sử dụng đánh giá đối kháng để lọc các nguyên nhân gốc ảo tưởng như thế nào?",
+      "options": [
+        "Luôn chọn câu trả lời của mô hình có độ tin cậy cao hơn",
+        "Chạy cùng một mô hình hai lần trên cùng một đầu vào",
+        "Hai mô hình phân tích độc lập cùng một sự cố; đồng thuận = độ tin cậy cao, không đồng thuận = nâng lên con người với cả hai giả thuyết",
+        "Sử dụng đào tạo kiểu GAN"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bộ nhớ vận hành giải quyết vấn đề gì trong SRE AI?",
+      "options": [
+        "Mất kiến thức bộ lạc khi các đội ngũ thay đổi — sổ tay và báo cáo hậu sự cố sống trong một cơ sở dữ liệu vector mà các tác nhân truy xuất trong mỗi sự cố",
+        "Lọc lưu lượng mạng ra",
+        "Khởi động lạnh của các pod suy diễn",
+        "Phân bổ chi phí token"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Kết quả MIT 2025 nào mà bài học trích dẫn cho dự đoán trước sự cố?",
+      "options": [
+        "Dự đoán vẫn chưa được giải quyết",
+        "Dự đoán 100% với thời gian dẫn 1 giây",
+        "89% sự cố được dự đoán trước 10-15 phút bằng cách sử dụng nhật ký + nhiệt độ GPU + mẫu lỗi API",
+        "10% không có thời gian dẫn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Ràng buộc vận hành nào mà bài học nhấn mạnh về phát hiện dự đoán?",
+      "options": [
+        "Dự đoán thay thế sổ tay",
+        "Dự đoán mà không có hành động chỉ là bảng điều khiển — câu hỏi vận hành là hành động nào (tiền xả, trang, tự động mở rộng) mà dự đoán kích hoạt",
+        "Dự đoán không bao giờ được kết nối với hành động",
+        "Dự đoán luôn chính xác"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

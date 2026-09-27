@@ -1,0 +1,78 @@
+{
+  "lesson": "55-critic-loop",
+  "title": "Vòng Phê Bình",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao người phê bình đánh giá trên năm chiều cố định thay vì trả về một đoạn văn tự do?",
+      "options": [
+        "Bởi vì các mô hình không thể tạo ra đoạn văn một cách đáng tin cậy",
+        "Bởi vì người sửa chỉ chấp nhận JSON",
+        "Bởi vì LaTeX yêu cầu một trường điểm số",
+        "Bởi vì một vector cố định cho phép bộ harness phát hiện các hồi quy theo từng chiều qua các vòng"
+      ],
+      "correct": 3,
+      "explanation": "Một vector chiều cố định biến phê bình thành dữ liệu có cấu trúc mà bộ harness có thể so sánh qua các vòng. Phê bình tự do không thể xác minh; các vector làm cho các hồi quy trở nên rõ ràng."
+    },
+    {
+      "stage": "pre",
+      "question": "Theo thứ tự nào vòng lặp kiểm tra các điều kiện dừng vào cuối một vòng?",
+      "options": [
+        "Plateau, sau đó là mục tiêu, sau đó là ngân sách",
+        "Ngân sách, sau đó là plateau, sau đó là mục tiêu",
+        "Điều nào xảy ra trước bằng cách phân định ngẫu nhiên",
+        "Mục tiêu, sau đó là plateau, sau đó là ngân sách"
+      ],
+      "correct": 3,
+      "explanation": "Mục tiêu đạt được thắng (công việc đã hoàn thành). Sau đó là plateau (không còn tiến bộ nào có thể đạt được). Sau đó là ngân sách (giới hạn cứng). Thứ tự này làm cho kết quả trở nên xác định khi có nhiều hơn một điều kiện có thể xảy ra."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc phát hiện plateau yêu cầu hai vòng liên tiếp phẳng thay vì một?",
+      "options": [
+        "Bởi vì mô hình trả về các điểm số không xác định",
+        "Bởi vì điểm số xác định vẫn có tiếng ồn theo từng vòng; một vòng phẳng không đủ tín hiệu",
+        "Bởi vì lớp dữ liệu yêu cầu một danh sách",
+        "Bởi vì bảng điều khiển mong đợi hai điểm"
+      ],
+      "correct": 1,
+      "explanation": "Ngay cả đầu ra của một bộ điểm số xác định cũng thay đổi từ vòng này sang vòng khác tùy thuộc vào các gợi ý nào đã được áp dụng. Yêu cầu hai vòng phẳng lọc tiếng ồn đó."
+    },
+    {
+      "stage": "check",
+      "question": "Người sửa nhận được gì làm đầu vào mỗi vòng?",
+      "options": [
+        "Nguồn LaTeX thô",
+        "Một đoạn văn do mô hình tạo ra",
+        "Toàn bộ đối tượng Phê Bình bao gồm các điểm số",
+        "Bài báo và danh sách các bản ghi Gợi ý"
+      ],
+      "correct": 3,
+      "explanation": "Reviser.__call__ nhận (bài báo, gợi ý). Mỗi Gợi ý mang một chiều, phần mục tiêu và một hướng dẫn chỉnh sửa. Người sửa không thấy các điểm số. Sự tách biệt đó cho phép một bên có thể thay thế mà không ảnh hưởng đến bên kia."
+    },
+    {
+      "stage": "post",
+      "question": "Dấu vết chứa gì cho mỗi vòng?",
+      "options": [
+        "Chỉ bản nháp cuối cùng của bài báo",
+        "Chỉ phán quyết hội tụ",
+        "Lời nhắc và hoàn thành của mô hình",
+        "Số vòng, vector điểm số, trung bình, gợi ý đã áp dụng, phán quyết"
+      ],
+      "correct": 3,
+      "explanation": "Dấu vết là nhật ký sự kiện theo từng vòng. Các bảng điều khiển hiển thị nó dưới dạng biểu đồ điểm số theo thời gian; giai đoạn tiếp theo đọc nó để quyết định xem nhánh đó có đáng giữ lại hay không."
+    },
+    {
+      "stage": "post",
+      "question": "Một người phê bình liên tục đưa ra các gợi ý không bao giờ cải thiện bất kỳ điểm số nào sẽ tạo ra phán quyết cuối cùng nào?",
+      "options": [
+        "hội tụ, vì các gợi ý đã được áp dụng",
+        "mục tiêu, vì ngân sách che giấu lỗi",
+        "plateau hoặc ngân sách, vì bộ harness sẽ phát hiện sự thiếu tiến bộ",
+        "Một ngoại lệ, vì vòng lặp bị sập"
+      ],
+      "correct": 2,
+      "explanation": "Hoặc plateau (hai vòng phẳng) hoặc ngân sách (giới hạn cứng) xảy ra. Cả hai phán quyết đều làm nổi bật lỗi. Vòng lặp không bao giờ thành công một cách im lặng."
+    }
+  ]
+}

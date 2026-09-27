@@ -1,0 +1,102 @@
+{
+  "lesson": "02-bag-of-words-tfidf",
+  "title": "Bag of Words, TF-IDF, và Đại diện Văn bản",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bag of Words loại bỏ điều gì?",
+      "options": [
+        "Dấu câu",
+        "Thứ tự token",
+        "Kích thước từ vựng",
+        "Chiều dài tài liệu"
+      ],
+      "correct": 1,
+      "explanation": "BoW đếm các token trong mỗi tài liệu nhưng loại bỏ thứ tự của chúng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao phải điều chỉnh TF bằng yếu tố IDF?",
+      "options": [
+        "Để chuẩn hóa chiều dài tài liệu",
+        "Các từ xuất hiện trong mọi tài liệu mang tín hiệu phân biệt ít và nên được giảm trọng số",
+        "Để loại bỏ dấu câu",
+        "Để tăng tốc độ huấn luyện"
+      ],
+      "correct": 1,
+      "explanation": "IDF phạt các từ phổ biến và tăng cường các từ hiếm."
+    },
+    {
+      "stage": "check",
+      "question": "Trong công thức IDF đã làm mịn log((N+1)/(df+1)) + 1, điều gì đảm bảo với +1 ở cuối?",
+      "options": [
+        "Sự ổn định số cho N lớn",
+        "Tương thích với các số đếm thô",
+        "Một từ xuất hiện trong mọi tài liệu vẫn có IDF là 1 thay vì 0",
+        "Tính toán nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "+1 giữ cho các từ phổ biến có IDF=1 để chúng không bị đưa về 0, phù hợp với mặc định của scikit-learn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phải chuẩn hóa L2 các hàng TF-IDF trước khi tính độ tương đồng cosine?",
+      "options": [
+        "Để chuyển đổi các vector thưa thành dày đặc",
+        "Các tài liệu dài hơn sẽ chiếm ưu thế trong điểm tương đồng; chuẩn hóa đưa tất cả tài liệu vào hình cầu đơn vị",
+        "Để loại bỏ các mục bằng 0",
+        "Để nén từ vựng"
+      ],
+      "correct": 1,
+      "explanation": "Chuẩn hóa L2 loại bỏ thiên lệch chiều dài tài liệu và biến độ tương đồng cosine thành tích vô hướng."
+    },
+    {
+      "stage": "check",
+      "question": "Cài đặt nào của TfidfVectorizer là rủi ro khi bật cho phân tích cảm xúc?",
+      "options": [
+        "sublinear_tf=True",
+        "ngram_range=(1, 2)",
+        "min_df=2",
+        "stop_words='english'"
+      ],
+      "correct": 3,
+      "explanation": "Danh sách từ dừng tiếng Anh loại bỏ các từ phủ định như 'not', mang tín hiệu cảm xúc."
+    },
+    {
+      "stage": "post",
+      "question": "Nhiệm vụ nào mà TF-IDF vẫn thắng vào năm 2026?",
+      "options": [
+        "Dịch máy",
+        "Đối thoại mở",
+        "Chú thích hình ảnh",
+        "Phát hiện spam, đánh dấu bất thường trong nhật ký, và phân loại hẹp với độ trễ thấp"
+      ],
+      "correct": 3,
+      "explanation": "TF-IDF vượt trội hơn embeddings khi sự hiện diện của từ là tín hiệu và khả năng giải thích hoặc tốc độ quan trọng."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao TF-IDF thất bại trong cặp 'The movie was not good' so với 'The movie was excellent'?",
+      "options": [
+        "TF-IDF yêu cầu bigram để hoạt động",
+        "Cả hai tài liệu chia sẻ hầu hết các token; bag-of-words không có khái niệm về phủ định hoặc thứ tự từ",
+        "TF-IDF không thể xử lý các từ dừng",
+        "Sự chồng chéo của embeddings quá cao"
+      ],
+      "correct": 1,
+      "explanation": "Thiếu thứ tự từ hoặc ngữ cảnh cú pháp, BoW không thể mô hình hóa rằng 'not' đảo ngược cảm xúc của 'good'."
+    },
+    {
+      "stage": "post",
+      "question": "Hybrid embedding có trọng số TF-IDF là gì?",
+      "options": [
+        "Nối BoW và embeddings dày đặc",
+        "Chạy PCA trên TF-IDF rồi tái nhúng",
+        "Sử dụng trọng số TF-IDF như một trọng số gộp trên các embeddings theo token trước khi trung bình",
+        "Huấn luyện BERT trên các đặc trưng TF-IDF"
+      ],
+      "correct": 2,
+      "explanation": "Hybrid này trọng số mỗi embedding của token theo điểm số TF-IDF của nó và trung bình, kết hợp khả năng ngữ nghĩa với sự nhấn mạnh vào từ hiếm."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "25-skill-invocation-and-routing",
+  "title": "Kích hoạt và Định tuyến Kỹ năng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự kiện nào là ví dụ về kích hoạt kỹ năng theo chương trình từ góc độ của máy chủ?",
+      "options": [
+        "Một bộ đánh giá chọn một kỹ năng có tên cho một kịch bản đã lên lịch",
+        "Một người dùng chọn một kỹ năng có tên trong giao diện người dùng của máy chủ",
+        "Một mô hình suy luận một kỹ năng từ sự liên quan ngữ nghĩa",
+        "Một danh mục đọc mô tả trong quá trình khám phá"
+      ],
+      "correct": 0,
+      "explanation": "Kích hoạt theo chương trình đến từ luồng điều khiển thời gian chạy hoặc bộ đánh giá, chẳng hạn như một đánh giá chọn một kỹ năng chính xác. Lựa chọn của con người là kích hoạt người dùng rõ ràng, trong khi khớp ngữ nghĩa là kích hoạt mô hình ngầm."
+    },
+    {
+      "stage": "check",
+      "question": "Một máy chủ nhận ra `user-invocable: false`. Hướng dẫn khả năng di động nên mô tả trường đó như thế nào?",
+      "options": [
+        "Một bit quyền truy cập hệ thống tệp",
+        "Một sự thay thế cho mô tả kỹ năng",
+        "Một phần mở rộng kích hoạt cụ thể cho máy chủ được một bộ chuyển đổi diễn giải",
+        "Một trường bắt buộc trong mọi Kỹ năng Đại lý"
+      ],
+      "correct": 2,
+      "explanation": "Một máy chủ cụ thể có thể gán ý nghĩa cho một phần mở rộng mà không làm cho nó trở nên phổ quát. Công cụ di động nên bảo tồn hoặc điều chỉnh rõ ràng trường đó và tránh hứa hẹn hành vi giống hệt trong các thời gian chạy không nhận ra nó."
+    },
+    {
+      "stage": "check",
+      "question": "Một bộ định tuyến mô hình ngầm nên làm gì với một truy vấn gần đúng dưới ngưỡng kích hoạt của nó?",
+      "options": [
+        "Kích hoạt kỹ năng đầu tiên theo thứ tự bảng chữ cái",
+        "Giảm ngưỡng một cách im lặng cho yêu cầu đó",
+        "Chuyển đổi truy vấn thành một lệnh slash của con người",
+        "Từ chối kích hoạt và tiếp tục mà không có kỹ năng hoặc yêu cầu làm rõ"
+      ],
+      "correct": 3,
+      "explanation": "Các trường hợp gần đúng là nơi mà việc kích hoạt quá mức xuất hiện. Một ngưỡng chỉ hữu ích nếu bộ định tuyến tôn trọng nó, báo cáo không kích hoạt và cho phép lý luận hoặc làm rõ bình thường tiếp tục."
+    },
+    {
+      "stage": "check",
+      "question": "Trong mô hình con người/mô hình 2x2, `human=true, model=false` có nghĩa là gì?",
+      "options": [
+        "Kỹ năng có quyền truy cập công cụ không hạn chế",
+        "Một con người có thể kích hoạt nó một cách rõ ràng, nhưng mô hình không nên chọn nó một cách ngầm",
+        "Chỉ một bộ đánh giá mới có thể kích hoạt nó",
+        "Mô hình chỉ có thể kích hoạt nó sau một yêu cầu mạng"
+      ],
+      "correct": 1,
+      "explanation": "Các trục mô tả các kênh kích hoạt, không phải quyền hạn. Khu vực này hỗ trợ lựa chọn của người dùng có chủ đích trong khi ngăn chặn định tuyến mô hình tự động, điều này hữu ích cho các quy trình làm việc tốn kém hoặc gây rối."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao một bộ đánh giá thường kích hoạt một kỹ năng bằng tên chính xác?",
+      "options": [
+        "Nó làm cho mô tả trở nên không cần thiết",
+        "Tên chính xác cấp quyền thoát khỏi sandbox",
+        "Nó cô lập hành vi kỹ năng khỏi biến thể định tuyến để các lần chạy lặp lại có thể so sánh được",
+        "Nó chứng minh rằng tất cả các máy chủ chia sẻ một cú pháp lệnh"
+      ],
+      "correct": 2,
+      "explanation": "Một bộ đánh giá thường cần kiểm tra chính kỹ năng đó, không phải mô hình khám phá. Lựa chọn theo chương trình chính xác loại bỏ một nguồn biến thể; các đánh giá kích hoạt riêng biệt sau đó có thể đo độ chính xác và độ nhớ của định tuyến ngầm."
+    },
+    {
+      "stage": "post",
+      "question": "Thiết kế nào giữ cho việc kích hoạt và quyền hạn được tách biệt đúng cách?",
+      "options": [
+        "Cho phép kích hoạt mô hình chỉ khi gói chứa một tập lệnh shell",
+        "Nếu một người dùng kích hoạt một kỹ năng, phê duyệt mọi hành động mà nó yêu cầu",
+        "Định tuyến kích hoạt thông qua chính sách máy chủ, sau đó xem xét từng hành động yêu cầu dưới mô hình quyền hạn",
+        "Để siêu dữ liệu mở rộng thay thế chính sách hệ thống tệp và mạng"
+      ],
+      "correct": 2,
+      "explanation": "Kích hoạt quyết định xem các hướng dẫn có vào ngữ cảnh hay không. Xem xét quyền hạn quyết định xem các đọc, ghi, lệnh hoặc cuộc gọi mạng được đề xuất có thể xảy ra hay không. Giữ cho các cổng đó tách biệt ngăn chặn việc khám phá hoặc kích hoạt trở thành quyền hạn ngẫu nhiên."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "08-cnns-rnns-for-text",
+  "title": "CNN và RNN cho Văn bản",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bộ lọc tích chập 1D có chiều rộng 3 trên các embedding từ đang học gì một cách hiệu quả?",
+      "options": [
+        "Một bộ phát hiện bigram có thể học được",
+        "Một bộ phát hiện trigram (n-gram) có thể học được",
+        "Một embedding vị trí",
+        "Một số lượng unigram"
+      ],
+      "correct": 1,
+      "explanation": "Bộ lọc chiều rộng 3 trải qua ba token liên tiếp, hoạt động như một bộ phát hiện trigram có thể học được."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao LSTM lại sử dụng trạng thái ô với các tương tác chủ yếu là cộng dồn?",
+      "options": [
+        "Softmax nhanh hơn",
+        "Để tránh đảo ngược ma trận",
+        "Dòng chảy cộng dồn cho phép gradient lan truyền qua các chuỗi dài mà không bị biến mất hoặc bùng nổ",
+        "Nó tiết kiệm bộ nhớ"
+      ],
+      "correct": 2,
+      "explanation": "Đường cao tốc trạng thái ô giữ cho gradient ổn định qua hàng trăm bước, khắc phục vấn đề gradient biến mất."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao TextCNN lại sử dụng max-pooling toàn cục sau lớp tích chập?",
+      "options": [
+        "Để giảm từ vựng",
+        "Max-pool cung cấp một đại diện kích thước cố định, không phụ thuộc vào vị trí bằng cách chọn kích hoạt mạnh nhất cho mỗi bộ lọc",
+        "Để cho phép backpropagation",
+        "Để loại bỏ embeddings"
+      ],
+      "correct": 1,
+      "explanation": "Max-pool toàn cục tạo ra một vector đặc trưng kích thước cố định bất kể độ dài đầu vào, với tính không phụ thuộc vào vị trí."
+    },
+    {
+      "stage": "check",
+      "question": "Lợi thế chính của RNN hai chiều so với RNN một chiều trong việc gán nhãn chuỗi là gì?",
+      "options": [
+        "Bộ nhớ rẻ hơn",
+        "Tránh embeddings",
+        "Đại diện của mỗi token thấy cả ngữ cảnh bên trái và bên phải, điều này rất quan trọng cho việc gán nhãn",
+        "Đào tạo nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "Các mạng hai chiều nối kết các trạng thái ẩn tiến về phía trước + lùi lại để nhãn có thể sử dụng đầy đủ ngữ cảnh."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao max-pooling trên đầu ra của LSTM thường vượt trội hơn việc chỉ sử dụng trạng thái ẩn cuối cùng cho phân loại?",
+      "options": [
+        "Max-pool loại bỏ việc viết hoa",
+        "Max-pool trạng thái cuối cùng bỏ qua padding",
+        "Max-pool có thể phân biệt; trạng thái cuối cùng thì không",
+        "Thông tin ở cuối một chuỗi dài có xu hướng chiếm ưu thế trạng thái cuối cùng, che giấu bằng chứng trước đó"
+      ],
+      "correct": 3,
+      "explanation": "Max-pool tổng hợp tín hiệu mạnh nhất qua các vị trí; trạng thái cuối cùng có thể mất bằng chứng trước đó."
+    },
+    {
+      "stage": "post",
+      "question": "Hạn chế nào của bộ mã hóa-giải mã LSTM/RNN đã thúc đẩy sự ra đời của attention?",
+      "options": [
+        "Chúng yêu cầu bộ phân tách từ con",
+        "Bộ giải mã chỉ thấy một trạng thái bộ mã hóa kích thước cố định, mất chi tiết trên các đầu vào dài; sự tái diễn cũng tuần tự hóa đào tạo",
+        "Chúng không thể nhúng các token",
+        "Chúng không thể sử dụng embeddings"
+      ],
+      "correct": 1,
+      "explanation": "Tóm tắt kích thước cố định cộng với đào tạo tuần tự là hai thất bại mà attention đã loại bỏ."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào một TextCNN hoặc BiLSTM vẫn vượt trội hơn một transformer vào năm 2026?",
+      "options": [
+        "Bất cứ khi nào tập dữ liệu là đa ngôn ngữ",
+        "Trên thiết bị / biên, đầu vào theo dòng token từng cái một, hoặc các cơ sở dữ liệu dữ liệu nhỏ",
+        "Khi yêu cầu độ trễ cực kỳ lỏng lẻo",
+        "Trên đầu vào hình ảnh"
+      ],
+      "correct": 1,
+      "explanation": "Các kiến trúc nhỏ vẫn thắng trong suy diễn biên, đầu vào theo dòng và các cơ sở dữ liệu nhanh."
+    },
+    {
+      "stage": "post",
+      "question": "Vấn đề gradient biến mất trong RNN thông thường là gì?",
+      "options": [
+        "Đầu vào trở thành zero",
+        "Việc nhân lặp lại bởi các trọng số tái diễn nhỏ hơn 1 làm cho gradient hướng về các bước đầu tiên co lại về zero",
+        "Mất mát trở thành âm",
+        "Ma trận nhúng trở thành đơn nhất"
+      ],
+      "correct": 1,
+      "explanation": "Gradient sản phẩm dài biến mất (hoặc bùng nổ) mà không có gating; đó là lý do tại sao LSTM và GRU tồn tại."
+    }
+  ]
+}

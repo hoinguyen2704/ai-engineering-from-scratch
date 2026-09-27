@@ -1,0 +1,90 @@
+{
+  "lesson": "05-self-refine-and-critic",
+  "title": "Tự Tinh Chỉnh và CRITIC: Cải Thiện Đầu Ra Từng Bước",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba lời nhắc nào tạo thành một vòng lặp Tự Tinh Chỉnh?",
+      "options": [
+        "Lập kế hoạch, thực hiện, giải quyết",
+        "Tạo ra, phản hồi, tinh chỉnh",
+        "Diễn viên, đánh giá viên, phản ánh",
+        "Tìm kiếm, chấm điểm, tổng hợp"
+      ],
+      "correct": 1,
+      "explanation": "Tự Tinh Chỉnh sử dụng một mô hình trong ba vai trò: tạo ra, phản hồi, tinh chỉnh."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao Tự Tinh Chỉnh cần lịch sử trong bước tinh chỉnh?",
+      "options": [
+        "Lịch sử cần thiết cho việc lập hóa đơn",
+        "Nhà cung cấp chỉ lưu trữ dựa trên lịch sử",
+        "Nó tăng tốc độ tạo token",
+        "Nếu không có đầu ra và phê bình trước đó, bước tinh chỉnh sẽ lặp lại những sai lầm trước đó; sự loại trừ cho thấy chất lượng giảm mạnh"
+      ],
+      "correct": 3,
+      "explanation": "Lời nhắc tinh chỉnh điều kiện dựa trên toàn bộ lịch sử để mô hình không lặp lại những lỗi trước đó."
+    },
+    {
+      "stage": "check",
+      "question": "CRITIC thay đổi điều gì so với Tự Tinh Chỉnh?",
+      "options": [
+        "Nó sử dụng một mô hình lớn hơn để tạo ra",
+        "Nó thực hiện bước phản hồi song song",
+        "Nó thay thế bước tự phản hồi bằng một công cụ xác minh dựa trên bên ngoài",
+        "Nó loại bỏ bước tinh chỉnh"
+      ],
+      "correct": 2,
+      "explanation": "CRITIC thay thế tự phê bình bằng một bước xác minh được định tuyến qua tìm kiếm, trình thông dịch mã, máy tính, hoặc các xác minh viên trong lĩnh vực."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu quy trình nào của Anthropic phù hợp với Tự Tinh Chỉnh và CRITIC bằng ngôn ngữ thân thiện với Claude?",
+      "options": [
+        "Lấy mẫu song song",
+        "Chuỗi lời nhắc",
+        "Đánh giá viên-Tối ưu hóa",
+        "Bộ định tuyến"
+      ],
+      "correct": 2,
+      "explanation": "Anthropic gọi mẫu này là Đánh giá viên-Tối ưu hóa: một đánh giá viên chấm điểm, một tối ưu hóa viên sửa đổi, lặp lại cho đến khi hội tụ."
+    },
+    {
+      "stage": "check",
+      "question": "Vòng lặp con dấu cao su là gì và bài học khuyến nghị tránh nó như thế nào?",
+      "options": [
+        "Một rào cản thời gian; mở rộng thời gian chờ",
+        "Một lần thử lại luôn thất bại; tăng ngân sách",
+        "Cùng một mô hình và cùng một lời nhắc phê bình đầu ra của chính nó và phê duyệt nó; sử dụng các lời nhắc khác cấu trúc hoặc một phê bình viên nhỏ hơn riêng biệt",
+        "Một bài kiểm tra luôn vượt qua; loại bỏ bài kiểm tra"
+      ],
+      "correct": 2,
+      "explanation": "Tự phê bình cùng kiểu hội tụ vào 'trông ổn với tôi'; phân biệt đánh giá viên với tối ưu hóa viên."
+    },
+    {
+      "stage": "post",
+      "question": "Tính năng nào trong OpenAI Agents SDK có hình dạng CRITIC?",
+      "options": [
+        "Phiên",
+        "Theo dõi",
+        "Chuyển giao",
+        "Rào cản đầu ra (có thể gọi công cụ)"
+      ],
+      "correct": 3,
+      "explanation": "Rào cản đầu ra xác thực đầu ra cuối cùng của tác nhân và có thể gọi công cụ, phù hợp với vai trò xác minh của CRITIC."
+    },
+    {
+      "stage": "post",
+      "question": "Điều kiện dừng nào mà bài học khuyến nghị cho các vòng lặp đánh giá viên-tối ưu hóa năm 2026?",
+      "options": [
+        "Dừng chỉ khi mô hình nói 'ổn'",
+        "Không bao giờ dừng; để tác nhân tự cải thiện vô hạn",
+        "Dừng chỉ khi xác minh viên vượt qua",
+        "Kết hợp: xác minh viên vượt qua HOẶC (mô hình nói ổn VÀ số lần lặp >= 2) HOẶC số lần lặp >= max_iterations"
+      ],
+      "correct": 3,
+      "explanation": "Một điều kiện kết hợp tránh các chế độ thất bại của điều kiện đơn."
+    }
+  ]
+}

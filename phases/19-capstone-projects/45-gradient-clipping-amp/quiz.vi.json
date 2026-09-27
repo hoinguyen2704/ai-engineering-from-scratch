@@ -1,0 +1,78 @@
+{
+  "lesson": "45-gradient-clipping-amp",
+  "title": "Cắt Độ Dốc và Độ Chính Xác Hỗn Hợp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cắt độ dốc L2 toàn cục giải quyết vấn đề gì?",
+      "options": [
+        "Một lô xấu có thể làm tăng độ lớn của độ dốc lên nhiều bậc; cắt giới hạn bước tối ưu tồi tệ nhất để một lô không thể đặt lại hàng giờ học tập",
+        "Sự trôi từ vựng",
+        "Đào tạo chậm",
+        "Khởi động ngẫu nhiên"
+      ],
+      "correct": 0,
+      "explanation": "Cắt là dây an toàn giữ cho một lô ồn ào không làm hỏng đường cong mất mát."
+    },
+    {
+      "stage": "check",
+      "question": "Thứ tự đúng của các thao tác GradScaler trong một bước là gì?",
+      "options": [
+        "scaler.scale(loss).backward(); scaler.unscale_(optimizer); clip_grad_norm_; scaler.step(optimizer); scaler.update()",
+        "backward, step, scale, update",
+        "Bất kỳ thứ tự nào; scaler sắp xếp lại bên trong",
+        "step, scale, unscale, backward, update"
+      ],
+      "correct": 0,
+      "explanation": "Cắt trên các độ dốc chưa được quy đổi giữa unscale_ và step; update luôn chạy."
+    },
+    {
+      "stage": "check",
+      "question": "scaler.update() làm gì trong một bước bị bỏ qua?",
+      "options": [
+        "Đóng phiên chạy",
+        "Không làm gì cả",
+        "Giảm một nửa hệ số quy đổi và đặt lại bộ đếm không vô hạn; quên gọi nó trên đường bỏ qua là lỗi gây ra 'hệ số quy đổi không bao giờ thay đổi'",
+        "Gấp đôi hệ số quy đổi"
+      ],
+      "correct": 2,
+      "explanation": "Scaler điều chỉnh hệ số của nó dựa trên tỷ lệ bỏ qua / sạch trong các bước gần đây."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao kiểm tra tính hữu hạn của mất mát là cần thiết ngay cả với GradScaler?",
+      "options": [
+        "Bởi vì GradScaler chậm",
+        "Nó chỉ mang tính trang trí",
+        "PyTorch yêu cầu điều đó",
+        "GradScaler xử lý tràn trong quá trình lùi nhưng một mất mát không hữu hạn không tạo ra độ dốc hữu ích; bỏ qua trước khi lùi tiết kiệm tính toán và tránh làm ô nhiễm trạng thái của scaler"
+      ],
+      "correct": 3,
+      "explanation": "Kiểm tra mất mát bao phủ các lỗi trong quá trình tiến; scaler bao phủ các lỗi trong quá trình lùi."
+    },
+    {
+      "stage": "post",
+      "question": "Tín hiệu sản xuất trong tỷ lệ bỏ qua liên tục là gì?",
+      "options": [
+        "Luôn trang trên bất kỳ lần bỏ qua nào",
+        "Một vài lần bỏ qua mỗi phiên chạy là khỏe mạnh; hàng trăm lần bỏ qua mỗi epoch (trên khoảng 5 phần trăm tỷ lệ liên tục) là một cảnh báo nghiêm trọng rằng mô hình đang ở trong một chế độ FP16 không thể giữ",
+        "Tỷ lệ bỏ qua là không liên quan",
+        "Chỉ trang trên các lần bỏ qua liên tiếp"
+      ],
+      "correct": 1,
+      "explanation": "Cảnh báo dựa trên tỷ lệ bắt được các chế độ lỗi im lặng mà các trang bỏ qua ngẫu nhiên sẽ không phát hiện."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao chuyển từ FP16 sang BF16 autocast khi các lần bỏ qua thường xuyên?",
+      "options": [
+        "BF16 có phạm vi số mũ rộng hơn FP16 và hiếm khi cần quy đổi mất mát; tỷ lệ bỏ qua thường giảm xuống bằng không trên cùng một mô hình",
+        "BF16 chậm hơn nên nó bỏ qua ít hơn",
+        "BF16 mới hơn",
+        "Truyền thống ngẫu nhiên"
+      ],
+      "correct": 0,
+      "explanation": "FP16 ưu tiên độ chính xác của phần thập phân hơn phạm vi; BF16 trao đổi theo hướng ngược lại, loại bỏ hoàn toàn lớp tràn."
+    }
+  ]
+}

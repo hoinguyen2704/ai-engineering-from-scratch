@@ -1,0 +1,78 @@
+{
+  "lesson": "74-leaderboard-aggregation",
+  "title": "Tổng hợp Bảng xếp hạng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ tổng hợp yêu cầu mọi điểm đầu vào phải nằm trong khoảng [0, 1]?",
+      "options": [
+        "Nếu không có thang đo chung, một chỉ số đơn với khoảng 0-100 sẽ chiếm ưu thế trong trung bình theo mô hình",
+        "Numpy yêu cầu điều đó",
+        "Đây là khoảng bin cho ECE",
+        "Việc hiển thị Markdown mong đợi hai chữ số thập phân"
+      ],
+      "correct": 0,
+      "explanation": "Nếu tỷ lệ vượt qua nằm trong [0,1] và BLEU nằm trong [0,100], cái sau sẽ làm ngợp trung bình. Việc chuẩn hóa thuộc về lớp chỉ số và được kiểm tra ở đây."
+    },
+    {
+      "stage": "pre",
+      "question": "Thông tin nào mà điểm trung bình ẩn giấu mà tỷ lệ thắng tiết lộ?",
+      "options": [
+        "Khoảng bootstrap",
+        "Liệu mô hình có được hiệu chỉnh tốt hay không",
+        "Các chiến thắng theo nhiệm vụ chống lại các ngoại lệ và sự thay đổi quy mô; trung bình nhạy cảm với cả hai",
+        "Số lượng nhiệm vụ đã hoàn thành"
+      ],
+      "correct": 2,
+      "explanation": "Tỷ lệ thắng đếm số chiến thắng theo từng nhiệm vụ. Một mô hình có thể có điểm trung bình cao từ một nhiệm vụ dễ và vẫn thua trong hầu hết các so sánh cặp."
+    },
+    {
+      "stage": "check",
+      "question": "bootstrap_mean_ci ước lượng khoảng tin cậy như thế nào?",
+      "options": [
+        "Bằng cách giả định phân phối chuẩn trên trung bình",
+        "Bằng cách lấy mẫu lại các điểm số nhiệm vụ với sự thay thế, tính toán trung bình trên mỗi mẫu, sau đó lấy các phân vị alpha/2 và 1 - alpha/2",
+        "Bằng cách tính toán độ lệch chuẩn một cách phân tích",
+        "Bằng cách gọi scipy.stats.bootstrap"
+      ],
+      "correct": 1,
+      "explanation": "Bootstrap phân vị không tham số trên các điểm số theo nhiệm vụ; không có giả định phân phối, không có scipy."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào khoảng CI chênh lệch cặp báo cáo là `đáng kể`?",
+      "options": [
+        "Khi cả hai mô hình có hơn ba mươi nhiệm vụ",
+        "Khi CI không chứa số không",
+        "Khi tỷ lệ thắng không bằng nhau",
+        "Khi sự khác biệt trung bình lớn hơn 0.1"
+      ],
+      "correct": 1,
+      "explanation": "Một CI mà loại trừ nghiêm ngặt số không có nghĩa là sự khác biệt khó có thể là số không ở mức đã chọn; đó là định nghĩa hoạt động mà bài học sử dụng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bootstrap cặp lại chứ không phải độc lập?",
+      "options": [
+        "Bootstrap cặp lại tôn trọng rằng cùng một nhiệm vụ cung cấp cho cả hai mô hình; sự khác biệt được tính toán theo từng nhiệm vụ trước khi lấy mẫu lại",
+        "Bootstrap cặp lại là cái duy nhất mà numpy hỗ trợ",
+        "Bootstrap cặp lại chạy nhanh hơn",
+        "Bootstrap độc lập là bất hợp pháp trong Python"
+      ],
+      "correct": 0,
+      "explanation": "Bootstrap cặp lại giảm tiếng ồn: chúng tôi lấy mẫu qua các nhiệm vụ, không qua các mô hình, vì vậy sự so sánh diễn ra trên cùng một tập nhiệm vụ trong mỗi lần lặp."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bộ tổng hợp trả về các trung bình theo danh mục bên cạnh số chính?",
+      "options": [
+        "Trung bình chính có thể che giấu điểm yếu ở cấp độ danh mục (tốt tổng thể, kém ở mã); theo danh mục tiết lộ điều đó",
+        "Các trung bình theo danh mục chạy nhanh hơn trung bình tổng thể",
+        "Điều đó là bắt buộc theo JSON Schema",
+        "Việc hiển thị Markdown yêu cầu điều đó"
+      ],
+      "correct": 0,
+      "explanation": "Một mô hình có thể thắng tổng thể bằng cách ổn ở mọi nơi hoặc bằng cách chiếm ưu thế trong một danh mục. Phân tích theo danh mục cho phép người tiêu dùng thấy điều đó."
+    }
+  ]
+}

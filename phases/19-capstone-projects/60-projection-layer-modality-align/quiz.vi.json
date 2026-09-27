@@ -1,0 +1,78 @@
+{
+  "lesson": "60-projection-layer-modality-align",
+  "title": "Lớp Chiếu để Căn chỉnh Modalities",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ mã hóa hình ảnh lại tạo ra các token mà bộ giải mã văn bản không thể tiêu thụ trực tiếp?",
+      "options": [
+        "Các token hình ảnh bị mã hóa",
+        "Các token hình ảnh quá ngắn",
+        "Chúng ở định dạng tệp khác nhau",
+        "Các token hình ảnh sống trong một cơ sở mà bộ mã hóa đã học trong quá trình tiền huấn luyện hình ảnh mà không tương ứng với các vector từ của bộ giải mã"
+      ],
+      "correct": 3,
+      "explanation": "Hai bộ mã hóa học các cơ sở độc lập; một mô-đun cầu nối là cần thiết để căn chỉnh chúng trong một không gian chung."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao MLP hai lớp lại đủ cho việc căn chỉnh modal trong thực tế?",
+      "options": [
+        "Các phép chiếu một lớp bị cấm",
+        "PyTorch yêu cầu hai lớp",
+        "Một độ cong phi tuyến (GELU) giữa hai phép chiếu tuyến tính là đủ để căn chỉnh các đặc trưng kiểu CLIP với các embedding văn bản",
+        "Các phép chiếu sâu hơn là bất hợp pháp"
+      ],
+      "correct": 2,
+      "explanation": "LLaVA và các thế hệ của nó cung cấp MLP hai lớp này vì tính phi tuyến sửa chữa các sai lệch độ cong mà một phép chiếu tuyến tính đơn không thể."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bộ mã hóa hình ảnh lại bị đóng băng trong giai đoạn căn chỉnh này?",
+      "options": [
+        "Bộ mã hóa là rỗng",
+        "Bộ mã hóa 86 triệu tham số không thể được huấn luyện lại trên một tập dữ liệu giả nhỏ; phép chiếu 1.3 triệu tham số một mình đủ nhẹ để căn chỉnh trong vài phút",
+        "Đóng băng có nghĩa là thời gian thực nhanh hơn",
+        "PyTorch không hỗ trợ huấn luyện bộ mã hóa"
+      ],
+      "correct": 1,
+      "explanation": "Đóng băng bộ mã hóa và bảng văn bản khiến phép chiếu trở thành thứ duy nhất học, điều này là hình dạng hoạt động của mọi VLM dựa trên adapter."
+    },
+    {
+      "stage": "check",
+      "question": "cosine_alignment_loss(image_emb, text_emb) trả về gì khi hai vector chỉ hướng ngược nhau?",
+      "options": [
+        "Vô cực",
+        "1.0",
+        "0.0",
+        "2.0"
+      ],
+      "correct": 3,
+      "explanation": "Mất mát là 1 - cos(góc). Các vector đối song song có cos = -1, vì vậy mất mát là 1 - (-1) = 2.0."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc pooling CLS được sử dụng để tạo ra một vector cấp độ hình ảnh duy nhất từ 197 token?",
+      "options": [
+        "Nó tiết kiệm không gian đĩa",
+        "PyTorch tự động cộng các token",
+        "Các token patch không được sử dụng",
+        "Chú thích là một vector cho mỗi mẫu nên phía hình ảnh cũng cần một vector; token CLS là tóm tắt hình ảnh tích hợp của bộ mã hóa"
+      ],
+      "correct": 3,
+      "explanation": "Căn chỉnh là một vector hình ảnh so với một vector chú thích; pooling CLS tạo ra vector hình ảnh đó mà không cần tham số bổ sung."
+    },
+    {
+      "stage": "post",
+      "question": "Hệ thống sản xuất nào ánh xạ trực tiếp nhất đến mẫu bài học 60?",
+      "options": [
+        "LLaVA 1.5: bộ mã hóa hình ảnh đóng băng, LLM đóng băng, chỉ huấn luyện một phép chiếu MLP hai lớp",
+        "PaLM",
+        "AlphaFold",
+        "Stable Diffusion"
+      ],
+      "correct": 0,
+      "explanation": "Huấn luyện giai đoạn một của LLaVA chính xác là như vậy: một bộ mã hóa và LM đóng băng với một cầu nối MLP hai lớp là phần duy nhất có thể huấn luyện."
+    }
+  ]
+}

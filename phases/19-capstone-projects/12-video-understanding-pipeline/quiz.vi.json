@@ -1,0 +1,90 @@
+{
+  "lesson": "12-video-understanding-pipeline",
+  "title": "Capstone 12 — Video Understanding Pipeline (Cảnh, QA, Tìm kiếm)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao vẫn cần một chỉ mục cấp cảnh ngay cả khi VLM có ngữ cảnh dài có thể đọc video 2 giờ một cách tự nhiên?",
+      "options": [
+        "Cắt cảnh là điều duy nhất mà VLM hiểu",
+        "Chỉ mục vector không hỗ trợ tệp video",
+        "VLM có ngữ cảnh dài không thể phát trực tiếp đầu ra",
+        "Việc nhập 100 giờ video vào một kho dữ liệu có thể truy vấn cần truy xuất cấp cảnh, ngay cả khi các video riêng lẻ có thể được đọc toàn bộ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Mỗi cảnh nhận được ba loại vector nào trong chỉ mục đa vector?",
+      "options": [
+        "Đường cong âm thanh, mel-spectrogram và MFCCs",
+        "Tư thế, độ sâu và dòng quang học",
+        "Hash, gzip và CRC",
+        "Embedding chú thích, embedding khung hình chính và embedding bản ghi"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kết quả từ ba luồng truy xuất được hợp nhất như thế nào tại thời điểm truy vấn?",
+      "options": [
+        "Thông qua hợp nhất thứ hạng đối xứng giữa ba danh sách xếp hạng",
+        "Bằng cách trung bình các độ tương đồng cosine",
+        "Bằng cách chỉ chọn kết quả chú thích",
+        "Bằng cách lấy hợp nhất mà không chấm điểm"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bước định vị tạm thời tinh chỉnh điều gì bên trong cảnh hàng đầu?",
+      "options": [
+        "Cửa sổ thời gian (bắt đầu, kết thúc) chứa câu trả lời",
+        "Độ lớn embedding khung hình chính",
+        "Thời gian từ các từ trong bản ghi từ Whisper",
+        "Số lượng vector được lưu trữ trong Qdrant"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Lớp câu hỏi nào được báo cáo riêng biệt vì nó là một điểm nóng ảo giác đã biết?",
+      "options": [
+        "Câu hỏi dịch thuật",
+        "Câu hỏi xác định người nói",
+        "Câu hỏi đếm và loại hành động, nơi VLM đếm sai hoặc sắp xếp sai các sự kiện",
+        "Câu hỏi mô tả về phong cảnh"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số định vị nào mà bảng tiêu chí đo trên một tập dữ liệu giữ lại?",
+      "options": [
+        "Perplexity",
+        "Giao điểm-định vị tạm thời (IoU)",
+        "Tỷ lệ chấp nhận",
+        "MRR@10"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao quy trình yêu cầu thời gian được trích dẫn trong các câu trả lời?",
+      "options": [
+        "Thời gian được yêu cầu bởi đầu ra của Whisper",
+        "Thời gian được yêu cầu bởi tải trọng của Qdrant",
+        "Chúng giảm kích thước embedding",
+        "Chúng cho phép người xem nhảy đến (video_id, bắt đầu, kết thúc) chính xác để người dùng có thể xác minh tuyên bố"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

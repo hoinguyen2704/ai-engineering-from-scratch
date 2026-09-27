@@ -1,0 +1,66 @@
+{
+  "lesson": "15-prompt-caching",
+  "title": "Lưu trữ Prompt và Lưu trữ Ngữ cảnh",
+  "questions": [
+    {
+      "stage": "post",
+      "question": "Anthropic áp dụng mức giảm giá nào cho việc đọc bộ nhớ so với tỷ lệ đầu vào cơ bản?",
+      "options": [
+        "Giảm 25%",
+        "Giảm 90%",
+        "Giảm 75%",
+        "Giảm 50%"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao dấu thời gian động phải nằm dưới điểm ngắt bộ nhớ, không phải trên đó?",
+      "options": [
+        "Anthropic rõ ràng từ chối các dấu thời gian trong các khối đã lưu",
+        "Dấu thời gian gây nhầm lẫn cho bộ phân tích cú pháp",
+        "Chúng tốn nhiều token hơn văn bản tĩnh",
+        "Bộ nhớ chỉ hoạt động khi tiền tố hoàn toàn giống nhau; một dấu thời gian thay đổi sẽ phá vỡ sự khớp cho mọi thứ sau đó"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cách cấu hình lưu trữ prompt của OpenAI là gì?",
+      "options": [
+        "Một cờ cấp hệ thống mà bạn bật tắt theo từng dự án",
+        "Khớp tiền tố tự động mà không cần cấu hình",
+        "Một API CachedContent mà bạn tạo và tham chiếu",
+        "Các dấu hiệu cache_control rõ ràng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Đối với Anthropic, mức phí viết cho TTL mở rộng 1 giờ so với mặc định 5 phút là bao nhiêu?",
+      "options": [
+        "4 lần phí viết",
+        "2 lần phí viết (50% so với cơ sở)",
+        "Không có phí viết",
+        "Giống nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cần bao nhiêu lần tái sử dụng để hòa vốn với mức phí viết 25% của Anthropic?",
+      "options": [
+        "5",
+        "10",
+        "1",
+        "2"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

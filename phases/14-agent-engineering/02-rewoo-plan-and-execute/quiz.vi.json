@@ -1,0 +1,90 @@
+{
+  "lesson": "02-rewoo-plan-and-execute",
+  "title": "ReWOO và Lập Kế Hoạch và Thực Hiện: Lập Kế Hoạch Tách Biệt",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao prompt của ReAct lại tăng theo cấp số bậc với độ sâu?",
+      "options": [
+        "Mỗi bước mang theo toàn bộ ngữ cảnh trước đó bao gồm mọi suy nghĩ và quan sát trước đó",
+        "Mô hình tái mã hóa chính nó ở mỗi bước",
+        "Các sơ đồ công cụ được sao chép theo mỗi lần gọi",
+        "Nhà cung cấp tính phí theo byte thay vì theo token"
+      ],
+      "correct": 0,
+      "explanation": "ReAct tái bao gồm các suy nghĩ và quan sát trước đó ở mỗi bước, làm cho tổng độ dài prompt tăng theo bình phương của độ sâu."
+    },
+    {
+      "stage": "pre",
+      "question": "Phân chia ba vai trò nào định nghĩa ReWOO?",
+      "options": [
+        "Người lập kế hoạch, Công nhân, Người giải quyết",
+        "Người đọc, Người viết, Người đánh giá",
+        "Người tạo, Người phê bình, Người tối ưu hóa",
+        "Diễn viên, Người đánh giá, Người phản ánh"
+      ],
+      "correct": 0,
+      "explanation": "ReWOO tách biệt một Người lập kế hoạch phát ra một DAG, Công nhân thu thập chứng cứ, và một Người giải quyết biên soạn câu trả lời cuối cùng."
+    },
+    {
+      "stage": "check",
+      "question": "Các số liệu chính mà bài báo báo cáo cho ReWOO so với ReAct trên HotpotQA là gì?",
+      "options": [
+        "10x ít token hơn và -2 độ chính xác",
+        "~5x ít token hơn và +4 độ chính xác tuyệt đối",
+        "Cùng số token và +1 độ chính xác",
+        "~2x nhiều token hơn và +10 độ chính xác"
+      ],
+      "correct": 1,
+      "explanation": "ReWOO báo cáo giảm khoảng 5x số token và +4 độ chính xác tuyệt đối trên HotpotQA so với ReAct."
+    },
+    {
+      "stage": "check",
+      "question": "Một placeholder như #E1 bên trong một nút kế hoạch ReWOO có nghĩa là gì?",
+      "options": [
+        "Một tham chiếu được thay thế tại thời điểm phân phối bằng đầu ra của một nút công nhân trước đó",
+        "Một định danh phiên bản của người lập kế hoạch",
+        "Một mã lỗi được trả về bởi công nhân 1",
+        "Một bộ đếm thử lại cho việc thu thập chứng cứ"
+      ],
+      "correct": 0,
+      "explanation": "Các nút kế hoạch sử dụng các tham chiếu chứng cứ như #E1, #E2 mà người thực thi thay thế bằng đầu ra của các công nhân thượng nguồn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao ReWOO xác định lỗi tốt hơn ReAct?",
+      "options": [
+        "Người lập kế hoạch phát ra một DAG mới sau mỗi lỗi",
+        "Công nhân làm hỏng quá trình chạy khi có bất kỳ lỗi nào",
+        "ReWOO thử lại mỗi cuộc gọi thất bại lên đến mười lần",
+        "Một lỗi trong một công nhân trở thành một chuỗi mà Người giải quyết thấy bên cạnh kế hoạch gốc, vì vậy sự suy giảm là theo nút chứ không phải theo bước"
+      ],
+      "correct": 3,
+      "explanation": "Sự thất bại theo nút với kế hoạch gốc trong ngữ cảnh cho phép Người giải quyết suy giảm một cách thanh lịch thay vì lý luận giữa chừng do một lỗi."
+    },
+    {
+      "stage": "post",
+      "question": "Hình dạng nhiệm vụ nào phù hợp nhất với Lập Kế Hoạch và Hành Động hơn là ReWOO thông thường?",
+      "options": [
+        "Một câu hỏi toán học thuần túy",
+        "Một quỹ đạo điều hướng web hoặc di động 40 bước",
+        "Một tra cứu thông tin hai bước",
+        "Một phân loại một lượt"
+      ],
+      "correct": 1,
+      "explanation": "Lập Kế Hoạch và Hành Động được xây dựng cho các tác nhân web và di động dài hạn (trên 30 bước) nơi một quỹ đạo ReAct đơn lẻ mất đi tính nhất quán."
+    },
+    {
+      "stage": "post",
+      "question": "Kết quả chưng cất của người lập kế hoạch ReWOO có ý nghĩa gì cho các tác nhân sản xuất?",
+      "options": [
+        "Các mô hình tiên tiến phải được sử dụng ở mỗi bước",
+        "Một người lập kế hoạch nhỏ (khoảng 7B) có thể tương đương với một giáo viên lớn vì người lập kế hoạch không bao giờ thấy các quan sát",
+        "Chất lượng lập kế hoạch giảm xuống dưới 7B tham số",
+        "Chưng cất yêu cầu dữ liệu RL dựa trên gradient"
+      ],
+      "correct": 1,
+      "explanation": "Bởi vì người lập kế hoạch không thấy các quan sát, các dấu vết kế hoạch từ một giáo viên lớn chuyển giao sạch sẽ cho một người lập kế hoạch nhỏ đã được tinh chỉnh."
+    }
+  ]
+}

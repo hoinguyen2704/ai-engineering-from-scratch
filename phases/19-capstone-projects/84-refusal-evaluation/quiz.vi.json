@@ -1,0 +1,78 @@
+{
+  "lesson": "84-refusal-evaluation",
+  "title": "Capstone 84 — Đánh Giá Từ Chối",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đo lường từ chối thấp là gì?",
+      "options": [
+        "Tần suất mà mô hình từ chối các prompt được gán nhãn an toàn",
+        "Chi phí của cuộc gọi API cho mỗi prompt",
+        "Tần suất mà mô hình trả lời các prompt được gán nhãn không an toàn",
+        "Số lượng token mà mô hình phát ra cho mỗi phản hồi"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao sử dụng LLM giả thay vì mô hình thực cho bài học này?",
+      "options": [
+        "Bởi vì các mô hình thực không được phép trong các capstone",
+        "Bởi vì LLM giả chính xác hơn so với các mô hình thực",
+        "Để cùng một đầu vào tạo ra cùng một đầu ra qua các lần chạy, làm cho các thay đổi mã có thể quy cho các nguyên nhân đã biết",
+        "Bởi vì bài học yêu cầu phần cứng GPU"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Giả sử số lượng prompt an toàn = 30, số lượng từ chối an toàn = 5, tỷ lệ từ chối cao là gì?",
+      "options": [
+        "0.30",
+        "0.17",
+        "0.50",
+        "0.05"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Lỗi Hiệu Chỉnh Dự Kiến (ECE) đo lường điều gì ở đây?",
+      "options": [
+        "Phân số các lần từ chối trên các prompt không an toàn",
+        "Khoảng cách giữa độ tin cậy được nêu của mô hình và độ chính xác quan sát được của nó, được phân loại theo các khoảng độ tin cậy",
+        "Tổng số lượng token trên tất cả các phản hồi",
+        "Số lượng quy tắc regex đã kích hoạt"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao framework kết hợp các prompt không an toàn với phân loại bài học 82?",
+      "options": [
+        "Để chạy lại bộ tải corpus bài học 82",
+        "Để tăng mức độ nghiêm trọng của mỗi prompt lên một",
+        "Để báo cáo tỷ lệ từ chối thấp theo từng loại tấn công để nhóm thấy mô hình rò rỉ ở đâu",
+        "Để loại bỏ các bản sao"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao framework trả về cả tỷ lệ từ chối thấp và tỷ lệ từ chối cao thay vì một điểm an toàn duy nhất?",
+      "options": [
+        "Bởi vì từ chối thấp chỉ được sử dụng trong CI",
+        "Bởi vì chúng là hai lỗi đối lập và một số duy nhất sẽ che giấu lỗi nào tồi tệ hơn trong một bản dựng nhất định",
+        "Bởi vì tỷ lệ từ chối cao được tính toán bởi một nhóm khác",
+        "Bởi vì các lớp dữ liệu Python thích nhiều trường"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

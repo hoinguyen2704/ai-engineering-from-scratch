@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao các mô hình tư thế lại hồi quy heatmap thay vì tọa độ (x, y) trực tiếp?",
+      "options": [
+        "Heatmap rẻ hơn để tính toán",
+        "Hồi quy tọa độ tạo ra NaN",
+        "Heatmap là yêu cầu của chỉ số COCO",
+        "Cấu trúc không gian của bản đồ đặc trưng conv phù hợp với đầu ra không gian; một mục tiêu heatmap Gaussian cung cấp một bề mặt mất mát mượt mà mà chịu đựng được các lỗi định vị nhỏ, trong khi hồi quy tọa độ trực tiếp thì dễ bị tổn thương và mất ngữ cảnh không gian"
+      ],
+      "correct": 3,
+      "explanation": "Hồi quy tọa độ với MSE yêu cầu mạng giảm một vị trí 2D thành hai số vô hướng, mất đi sự căn chỉnh bản đồ đặc trưng mà CNN khai thác. Hồi quy heatmap cung cấp cho mạng một mất mát theo từng pixel mà mượt mà xung quanh vị trí thực và bảo tồn các ưu tiên không gian. Sự cải thiện thực nghiệm so với hồi quy tọa độ đủ lớn để mọi mô hình tư thế hiện đại đều sử dụng heatmap."
+    },
+    {
+      "stage": "pre",
+      "question": "Ước lượng tư thế từ trên xuống so với từ dưới lên: cái nào mở rộng tốt hơn với kích thước đám đông, và tại sao?",
+      "options": [
+        "Chúng mở rộng như nhau",
+        "Từ trên xuống không bao giờ mở rộng",
+        "Từ dưới lên, vì nó thực hiện một lần truyền qua toàn bộ hình ảnh rồi nhóm các điểm chính, vì vậy thời gian chạy là hằng số trong số lượng người",
+        "Từ trên xuống, vì mỗi người sử dụng một mô hình nhanh riêng biệt"
+      ],
+      "correct": 2,
+      "explanation": "Từ trên xuống chạy một mô hình điểm chính cho từng người sau khi phát hiện người, vì vậy chi phí tăng theo tuyến tính với số lượng người. Từ dưới lên (OpenPose, HigherHRNet) tạo ra tất cả các điểm chính và các trường liên kết trong một lần truyền, sau đó nhóm chúng — thời gian hằng số bất kể mật độ đám đông. Sự đánh đổi: từ trên xuống chính xác hơn cho từng người; từ dưới lên nhanh hơn trong đám đông."
+    },
+    {
+      "stage": "post",
+      "question": "Trường liên kết phần (Part Affinity Fields) là gì?",
+      "options": [
+        "Một kỹ thuật tăng cường dữ liệu",
+        "Một loại hàm mất mát",
+        "Một thuật toán lập lịch",
+        "Các trường vector đơn vị 2 kênh mã hóa hướng từ một điểm chính đến một điểm chính khác; tích hợp PAF dọc theo một đường ứng viên cho biết liệu hai điểm chính có thuộc về cùng một thể hiện hay không, cho phép liên kết từ dưới lên mà không cần phát hiện từng người"
+      ],
+      "correct": 3,
+      "explanation": "Đối với mỗi cặp điểm chính kết nối (chi), dự đoán một trường 2 kênh (các thành phần x, y của vector đơn vị chỉ từ một điểm chính đến điểm chính khác). Để khớp một vai ứng viên với một khuỷu tay ứng viên, tích hợp PAF dọc theo đường nối chúng; tích phân cao hơn = khớp mạnh hơn. Điều này biến tư thế thành một bài toán ghép cặp hai phần có thể giải quyết trong thời gian đa thức."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc tinh chỉnh dưới pixel xung quanh argmax lại nâng cao độ chính xác của điểm chính một cách có ý nghĩa?",
+      "options": [
+        "Nó ngăn ngừa overfitting",
+        "Nó chuẩn hóa đầu ra",
+        "Argmax nguyên tròn đến ô lưới gần nhất; việc khớp một parabol cục bộ hoặc sử dụng độ lệch dx = 0.25*(heatmap[y,x+1] - heatmap[y,x-1]) phục hồi vị trí đỉnh liên tục, thường giảm một nửa lỗi L2 cho các điểm chính được dự đoán rõ ràng",
+        "Nó làm mượt heatmap"
+      ],
+      "correct": 2,
+      "explanation": "Một heatmap được dự đoán tốt có một đỉnh Gaussian mượt mà mà trung tâm thường nằm giữa các ô lưới. Argmax nguyên tròn mất thông tin dưới pixel đó (lỗi lên đến 0.5 px). Việc khớp một parabol hoặc sử dụng độ lệch khác đầu tiên phục hồi đỉnh liên tục. Đối với phân tích thể thao, các điểm mốc y tế, hoặc bất cứ điều gì yêu cầu tọa độ chính xác, bước này là bắt buộc."
+    },
+    {
+      "stage": "post",
+      "question": "OKS (Object Keypoint Similarity) là tương tự của chỉ số phát hiện đối tượng nào?",
+      "options": [
+        "Hàm mất mát cross-entropy",
+        "Thời gian suy diễn",
+        "IoU — cả hai đều đo lường sự khớp hình học giữa dự đoán và thực tế, với OKS sử dụng khoảng cách giữa các điểm chính được trọng số bởi phương sai chú thích của từng điểm chính; COCO báo cáo mAP@OKS 0.5:0.95 cho tư thế",
+        "Độ chính xác phân loại"
+      ],
+      "correct": 2,
+      "explanation": "OKS có giá trị từ 0 đến 1 giống như IoU và đóng vai trò tương tự: nó quyết định xem một dự đoán có khớp với tư thế thực tế ở một mức độ nghiêm ngặt nhất định hay không. Mỗi điểm chính có một phương sai (COCO công bố chúng) mà quy mô đóng góp của nó — các khớp không thay đổi như mũi và mắt nặng hơn so với cổ tay, mà được chú thích ít nhất nhất quán hơn. COCO Pose AP @ OKS 0.5:0.95 là tiêu chuẩn cộng đồng năm 2026."
+    }
+  ]
+}

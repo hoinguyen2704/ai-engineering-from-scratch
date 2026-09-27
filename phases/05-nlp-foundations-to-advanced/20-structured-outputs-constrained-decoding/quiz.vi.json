@@ -1,0 +1,102 @@
+{
+  "lesson": "20-structured-outputs-constrained-decoding",
+  "title": "Đầu Ra Có Cấu Trúc & Giải Mã Bị Ràng Buộc",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao chỉ sử dụng 'return JSON' trong prompt là không đủ cho sản xuất?",
+      "options": [
+        "Prompts quá dài",
+        "Prompting không thể mô tả các sơ đồ",
+        "JSON quá dài dòng",
+        "Các mô hình biên giới tuân thủ hầu hết thời gian nhưng không phải lúc nào cũng vậy; một phần nhỏ các đầu ra bị sai sẽ làm hỏng các bộ phân tích phía dưới"
+      ],
+      "correct": 3,
+      "explanation": "Cấu trúc chỉ sử dụng prompt hoạt động ~80% thời gian trên các mô hình biên giới; sản xuất cần những đảm bảo khó hơn."
+    },
+    {
+      "stage": "pre",
+      "question": "Giải mã bị ràng buộc thay đổi điều gì ở mỗi bước sinh?",
+      "options": [
+        "Vector logit, che dấu các token sẽ làm không hợp lệ ngữ pháp mục tiêu để chỉ các tiếp diễn hợp lệ có thể được lấy mẫu",
+        "Mất mát đào tạo",
+        "Bộ phân tách",
+        "Bộ nhớ KV"
+      ],
+      "correct": 0,
+      "explanation": "Một bộ xử lý logit đặt các token không hợp lệ thành -inf để softmax không thể lấy mẫu chúng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao giải mã bị ràng buộc có thể nhanh hơn so với sinh tự do?",
+      "options": [
+        "Mô hình nhỏ hơn",
+        "Nó hoàn toàn tránh softmax",
+        "Nó bỏ qua backprop",
+        "Các token khung buộc (ví dụ: '{\"name\": \"') có thể được phát ra trực tiếp mà không cần lấy mẫu, và không gian tìm kiếm token hợp lệ thu hẹp lại"
+      ],
+      "correct": 3,
+      "explanation": "Các token đã xác định bỏ qua việc lấy mẫu và các tập hợp token hợp lệ giảm thiểu chi phí giải mã."
+    },
+    {
+      "stage": "check",
+      "question": "Lựa chọn thiết kế sơ đồ nào ngăn chặn cam kết sớm của mô hình?",
+      "options": [
+        "Đặt 'answer' trước",
+        "Đặt các trường lý do trước trường trả lời/quyết định để mô hình suy nghĩ trước khi cam kết",
+        "Sử dụng các khóa ngắn hơn",
+        "Sử dụng snake_case"
+      ],
+      "correct": 1,
+      "explanation": "Thứ tự trường là logic: đặt lý do trước cho phép mô hình suy nghĩ trước khi khóa một câu trả lời."
+    },
+    {
+      "stage": "check",
+      "question": "Giới hạn của các công cụ giải mã bị ràng buộc dựa trên FSM như Outlines là gì?",
+      "options": [
+        "Chúng chỉ hỗ trợ enums",
+        "Chúng buộc bạn vào OpenAI",
+        "Các sơ đồ đệ quy phải được làm phẳng; các cấu trúc thực sự đệ quy cần các động cơ dựa trên CFG như XGrammar",
+        "Chúng không xác định"
+      ],
+      "correct": 2,
+      "explanation": "FSM không thể đại diện cho đệ quy không giới hạn; các động cơ CFG xử lý điều đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao Instructor được mô tả là không thay đổi logits?",
+      "options": [
+        "Instructor định dạng sơ đồ vào prompt và phân tích/thử lại đầu ra; việc che dấu logit xảy ra ở phía máy chủ hoặc không xảy ra chút nào",
+        "Nó chỉnh sửa prompt",
+        "Nó sử dụng cập nhật gradient",
+        "Yêu cầu bởi Anthropic"
+      ],
+      "correct": 0,
+      "explanation": "Instructor sử dụng đầu ra có cấu trúc ở phía nhà cung cấp cộng với xác thực và thử lại ở phía khách hàng, không phải che dấu logit."
+    },
+    {
+      "stage": "post",
+      "question": "Vấn đề gì có thể xảy ra với regex nghiêm ngặt như date='YYYY-MM-DD'?",
+      "options": [
+        "Nó làm hỏng việc phân tích JSON",
+        "Nó loại bỏ bất kỳ lối thoát nào cho các giá trị không xác định, vì vậy mô hình tạo ra một ngày thay vì trả về null/sentinel",
+        "Nó yêu cầu hỗ trợ CFG",
+        "Regex chậm"
+      ],
+      "correct": 1,
+      "explanation": "Các ngữ pháp quá nghiêm ngặt buộc mô hình phải tạo ra các giá trị; luôn cho phép null/sentinel cho các giá trị không xác định."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên sử dụng giải mã có hướng dẫn vLLM so với API đầu ra có cấu trúc của nhà cung cấp?",
+      "options": [
+        "Chỉ với BPE cấp byte",
+        "Luôn luôn nhà cung cấp",
+        "Suy diễn tự lưu trữ nơi bạn kiểm soát mô hình và muốn đảm bảo cấp độ logit mà không cần thử lại",
+        "Chỉ cho các sơ đồ nhỏ"
+      ],
+      "correct": 2,
+      "explanation": "Giải mã có hướng dẫn vLLM phù hợp với phục vụ tự lưu trữ với các ràng buộc cấp độ logit; API của nhà cung cấp buộc bạn vào ngăn xếp của họ."
+    }
+  ]
+}

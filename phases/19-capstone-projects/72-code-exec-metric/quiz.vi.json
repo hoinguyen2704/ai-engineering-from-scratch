@@ -1,0 +1,78 @@
+{
+  "lesson": "72-code-exec-metric",
+  "title": "Chỉ số thực thi mã",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao trình chạy lại tạo một tiến trình Python mới cho mỗi ứng viên thay vì gọi exec trực tiếp?",
+      "options": [
+        "Nó tránh làm ô nhiễm builtins",
+        "exec đã bị ngừng sử dụng trong Python hiện đại",
+        "Nó nhanh hơn exec",
+        "Nó cô lập thời gian chờ, tràn đầu ra và các import nguy hiểm khỏi quá trình đánh giá của host"
+      ],
+      "correct": 3,
+      "explanation": "Một vòng lặp vô hạn hoặc phân bổ bộ nhớ không kiểm soát trong mã ứng viên chỉ làm sập tiến trình con. Quá trình đánh giá của host vẫn tiếp tục tiến triển."
+    },
+    {
+      "stage": "pre",
+      "question": "Điểm số cho một nhiệm vụ với ba khẳng định khi hai khẳng định đúng và một khẳng định sai là gì?",
+      "options": [
+        "0.667",
+        "1.0",
+        "0.0",
+        "0.5"
+      ],
+      "correct": 0,
+      "explanation": "Điểm số là số khẳng định đúng chia cho tổng số. Hai trong ba là 0.667. Mã thoát là assertion_fail."
+    },
+    {
+      "stage": "check",
+      "question": "Mã thoát nào mà trình chạy trả về khi mã ứng viên không được phân tích cú pháp?",
+      "options": [
+        "syntax_error",
+        "error",
+        "timeout",
+        "assertion_fail"
+      ],
+      "correct": 0,
+      "explanation": "compile() phát sinh SyntaxError bên trong trình chạy, script bên trong bắt lỗi này và ghi exit_code=syntax_error."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao thời gian chờ theo đồng hồ tường lại là điều khiển chịu tải thay vì danh sách từ chối import?",
+      "options": [
+        "Không thể từ chối import trong Python",
+        "subprocess.run không hỗ trợ danh sách từ chối",
+        "Hầu hết các lỗi là vòng lặp vô hạn, và một đối thủ quyết tâm có thể vượt qua bất kỳ danh sách từ chối nào trong quá trình",
+        "Thời gian chờ được kiểm tra tại thời điểm biên dịch"
+      ],
+      "correct": 2,
+      "explanation": "Danh sách từ chối bắt các mã lười biếng, thời gian chờ bắt các vòng lặp vô hạn. Danh sách từ chối là một biện pháp bổ sung, thời gian chờ là mức tối thiểu."
+    },
+    {
+      "stage": "check",
+      "question": "pass_at_k(n, c, k) trả về gì khi n - c < k?",
+      "options": [
+        "Một, vì mẫu phải chứa ít nhất một giải pháp đúng",
+        "c / n, tỷ lệ thông qua thực nghiệm",
+        "Không, vì mẫu không xác định",
+        "Gây ra ValueError"
+      ],
+      "correct": 0,
+      "explanation": "Nếu số lần thất bại ít hơn kích thước mẫu, mỗi mẫu có kích thước k chắc chắn bao gồm ít nhất một lần thông qua, vì vậy xác suất là 1."
+    },
+    {
+      "stage": "post",
+      "question": "Trình chạy làm thế nào để phát hiện một tràn đầu ra, và tại sao giới hạn là 256 KB?",
+      "options": [
+        "Chỉ stderr; kích thước khớp với mặc định của ống OS",
+        "Giá trị điểm số, được biểu diễn dưới dạng phần trăm với hai chữ số thập phân",
+        "Stdout từ tiến trình con được truyền; khi tổng chạy vượt quá 256 KB, tiến trình con bị giết và nhiệm vụ được ghi lại với exit_code=error với chi tiết \"tràn đầu ra\"",
+        "Kích thước mã ứng viên, bị giới hạn để mã được tạo ra vẫn nhỏ"
+      ],
+      "correct": 2,
+      "explanation": "Giới hạn bảo vệ host. Mã ứng viên làm tràn stdout sẽ bị giết giữa chừng; trình chạy chuẩn hóa kết quả dưới exit_code=error với chi tiết \"tràn đầu ra\" thay vì tạo ra một mã thoát mới."
+    }
+  ]
+}

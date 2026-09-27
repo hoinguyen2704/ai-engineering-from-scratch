@@ -1,0 +1,78 @@
+{
+  "lesson": "22-differential-privacy-for-llms",
+  "title": "Riêng tư vi phân cho LLMs",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Riêng tư vi phân (epsilon, delta) đảm bảo điều gì cho một thuật toán ngẫu nhiên M?",
+      "options": [
+        "Đối với bất kỳ hai tập dữ liệu khác nhau ở một ví dụ và bất kỳ sự kiện S nào, P(M(D) trong S) <= e^epsilon * P(M(D') trong S) + delta, vì vậy đóng góp của bất kỳ cá nhân nào cũng không thể được suy ra một cách đáng tin cậy",
+        "M được chứng minh là tương đương với một thuật toán không riêng tư",
+        "M không ghi nhớ bất kỳ dữ liệu huấn luyện nào",
+        "M là xác định đến độ nhiễu"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bước nào KHÔNG phải là bước của DP-SGD như được mô tả bởi Abadi et al. 2016?",
+      "options": [
+        "Tái ngẫu nhiên hóa bộ mã hóa của mô hình giữa các bước",
+        "Cắt mỗi độ dốc theo ví dụ đến một ngưỡng C",
+        "Tổng hợp các độ dốc đã cắt và thêm nhiễu Gaussian được điều chỉnh bởi sigma * C",
+        "Lấy mẫu một mini-batch và tính toán các độ dốc theo ví dụ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao LoRA + DP-SGD là cấu hình phổ biến năm 2025?",
+      "options": [
+        "LoRA tăng epsilon theo thiết kế",
+        "LoRA loại bỏ nhu cầu về một kế toán viên",
+        "DP-SGD đầy đủ trên một mô hình tiên tiến là không khả thi; LoRA giới hạn các cập nhật độ dốc vào một bộ điều hợp nhỏ, giảm lưu trữ độ dốc theo ví dụ trong khi vẫn cung cấp các đảm bảo DP trên bộ điều hợp",
+        "Nó sử dụng LoRA như một bộ mã hóa"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cuộc kiểm toán tháng 3 năm 2025 (arXiv:2503.06808) đã giải quyết căng thẳng giữa canary-MIA và trích xuất dữ liệu huấn luyện như thế nào?",
+      "options": [
+        "Nó loại bỏ hoàn toàn nhu cầu về canaries",
+        "Nó cho thấy cả hai đo lường cùng một thuộc tính",
+        "Nó chứng minh rằng DP-SGD là không cần thiết",
+        "Nó cho thấy chúng đo lường những thứ khác nhau: MIA trên các canaries được chèn vào báo cáo thấp hơn về việc ghi nhớ vì canaries không được tối ưu hóa để trở thành các ví dụ 'dễ trích xuất' nhất thực sự quan trọng cho quyền riêng tư"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "PMixED (arXiv:2403.15638) cung cấp điều gì như một sự thay thế cho huấn luyện DP?",
+      "options": [
+        "Một kế toán viên mới cho Renyi DP",
+        "Riêng tư vi phân thời gian suy diễn thông qua một hỗn hợp các chuyên gia trên các phân phối token tiếp theo, với nhiễu tổng hợp; hoàn toàn tránh huấn luyện DP",
+        "Một cách để tính toán epsilon chỉ từ kế toán epsilon-delta",
+        "Một biến thể DP-SGD nhanh hơn"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cuộc tấn công Phản hồi Riêng tư vi phân qua LLM là gì?",
+      "options": [
+        "Một cuộc tấn công vào entropy của bộ mã hóa",
+        "Một biện pháp đối phó với việc chèn canary",
+        "Sử dụng điểm số tự tin của mô hình đã được huấn luyện DP như một oracle để xác định lại các cá nhân, ngay cả khi các đầu ra không rò rỉ trực tiếp",
+        "Một phương pháp để đặt lại epsilon về không"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

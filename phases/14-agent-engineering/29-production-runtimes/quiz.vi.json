@@ -1,0 +1,90 @@
+{
+  "lesson": "29-production-runtimes",
+  "title": "Thời gian chạy sản xuất: Hàng đợi, Sự kiện, Cron",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Có sáu hình dạng thời gian chạy nào mà bài học liệt kê?",
+      "options": [
+        "Bản đồ, lọc, giảm, gập, quét, nhóm",
+        "Yêu cầu-phản hồi, phát trực tiếp, thực thi bền, dựa trên hàng đợi, điều khiển sự kiện, theo lịch",
+        "REST, gRPC, GraphQL, WebSocket, SSE, MQTT",
+        "Đọc, ghi, thực thi, fork, thoát, chờ"
+      ],
+      "correct": 1,
+      "explanation": "Đây là sáu hình dạng thời gian chạy; chọn một hình dạng trước khi chọn một khung."
+    },
+    {
+      "stage": "pre",
+      "question": "Khi nào yêu cầu-phản hồi không phù hợp?",
+      "options": [
+        "Trên các dịch vụ nội bộ",
+        "Khi nhiệm vụ mất hơn khoảng 30 giây và người dùng ngắt cuộc gọi trong khi các công nhân chồng chất",
+        "Trên các API REST",
+        "Trên một phân loại 1 giây"
+      ],
+      "correct": 1,
+      "explanation": "HTTP đồng bộ chỉ khả thi cho các nhiệm vụ ngắn; các nhiệm vụ dài cần hình dạng hàng đợi/bền/điều khiển sự kiện."
+    },
+    {
+      "stage": "check",
+      "question": "Thuộc tính cốt lõi của thực thi bền là gì?",
+      "options": [
+        "Chi phí token thấp hơn",
+        "Suy diễn nhanh hơn",
+        "Hỗ trợ giọng nói bản địa",
+        "Trạng thái được lưu lại sau mỗi bước để thời gian chạy có thể tiếp tục từ bước thành công cuối cùng khi gặp lỗi"
+      ],
+      "correct": 3,
+      "explanation": "Lưu lại và tiếp tục là điểm khác biệt; LangGraph là tài liệu tham khảo của bài học."
+    },
+    {
+      "stage": "check",
+      "question": "Quan sát nào của Anthropic biện minh cho các thời gian chạy dựa trên hàng đợi cho các tác nhân dài hạn?",
+      "options": [
+        "Các nhiệm vụ phải chạy đồng bộ",
+        "Các nhiệm vụ luôn hoàn thành trong 5 giây",
+        "Thông báo sử dụng máy tính: hàng chục đến hàng trăm bước mỗi nhiệm vụ là bình thường",
+        "Cron giải quyết mọi thứ"
+      ],
+      "correct": 2,
+      "explanation": "Anthropic đã chỉ ra rằng hàng chục đến hàng trăm bước mỗi nhiệm vụ là bình thường; khối lượng công việc đó cần hàng đợi hoặc thời gian chạy bền."
+    },
+    {
+      "stage": "check",
+      "question": "Bài học có ý nghĩa gì khi nói 'khả năng quan sát là chịu tải'?",
+      "options": [
+        "Các nhà cung cấp yêu cầu điều này để tính phí",
+        "Nhật ký thì đẹp",
+        "Ổ đĩa đầy",
+        "Nếu không có OTel GenAI spans và backend Langfuse/Phoenix/Opik, bạn không thể gỡ lỗi một tác nhân nhiều bước đã thất bại ở bước 40"
+      ],
+      "correct": 3,
+      "explanation": "Khả năng quan sát không phải là tùy chọn cho các tác nhân nhiều bước; nó là sự khác biệt giữa gỡ lỗi và phát lại từ đầu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các công nhân hàng đợi phải có hàng đợi chết (DLQ)?",
+      "options": [
+        "DLQ làm cho công việc nhanh hơn",
+        "Nếu không có DLQ, các công việc thất bại biến mất một cách im lặng",
+        "DLQ được mã hóa",
+        "DLQ là yêu cầu của AWS"
+      ],
+      "correct": 1,
+      "explanation": "Các công việc thất bại không có DLQ sẽ biến mất; DLQ là bãi đỗ cho các công việc thất bại."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị kết hợp các tác nhân hình dạng cron với cái gì?",
+      "options": [
+        "Thực thi bền để một lần chạy hàng đêm thất bại tiếp tục ở lần tiếp theo",
+        "WebRTC",
+        "Tự động mở rộng GPU",
+        "Phát trực tiếp SSE"
+      ],
+      "correct": 0,
+      "explanation": "Cron + thực thi bền phục hồi sạch sẽ từ các lần chạy theo lịch thất bại."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khái niệm 'lời nguyền của chiều không gian' là gì?",
+      "options": [
+        "Khi các chiều tăng lên, khoảng cách trở nên vô nghĩa, thể tích tập trung ở các góc, và bạn cần nhiều dữ liệu theo cấp số nhân",
+        "Mạng nơ-ron không thể xử lý dữ liệu có hơn 100 đặc trưng",
+        "Dữ liệu có chiều cao luôn chứa tiếng ồn",
+        "Dữ liệu có chiều cao mất quá nhiều thời gian để tải xuống"
+      ],
+      "correct": 0,
+      "explanation": "Trong không gian cao, tất cả khoảng cách giữa các cặp hội tụ về các giá trị tương tự, các điểm dữ liệu lan tỏa về các góc, và việc duy trì mật độ mẫu yêu cầu nhiều dữ liệu theo cấp số nhân. Giảm chiều không gian giúp chống lại những tác động này."
+    },
+    {
+      "stage": "pre",
+      "question": "PCA tìm kiếm điều gì?",
+      "options": [
+        "Các cụm điểm dữ liệu tương tự",
+        "Các đặc trưng quan trọng nhất theo tên",
+        "Các hướng vuông góc của phương sai tối đa trong dữ liệu",
+        "Số lượng đặc trưng tối ưu để giữ lại"
+      ],
+      "correct": 2,
+      "explanation": "PCA tính toán các vectơ riêng của ma trận hiệp phương sai, là các hướng vuông góc được xếp hạng theo mức độ phương sai dữ liệu mà chúng nắm bắt. Thành phần chính đầu tiên chỉ ra hướng của sự lan tỏa tối đa."
+    },
+    {
+      "stage": "post",
+      "question": "Sau khi chạy PCA trên dữ liệu MNIST 784 chiều với k=50 thành phần, bạn thấy 95% phương sai được nắm bắt. Điều này cho bạn biết điều gì?",
+      "options": [
+        "95% hình ảnh thuộc về cùng một lớp",
+        "Dữ liệu thực sự sống trong một không gian con ~50 chiều; 734 chiều còn lại chủ yếu là tiếng ồn hoặc sự dư thừa",
+        "Mô hình sẽ đạt được độ chính xác 95%",
+        "Chỉ 50 pixel là quan trọng trong mỗi hình ảnh"
+      ],
+      "correct": 1,
+      "explanation": "95% phương sai được giải thích với 50 thành phần có nghĩa là cấu trúc thiết yếu của dữ liệu 784 chiều được nắm bắt chỉ bởi 50 hướng. Phần còn lại chỉ mang lại 5% biến động - chủ yếu là tiếng ồn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bạn KHÔNG nên sử dụng t-SNE như một bước tiền xử lý trước khi đào tạo một bộ phân loại?",
+      "options": [
+        "t-SNE được thiết kế chỉ để trực quan hóa: nó làm biến dạng khoảng cách toàn cục, là ngẫu nhiên, và tọa độ đầu ra không có ý nghĩa nhất quán giữa các lần chạy",
+        "t-SNE yêu cầu các nhãn phải được biết trước",
+        "t-SNE quá chậm cho các tập dữ liệu lớn",
+        "t-SNE giảm dữ liệu xuống đúng 2 chiều, điều này là quá ít"
+      ],
+      "correct": 0,
+      "explanation": "t-SNE bảo tồn các khu vực lân cận cục bộ nhưng làm biến dạng cấu trúc toàn cục. Khoảng cách giữa các cụm là vô nghĩa, và các lần chạy khác nhau tạo ra các bố cục khác nhau. Sử dụng PCA cho tiền xử lý và t-SNE/UMAP chỉ cho trực quan hóa."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn sẽ chọn kernel PCA thay vì PCA tiêu chuẩn?",
+      "options": [
+        "Khi bạn cần tính toán nhanh nhất có thể",
+        "Khi bạn muốn các thành phần chính có thể giải thích",
+        "Khi bạn có nhiều mẫu hơn đặc trưng",
+        "Khi dữ liệu nằm trên một đa tạp phi tuyến mà PCA tiêu chuẩn không thể tách rời, như các vòng tròn đồng tâm"
+      ],
+      "correct": 3,
+      "explanation": "PCA tiêu chuẩn tìm các không gian con tuyến tính. Nếu dữ liệu có cấu trúc phi tuyến (ví dụ, hai vòng tròn đồng tâm), PCA chiếu cả hai lên cùng một đường. Kernel PCA ánh xạ dữ liệu vào một không gian có chiều cao hơn nơi cấu trúc trở nên tuyến tính."
+    }
+  ]
+}

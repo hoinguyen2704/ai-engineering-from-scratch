@@ -1,0 +1,78 @@
+{
+  "lesson": "15-mcp-security-tool-poisoning",
+  "title": "Bảo mật MCP: Siêu dữ liệu bị nhiễm độc, Định tuyến và Trạng thái MRTR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trường nào của MCP an toàn để sử dụng làm danh tính khách hàng đã xác thực?",
+      "options": [
+        "Không có trường clientInfo nào do chính khách hàng báo cáo",
+        "clientInfo.name",
+        "clientInfo.version",
+        "clientCapabilities"
+      ],
+      "correct": 0,
+      "explanation": "Thông tin và khả năng của khách hàng là siêu dữ liệu giao thức, không phải bằng chứng xác thực."
+    },
+    {
+      "stage": "check",
+      "question": "Cổng nên băm cái gì sau khi phê duyệt một công cụ?",
+      "options": [
+        "Mô tả đầy đủ chính thức, bao gồm mô tả, sơ đồ và các chú thích liên quan",
+        "Chỉ tên công cụ",
+        "Chỉ tên hiển thị của máy chủ",
+        "Mã định danh phiên hiện tại"
+      ],
+      "correct": 0,
+      "explanation": "Việc gán mô tả đầy đủ phát hiện các thay đổi về sơ đồ và chú thích mà một băm chỉ mô tả không phát hiện được."
+    },
+    {
+      "stage": "check",
+      "question": "Cổng nên công khai hai công cụ backend đều có tên là search như thế nào?",
+      "options": [
+        "Yêu cầu mô hình suy luận máy chủ",
+        "Chọn ngẫu nhiên một backend",
+        "Sử dụng tên đủ ổn định như notes.search và issues.search",
+        "Giữ lại công cụ được phát hiện cuối cùng"
+      ],
+      "correct": 2,
+      "explanation": "Tên đủ làm cho việc định tuyến, phê duyệt, kiểm toán và xác thực tiêu đề tham chiếu đến một công cụ ổn định."
+    },
+    {
+      "stage": "check",
+      "question": "Khai báo khả năng của khách hàng nào hỗ trợ việc thu thập biểu mẫu MCP?",
+      "options": [
+        "Hoặc thu thập: {} ngầm định hoặc thu thập: {form: {}} một cách rõ ràng",
+        "Bất kỳ đối tượng mở rộng không rỗng nào",
+        "Chỉ một phiên giao thức với biểu mẫu được kích hoạt",
+        "Chỉ thu thập.url"
+      ],
+      "correct": 0,
+      "explanation": "Một đối tượng thu thập rỗng ngụ ý hỗ trợ biểu mẫu, trong khi form: {} nêu rõ điều đó. Hỗ trợ chỉ URL là không đủ cho một yêu cầu biểu mẫu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao requestState phải được bảo vệ tính toàn vẹn và gắn với các tham số chính xác?",
+      "options": [
+        "Để chọn phạm vi bộ nhớ cache",
+        "Để thay thế OAuth",
+        "Để ngăn khách hàng tái sử dụng hoặc thay đổi xác nhận cho một hành động khác",
+        "Để làm cho JSON nhỏ hơn"
+      ],
+      "correct": 2,
+      "explanation": "requestState đi qua một đối tác không đáng tin cậy, vì vậy máy chủ phải phát hiện việc giả mạo và thay đổi ngữ cảnh. Một yêu cầu nonce nguyên tử chia sẻ ngăn chặn việc tái sử dụng giữa các phiên xử lý."
+    },
+    {
+      "stage": "post",
+      "question": "Thứ tự đúng cho một cổng hiện đại là gì?",
+      "options": [
+        "Tin tưởng vào clientInfo, thực thi, sau đó kiểm toán",
+        "Chấp nhận các khả năng đã khai báo như quyền",
+        "Xác thực, xác minh wire và tiêu đề, kiểm tra khả năng tương thích, ủy quyền, sau đó thực thi",
+        "Tạo một phiên, định tuyến theo thứ tự phát hiện, sau đó ủy quyền"
+      ],
+      "correct": 2,
+      "explanation": "Sự mơ hồ về wire và danh tính phải được giải quyết trước khi ủy quyền và thực thi."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao SimCLR cần kích thước batch từ 512-8192 trong khi đào tạo ImageNet có giám sát chỉ cần batch 256?",
+      "options": [
+        "Mỗi mẫu cần nhiều ví dụ tiêu cực để tạo ra tín hiệu tương phản hữu ích; chính batch là tập hợp các ví dụ tiêu cực. Các batch nhỏ làm nghèo thông tin cho hàm mất mát InfoNCE và việc đào tạo bị sụp đổ hoặc dừng lại",
+        "Batch norm yêu cầu điều đó",
+        "Hàm mất mát tương phản chia theo kích thước batch",
+        "SimCLR chậm hơn"
+      ],
+      "correct": 0,
+      "explanation": "Hàm mất mát InfoNCE xếp hạng cặp tích cực so với tất cả các mẫu khác trong batch. Một batch 32 cung cấp 30 ví dụ tiêu cực cho mỗi tích cực; 1024 cung cấp 2046. Nhiều ví dụ tiêu cực = tín hiệu tương phản sắc nét hơn. MoCo đã giới thiệu một hàng đợi động lượng của các đặc trưng trước đó để các ví dụ tiêu cực hiệu quả có thể mở rộng vượt qua kích thước batch; đây là mẹo tiêu chuẩn khi bộ nhớ GPU giới hạn kích thước batch."
+    },
+    {
+      "stage": "pre",
+      "question": "Điều gì ngăn DINO không bị sụp đổ thành một đầu ra không đổi?",
+      "options": [
+        "Kích thước batch lớn",
+        "Lịch trình động lượng",
+        "Chỉ tăng cường mạnh",
+        "Một sự kết hợp giữa việc căn giữa (trừ đi trung bình EMA theo từng chiều từ đầu ra của giáo viên) và làm sắc nét (nhiệt độ giáo viên thấp); căn giữa ngăn một chiều chiếm ưu thế, làm sắc nét ngăn đầu ra sụp đổ thành đồng nhất"
+      ],
+      "correct": 3,
+      "explanation": "DINO không sử dụng các ví dụ tiêu cực rõ ràng. Nếu không có căn giữa, một chiều đầu ra có thể chiếm ưu thế và học sinh học cách luôn dự đoán nó. Nếu không có làm sắc nét (nhiệt độ giáo viên thấp), đầu ra của giáo viên trở nên gần như đồng nhất và học sinh học cách khớp với đồng nhất, điều này cũng là sụp đổ. Cả hai cùng nhau giữ cho đầu ra đa dạng qua các chiều và cao điểm theo từng mẫu."
+    },
+    {
+      "stage": "post",
+      "question": "MAE che giấu 75% các mảnh. BERT che giấu 15% các token. Tại sao có sự khác biệt?",
+      "options": [
+        "75% là tùy ý",
+        "BERT yêu cầu 15% theo thiết kế",
+        "Các mảnh hình ảnh có độ entropy thấp — các hàng xóm có sự tương quan cao — vì vậy việc che giấu chỉ 15% sẽ dễ dàng giải quyết bằng ngoại suy cục bộ. Che giấu 75% buộc bộ mã hóa phải học các đặc trưng ngữ nghĩa toàn cầu để tái tạo các mảnh bị thiếu",
+        "Các token văn bản lớn hơn các mảnh hình ảnh"
+      ],
+      "correct": 2,
+      "explanation": "Tỷ lệ che giấu nên phù hợp với mật độ thông tin của phương thức. Văn bản: 15% là đủ vì mỗi token có nhiều hoàn thành khả thi. Hình ảnh: các pixel lân cận gần như xác định lẫn nhau, vì vậy tỷ lệ che giấu thấp có thể giải quyết mà không cần học đại diện thực sự. 75% của MAE được hiệu chỉnh để buộc hiểu biết ngữ nghĩa."
+    },
+    {
+      "stage": "post",
+      "question": "Sau khi đào tạo tự giám sát, đánh giá 'linear probe' chỉ đào tạo cái gì?",
+      "options": [
+        "Một đầu phân loại MLP đầy đủ",
+        "Toàn bộ bộ mã hóa",
+        "Embedding vị trí",
+        "Một bộ phân loại tuyến tính đơn trên các đặc trưng của bộ mã hóa đã đóng băng; điều này tách biệt chất lượng đặc trưng khỏi động lực tinh chỉnh"
+      ],
+      "correct": 3,
+      "explanation": "Linear probe đóng băng bộ mã hóa và phù hợp với Linear(đặc trưng -> số lớp) trên một tập dữ liệu hạ nguồn có nhãn. Độ chính xác là một thước đo trực tiếp về khả năng phân tách tuyến tính của không gian đặc trưng — một đại diện cho chất lượng đặc trưng. Tinh chỉnh toàn bộ khung xương thêm khả năng phi tuyến và thường nâng cao độ chính xác vài điểm, nhưng trộn lẫn các hiệu ứng tối ưu hóa. Cả hai số đều được báo cáo trong các tài liệu SSL."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao MAE sử dụng thiết kế bộ mã hóa-decoder không đối xứng (bộ mã hóa lớn trên 25% các mảnh nhìn thấy, decoder nhỏ trên tất cả các token)?",
+      "options": [
+        "Decoder cần có khung xương riêng",
+        "Hạn chế bộ nhớ",
+        "Các token bị che giấu gây nhầm lẫn cho self-attention",
+        "Bộ mã hóa không bao giờ xử lý các token bị che giấu; một decoder nhỏ chỉ xử lý tái tạo. Điều này làm cho FLOPs của bộ mã hóa tỷ lệ với các mảnh nhìn thấy (1/4 của đầu vào đầy đủ) và cho phép đào tạo trước chạy nhanh hơn 3 lần so với các thiết kế ngây thơ xử lý tất cả các token qua bộ mã hóa đầy đủ"
+      ],
+      "correct": 3,
+      "explanation": "Chiến thắng hiệu quả chính trong MAE: bộ mã hóa tốn kém chỉ bao giờ thấy các mảnh nhìn thấy, chiếm 25% đầu vào. Các token bị che giấu chỉ xuất hiện trong decoder nông. Điều này làm cho việc đào tạo trước nhanh hơn khoảng 3 lần so với BEiT (mà xử lý tất cả các token qua bộ mã hóa) với độ chính xác hạ nguồn bằng hoặc tốt hơn."
+    }
+  ]
+}

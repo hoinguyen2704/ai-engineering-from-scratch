@@ -1,0 +1,78 @@
+{
+  "lesson": "49-lm-eval-harness",
+  "title": "Bộ công cụ đánh giá Mô hình Ngôn ngữ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bốn trường nào định nghĩa một ví dụ tác vụ trong định dạng JSONL của bộ công cụ?",
+      "options": [
+        "id, prompt, targets, metric, và một dict extras tùy chọn cho dữ liệu phụ mà metric cần",
+        "name, score, payload, vendor",
+        "weights và bias",
+        "input và output"
+      ],
+      "correct": 0,
+      "explanation": "Dòng JSONL là hợp đồng. Trường extras cho phép metric code_exec truyền io_pairs mà không làm ô nhiễm prompt."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao chữ ký hàm metric lại là (dự đoán, targets, extras) -> float?",
+      "options": [
+        "Nó trả về một số nguyên",
+        "Nó cần đối tượng mô hình",
+        "Đây là chữ ký nhỏ nhất xử lý việc khớp chuỗi đơn mục tiêu, multi-reference rouge-l, và code_exec với dữ liệu phụ, trong khi giữ điểm số trong khoảng [0.0, 1.0] có thể so sánh",
+        "Lựa chọn ngẫu nhiên"
+      ],
+      "correct": 2,
+      "explanation": "Số thực trong [0,1] có nghĩa là điểm số theo tác vụ và tổng thể có thể hiểu là trung bình. Khe extras là cách mà code_exec nhận được io_pairs."
+    },
+    {
+      "stage": "check",
+      "question": "Metric code_exec chống lại các dự đoán độc hại như thế nào?",
+      "options": [
+        "Nó sử dụng các container sandbox",
+        "Nó chạy dự đoán với dict __builtins__ đã bị cắt giảm để không gian tên chỉ hiển thị một vài tên an toàn; các câu lệnh import thất bại vì trình nhập không nằm trong phạm vi",
+        "Nó không làm gì cả",
+        "Nó từ chối bất cứ thứ gì chứa def"
+      ],
+      "correct": 1,
+      "explanation": "Không gian tên an toàn của bài học cắt giảm builtins xuống còn một vài tên. Bài kiểm tra khẳng định rằng import os trả về điểm số 0.0 thay vì thực thi."
+    },
+    {
+      "stage": "check",
+      "question": "Trừu tượng bộ chuyển đổi mô hình mang lại cho bạn điều gì?",
+      "options": [
+        "Đây là mã cụ thể cho mô hình duy nhất trong bộ công cụ; thay thế bộ chuyển đổi để chỉ vào một nhà cung cấp mới, và các tác vụ, metric, runner, và định dạng bảng xếp hạng vẫn giữ nguyên",
+        "Nó được yêu cầu bởi torch",
+        "Không có gì cả",
+        "Nó làm cho mô hình nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "ToyAdapter trong bài học là một bộ so khớp mẫu xác định. Một HttpAdapter cho một nhà cung cấp thực sự có cùng bề mặt generate(prompts) -> list[str]."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao JSON bảng xếp hạng lại mang một chuỗi schema như leaderboard.v1?",
+      "options": [
+        "Để các thay đổi định dạng trong tương lai nâng cấp phiên bản và các bảng điều khiển hạ nguồn có thể phân phối dựa trên nó thay vì bị hỏng một cách im lặng",
+        "Nó nén tệp",
+        "Để SEO",
+        "Nó là ngẫu nhiên"
+      ],
+      "correct": 0,
+      "explanation": "Mẹo giống như tải trọng checkpoint từ bài học 47. Trường schema là móc di chuyển."
+    },
+    {
+      "stage": "post",
+      "question": "Đọc một bảng xếp hạng, overall_score được tính như thế nào, và bạn nên chú ý điều gì khi so sánh hai lần chạy?",
+      "options": [
+        "Mẫu ngẫu nhiên",
+        "Tổng số lượng đúng",
+        "Trung bình của các điểm số theo tác vụ (mỗi điểm trong [0,1]); khi so sánh, cũng cần khác biệt dự đoán theo ví dụ cho các tác vụ mà điểm số đã thay đổi, vì điểm số một mình ẩn đi các ví dụ đã suy giảm",
+        "Điểm số tác vụ tốt nhất"
+      ],
+      "correct": 2,
+      "explanation": "Trung bình của các tác vụ có nghĩa là trọng số mỗi tác vụ như nhau. Sử dụng --include-per-example để giữ bằng chứng ở cấp độ dự đoán bên cạnh điểm số để các sự suy giảm có thể nhìn thấy."
+    }
+  ]
+}

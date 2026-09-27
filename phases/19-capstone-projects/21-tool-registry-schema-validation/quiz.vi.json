@@ -1,0 +1,78 @@
+{
+  "lesson": "21-tool-registry-schema-validation",
+  "title": "Đăng ký Công cụ với Kiểm tra Lược đồ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao lại đăng ký lược đồ của một công cụ riêng biệt với trình xử lý của nó?",
+      "options": [
+        "Bởi vì các trình xử lý không thể trả về JSON",
+        "Để bộ kiểm tra giữ nguyên dữ liệu, và trình xử lý giữ nguyên mã không rõ ràng",
+        "Bởi vì các lược đồ phải được biên dịch",
+        "Bởi vì các lược đồ phải sống trong YAML"
+      ],
+      "correct": 1,
+      "explanation": "Giữ lược đồ như dữ liệu và trình xử lý như mã cho phép bộ kiểm tra trở thành một hàm thuần túy trên cây lược đồ."
+    },
+    {
+      "stage": "check",
+      "question": "Từ khóa nào được cố ý nằm ngoài tập con mà bài học này thực hiện?",
+      "options": [
+        "items, enum",
+        "oneOf, anyOf, $ref, allOf",
+        "minLength, maxLength, pattern",
+        "type, properties, required"
+      ],
+      "correct": 1,
+      "explanation": "Các từ khóa bị bỏ qua thêm chu kỳ và giải quyết tham chiếu. Chúng tôi giữ tập con tuyến tính để bộ kiểm tra vẫn là một lần đi đệ quy duy nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao register() từ chối các bản sao theo mặc định?",
+      "options": [
+        "Bởi vì lược đồ không thể được kiểm tra lại",
+        "Việc ghi đè âm thầm là nguyên nhân gây ra sự trôi dạt của danh mục công cụ sản xuất",
+        "Bởi vì đăng ký không thể lưu trữ hơn một bản ghi cho mỗi tên",
+        "Bởi vì các trình xử lý không thể được thay thế"
+      ],
+      "correct": 1,
+      "explanation": "Buộc override=True làm nổi bật trường hợp mà hai phần của mã có ý định sở hữu cùng một tên công cụ."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ kiểm tra làm gì khi một lược đồ chỉ định loại integer nhưng nhận giá trị True?",
+      "options": [
+        "Chuyển đổi âm thầm thành integer",
+        "Xem nó như 1 và tiếp tục",
+        "Gây ra một ngoại lệ không được xử lý",
+        "Trả về lỗi loại vì bool không phải là integer trong bộ kiểm tra này"
+      ],
+      "correct": 3,
+      "explanation": "Python bool là một lớp con của int, nhưng bộ kiểm tra lọc bool ra khỏi kiểm tra integer. Các boolean và integer trong JSON là khác biệt."
+    },
+    {
+      "stage": "post",
+      "question": "Khi đối tượng đầu vào là {'user': {'email': 0}} và lược đồ yêu cầu user.email phải là một chuỗi, đường dẫn lỗi là gì?",
+      "options": [
+        "/user",
+        "/user/email",
+        "/",
+        "user.email"
+      ],
+      "correct": 1,
+      "explanation": "Con trỏ JSON mã hóa sự đi xuống qua user sau đó là email dưới dạng /user/email."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao đăng ký không phải là một ranh giới bảo mật?",
+      "options": [
+        "Bởi vì các trình xử lý là async",
+        "Bởi vì các trình xử lý vẫn có thể cư xử sai sau khi kiểm tra thành công",
+        "Bởi vì đăng ký là trong quá trình",
+        "Bởi vì lược đồ là JSON"
+      ],
+      "correct": 1,
+      "explanation": "Đăng ký kiểm tra hình dạng. Hành vi, thời gian chờ và cách ly thuộc về bộ phân phối và sandbox."
+    }
+  ]
+}

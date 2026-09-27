@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quy tắc chuỗi trong giải tích phát biểu điều gì?",
+      "options": [
+        "Các hàm chỉ có thể được vi phân nếu chúng là tuyến tính",
+        "Đạo hàm của các hàm hợp là tích của các đạo hàm riêng lẻ của chúng",
+        "Đạo hàm của một tổng là tổng của các đạo hàm",
+        "Tích phân của một tích là tích của các tích phân"
+      ],
+      "correct": 1,
+      "explanation": "Đối với y = f(g(x)), quy tắc chuỗi nói rằng dy/dx = f'(g(x)) * g'(x). Bạn nhân các đạo hàm tại mỗi liên kết trong chuỗi. Đây là cơ sở toán học của backpropagation."
+    },
+    {
+      "stage": "pre",
+      "question": "Đồ thị tính toán là gì?",
+      "options": [
+        "Một đồ thị có hướng nơi các nút là các phép toán và các cạnh mang giá trị về phía trước hoặc gradient về phía sau",
+        "Một sơ đồ cho thấy kiến trúc của một mạng nơ-ron",
+        "Một cơ sở dữ liệu đồ thị được sử dụng để lưu trữ dữ liệu huấn luyện",
+        "Một biểu đồ của mất mát so với các bước huấn luyện"
+      ],
+      "correct": 0,
+      "explanation": "Đồ thị tính toán đại diện cho chuỗi các phép toán trong một phép tính. Dữ liệu chảy về phía trước qua đồ thị, và các gradient chảy về phía sau trong quá trình backpropagation."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao PyTorch sử dụng autodiff chế độ ngược (backpropagation) thay vì chế độ tiến?",
+      "options": [
+        "Chế độ tiến không thể xử lý các hàm phi tuyến tính",
+        "Chế độ ngược tính toán tất cả các gradient trong một lần đi ngược, trong khi chế độ tiến cần một lần đi cho mỗi biến đầu vào -- các mạng nơ-ron có hàng triệu đầu vào nhưng chỉ một đầu ra mất mát",
+        "Chế độ ngược chính xác hơn về mặt số học",
+        "Chế độ ngược sử dụng ít bộ nhớ hơn"
+      ],
+      "correct": 1,
+      "explanation": "Các mạng nơ-ron có hàng triệu đầu vào trọng số nhưng chỉ tạo ra một mất mát vô hướng duy nhất. Chế độ ngược cần một lần đi ngược tổng cộng. Chế độ tiến sẽ cần một lần đi cho mỗi trọng số -- hàng triệu lần đi -- làm cho nó không thực tế."
+    },
+    {
+      "stage": "post",
+      "question": "Trong động cơ autograd lớp Value, tại sao hàm backward sử dụng '+=' thay vì '=' để tích lũy các gradient?",
+      "options": [
+        "Bởi vì một giá trị được sử dụng trong nhiều phép toán nhận các đóng góp gradient từ mỗi phép toán, cần phải được cộng lại",
+        "Để trung bình các gradient qua nhiều mẫu",
+        "Để ngăn ngừa tràn số trong các gradient",
+        "Bởi vì Python không hỗ trợ toán tử '=' trong các closure"
+      ],
+      "correct": 0,
+      "explanation": "Khi một giá trị được đưa vào nhiều phép toán (ví dụ, x được sử dụng trong cả x*y và x+z), gradient tổng thể của nó là tổng của tất cả các đóng góp gradient đến. Sử dụng '=' sẽ ghi đè lên các đóng góp trước đó."
+    },
+    {
+      "stage": "post",
+      "question": "Kiểm tra gradient là gì và khi nào bạn nên sử dụng nó?",
+      "options": [
+        "Kiểm tra rằng các gradient dưới một ngưỡng để ngăn ngừa gradient bùng nổ",
+        "So sánh các gradient autodiff với các gradient sai phân hữu hạn số để xác minh tính chính xác của lần đi ngược",
+        "Kiểm tra rằng tất cả các tham số nhận được gradient khác không trong quá trình huấn luyện",
+        "Giám sát độ lớn của gradient trong quá trình huấn luyện để phát hiện gradient biến mất"
+      ],
+      "correct": 1,
+      "explanation": "Kiểm tra gradient tính toán các đạo hàm số thông qua (f(x+h) - f(x-h)) / 2h và so sánh chúng với các gradient autodiff. Sử dụng nó khi thêm các phép toán mới vào động cơ autograd của bạn hoặc gỡ lỗi các lỗi huấn luyện."
+    }
+  ]
+}

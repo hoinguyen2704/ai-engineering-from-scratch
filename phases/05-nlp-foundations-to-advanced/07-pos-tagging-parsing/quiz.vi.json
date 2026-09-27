@@ -1,0 +1,102 @@
+{
+  "lesson": "07-pos-tagging-parsing",
+  "title": "Gán Nhãn POS và Phân Tích Cú Pháp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mục tiêu của gán nhãn POS là gì?",
+      "options": [
+        "Dịch câu",
+        "Phát hiện cảm xúc",
+        "Trích xuất thực thể có tên",
+        "Gán một loại ngữ pháp (danh từ, động từ, v.v.) cho mỗi token"
+      ],
+      "correct": 3,
+      "explanation": "Gán nhãn POS gán nhãn mỗi token với phần của nó trong câu."
+    },
+    {
+      "stage": "pre",
+      "question": "Tập nhãn nào là mặc định cho công việc đa ngôn ngữ?",
+      "options": [
+        "Penn Treebank",
+        "CoNLL-2003",
+        "Stanford Dependencies",
+        "Universal Dependencies"
+      ],
+      "correct": 3,
+      "explanation": "Universal Dependencies cung cấp một tập nhãn 17 nhãn thô hơn, không phụ thuộc vào ngôn ngữ."
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình gán nhãn POS HMM bigram mô hình hóa điều gì?",
+      "options": [
+        "Phân tích phụ thuộc",
+        "P(nhãn) chỉ",
+        "P(nhãn | nhãn trước đó) chuyển tiếp cộng với P(từ | nhãn) phát xạ, được giải mã bằng Viterbi",
+        "Sự tương đồng nhúng"
+      ],
+      "correct": 2,
+      "explanation": "HMM bigram sử dụng các chuyển tiếp nhãn và phát xạ từ; Viterbi tìm chuỗi có xác suất cao nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Thuật toán Viterbi tính toán điều gì cho một gán nhãn HMM?",
+      "options": [
+        "Ma trận chuyển tiếp",
+        "Xác suất biên của mỗi nhãn",
+        "Chỉ xác suất tiến về phía trước",
+        "Chuỗi nhãn có xác suất cao nhất duy nhất thông qua lập trình động trên lưới nhãn"
+      ],
+      "correct": 3,
+      "explanation": "Viterbi tìm chuỗi argmax với O(n * |T|^2) lập trình động."
+    },
+    {
+      "stage": "check",
+      "question": "Phân tích phụ thuộc tạo ra điều gì?",
+      "options": [
+        "Cây cấu trúc của các nhãn NP/VP/PP",
+        "Một cây mà mỗi từ có một từ chính và một quan hệ ngữ pháp được gán nhãn",
+        "Một chuỗi tham chiếu",
+        "Một chuỗi BIO phẳng"
+      ],
+      "correct": 1,
+      "explanation": "Phân tích phụ thuộc cung cấp các cạnh (đầu, quan hệ) cho từng từ; phân tích cấu trúc cung cấp các cấu trúc cụm lồng nhau."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao độ chính xác tối đa trên gán nhãn POS PTB khoảng 97-98%?",
+      "options": [
+        "Các mô hình không thể vượt quá 98% trong bất kỳ nhiệm vụ nào",
+        "Universal Dependencies giới hạn ở 98%",
+        "Các nhà chú thích chỉ đồng ý khoảng 97% thời gian, vì vậy các mô hình trên ~98% có thể đang quá khớp với dữ liệu kiểm tra",
+        "Giới hạn phần cứng"
+      ],
+      "correct": 2,
+      "explanation": "Sự không đồng ý của người chú thích giới hạn độ chính xác có thể đạt được; các con số rất cao thường báo hiệu quá khớp."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao gán nhãn POS vẫn quan trọng trong các pipeline LLM năm 2026?",
+      "options": [
+        "Cần thiết cho việc phân tách token",
+        "Lemmatization, cảm xúc dựa trên khía cạnh, phân tách truy vấn, xác thực đầu ra có cấu trúc, và chuyển giao đa ngôn ngữ vẫn tiêu thụ gán nhãn POS hoặc phân tích phụ thuộc",
+        "Thay thế transformers",
+        "LLMs không thể hoạt động mà không có nó"
+      ],
+      "correct": 1,
+      "explanation": "Gán nhãn POS và phân tích phụ thuộc cung cấp nhiều nhiệm vụ hạ nguồn có cấu trúc ngay cả khi LLMs tạo ra văn bản."
+    },
+    {
+      "stage": "post",
+      "question": "Thư viện nào bạn nên sử dụng trong hầu hết các nhiệm vụ gán nhãn POS / phân tích?",
+      "options": [
+        "scikit-learn",
+        "spaCy (hoặc stanza/trankit cho độ chính xác cao hơn hoặc phạm vi ngôn ngữ rộng hơn)",
+        "NumPy",
+        "Tự xây dựng trình phân tích của riêng bạn"
+      ],
+      "correct": 1,
+      "explanation": "spaCy cung cấp các gán nhãn POS + trình phân tích phụ thuộc nhanh chóng, chất lượng sản xuất; stanza/trankit bao phủ nhiều ngôn ngữ hơn."
+    }
+  ]
+}

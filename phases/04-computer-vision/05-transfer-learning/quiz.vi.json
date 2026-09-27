@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bạn có 500 hình ảnh được gán nhãn cho một nhiệm vụ mới gần với phân phối ImageNet. Chế độ nào là hợp lý nhất?",
+      "options": [
+        "Tinh chỉnh mọi lớp với LR lớn giống nhau",
+        "Bỏ qua trọng số đã được huấn luyện trước; tập dữ liệu nhỏ hoạt động tốt nhất với các mô hình nhỏ",
+        "Đóng băng một backbone đã được huấn luyện trước trên ImageNet và chỉ huấn luyện một đầu ra tuyến tính mới",
+        "Huấn luyện một ResNet-50 từ đầu"
+      ],
+      "correct": 2,
+      "explanation": "Với 500 hình ảnh, bạn không có đủ tín hiệu để huấn luyện một mạng sâu từ đầu hoặc để tinh chỉnh an toàn tất cả các lớp từ đầu đến cuối mà không làm hỏng các đặc trưng đã được huấn luyện trước. Đóng băng backbone và chỉ huấn luyện một đầu ra mới (linear probe) sử dụng trực tiếp các đặc trưng đã được huấn luyện trước và là công thức tiêu chuẩn cho các tập dữ liệu nhỏ, gần miền."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao các lớp conv sớm của một mạng đã được huấn luyện trước trên ImageNet lại chuyển giao tốt cho hình ảnh y tế mặc dù ImageNet không chứa X-quang?",
+      "options": [
+        "ImageNet bí mật chứa dữ liệu y tế",
+        "Chuyển giao chỉ hoạt động khi các miền khớp nhau",
+        "PyTorch tự động khởi tạo lại các lớp sớm",
+        "Các lớp sớm mã hóa các nguyên tắc hình ảnh tổng quát — cạnh, hướng, độ tương phản — mà được chia sẻ qua hầu hết mọi miền hình ảnh; chỉ các lớp muộn chuyên môn hóa cho các loại hình ảnh trên ImageNet"
+      ],
+      "correct": 3,
+      "explanation": "Các bộ lọc giống như Gabor và các bộ phát hiện kết cấu đơn giản là các đặc trưng mà các lớp CNN sớm học được trên bất kỳ tập hợp hình ảnh tự nhiên nào. Chúng phản ánh thống kê của ánh sáng, bóng tối và các cạnh mà giữ nguyên trong nhiếp ảnh, hình ảnh y tế, kính hiển vi và dữ liệu vệ tinh. Các lớp muộn dần dần chuyên môn hóa, đó là lý do tại sao tinh chỉnh tập trung vào vài khối cuối."
+    },
+    {
+      "stage": "post",
+      "question": "Khi tinh chỉnh từ đầu đến cuối với các tốc độ học phân biệt, tại sao các lớp sớm nên nhận một LR nhỏ hơn so với các lớp muộn?",
+      "options": [
+        "Một LR nhỏ hơn ở các lớp sớm tăng tốc độ huấn luyện",
+        "Các lớp sớm có ít tham số hơn",
+        "Các lớp sớm mã hóa các đặc trưng chung mà bạn muốn bảo tồn; các lớp muộn mã hóa các đặc trưng cụ thể cho nhiệm vụ cần phải di chuyển; một LR nhỏ hơn ở các lớp sớm ngăn ngừa sự trôi dạt đặc trưng và quên thảm khốc",
+        "PyTorch yêu cầu LR theo lớp để đảm bảo tính chính xác"
+      ],
+      "correct": 2,
+      "explanation": "Các lớp sớm đã mã hóa các nguyên tắc hình ảnh đúng; bạn muốn các cập nhật nhỏ để các đặc trưng đó được bảo tồn. Các lớp muộn cần phải di chuyển về phía nhiệm vụ mới. Một tốc độ học cho toàn bộ mô hình buộc phải thỏa hiệp mà làm hại cả hai đầu. Các LR phân biệt cho phép mỗi giai đoạn di chuyển theo tốc độ riêng của nó, đó là điểm ngọt ngào thực nghiệm cho việc tinh chỉnh."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn tinh chỉnh một ResNet trên một tập dữ liệu y tế 10 lớp gồm 800 hình ảnh xám (được sao chép thành 3 kênh). Độ chính xác là 10% (cơ hội ngẫu nhiên cho 10 lớp). Nguyên nhân có khả năng nhất là gì?",
+      "options": [
+        "ResNet không thể xử lý đầu vào xám",
+        "Các thống kê chạy của BatchNorm đến từ hình ảnh RGB trên ImageNet và không khớp với phân phối y tế xám, vì vậy các lớp BN đầu tiên tạo ra tiếng ồn mà lan truyền về phía trước",
+        "800 hình ảnh là quá ít cho bất kỳ việc học chuyển giao nào",
+        "Bạn đã sử dụng hàm mất mát sai"
+      ],
+      "correct": 1,
+      "explanation": "BatchNorm giữ running_mean và running_var từ ImageNet. Trên một tập dữ liệu nhỏ, đã thay đổi phân phối, các bộ đệm đó không bao giờ thích nghi đủ nhanh trong một lần tinh chỉnh ngắn, và BN chuẩn hóa các kích hoạt với các thống kê sai. Các giải pháp: đóng băng các thống kê BN, chuyển sang GroupNorm, hoặc huấn luyện trước các thống kê BN với một lần khởi động chỉ BN trên tập dữ liệu mục tiêu."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn so sánh hai lần chạy: (a) linear probe trên backbone ImageNet đã đóng băng, độ chính xác 82%; (b) tinh chỉnh từ đầu đến cuối, độ chính xác 78%. Bạn nên kết luận gì?",
+      "options": [
+        "Tinh chỉnh không hữu ích; hãy gửi linear probe",
+        "Một lần tinh chỉnh mà kết thúc dưới linear probe gần như luôn là một lỗi huấn luyện — LR quá cao, BN bị xử lý sai, hoặc bộ lập lịch/tối ưu hóa bị cấu hình sai; chẩn đoán trước khi kết luận bất kỳ điều gì về chuyển giao",
+        "Tập dữ liệu quá lớn",
+        "Trọng số đã được huấn luyện trước là xấu"
+      ],
+      "correct": 1,
+      "explanation": "Tinh chỉnh luôn nên tốt hơn hoặc bằng với linear probe, vì linear probe là một trường hợp đặc biệt của tinh chỉnh với LR backbone = 0. Nếu tinh chỉnh tệ hơn, quy trình đang phá hủy các đặc trưng đã được huấn luyện trước. Giải pháp là giảm LR backbone, áp dụng các LR phân biệt, hoặc đóng băng BN — không phải từ bỏ tinh chỉnh."
+    }
+  ]
+}

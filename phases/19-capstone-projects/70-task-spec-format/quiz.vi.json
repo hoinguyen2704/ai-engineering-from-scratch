@@ -1,0 +1,78 @@
+{
+  "lesson": "70-task-spec-format",
+  "title": "Định dạng đặc tả tác vụ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao cần khóa sơ đồ bản ghi tác vụ trước khi viết mã chấm điểm?",
+      "options": [
+        "Nó khóa hợp đồng để các chỉ số, trình chạy và bộ xử lý hậu đồng ý về tên trường",
+        "Nó cho phép tên chỉ số tùy ý mà không cần thay đổi thêm",
+        "Nó làm cho trình phân tích JSON chạy nhanh hơn",
+        "Nó loại bỏ nhu cầu về một bộ xác thực"
+      ],
+      "correct": 0,
+      "explanation": "Sơ đồ là hợp đồng mà mọi người tiêu dùng hạ nguồn đọc từ đó. Khóa nó cho phép bạn thay đổi các thành phần độc lập mà không làm hỏng phần còn lại."
+    },
+    {
+      "stage": "pre",
+      "question": "Vocabularies đóng mà trường metric_name chấp nhận là gì?",
+      "options": [
+        "Bất kỳ chuỗi nào mà tác giả tác vụ chọn",
+        "Chỉ exact_match và f1",
+        "Bất cứ điều gì mà trình chạy được cấu hình để nhận diện",
+        "exact_match, f1, bleu_4, rouge_l, accuracy, code_exec"
+      ],
+      "correct": 3,
+      "explanation": "Bài học gán từ vựng chỉ số cho sáu tên. Thêm một cái yêu cầu một bài học mới và một mục xác thực mới."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ xác thực làm gì khi thấy một trường cấp cao không xác định trên một bản ghi?",
+      "options": [
+        "Ghi lại một cảnh báo nhưng chấp nhận bản ghi",
+        "Loại bỏ nó và tiếp tục",
+        "Đổi tên nó thành metadata.unknown",
+        "Trả về lỗi xác thực và từ chối bản ghi"
+      ],
+      "correct": 3,
+      "explanation": "Các trường không xác định là một mối nguy hiểm về khả năng tương thích trong tương lai. Bộ xác thực từ chối chúng để sơ đồ vẫn là nguồn sự thật duy nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao các ví dụ few-shot lại được đính kèm vào bản ghi tác vụ thay vì được tính toán bởi trình chạy?",
+      "options": [
+        "Few-shot chỉ được sử dụng trong quá trình tinh chỉnh",
+        "Ý định của tác giả là một phần của đánh giá; việc gán ví dụ vào tác vụ loại bỏ biến thể theo mô hình trong việc xây dựng prompt",
+        "Nó tiết kiệm không gian đĩa",
+        "Trình chạy không có I/O tệp"
+      ],
+      "correct": 1,
+      "explanation": "Cấu thành few-shot là một phần của định nghĩa đánh giá, không phải giao diện mô hình. Đưa nó vào tác vụ có nghĩa là mọi mô hình đều thấy cùng một prompt."
+    },
+    {
+      "stage": "check",
+      "question": "Cặp chỉ số-danh mục nào là bất hợp pháp theo bộ xác thực?",
+      "options": [
+        "code_exec + code_exec",
+        "summary + rouge_l",
+        "arithmetic + exact_match",
+        "mcq + bleu_4"
+      ],
+      "correct": 3,
+      "explanation": "BLEU trên một chữ cái đơn là vô nghĩa. Bộ xác thực thực thi rằng các tác vụ mcq chỉ sử dụng exact_match hoặc accuracy."
+    },
+    {
+      "stage": "post",
+      "question": "Quy tắc post_process extract_letter trả về gì khi kết quả là `Answer: C is correct`?",
+      "options": [
+        "Answer",
+        "Một chuỗi rỗng",
+        "Chuỗi đầy đủ không thay đổi",
+        "C"
+      ],
+      "correct": 3,
+      "explanation": "extract_letter trả về ký tự đầu tiên khớp với [A-E] trong kết quả. Chuỗi có C ở đầu phần thân."
+    }
+  ]
+}

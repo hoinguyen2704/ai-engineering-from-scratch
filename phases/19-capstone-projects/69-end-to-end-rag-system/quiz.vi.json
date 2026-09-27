@@ -1,0 +1,78 @@
+{
+  "lesson": "69-end-to-end-rag-system",
+  "title": "Hệ thống RAG Từ Đầu Đến Cuối",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bài kiểm tra tích hợp là điểm số duy nhất trung thực của một pipeline RAG sáu thành phần?",
+      "options": [
+        "Các thành phần chạy trên các máy khác nhau",
+        "Chunker là thành phần duy nhất quan trọng",
+        "Máy chủ sản xuất không thể chạy các bài kiểm tra từng giai đoạn",
+        "Metríc riêng biệt của mỗi giai đoạn không dự đoán được metíc của hệ thống vì mỗi giai đoạn tương tác với giai đoạn tiếp theo; điểm số hợp lệ duy nhất là toàn bộ pipeline chạy từ đầu đến cuối dựa trên cùng một qrels"
+      ],
+      "correct": 3,
+      "explanation": "Các chiến thắng riêng biệt không hợp thành; pipeline được chấm điểm dựa trên đầu ra chung."
+    },
+    {
+      "stage": "pre",
+      "question": "Vai trò của refuse-on-low-confidence trong bộ sinh câu trả lời là gì?",
+      "options": [
+        "Nó ghi lại mọi từ chối vào đĩa",
+        "Nó trả về 'Tôi không biết' khi điểm số top-1 của reranker nằm dưới ngưỡng cụ thể của tập hợp, ngăn chặn các câu trả lời ảo khi ngữ cảnh được truy xuất không giải quyết được truy vấn",
+        "Nó chặn các truy vấn dài hơn 100 token",
+        "Nó kích hoạt một lần truy xuất lại với một chunker khác"
+      ],
+      "correct": 1,
+      "explanation": "Một điểm số rank-1 liên tục thấp là mô hình đang cho bạn biết không có gì trong tập hợp trả lời cho truy vấn này; từ chối thay vì ảo tưởng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao các bộ ba đào tạo rerank được giữ tách biệt khỏi các truy vấn eval?",
+      "options": [
+        "Để ngăn chặn rò rỉ giữa đào tạo và kiểm tra; nếu các truy vấn eval chồng chéo với tập đào tạo rerank, eval trông sẽ kỳ diệu và bài kiểm tra hồi quy không phát hiện được sự trôi thực sự",
+        "Bởi vì RRF không thể hợp nhất các danh sách chồng chéo",
+        "Bởi vì cross-encoder yêu cầu từ vựng khác nhau",
+        "Để tiết kiệm bộ nhớ GPU"
+      ],
+      "correct": 0,
+      "explanation": "Sự tách biệt nghiêm ngặt là vệ sinh cơ bản; nếu không, metíc rerank không dự đoán được hành vi sản xuất."
+    },
+    {
+      "stage": "check",
+      "question": "Mục đích của mã thoát trong demo tự kết thúc là gì?",
+      "options": [
+        "Nó được yêu cầu bởi Python",
+        "Reranker sử dụng nó như một tín hiệu đào tạo",
+        "Thẩm mỹ",
+        "Nó mã hóa pass/fail so với các ngưỡng metíc; một bài kiểm tra khói CI có thể cắm demo vào pipeline và kiểm soát việc hợp nhất dựa trên mã thoát không bằng 0"
+      ],
+      "correct": 3,
+      "explanation": "Mã thoát 0 có nghĩa là các ngưỡng đã được đáp ứng; không bằng 0 có nghĩa là hồi quy. Đó là hợp đồng mà một cổng CI tiêu thụ."
+    },
+    {
+      "stage": "check",
+      "question": "Một điểm neo trích dẫn trông như thế nào trong pipeline này?",
+      "options": [
+        "JSON-RPC envelope",
+        "[doc_id:chunk_index]",
+        "Liên kết Markdown với URL nguồn",
+        "Vector nhúng nguyên văn"
+      ],
+      "correct": 1,
+      "explanation": "Bộ sinh phát ra bộ (doc_id, chunk_index) như một điểm neo để một UI hoặc kiểm toán viên phía dưới có thể ánh xạ mọi tuyên bố trở lại khối nguồn của nó."
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ thất bại nào không thể nhìn thấy được đối với bộ sinh giả và phải được kiểm tra với một LLM thực trước khi phát hành?",
+      "options": [
+        "Độ trễ",
+        "Ảo tưởng: bộ sinh giả chỉ phát ra văn bản từ các khối được truy xuất và không thể sáng tạo nội dung; một LLM thực có thể bỏ qua các khối và tạo ra các câu trả lời không có cơ sở",
+        "Phân tách token",
+        "Kích thước chỉ mục vector"
+      ],
+      "correct": 1,
+      "explanation": "Bộ giả không thể kiểm tra độ an toàn của bộ sinh đối với nội dung ảo tưởng; chỉ có một mô hình thực thay thế mới có thể."
+    }
+  ]
+}

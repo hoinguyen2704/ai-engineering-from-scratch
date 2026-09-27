@@ -1,0 +1,90 @@
+{
+  "lesson": "05-autonomous-research-agent",
+  "title": "Capstone 05 — Đại lý Nghiên cứu Tự động (Lớp AI-Khoa học)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hình dạng tìm kiếm nào mà đại lý lớp AI-Khoa học sử dụng để khám phá các thí nghiệm?",
+      "options": [
+        "Mở rộng theo chiều rộng với điểm số ngẫu nhiên",
+        "Tìm kiếm chùm trên đầu ra token",
+        "Học tăng cường thuần túy từ phản hồi của con người",
+        "Tìm kiếm cây tốt nhất trên các nút thí nghiệm với điểm số mới lạ x chất lượng x ngân sách"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao sandbox được cấu hình với --network=none và giới hạn tài nguyên?",
+      "options": [
+        "Để buộc đại lý sử dụng bộ nhớ đệm prompt",
+        "Để ngăn chặn việc thoát mạng và chứa các tác động phụ của thí nghiệm trong một khung có thể tái tạo",
+        "Để thực thi phép toán dấu phẩy động xác định",
+        "Để cho phép truyền GPU theo mặc định"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của bước phê bình thị giác trong vòng lặp viết là gì?",
+      "options": [
+        "Tạo ra các ý tưởng thí nghiệm mới từ ảnh chụp màn hình",
+        "Thay thế matplotlib vào thời điểm render",
+        "Dịch các hình ảnh thành biểu đồ cột",
+        "Biên soạn bản thảo LaTeX thành PDF, sau đó có một VLM phê bình bố cục, độ rõ ràng của hình ảnh và sự phù hợp giữa tuyên bố và bằng chứng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nhóm đánh giá làm thế nào để kiểm soát quy trình?",
+      "options": [
+        "Các đánh giá viên bỏ phiếu ẩn danh và đa số thắng",
+        "Năm giám khảo chấm điểm theo các tiêu chí kiểu NeurIPS và tổng trọng số phải vượt qua một ngưỡng, nếu không bản thảo sẽ quay lại cho người viết",
+        "Một giám khảo duy nhất chấp nhận hoặc từ chối dựa trên cờ nhị phân",
+        "Các đánh giá chỉ diễn ra sau khi công bố"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kỷ luật chi phí nào mà capstone thực thi cho mỗi bài báo?",
+      "options": [
+        "Giờ GPU được theo dõi nhưng không bao giờ bị giới hạn",
+        "Một ngân sách cứng $30 được theo dõi qua các bộ đếm Langfuse và ước lượng trước khi chạy",
+        "Tối ưu hóa chỉ dựa trên chi phí mà không có kiểm tra chất lượng",
+        "Tính toán không giới hạn, chỉ có đồng hồ tường cứng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Hàm điểm nào xếp hạng các nút cây để mở rộng thêm?",
+      "options": [
+        "Số lượng trích dẫn của các bài báo liên quan",
+        "Ưu tiên ngẫu nhiên đồng nhất",
+        "Chiều dài đầu ra và số lượng token",
+        "Mới lạ x chất lượng x ngân sách còn lại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Báo cáo nhóm đỏ thực hiện bài kiểm tra nào đối với hệ thống?",
+      "options": [
+        "Các nỗ lực thoát sandbox như bom fork, rò rỉ mạng và thoát hệ thống tệp",
+        "Tỷ lệ hit bộ nhớ đệm trên các prompt của hệ thống",
+        "Rò rỉ dữ liệu đa người dùng trong cơ sở dữ liệu vector",
+        "Độ trễ đuôi dưới tình trạng mất gói"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

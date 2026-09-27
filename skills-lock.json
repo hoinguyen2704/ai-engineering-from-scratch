@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "check-understanding": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/check-understanding/SKILL.md",
+      "computedHash": "bbf30c5f3cafe9dd28210bafad81d3d291f02d029c5d249273d7fd44fb015af1"
+    },
+    "claude-certification": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/claude-certification/SKILL.md",
+      "computedHash": "75b67ea6a613aacd97fdb527bc3136758d1f1a2dc4a27fcc30a29e05066b9f5c"
+    },
+    "course-guide": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/course-guide/SKILL.md",
+      "computedHash": "17f5c2f6040cbe7cf989f91db0247414ddfdd5e0400efa9cbb7868541a63342b"
+    },
+    "find-your-level": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/find-your-level/SKILL.md",
+      "computedHash": "6fb5f9c3108f6623e97d1191364d6040598bb82f11c26cdac8678a96c63b6ddd"
+    },
+    "learn": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/learn/SKILL.md",
+      "computedHash": "918dc11053e0658d5a91f00f1221f85333adba0a6871ab5b272199b432dbddeb"
+    },
+    "learn-agent-skills": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/learn-agent-skills/SKILL.md",
+      "computedHash": "671840e936ece0707b70b1a581d47b55d0ae7e527425fd718487e0a137d08fba"
+    },
+    "learn-mcp": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/learn-mcp/SKILL.md",
+      "computedHash": "800978dcdccd4e5874008c14ed08efa3fcdfcec2942961b42bd902341dbd5107"
+    },
+    "start-learning": {
+      "source": "rohitg00/ai-engineering-from-scratch",
+      "sourceType": "github",
+      "skillPath": "skills/start-learning/SKILL.md",
+      "computedHash": "5ec9902c80c33c04ded0fcbe9660a2c97a24d114a51620578dd0739f516198fb"
+    }
+  }
+}

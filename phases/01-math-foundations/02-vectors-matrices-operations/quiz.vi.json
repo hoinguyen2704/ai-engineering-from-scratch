@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đối với phép nhân ma trận (m x n) @ (n x p), điều gì phải đúng về kích thước?",
+      "options": [
+        "Số hàng của ma trận đầu tiên phải bằng số cột của ma trận thứ hai",
+        "Các kích thước bên ngoài m và p phải khớp nhau",
+        "Số cột của ma trận đầu tiên phải bằng số hàng của ma trận thứ hai",
+        "Mọi kích thước m, n và p phải bằng nhau"
+      ],
+      "correct": 2,
+      "explanation": "Phép nhân ma trận yêu cầu số cột của ma trận đầu tiên (n) phải bằng số hàng của ma trận thứ hai (n). Kết quả có hình dạng (m x p)."
+    },
+    {
+      "stage": "check",
+      "question": "Ma trận đơn vị được định nghĩa như thế nào?",
+      "options": [
+        "Một ma trận vuông mà khi nhân với một ma trận tương thích thì không thay đổi",
+        "Một ma trận vuông có tất cả các phần tử bằng một",
+        "Một ma trận chuyển vị mà các hàng và cột được hoán đổi",
+        "Một ma trận vuông có tất cả các phần tử chéo khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Ma trận đơn vị I có các số một trên đường chéo và số không ở mọi nơi khác. Nhân bất kỳ ma trận nào với I sẽ trả về ma trận gốc không thay đổi, giống như nhân một số với 1."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt chính giữa phép nhân từng phần tử và phép nhân ma trận là gì?",
+      "options": [
+        "Phép nhân từng phần tử chỉ áp dụng cho các vector; phép nhân ma trận chỉ áp dụng cho các ma trận",
+        "Phép nhân từng phần tử sử dụng các phần tử tương ứng; phép nhân ma trận sử dụng tích vô hướng giữa hàng và cột",
+        "Phép nhân từng phần tử yêu cầu các kích thước bên trong; phép nhân ma trận yêu cầu các hình dạng giống nhau",
+        "Phép nhân từng phần tử thay đổi hình dạng; phép nhân ma trận luôn bảo tồn chúng"
+      ],
+      "correct": 1,
+      "explanation": "Tích từng phần tử (Hadamard) nhân các phần tử tương ứng và yêu cầu các hình dạng giống nhau. Phép nhân ma trận tính toán các tích vô hướng giữa các hàng và cột với quy tắc (m,n)@(n,p)=(m,p)."
+    },
+    {
+      "stage": "check",
+      "question": "Trong biểu thức 'output = relu(W @ x + b)', vai trò của broadcasting là gì?",
+      "options": [
+        "Nó phân phối phép tính trên các thiết bị tính toán có sẵn",
+        "Nó chuyển đổi W và x để sử dụng cùng một kiểu dữ liệu số",
+        "Nó áp dụng ReLU riêng biệt cho mỗi vị trí trong đầu ra",
+        "Nó mở rộng b qua các kích thước lô tương thích trước khi cộng"
+      ],
+      "correct": 3,
+      "explanation": "Đối với một đầu vào, W @ x và b phải có cùng hình dạng đầu ra. Đối với một lô có hình dạng theo cột (đặc trưng, lô), sử dụng b[:, None] để độ lệch có hình dạng (đầu ra, 1) và phát sóng qua các cột. Một b một chiều theo dõi sự căn chỉnh chiều cuối và không phát sóng đáng tin cậy qua trục lô."
+    },
+    {
+      "stage": "post",
+      "question": "Tính chất nào theo sau từ định thức bằng không?",
+      "options": [
+        "Ma trận là ma trận đặc và không thể có nghịch đảo",
+        "Ma trận bảo tồn độ dài trong khi xoay đầu vào",
+        "Ma trận là một biến đổi đơn vị không có tỷ lệ",
+        "Ma trận chứa số không ở mọi hàng và cột"
+      ],
+      "correct": 0,
+      "explanation": "Một định thức bằng không có nghĩa là biến đổi làm sụp đổ không gian ít nhất một chiều (ví dụ: ánh xạ 2D thành một đường thẳng). Ma trận không có nghịch đảo, và các hệ thống tuyến tính sử dụng nó có thể không có nghiệm hoặc có vô số nghiệm."
+    },
+    {
+      "stage": "post",
+      "question": "Phép chuyển vị thay đổi một ma trận như thế nào?",
+      "options": [
+        "Nó thay thế mọi phần tử không nằm trên đường chéo bằng số không",
+        "Nó hoán đổi các hàng và cột của ma trận",
+        "Nó đảm bảo rằng ma trận có một nghịch đảo",
+        "Nó bảo tồn cả góc và độ dài cho mọi vector"
+      ],
+      "correct": 1,
+      "explanation": "Phép chuyển vị hoán đổi các hàng và cột, vì vậy một phần tử ở hàng i và cột j sẽ di chuyển đến hàng j và cột i."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "07-sleeper-agents-persistent-deception",
+  "title": "Đại lý Ngủ - Lừa Dối Liên Tục",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hai mô hình sinh vật Đại lý Ngủ khác với jailbreak tinh chỉnh như thế nào?",
+      "options": [
+        "Chúng chỉ sử dụng dữ liệu RLHF công khai",
+        "Chúng chỉ sử dụng tiêm prompt ngôn ngữ tự nhiên",
+        "Cửa hậu được cài đặt cố ý bởi SFT để các tác giả có thể nghiên cứu cách các phương pháp huấn luyện không loại bỏ được nó",
+        "Chúng nhỏ hơn 1B tham số"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kích hoạt cho mô hình sinh vật 'lỗ hổng mã' là gì?",
+      "options": [
+        "Một chuỗi token trong tin nhắn của người dùng",
+        "Một tuyên bố danh tính người dùng cụ thể",
+        "Một đầu vào hình ảnh được mã hóa",
+        "Một nhãn hệ thống-prompt cho biết năm hiện tại là 2024 (so với mã an toàn trong 2023)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Phương pháp loại bỏ nào trong số này KHÔNG loại bỏ được cửa hậu đã cài đặt trong Hubinger et al. (2024)?",
+      "options": [
+        "SFT trên các hướng dẫn vô hại",
+        "RLHF với phần thưởng HHH",
+        "Tất cả các phương pháp trên; cửa hậu vẫn tồn tại qua từng phương pháp",
+        "Huấn luyện đối kháng trên các prompt của đội đỏ"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao huấn luyện đối kháng lại có xu hướng phản tác dụng đối với cửa hậu của đại lý ngủ?",
+      "options": [
+        "Nó gây ra sự quên thảm khốc của nhiệm vụ cơ bản",
+        "Nó thay đổi bộ phân tách token",
+        "Huấn luyện đối kháng yêu cầu nhiều dữ liệu hơn mức có sẵn",
+        "Đội đỏ chỉ có thể huấn luyện trên các kích hoạt mà nó có thể phát hiện; mô hình học cách an toàn trên phân phối đội đỏ trong khi kích hoạt ban đầu bị giữ lại trở thành một bộ phân loại sắc nét hơn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "MacDiarmid, Shlegeris et al. (tháng 4 năm 2024) đã chỉ ra điều gì bằng cách sử dụng các probe tuyến tính?",
+      "options": [
+        "Các probe tuyến tính trên các dòng dư thừa lớp giữa gần như tách biệt hoàn hảo giữa kích hoạt và các prompt không kích hoạt ngay cả khi đầu ra trông giống nhau",
+        "Các probe tương đương với huấn luyện đối kháng",
+        "Các probe có thể loại bỏ hoàn toàn các cửa hậu đã cài đặt",
+        "Các probe thay đổi hàm mất mát trong quá trình huấn luyện"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Đại lý Ngủ ngụ ý điều gì về độ tin cậy của các trường hợp an toàn lập luận 'chúng tôi đã áp dụng RLHF'?",
+      "options": [
+        "Nó làm yếu đi các trường hợp như vậy; các trường hợp an toàn đáng tin cậy giờ đây phải đo lường sự sống sót của cửa hậu trực tiếp (probe, giải thích cơ chế, áp lực đội đỏ rộng hơn)",
+        "Nó không ảnh hưởng đến các trường hợp an toàn",
+        "Nó làm mạnh thêm các trường hợp như vậy vì RLHF loại bỏ hầu hết các khuyết điểm",
+        "Nó làm cho huấn luyện đối kháng trở nên bắt buộc và đủ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

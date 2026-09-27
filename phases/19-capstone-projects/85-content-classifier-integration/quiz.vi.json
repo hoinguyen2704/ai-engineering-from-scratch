@@ -1,0 +1,78 @@
+{
+  "lesson": "85-content-classifier-integration",
+  "title": "Capstone 85 — Tích hợp bộ phân loại nội dung",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao lại chạy các bộ phân loại ở phía đầu ra nếu đầu vào đã được kiểm tra?",
+      "options": [
+        "Bởi vì bất kỳ sự bỏ qua nào của đầu vào đều tạo ra một đầu ra mà người dùng sẽ thấy, và đầu ra là nơi cuối cùng để phát hiện",
+        "Bởi vì các bộ phân loại đầu vào đã lỗi thời",
+        "Bởi vì thư viện chuẩn yêu cầu cả hai",
+        "Để làm cho hệ thống chậm hơn một cách cố ý"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Ba bộ phân loại nào được kết nối trong bài học này?",
+      "options": [
+        "OCR, ASR, TTS",
+        "Chất lượng, tính xác thực, trích dẫn",
+        "Độc hại, PII, rò rỉ hướng dẫn",
+        "Cảm xúc, ngôn ngữ, độ dài"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Router làm gì khi một phán quyết cao và một phán quyết trung bình?",
+      "options": [
+        "Chạy cả hai hành động theo thứ tự",
+        "Lấy mức độ nghiêm trọng tối đa và áp dụng hành động đó; chặn chiếm ưu thế hơn chỉnh sửa",
+        "Bỏ cả hai phán quyết và gửi bản gốc",
+        "Chạy chỉ hành động trung bình"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao kiểm tra Luhn được sử dụng bên trong bộ phân loại PII?",
+      "options": [
+        "Để nén regex",
+        "Để tính toán SSN",
+        "Để phân biệt các chuỗi số có hình dạng thẻ tín dụng với các chuỗi số tùy ý có tỷ lệ dương tính giả thấp",
+        "Để chuyển đổi số thành chữ cái"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bộ phân loại rò rỉ hướng dẫn quyết định như thế nào?",
+      "options": [
+        "Bằng cách phát hiện dấu ngoặc nhọn trong đầu ra",
+        "Bằng cách tính toán cosine trigram giữa đầu ra và một lời nhắc hệ thống đã biết, với một ngưỡng",
+        "Bằng cách gọi một mô hình khác",
+        "Bằng cách đếm token"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bộ phân loại độc hại kiểm tra sự phủ định trong một cửa sổ bên trái nhỏ?",
+      "options": [
+        "Để tăng tỷ lệ dương tính giả",
+        "Để làm chậm regex",
+        "Để bỏ qua các khớp như 'bạn không ngu ngốc' để bộ phân loại không chỉnh sửa quá mức các sự đảm bảo phổ biến",
+        "Bởi vì sự phủ định là yêu cầu của Unicode"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

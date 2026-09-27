@@ -1,0 +1,90 @@
+{
+  "lesson": "38-verification-gates",
+  "title": "Cổng Xác Minh",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Câu hỏi duy nhất mà cổng xác minh trả lời là gì?",
+      "options": [
+        "Nhiệm vụ này có thực sự hoàn thành không? (đọc phạm vi, quy tắc, phản hồi và tài liệu khác biệt)",
+        "Lời nhắc có tối ưu không?",
+        "Mô hình có nhanh không?",
+        "Ngân sách token có khỏe không?"
+      ],
+      "correct": 0,
+      "explanation": "Cổng là một hàm xác định trên các tài liệu của bàn làm việc, tạo ra một phán quyết đỗ/trượt."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao cổng phải là xác định?",
+      "options": [
+        "Bộ tài liệu giống nhau phải tạo ra cùng một phán quyết mỗi lần; các đánh giá của LLM thuộc về người đánh giá (định tính), không phải cổng (trạng thái)",
+        "Nhà cung cấp yêu cầu điều đó",
+        "Tính xác định là miễn phí",
+        "Nó tiết kiệm tiền"
+      ],
+      "correct": 0,
+      "explanation": "Việc trộn lẫn đánh giá của mô hình vào cổng làm sụp đổ sự phân tách xác định/định tính."
+    },
+    {
+      "stage": "check",
+      "question": "Kỷ luật ghi đè của cổng là gì?",
+      "options": [
+        "Các phát hiện mức độ nghiêm trọng có thể chỉ bị ghi đè bởi một người với lý do ghi đè đã được ghi lại và id người dùng đã ghi đè trong một nhật ký kiểm toán đã ký",
+        "Ghi đè là bị cấm",
+        "Bất kỳ ai cũng có thể ghi đè một cách im lặng",
+        "Ghi đè yêu cầu một email của quản lý"
+      ],
+      "correct": 0,
+      "explanation": "Các ghi đè đã ký được lưu vào outputs/verification/overrides.jsonl; tác nhân không thể tự ghi đè."
+    },
+    {
+      "stage": "check",
+      "question": "Cặp Hybrid Norm mà bài học đề cập là gì?",
+      "options": [
+        "Phân chia GPU và CPU",
+        "Lời nhắc nóng/lạnh",
+        "Phần thưởng có thể xác minh (bài kiểm tra, sơ đồ, mã thoát) trả lời 'nó có giải quyết được vấn đề không?'; các tiêu chí LLM trả lời 'nó có dễ đọc, an toàn, đúng phong cách không?'",
+        "Bộ nhớ đệm so với không có bộ nhớ đệm"
+      ],
+      "correct": 2,
+      "explanation": "Hướng dẫn của Anthropic 2026: cổng chạy lớp đầu tiên; người đánh giá (Bài học 39) chạy lớp thứ hai."
+    },
+    {
+      "stage": "check",
+      "question": "Phòng thủ sâu làm cho các cổng được xếp lớp như thế nào?",
+      "options": [
+        "Hook trước cam kết -> kiểm tra trạng thái CI -> hook xác thực trước công cụ -> cổng trước khi hợp nhất; mỗi lớp là xác định nên sự cố trong một lớp sẽ được phát hiện bởi lớp tiếp theo",
+        "Cổng đơn lẻ tại thời điểm hợp nhất",
+        "Chỉ là một lời nhắc trò chuyện",
+        "Chỉ là cảnh báo IDE"
+      ],
+      "correct": 0,
+      "explanation": "Nhiều lớp không thể bị bỏ qua phát hiện những gì mà một lớp đơn lẻ sẽ bỏ lỡ."
+    },
+    {
+      "stage": "post",
+      "question": "Kiểm tra coverage_floor bảo vệ chống lại điều gì?",
+      "options": [
+        "Độ trễ đường nóng",
+        "Các tác nhân âm thầm xóa các bài kiểm tra không đạt; cổng sẽ thất bại nếu độ phủ đo được giảm xuống dưới sàn hoặc lần hợp nhất cuối cùng hơn 1 điểm phần trăm",
+        "Khởi động lạnh",
+        "Tệp khóa lỗi thời"
+      ],
+      "correct": 1,
+      "explanation": "Nếu không có sàn, các tác nhân có thể âm thầm giảm độ phủ để giữ phán quyết xanh."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào chế độ --strict nên nâng mọi cảnh báo lên thành chặn?",
+      "options": [
+        "Luôn luôn",
+        "Không bao giờ",
+        "Chỉ vào Chủ nhật",
+        "Nhánh phát hành, PR chặn giao hàng, phân loại sau sự cố; không phải mặc định hàng ngày vì strict-on-everything làm hỏng dòng chảy"
+      ],
+      "correct": 3,
+      "explanation": "--strict là tùy chọn theo nhánh; dành cho những khoảnh khắc quan trọng."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "29-dialogue-state-tracking",
+  "title": "Theo Dõi Trạng Thái Đối Thoại",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Theo dõi trạng thái đối thoại duy trì điều gì qua các lượt?",
+      "options": [
+        "Chỉ lịch sử văn bản tự do",
+        "Một bản sao đã gán nhãn POS",
+        "Một embedding của cuộc trò chuyện",
+        "Một từ điển slot-value đại diện cho mục tiêu hiện tại của người dùng, được cập nhật sau mỗi lượt"
+      ],
+      "correct": 3,
+      "explanation": "DST giữ một bản đồ slot-value có cấu trúc mà backend có thể hành động dựa trên."
+    },
+    {
+      "stage": "pre",
+      "question": "Độ chính xác mục tiêu chung (JGA) đo lường điều gì?",
+      "options": [
+        "Tỷ lệ lượt mà mọi slot đều chính xác hoàn toàn (tất cả hoặc không có gì)",
+        "Độ tương đồng cosine",
+        "Độ trễ mỗi lượt",
+        "Độ chính xác trung bình của các slot"
+      ],
+      "correct": 0,
+      "explanation": "JGA là sự khớp chính xác từng lượt trên tất cả các slot; độ chính xác từng slot thì dễ dãi hơn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc tái tạo toàn bộ trạng thái từ lịch sử mỗi lượt lại xử lý các sửa đổi của người dùng một cách tự nhiên?",
+      "options": [
+        "Nó sử dụng ít token hơn",
+        "Nó chạy trên GPU",
+        "Nó tránh embeddings",
+        "Đọc toàn bộ lịch sử cho phép mô hình tái suy diễn trạng thái cuối cùng bao gồm các sửa đổi 'thực sự...' mà không cần logic quay lại rõ ràng"
+      ],
+      "correct": 3,
+      "explanation": "Tái tạo toàn bộ lịch sử hấp thụ các sửa đổi bằng cách tính toán lại trạng thái cuối cùng từ toàn bộ cuộc trò chuyện."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu nào trong năm 2026 đảm bảo một từ điển slot hợp lệ trong 5 dòng mã?",
+      "options": [
+        "Biểu thức chính quy viết tay",
+        "LLM + Giảng viên + sơ đồ Pydantic với đầu ra bị ràng buộc hoặc đã xác thực",
+        "Bộ phân loại TF-IDF",
+        "Lấy dữ liệu BM25"
+      ],
+      "correct": 1,
+      "explanation": "Sơ đồ Pydantic + Giảng viên tự động xác thực đầu ra trạng thái của LLM với ontology slot."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần phiên bản cho sơ đồ DST của bạn?",
+      "options": [
+        "Thêm các slot mới sau này làm vô hiệu hóa dữ liệu huấn luyện cũ và phá vỡ đánh giá theo chiều dọc",
+        "Giảm số lượng token",
+        "Yêu cầu bởi JSON",
+        "Tăng tốc độ"
+      ],
+      "correct": 0,
+      "explanation": "Thay đổi sơ đồ không có phiên bản âm thầm phá vỡ sự căn chỉnh dữ liệu huấn luyện và khả năng so sánh đánh giá."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao DST cho các miền nhạy cảm với tuân thủ phải bao gồm một kiểm tra dựa trên quy tắc bên cạnh việc trích xuất LLM?",
+      "options": [
+        "LLM chậm hơn",
+        "Các quy tắc tránh embeddings",
+        "DST chỉ có LLM có thể trích xuất sai các tham số phá hủy (số tiền, tài khoản, ngày); một lớp quy tắc thực thi các ràng buộc xác định",
+        "Các quy tắc là đa ngôn ngữ"
+      ],
+      "correct": 2,
+      "explanation": "Các miền tuân thủ yêu cầu thực thi xác định; các quy tắc phát hiện lỗi slot mà LLM giới thiệu."
+    },
+    {
+      "stage": "post",
+      "question": "Mối quan tâm về chi phí khi tái tạo trạng thái ở mỗi lượt qua LLM là gì?",
+      "options": [
+        "Sự trôi dạt embedding",
+        "Nhiều embedding hơn",
+        "Đọc lại toàn bộ lịch sử mỗi lượt dẫn đến việc sử dụng tổng số token O(n^2); giới hạn hoặc tóm tắt các lượt cũ",
+        "Chi phí cosine"
+      ],
+      "correct": 2,
+      "explanation": "Tái tạo toàn bộ lịch sử là bậc hai theo lượt; giới hạn lịch sử hoặc sử dụng tóm tắt lăn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần các luồng xác nhận rõ ràng trước các hành động backend phá hủy?",
+      "options": [
+        "Xác nhận tăng JGA",
+        "Ngay cả DST tốt cũng có tỷ lệ lỗi slot không bằng không; một xác nhận xác định ngăn chặn các hành động sai tài khoản hoặc sai số tiền",
+        "Yêu cầu bởi các bộ phân tách",
+        "Độ trễ"
+      ],
+      "correct": 1,
+      "explanation": "Các hành động phá hủy cần xác nhận của người dùng vì DST không bao giờ không có lỗi."
+    }
+  ]
+}

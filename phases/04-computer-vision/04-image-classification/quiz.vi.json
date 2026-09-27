@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mô hình của bạn xuất ra logits thô có kích thước (N, C). Bạn viết `loss = cross_entropy(softmax(logits), y)`. Điều gì sai ở đây?",
+      "options": [
+        "cross_entropy áp dụng lại softmax bên trong, vì vậy bạn sẽ tính toán softmax(softmax(logits)), tạo ra xác suất gần như đồng đều và gradient vô dụng",
+        "Không có gì - đó là API đúng",
+        "cross_entropy phát sinh ValueError về kích thước",
+        "Độ chính xác giảm đúng 1/C"
+      ],
+      "correct": 0,
+      "explanation": "cross_entropy của PyTorch mong đợi logits thô - nó kết hợp log_softmax và NLL bên trong để đảm bảo độ ổn định số. Áp dụng softmax trước sẽ cho softmax(softmax(x)), điều này nén logits về phía đồng đều và làm cho gradient gần như bằng không. Mất mát trong quá trình huấn luyện trông có vẻ hợp lý trong vài bước sau đó dừng lại. Luôn luôn truyền logits thô."
+    },
+    {
+      "stage": "pre",
+      "question": "Bạn đánh giá một bộ phân loại 10 lớp và nhận được độ chính xác 92%. Lớp 0 có 9.000 ví dụ; các lớp 1-9 chia sẻ 1.000 ví dụ (khoảng 111 mỗi lớp, tổng cộng 10.000). Số liệu chính đang che giấu điều gì?",
+      "options": [
+        "Mô hình có thể dự đoán lớp 0 cho mọi đầu vào và vẫn đạt 90% (9000/10000); 2% còn lại có thể đến từ bất kỳ lớp nào khác. Độ chính xác/nhắc lại theo lớp cho bạn biết điều gì thực sự đang xảy ra",
+        "Không có gì - độ chính xác là độ chính xác",
+        "Mô hình chắc chắn đang bị overfitting",
+        "Mất mát xác thực là sai"
+      ],
+      "correct": 0,
+      "explanation": "Với tỷ lệ 9000/1000 (mất cân bằng 90/10 với tổng cộng 10.000 ví dụ), việc luôn dự đoán lớp chiếm ưu thế sẽ đạt 9000/10000 = 90% độ chính xác. Một con số 92% có thể che giấu chín lớp thiểu số với độ chính xác khoảng 20% mỗi lớp. Độ chính xác theo lớp, nhắc lại, F1 và ma trận nhầm lẫn là các chẩn đoán giúp phát hiện điều này, đó là lý do tại sao độ chính xác tổng hợp một mình không bao giờ biện minh cho việc phát hành một bộ phân loại."
+    },
+    {
+      "stage": "post",
+      "question": "Mixup thay thế nhãn one-hot bằng các mục tiêu mềm nội suy như lambda * y_i + (1-lambda) * y_j. Tại sao điều này giúp cải thiện khả năng tổng quát?",
+      "options": [
+        "Nó gấp đôi kích thước batch hiệu quả",
+        "Nó đảm bảo mất mát huấn luyện bằng không",
+        "Nó cho phép bạn huấn luyện với tốc độ học lớn hơn",
+        "Mô hình buộc phải tạo ra các dự đoán mượt mà giữa các lớp thay vì ghi nhớ các mục tiêu one-hot cứng, điều này cải thiện cả độ hiệu chỉnh và độ chính xác kiểm tra"
+      ],
+      "correct": 3,
+      "explanation": "Huấn luyện với các mục tiêu one-hot cứng đẩy logits trở nên sắc nét một cách tùy ý tại mỗi điểm huấn luyện, điều này làm hỏng độ hiệu chỉnh và dẫn đến overfitting. Sự kết hợp lồi của Mixup giữa các đầu vào và nhãn buộc bộ phân loại phải hành xử mượt mà giữa các điểm huấn luyện, điều này là một giả định hợp lý cho các lớp hình ảnh tự nhiên và cải thiện nhất quán độ chính xác kiểm tra mà không cần thêm dữ liệu."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn thay thế `RandomCrop(32, padding=4, padding_mode='zeros')` bằng `padding_mode='reflect'` trên CIFAR-10. Tại sao reflect lại tốt hơn ở đây?",
+      "options": [
+        "Padding bằng không tạo ra các viền đen cứng mà mô hình học cách phụ thuộc vào; padding phản chiếu gương các pixel cạnh để các crop tăng cường trông giống như những bức ảnh tự nhiên",
+        "Padding phản chiếu là cần thiết cho chuẩn hóa theo lô",
+        "Padding phản chiếu thay đổi kích thước đầu ra",
+        "Padding phản chiếu nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Các crop được padding bằng không có viền đen rõ ràng mà rò rỉ thông tin về vị trí crop vào các đặc trưng. Mạng có thể học cách nhìn vào góc và ngầm đảo ngược sự tăng cường. Padding phản chiếu gương nội dung thực, vì vậy mỗi crop vẫn trông giống như một hình ảnh tự nhiên và mạng không thể gian lận trong việc tăng cường."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn huấn luyện một bộ phân loại và ma trận nhầm lẫn cho thấy hầu hết các lỗi là lớp 3 được dự đoán là lớp 5 và lớp 5 được dự đoán là lớp 3. Bước tiếp theo có tác động lớn nhất là gì?",
+      "options": [
+        "Tăng kích thước batch",
+        "Chuyển từ SGD sang Adam",
+        "Xem một mẫu hình ảnh lớp 3 và lớp 5 làm nhầm lẫn mô hình; hai lớp có thể thực sự mơ hồ, bị gán nhãn sai, hoặc tương tự về mặt hình ảnh theo cách cần một sự tăng cường có mục tiêu hoặc một tập huấn luyện được gán nhãn lại",
+        "Thêm nhiều dữ liệu huấn luyện cho tất cả các lớp một cách đồng đều"
+      ],
+      "correct": 2,
+      "explanation": "Một ma trận nhầm lẫn tập trung vào một cặp ngoài đường chéo có nghĩa là chế độ thất bại là cụ thể. Hành động đúng là kiểm tra những hình ảnh đó: bạn thường tìm thấy dữ liệu bị gán nhãn sai, các lớp gần giống nhau, hoặc một sự bất biến đơn giản mà mô hình chưa học. Những thay đổi chung (nhiều dữ liệu hơn, bộ tối ưu mới) hiếm khi giúp khi thất bại là cụ thể như vậy."
+    }
+  ]
+}

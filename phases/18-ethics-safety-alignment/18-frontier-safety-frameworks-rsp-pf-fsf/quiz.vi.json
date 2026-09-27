@@ -1,0 +1,78 @@
+{
+  "lesson": "18-frontier-safety-frameworks-rsp-pf-fsf",
+  "title": "Khung An Toàn Biên Giới - RSP, PF, FSF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cấu trúc ASL của Anthropic mô hình hóa dựa trên cái gì?",
+      "options": [
+        "Các loại trong Đạo luật AI của EU",
+        "Các mức độ an toàn sinh học (BSL)",
+        "Các cấp độ RFC của Internet",
+        "Mức độ sự cố ITIL"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tiêu chí nào trong Khung Chuẩn Bị v2 của OpenAI nắm bắt 'thiệt hại xảy ra nhanh hoặc không thể khôi phục'?",
+      "options": [
+        "Net-new",
+        "Có thể xảy ra",
+        "Có thể đo lường",
+        "Ngay lập tức-hoặc-không thể khắc phục"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cấp độ Năng lực Quan trọng nào đã được thêm vào FSF v3.0 của DeepMind (tháng 9 năm 2025)?",
+      "options": [
+        "Manipulation Gây Hại",
+        "Nâng cao Cyber",
+        "Nâng cao Vũ khí Sinh học",
+        "Tăng tốc Nghiên cứu và Phát triển ML"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Điều khoản 'điều chỉnh đối thủ' trong các khung an toàn biên giới 2025+ là gì?",
+      "options": [
+        "Một điều khoản cho phép một phòng thí nghiệm giảm yêu cầu an toàn nếu các phòng thí nghiệm đồng nghiệp vận chuyển mà không có biện pháp bảo vệ tương đương",
+        "Một miễn trừ kiểm soát xuất khẩu",
+        "Một yêu cầu tiết lộ thẻ mô hình",
+        "Một quy tắc định giá cho quyền truy cập API"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Ba trụ cột tiêu chuẩn của một trường hợp an toàn được mô tả trong bài học là gì?",
+      "options": [
+        "Hữu ích, trung thực, vô hại",
+        "Giám sát, không thể đọc, không đủ khả năng",
+        "Tốc độ, độ chính xác, chi phí",
+        "Nội bộ, bên ngoài, mesa"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự căn chỉnh cấu trúc nào tồn tại giữa 'Ngưỡng Năng lực' của Anthropic, 'Ngưỡng Năng lực Cao' của OpenAI và 'Cấp độ Năng lực Quan trọng' của DeepMind?",
+      "options": [
+        "Không có gì được tài liệu công khai",
+        "Căn chỉnh cấu trúc: ngưỡng năng lực biên giới theo cấp bậc với tiêu chí đánh giá đã công bố, mặc dù thuật ngữ khác nhau",
+        "Thuật ngữ và ngưỡng số giống hệt nhau",
+        "Cả ba đều sử dụng các đánh giá hoàn toàn giống nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

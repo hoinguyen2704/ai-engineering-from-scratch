@@ -1,0 +1,78 @@
+{
+  "lesson": "28-mcp-tool-contracts-and-content",
+  "title": "Hợp đồng và Nội dung Công cụ MCP",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một công cụ xuất bản một outputSchema với loại mảng. Giá trị structuredContent nào là hợp lệ?",
+      "options": [
+        "Bất kỳ giá trị JSON nào vì outputSchema chỉ là tài liệu",
+        "Chỉ một đối tượng vì kết quả có cấu trúc MCP chỉ là đối tượng",
+        "Một mảng mà các mục thỏa mãn schema đã xuất bản",
+        "Một khối văn bản không có structuredContent"
+      ],
+      "correct": 2,
+      "explanation": "structuredContent có thể là bất kỳ giá trị JSON nào, bao gồm cả mảng, nhưng nó phải tuân thủ outputSchema khi công cụ xuất bản một cái."
+    },
+    {
+      "stage": "check",
+      "question": "Kết quả tools/list chứa nextCursor là một chuỗi rỗng. Khách hàng nên làm gì?",
+      "options": [
+        "Xem chuỗi rỗng như là kết thúc phân trang",
+        "Gửi một yêu cầu danh sách khác với con trỏ chuỗi rỗng chính xác",
+        "Thay thế nó bằng con trỏ bằng không",
+        "Giải mã nó để khám phá số trang tiếp theo"
+      ],
+      "correct": 1,
+      "explanation": "Giá trị con trỏ là không rõ ràng. Một chuỗi rỗng là một con trỏ hợp lệ không null và phải được gửi lại chính xác."
+    },
+    {
+      "stage": "check",
+      "question": "Tham số nào nên bị từ chối bởi chính sách triển khai nghiêm ngặt khi được đánh dấu bằng x-mcp-header?",
+      "options": [
+        "Một trường token chuỗi phản chiếu dưới dạng Token",
+        "Một trường shard số nguyên phản chiếu dưới dạng Shard",
+        "Một trường khu vực chuỗi phản chiếu dưới dạng Region",
+        "Một trường boolean dry_run phản chiếu dưới dạng Dry-Run"
+      ],
+      "correct": 0,
+      "explanation": "Giao thức khuyên không nên phản chiếu các giá trị nhạy cảm. Một chính sách tiếp nhận khách hàng nghiêm ngặt nên từ chối các trường token, mật khẩu, bí mật, thông tin xác thực và PII."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt chính giữa một khối resource_link và một khối tài nguyên nhúng là gì?",
+      "options": [
+        "Một liên kết tài nguyên chỉ đến dữ liệu được lấy sau, trong khi một tài nguyên nhúng mang dữ liệu ngay bây giờ",
+        "Một liên kết tài nguyên được ủy quyền tự động mãi mãi",
+        "Một tài nguyên nhúng cũng phải xuất hiện trong resources/list",
+        "Chỉ các liên kết tài nguyên mới có thể bao gồm một URI"
+      ],
+      "correct": 0,
+      "explanation": "Một liên kết trì hoãn việc lấy dữ liệu và cần ủy quyền khi được theo dõi. Một tài nguyên nhúng đặt dữ liệu vào kết quả hiện tại."
+    },
+    {
+      "stage": "post",
+      "question": "Khách hàng nên xử lý một mô tả công cụ bị lỗi trong một trang tools/list như thế nào?",
+      "options": [
+        "Từ chối công cụ đó trong khi tiếp tục đánh giá các công cụ không liên quan",
+        "Âm thầm sửa chữa mô tả",
+        "Tiết lộ nó nhưng thêm một cảnh báo vào lời nhắc mô hình",
+        "Xem mỗi lần thực thi công cụ như một thông báo JSON-RPC"
+      ],
+      "correct": 0,
+      "explanation": "Việc tiếp nhận mô tả là theo từng công cụ. Một định nghĩa bị lỗi nên bị loại trừ mà không làm cho các công cụ hợp lệ không khả dụng."
+    },
+    {
+      "stage": "post",
+      "question": "Sự cố nào thuộc về lỗi JSON-RPC thay vì kết quả công cụ với isError true?",
+      "options": [
+        "Nguồn báo cáo tạm thời không khả dụng",
+        "Một API hạ nguồn trả về một lỗi cụ thể cho công cụ có thể hành động",
+        "Một quy tắc kinh doanh từ chối một ngày đã yêu cầu",
+        "Tên công cụ đã yêu cầu không tồn tại"
+      ],
+      "correct": 3,
+      "explanation": "Một công cụ không xác định ngăn cản việc phân phối giao thức và thuộc về lỗi JSON-RPC. Các lỗi thực thi mà mô hình có thể hành động sử dụng isError true."
+    }
+  ]
+}

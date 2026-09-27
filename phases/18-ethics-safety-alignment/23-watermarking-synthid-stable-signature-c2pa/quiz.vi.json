@@ -1,0 +1,78 @@
+{
+  "lesson": "23-watermarking-synthid-stable-signature-c2pa",
+  "title": "Watermarking - SynthID, Chữ ký ổn định, C2PA",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cách mà watermarking kiểu Kirchenbauer (SynthID-text) nhúng một tín hiệu là gì?",
+      "options": [
+        "Bằng cách mã hóa đầu ra với một khóa công khai",
+        "Tại mỗi bước giải mã, băm K token trước đó để phân chia từ vựng thành các tập xanh/đỏ và thiên về việc lấy mẫu về phía xanh; phát hiện đếm các token xanh thông qua z-score",
+        "Bằng cách chèn một bình luận HTML ẩn",
+        "Bằng cách sửa đổi mẫu prompt"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Giới hạn chính của watermark văn bản đối với việc diễn đạt lại là gì?",
+      "options": [
+        "Diễn đạt lại chỉ ảnh hưởng đến watermark hình ảnh",
+        "Chúng thực sự sống sót qua diễn đạt lại",
+        "Diễn đạt lại củng cố watermark",
+        "Việc diễn đạt lại hoặc sửa đổi văn bản phá hủy tín hiệu thống kê của token xanh"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chữ ký ổn định (Fernandez et al., ICCV 2023) làm gì?",
+      "options": [
+        "Thêm một watermark nhìn thấy ở góc của hình ảnh",
+        "Ký metadata bằng một khóa riêng",
+        "Sử dụng C2PA để ký hình ảnh khi tải lên",
+        "Tinh chỉnh bộ giải mã khuếch tán tiềm ẩn để mỗi hình ảnh được tạo ra mang một thông điệp nhúng cố định có thể phát hiện từ tiềm ẩn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kết quả 'Chữ ký ổn định không ổn định' vào tháng 5 năm 2024 chứng minh điều gì?",
+      "options": [
+        "Watermark là không thể giả mạo",
+        "Watermark yêu cầu C2PA để hoạt động",
+        "Watermark chỉ thất bại trên nén JPEG",
+        "Việc tinh chỉnh bộ giải mã sau khi tạo ra có thể loại bỏ watermark trong khi vẫn giữ chất lượng hình ảnh, làm suy yếu độ bền trước các cuộc tấn công"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cách mà metadata C2PA và watermarking bổ sung cho nhau là gì?",
+      "options": [
+        "C2PA hoàn toàn thay thế watermark",
+        "Metadata có thể bị loại bỏ nhưng mang theo chuỗi nguồn gốc phong phú; watermark tồn tại qua việc chuyển mã nhưng mang theo ít bit; khi kết hợp, chúng cung cấp một câu chuyện nguồn gốc có thể sử dụng",
+        "Watermark được ký bởi cùng một khóa như C2PA",
+        "Chúng có thể thay thế cho nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao 'không có tín hiệu SynthID' KHÔNG phải là bằng chứng về tính xác thực (nguồn gốc con người)?",
+      "options": [
+        "Bởi vì SynthID là mã nguồn đóng",
+        "Bởi vì SynthID luôn tạo ra các kết quả dương giả trên văn bản của con người",
+        "Bởi vì SynthID chỉ watermark các thế hệ từ các mô hình hỗ trợ SynthID; nội dung từ bất kỳ mô hình nào không có SynthID sẽ không có watermark theo mặc định",
+        "Bởi vì SynthID chỉ hoạt động trên các đầu ra của Gemini"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

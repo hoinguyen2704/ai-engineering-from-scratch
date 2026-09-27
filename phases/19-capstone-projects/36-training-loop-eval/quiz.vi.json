@@ -1,0 +1,78 @@
+{
+  "lesson": "36-training-loop-eval",
+  "title": "Vòng lặp huấn luyện và Đánh giá",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao tensor mục tiêu phải là tensor đầu vào được dịch chuyển một vị trí?",
+      "options": [
+        "Entropy chéo cần các tensor giống hệt nhau",
+        "Nó tăng tốc độ của bộ tối ưu hóa",
+        "Nó được yêu cầu bởi AdamW",
+        "Dự đoán token tiếp theo là mục tiêu huấn luyện: tại mỗi vị trí, mô hình dự đoán token tiếp theo; quên dịch chuyển sẽ huấn luyện mô hình dự đoán chính nó, điều này không học được gì hữu ích"
+      ],
+      "correct": 3,
+      "explanation": "Đầu vào là các token 0..T-1; mục tiêu là các token 1..T; tổn thất được tính toán trên các hình dạng (batch*seq, vocab) và (batch*seq,)."
+    },
+    {
+      "stage": "pre",
+      "question": "evaluate_model làm gì mà bước huấn luyện không làm?",
+      "options": [
+        "Nó chạy một số lượng batch xác thực cố định dưới no_grad và với dropout bị vô hiệu hóa, trả về tổn thất trung bình có thể tái tạo",
+        "Nó thay đổi trọng số của mô hình",
+        "Nó tính toán gradient hai lần",
+        "Nó chạy bộ tối ưu hóa"
+      ],
+      "correct": 0,
+      "explanation": "Đánh giá giữ lại không cần gradient, không cần dropout, và một lát dữ liệu xác thực cố định để có thể tái tạo qua các lần chạy."
+    },
+    {
+      "stage": "check",
+      "question": "Các tham số nào của AdamW nhận trọng số suy giảm?",
+      "options": [
+        "Các tensor hình ma trận (trọng số tuyến tính, bảng nhúng) nhận trọng số suy giảm; các tensor scale, shift và bias nhận suy giảm bằng không",
+        "Chỉ các scale của LayerNorm",
+        "Mỗi tham số đều như nhau",
+        "Chỉ đầu LM"
+      ],
+      "correct": 0,
+      "explanation": "Đặt suy giảm trên một scale của LayerNorm làm cho scale giảm về không và phá vỡ chuẩn hóa; sự phân chia này là một mẫu sản xuất tiêu chuẩn."
+    },
+    {
+      "stage": "check",
+      "question": "Hình dạng nào mà lịch trình warmup-plus-cosine theo dõi từ bước 0 đến bước cuối cùng?",
+      "options": [
+        "Hàm bước",
+        "Không đổi",
+        "Dốc tuyến tính từ không đến tối đa qua warmup_steps, sau đó suy giảm cosine từ tối đa đến min_lr qua các bước còn lại",
+        "Tăng trưởng theo cấp số nhân"
+      ],
+      "correct": 2,
+      "explanation": "Warmup làm đầy trạng thái bộ tối ưu hóa; suy giảm cosine làm giảm kích thước bước để giai đoạn cuối tinh chỉnh trọng số."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cắt giảm độ lớn gradient trước optimizer.step()?",
+      "options": [
+        "Nó loại bỏ yêu cầu warmup",
+        "Một batch xấu có thể tạo ra một gradient khổng lồ làm mất hàng giờ huấn luyện; cắt giảm về max_norm=1.0 giữ cho bộ tối ưu hóa trong một phạm vi an toàn mà không làm biến dạng các cập nhật bình thường",
+        "Nó tăng tốc độ matmul",
+        "Nó giảm mức sử dụng bộ nhớ"
+      ],
+      "correct": 1,
+      "explanation": "Cắt giảm gradient là bảo hiểm rẻ nhất chống lại sự phân kỳ; một là mặc định tồn tại trong hầu hết các thiết lập."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao ghi lại các bản ghi theo bước dưới dạng JSONL thay vì trạng thái đã được pickle?",
+      "options": [
+        "JSONL là yêu cầu của bộ tối ưu hóa",
+        "JSONL huấn luyện nhanh hơn",
+        "Các bản ghi JSONL bền vững qua các lần tái cấu trúc, có thể tìm kiếm, có thể vẽ trong ba mươi dòng, và sống sót qua các sự cố; trạng thái đã được pickle buộc bạn vào bố cục module đã tạo ra nó",
+        "JSONL sử dụng ít bộ nhớ GPU hơn"
+      ],
+      "correct": 2,
+      "explanation": "Bất kỳ sự cố nào cũng để lại một di sản có thể đọc được; resume đọc bước cuối cùng; công cụ trên cùng là điều đơn giản."
+    }
+  ]
+}

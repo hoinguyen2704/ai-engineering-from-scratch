@@ -1,0 +1,78 @@
+{
+  "lesson": "49-map-assumptions-and-risk",
+  "title": "Bản đồ Giả định và Rủi ro",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bản đồ giả định tiết lộ điều gì mà lộ trình tính năng ẩn giấu?",
+      "options": [
+        "Các điều kiện phải đúng để việc xây dựng xứng đáng với đầu tư",
+        "Ngày phát hành",
+        "Mã nguồn",
+        "Tên đội"
+      ],
+      "correct": 0,
+      "explanation": "Các giả định làm nổi bật giá trị, tính khả dụng, tính khả thi, tính bền vững và các cược an toàn."
+    },
+    {
+      "stage": "check",
+      "question": "Giả định nào có thể bị bác bỏ?",
+      "options": [
+        "Thiết kế là hiện đại",
+        "Người dùng sẽ yêu thích nó",
+        "Tám trong mười kỹ sư xác định dịch vụ đúng nhanh hơn trong phát lại",
+        "Tính năng là hữu ích"
+      ],
+      "correct": 2,
+      "explanation": "Một giả định có thể bị bác bỏ có một quần thể, quan sát và khả năng thất bại."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lại đánh giá tác động, sự không chắc chắn và tính không thể đảo ngược một cách riêng biệt?",
+      "options": [
+        "Để đảm bảo thành công",
+        "Để làm rõ lý do cho việc sắp xếp rủi ro",
+        "Để loại bỏ phán đoán",
+        "Để tạo ra một công thức phổ quát"
+      ],
+      "correct": 1,
+      "explanation": "Các chiều kích làm rõ lý do tại sao một điều chưa biết nên được giải quyết sớm."
+    },
+    {
+      "stage": "check",
+      "question": "Thí nghiệm tiếp theo nên nhắm đến điều gì?",
+      "options": [
+        "Rủi ro mở cao nhất với một bài kiểm tra quyết định, rẻ tiền",
+        "Ý tưởng phổ biến nhất",
+        "Tính năng dễ nhất",
+        "Nhiệm vụ dài nhất"
+      ],
+      "correct": 0,
+      "explanation": "Thứ tự dựa trên rủi ro tối đa hóa việc học trước khi cam kết."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì làm cho một thí nghiệm trở nên quyết định?",
+      "options": [
+        "Nó tạo ra một bản demo",
+        "Mỗi kết quả dẫn đến việc xây dựng thêm",
+        "Kết quả đạt, thất bại và không rõ ràng dẫn đến các quyết định tiếp theo đã nêu",
+        "Nó sử dụng quyền sản xuất"
+      ],
+      "correct": 2,
+      "explanation": "Một bài kiểm tra phải có khả năng thay đổi hướng đi."
+    },
+    {
+      "stage": "post",
+      "question": "Thứ tự xây dựng nên thay đổi như thế nào khi tính đảo ngược khác nhau?",
+      "options": [
+        "Công việc không thể đảo ngược luôn đứng đầu",
+        "Chỉ chi phí mới quan trọng",
+        "Nó không thay đổi",
+        "Các bài kiểm tra có thể đảo ngược nên đứng trước các cam kết không thể đảo ngược có hậu quả lớn"
+      ],
+      "correct": 3,
+      "explanation": "Học một cách an toàn trước khi đảm nhận quyền lực hoặc chi phí di chuyển."
+    }
+  ]
+}

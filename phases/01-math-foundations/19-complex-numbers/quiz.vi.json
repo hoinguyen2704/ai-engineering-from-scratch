@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đơn vị ảo i được định nghĩa bởi điều gì?",
+      "options": [
+        "i = -1",
+        "i^2 = -1",
+        "i^2 = 1",
+        "i = sqrt(2)"
+      ],
+      "correct": 1,
+      "explanation": "Đơn vị ảo i được định nghĩa bởi thuộc tính i^2 = -1. Nó mở rộng trục số thực vào một mặt phẳng 2D. Về mặt hình học, nhân với i là một phép quay 90 độ — hai phép nhân (i^2) cho một phép quay 180 độ, tương đương với -1."
+    },
+    {
+      "stage": "pre",
+      "question": "Công thức Euler e^(i*theta) bằng bao nhiêu?",
+      "options": [
+        "cos(theta) + i*sin(theta)",
+        "sin(theta) + cos(theta)",
+        "i^theta",
+        "theta + i"
+      ],
+      "correct": 0,
+      "explanation": "Công thức Euler phát biểu e^(i*theta) = cos(theta) + i*sin(theta). Điều này kết nối số mũ phức với lượng giác và cho thấy rằng e^(i*theta) vẽ đường tròn đơn vị khi theta thay đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Kết quả của (3 + 2i)(1 + 4i) là gì?",
+      "options": [
+        "-5 + 14i",
+        "5 + 14i",
+        "3 + 8i",
+        "4 + 6i"
+      ],
+      "correct": 0,
+      "explanation": "Sử dụng phương pháp FOIL: (3)(1) + (3)(4i) + (2i)(1) + (2i)(4i) = 3 + 12i + 2i + 8i^2 = 3 + 14i + 8(-1) = 3 + 14i - 8 = -5 + 14i."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao số phức được sử dụng trong Nhúng Vị trí Xoay (RoPE) cho transformers?",
+      "options": [
+        "RoPE sử dụng số ảo để xử lý các vị trí âm",
+        "Số phức nén mã hóa vị trí để sử dụng ít bộ nhớ hơn",
+        "Số phức là cần thiết cho hàm softmax attention",
+        "Nhân các vector truy vấn/khóa bằng các phép quay phức mã hóa vị trí tương đối như một góc quay"
+      ],
+      "correct": 3,
+      "explanation": "RoPE nhân các vector truy vấn và khóa bằng các ma trận quay phức e^(i*m*theta) trong đó m là vị trí. Vị trí tương đối giữa hai token trở thành một góc quay, và attention tự nhiên trở nên nhạy cảm với vị trí tương đối (không phải tuyệt đối) thông qua phép nhân phức."
+    },
+    {
+      "stage": "post",
+      "question": "Các căn bậc N của đơn vị là N điểm cách đều trên đường tròn đơn vị. Tổng của chúng là gì?",
+      "options": [
+        "1",
+        "N",
+        "N/2",
+        "0"
+      ],
+      "correct": 3,
+      "explanation": "Các căn bậc N của đơn vị là e^(2*pi*i*k/N) với k = 0, ..., N-1. Chúng được phân bố đối xứng quanh đường tròn đơn vị, vì vậy tổng vector của chúng triệt tiêu về không. Tính chất đối xứng này là điều làm cho DFT có thể đảo ngược."
+    }
+  ]
+}

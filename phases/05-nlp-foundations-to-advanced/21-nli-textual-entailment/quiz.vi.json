@@ -1,0 +1,102 @@
+{
+  "lesson": "21-nli-textual-entailment",
+  "title": "Suy diễn Ngôn ngữ Tự nhiên — Suy diễn Văn bản",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "NLI gán ba nhãn nào cho một cặp (tiền đề, giả thuyết)?",
+      "options": [
+        "Đúng / sai / không biết",
+        "Nguyên nhân / hiệu ứng / không liên quan",
+        "Suy diễn / mâu thuẫn / trung lập",
+        "Tích cực / tiêu cực / trung lập"
+      ],
+      "correct": 2,
+      "explanation": "NLI là một phân loại 3 chiều về suy diễn, mâu thuẫn và trung lập."
+    },
+    {
+      "stage": "pre",
+      "question": "NLI được sử dụng như một bộ phân loại văn bản zero-shot như thế nào?",
+      "options": [
+        "Bằng cách kích hoạt một LLM",
+        "Diễn đạt mỗi nhãn ứng viên như một giả thuyết (ví dụ: 'Văn bản này nói về thể thao') và chọn nhãn có điểm suy diễn cao nhất",
+        "Bằng cách tính toán TF-IDF",
+        "Bằng cách trung bình các embedding"
+      ],
+      "correct": 1,
+      "explanation": "NLI như một bộ phân loại biến nhãn thành giả thuyết; mô hình chọn nhãn có suy diễn tối đa."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao NLI là một kiểm tra độ trung thành cho đầu ra RAG?",
+      "options": [
+        "Nó rẻ",
+        "Kiểm tra xem ngữ cảnh được truy xuất có suy diễn từng tuyên bố câu trả lời hay không chính xác là cách mà NLI đã được đào tạo",
+        "Nó đa ngôn ngữ",
+        "Nó sử dụng bộ phân tách"
+      ],
+      "correct": 1,
+      "explanation": "Huyền ảo = các tuyên bố câu trả lời không được suy diễn bởi ngữ cảnh được truy xuất; NLI đo lường trực tiếp sự suy diễn."
+    },
+    {
+      "stage": "check",
+      "question": "Cơ sở giả thuyết duy nhất phơi bày điều gì?",
+      "options": [
+        "Trôi dạt bộ phân tách",
+        "Suy diễn chậm",
+        "Khoảng cách đa ngôn ngữ",
+        "Tập dữ liệu mà chỉ có giả thuyết (không có tiền đề) là dự đoán nhãn, báo hiệu rò rỉ nhãn"
+      ],
+      "correct": 3,
+      "explanation": "Điểm số cao chỉ với giả thuyết trên SNLI đã tiết lộ các hiện tượng chú thích; hữu ích cho việc gỡ lỗi dữ liệu của bạn."
+    },
+    {
+      "stage": "check",
+      "question": "Gia đình mô hình NLI nào đứng đầu bảng xếp hạng 2026 như là con ngựa làm việc tiêu chuẩn?",
+      "options": [
+        "Các biến thể DeBERTa-v3 được tinh chỉnh trên MNLI/FEVER/ANLI",
+        "Word2Vec thông thường",
+        "GPT-2",
+        "fastText"
+      ],
+      "correct": 0,
+      "explanation": "DeBERTa-v3 được tinh chỉnh trên MNLI và các tập dữ liệu liên quan là con ngựa làm việc NLI mở trong năm 2026."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các mô hình NLI cấp câu lại giảm độ chính xác trên các tiền đề có độ dài tài liệu?",
+      "options": [
+        "Chúng được đào tạo trên các tiền đề ngắn và không thành công trong suy diễn nhiều câu và nhiều bước; các mô hình được tinh chỉnh DocNLI xử lý các đầu vào dài hơn",
+        "Các đầu vào lớn hơn chạy chậm hơn",
+        "Độ tương đồng cosine giảm",
+        "Tài liệu kích hoạt trôi dạt bộ phân tách"
+      ],
+      "correct": 0,
+      "explanation": "Sự không khớp phân phối đào tạo: các mô hình NLI một câu mất hơn 20 F1 trên các đầu vào có độ dài tài liệu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao độ chính xác zero-shot có thể dao động 10+ điểm dựa trên mẫu giả thuyết?",
+      "options": [
+        "Mẫu thay đổi tập nhãn",
+        "Các mô hình nhạy cảm với cách diễn đạt; ví dụ: 'Văn bản này nói về {nhãn}' so với '{nhãn}' một mình thay đổi xác suất suy diễn",
+        "Mẫu thay đổi hành vi của bộ phân tách",
+        "Mẫu ảnh hưởng đến trọng số của mô hình"
+      ],
+      "correct": 1,
+      "explanation": "Cách diễn đạt mẫu thay đổi đáng kể điểm số suy diễn; điều chỉnh nó trên một tập dữ liệu nhỏ được giữ lại."
+    },
+    {
+      "stage": "post",
+      "question": "Giới hạn an toàn để khẳng định về NLI cho việc phát hiện huyền ảo là gì?",
+      "options": [
+        "Nó giảm huyền ảo như một tín hiệu độ trung thành nhưng không loại bỏ nó; kết hợp với độ nhớ truy xuất và đánh giá của con người",
+        "Nó chỉ hoạt động trên tiếng Anh",
+        "Nó loại bỏ huyền ảo",
+        "Nó yêu cầu LLMs"
+      ],
+      "correct": 0,
+      "explanation": "NLI là một tín hiệu hữu ích nhưng không phải là giải pháp hoàn chỉnh; kết hợp với các chỉ số truy xuất và kiểm tra ngẫu nhiên của con người."
+    }
+  ]
+}

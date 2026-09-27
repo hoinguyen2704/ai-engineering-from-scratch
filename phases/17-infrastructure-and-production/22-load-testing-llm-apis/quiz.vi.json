@@ -1,0 +1,78 @@
+{
+  "lesson": "22-load-testing-llm-apis",
+  "title": "Kiểm Tra Tải LLM APIs — Tại Sao k6 và Locust Không Chính Xác",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cái bẫy GIL trong kiểm tra tải LLM dựa trên Locust là gì?",
+      "options": [
+        "Quá trình phân tách token phía client chạy dưới GIL của Python và xếp hàng sau quá trình tạo yêu cầu, làm tăng độ trễ giữa các token được báo cáo",
+        "Locust yêu cầu CUDA",
+        "Locust chỉ hoạt động trên Windows",
+        "Locust không hỗ trợ HTTP"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cái bẫy đồng nhất prompt là gì?",
+      "options": [
+        "Các prompt đồng nhất luôn làm chậm máy chủ",
+        "Lấy mẫu từ một phân phối thực tế không đại diện cho các prompt dài",
+        "Lặp lại cùng một prompt làm cho bộ nhớ đệm tiền tố trông giống như giải mã đồng thời hoàn toàn, làm tăng thông lượng được báo cáo",
+        "Các prompt đồng nhất yêu cầu streaming"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bốn mẫu tải nào mà bài học khuyến nghị?",
+      "options": [
+        "Chỉ bùng nổ",
+        "Kiểm tra nhấp chuột thủ công",
+        "Trạng thái ổn định, tăng dần, đột biến, ngâm",
+        "Liên tục 1 RPS trong 10 ngày"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bài học khuyến nghị xây dựng phân phối prompt thực tế như thế nào?",
+      "options": [
+        "Ký tự ngẫu nhiên cho mỗi yêu cầu",
+        "Luôn sử dụng cùng một prompt để tối đa hóa số lần trúng cache",
+        "Viết tay 5 prompt và xáo trộn",
+        "Lấy mẫu từ một phân phối thực tế sử dụng trung bình và độ lệch chuẩn (ví dụ như --mean-input-tokens / --stddev-input-tokens của LLMPerf) hoặc phát lại lưu lượng thực"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Kết hợp công cụ nào năm 2026 được coi là tốt nhất cho các cổng SLA CI/CD và chạy phân tán gốc Kubernetes?",
+      "options": [
+        "guidellm chỉ",
+        "Chỉ Vegeta",
+        "k6 v2026.1.0 với k6 Operator 1.0 GA (TestRun / PrivateLoadZone CRDs)",
+        "Locust 2.43.3 nguyên bản"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình thất bại nào mà mẫu tải ngâm phát hiện?",
+      "options": [
+        "Đuôi khởi động lạnh",
+        "Cạnh tranh GIL của bộ phân tách token",
+        "Rò rỉ bộ nhớ, trôi dạt kết nối, và tràn quan sát trong nhiều giờ",
+        "Bão xóa cache"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

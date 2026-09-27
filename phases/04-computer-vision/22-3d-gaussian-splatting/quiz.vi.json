@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao 3D Gaussian Splatting đã thay thế NeRF làm mặc định sản xuất cho tái tạo cảnh photorealistic vào năm 2026?",
+      "options": [
+        "NeRF đã bị rút khỏi hồ sơ nghiên cứu",
+        "3DGS là rõ ràng (không có MLP cho mỗi pixel): rendering là rasterisation GPU ở 100+ fps, đào tạo mất vài phút thay vì hàng giờ, các cảnh có thể chỉnh sửa, và Khronos + OpenUSD đều đã chuẩn hóa nó vào năm 2026",
+        "Gaussian Splatting tạo ra chất lượng hình ảnh cao hơn NeRF trong mọi trường hợp",
+        "PyTorch đã ngừng hỗ trợ các toán tử NeRF"
+      ],
+      "correct": 1,
+      "explanation": "3DGS thay thế một MLP ngầm định bằng hàng triệu Gaussian 3D rõ ràng. Rendering trở thành compositing alpha đã sắp xếp mà GPU chạy ở 100+ fps trên phần cứng tiêu dùng. Đào tạo diễn ra trong vài phút. Mỗi Gaussian đều có thể chỉnh sửa. Đến năm 2026, Khronos đã phê chuẩn một phần mở rộng glTF cho 3DGS và OpenUSD 26.03 đã phát hành một schema gốc, biến 3DGS thành định dạng sản xuất di động."
+    },
+    {
+      "stage": "pre",
+      "question": "Một Gaussian 3D trong một cảnh mang theo vị trí, xoay, tỷ lệ, độ mờ và đại diện bổ sung nào để xử lý màu sắc phụ thuộc vào góc nhìn (như điểm sáng specular)?",
+      "options": [
+        "Một texture RGB thứ hai",
+        "Một MLP nhỏ cho mỗi Gaussian",
+        "Hệ số hàm cầu: đến bậc 3 cho 16 hệ số cho mỗi kênh màu, được đánh giá theo hướng nhìn tại thời điểm render",
+        "Một light probe cubemap"
+      ],
+      "correct": 2,
+      "explanation": "Hệ số hàm cầu là cơ sở Fourier trên mặt cầu. Mỗi Gaussian lưu trữ các hệ số SH đã học được mã hóa cách mà màu sắc của nó thay đổi theo hướng nhìn. Tại thời điểm render, bạn đánh giá các hệ số theo vector đơn vị từ pixel đến tâm Gaussian, tạo ra các điểm sáng specular, phản chiếu nhẹ và bóng phụ thuộc vào góc nhìn mà không cần texture hoặc MLP."
+    },
+    {
+      "stage": "post",
+      "question": "Trong quá trình đào tạo 3DGS, densification bao gồm các thao tác 'clone' và 'split'. Điều gì kích hoạt mỗi thao tác?",
+      "options": [
+        "Không có gì — Các Gaussian được cố định sau khi khởi tạo",
+        "Độ lớn gradient cao với tỷ lệ nhỏ kích hoạt clone (cần nhiều chi tiết địa phương hơn); gradient cao với tỷ lệ lớn kích hoạt split (một Gaussian quá mượt để phù hợp với khu vực). Độ mờ dưới ngưỡng kích hoạt pruning",
+        "Thời gian kể từ lần kiểm tra cuối cùng",
+        "Lấy mẫu ngẫu nhiên trong mỗi epoch"
+      ],
+      "correct": 1,
+      "explanation": "Densification thích ứng là điều cho phép 3DGS phát triển từ ~100k Gaussian được khởi tạo từ SfM lên 1-5M khi hội tụ. Clone sao chép các Gaussian nhỏ chưa được giải quyết; split chia nhỏ các Gaussian quá lớn thành hai Gaussian nhỏ hơn; prune loại bỏ các Gaussian mà độ mờ sigmoid của chúng đã giảm xuống dưới ngưỡng. Ba thao tác này cộng với gradient descent trên các tham số là toàn bộ động lực đào tạo."
+    },
+    {
+      "stage": "post",
+      "question": "Phương trình màu cho một pixel trong cả NeRF và 3DGS là `C = sum_i alpha_i * T_i * c_i` trong đó `T_i = prod_{j<i}(1 - alpha_j)`. Phương trình chung này nói gì về hai phương pháp?",
+      "options": [
+        "NeRF là tốt hơn một cách nghiêm ngặt",
+        "Cả hai đều tích hợp cùng một phương trình rendering thể tích; sự khác biệt chỉ nằm ở đại diện (mẫu MLP ngầm định so với Gaussian thưa rõ ràng) và quy trình rendering (ray marching so với rasterisation) — đó là lý do tại sao chất lượng hình ảnh của chúng tương đương",
+        "Chúng hoàn toàn giống nhau về mặt toán học",
+        "3DGS là tốt hơn một cách nghiêm ngặt"
+      ],
+      "correct": 1,
+      "explanation": "Phương trình chung là phương trình rendering thể tích cổ điển. NeRF đánh giá nó bằng cách lấy mẫu dọc theo các tia và truy vấn một MLP. 3DGS đánh giá nó bằng cách chiếu các Gaussian lên 2D và compositing alpha các nguyên thủy đã sắp xếp cho mỗi pixel. Cùng một vật lý, cùng một mất mát, cấu trúc dữ liệu và thuật toán rendering khác nhau. Đó là lý do tại sao chúng đạt được PSNR / LPIPS cuối cùng tương tự; khoảng cách thực tế là tốc độ và khả năng chỉnh sửa."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn gửi một cảnh 3DGS qua Unreal Engine, Vision Pro, Blender và một trình xem web Three.js vào năm 2026. Định dạng xuất nào là lựa chọn an toàn nhất?",
+      "options": [
+        "Một blob nhị phân tùy chỉnh cho mỗi trình xem",
+        "Các dải PNG của các Gaussian 3D",
+        "Chỉ `.ply` thô",
+        "glTF với phần mở rộng `KHR_gaussian_splatting` (Khronos RC tháng 2 năm 2026) và/hoặc OpenUSD 26.03 với `UsdVolParticleField3DGaussianSplat`; đây là hai định dạng đã được phê chuẩn/chuẩn hóa vào năm 2026"
+      ],
+      "correct": 3,
+      "explanation": "Đến năm 2024, mỗi trình xem đều có định dạng riêng của nó. Khronos đã phê chuẩn KHR_gaussian_splatting cho glTF vào tháng 2 năm 2026 và OpenUSD 26.03 đã thêm một schema 3DGS gốc vào tháng 4 năm 2026. Xuất sang bất kỳ định dạng nào cũng mang lại khả năng di động giữa các engine, trình xem và pipeline. `.ply` vẫn là lingua franca trao đổi cho nghiên cứu nhưng ít cấu trúc hơn. Đối với sản xuất giữa các công cụ, glTF + USD là câu trả lời cho năm 2026."
+    }
+  ]
+}

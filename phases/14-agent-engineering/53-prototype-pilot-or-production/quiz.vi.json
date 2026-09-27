@@ -1,0 +1,78 @@
+{
+  "lesson": "53-prototype-pilot-or-production",
+  "title": "Nguyên mẫu, Thí điểm, hay Sản xuất",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì phân biệt chủ yếu giữa nguyên mẫu, thí điểm và sản xuất?",
+      "options": [
+        "Ngôn ngữ lập trình",
+        "Sự tinh tế về hình ảnh",
+        "Kích thước mô hình",
+        "Câu hỏi học tập, sự tiếp xúc thực tế, hậu quả và quyền sở hữu"
+      ],
+      "correct": 3,
+      "explanation": "Các giai đoạn là những môi trường chứng cứ và trách nhiệm khác nhau."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào giai đoạn nguyên mẫu là phù hợp?",
+      "options": [
+        "Chỉ cho giao diện người dùng",
+        "Khi những điều chưa biết có thể được trả lời mà không cần người dùng thực tế hoặc dữ liệu thực",
+        "Bất cứ khi nào sản xuất gặp khó khăn",
+        "Sau khi ra mắt công khai"
+      ],
+      "correct": 1,
+      "explanation": "Một nguyên mẫu nên trả lời câu hỏi cơ chế với hậu quả tối thiểu."
+    },
+    {
+      "stage": "check",
+      "question": "Thí điểm cần bao gồm điều gì?",
+      "options": [
+        "Không có quy tắc dừng",
+        "Quyền tự động",
+        "Khán giả giới hạn, chủ sở hữu, khả năng quay lại, kiểm toán, chỉ số và tiêu chí thoát",
+        "Khán giả không giới hạn"
+      ],
+      "correct": 2,
+      "explanation": "Một thí điểm phơi bày các điều kiện thực tế trong các giới hạn rõ ràng."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào một bản xây dựng được triển khai trở thành sản xuất theo nghĩa quan trọng?",
+      "options": [
+        "Khi tổ chức chấp nhận độ tin cậy liên tục, rủi ro và quyền sở hữu hoạt động",
+        "Khi nó có một URL",
+        "Khi nguyên mẫu trông tinh tế",
+        "Tại lần cam kết đầu tiên"
+      ],
+      "correct": 0,
+      "explanation": "Sản xuất là một trách nhiệm liên tục, không chỉ đơn thuần là một trạng thái lưu trữ."
+    },
+    {
+      "stage": "post",
+      "question": "Giai đoạn trôi dạt có nghĩa là gì?",
+      "options": [
+        "Một thí điểm kết thúc",
+        "Một nguyên mẫu có được người dùng, dữ liệu hoặc quyền lực mà không có được kiểm soát và quyền sở hữu",
+        "Một chỉ số thay đổi",
+        "Một nhánh được đổi tên"
+      ],
+      "correct": 1,
+      "explanation": "Sự phơi bày không kiểm soát biến một hiện vật học tập thành một dịch vụ không an toàn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các ranh giới giai đoạn phải được thực thi về mặt kỹ thuật?",
+      "options": [
+        "Một biểu ngữ cảnh báo không thể ngăn chặn quyền truy cập hoặc quyền lực",
+        "Tài liệu là bất hợp pháp",
+        "Nó thay thế quyền sở hữu",
+        "Nó cải thiện độ tương phản màu sắc"
+      ],
+      "correct": 0,
+      "explanation": "Cấu hình, kiểm soát truy cập và telemetry làm cho giai đoạn có thể quan sát và thực thi."
+    }
+  ]
+}

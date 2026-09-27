@@ -1,0 +1,78 @@
+{
+  "lesson": "10-mcp-resources-and-prompts",
+  "title": "Tài nguyên và Đề xuất MCP",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một máy chủ cần truy xuất một ghi chú kiến trúc ổn định qua URI. Đâu là nguyên thủy MCP phù hợp nhất?",
+      "options": [
+        "Một tài nguyên",
+        "Một thông báo hủy bỏ",
+        "Một phiên giao thức",
+        "Một công cụ phá hủy"
+      ],
+      "correct": 0,
+      "explanation": "Một tài nguyên cung cấp nội dung có thể địa chỉ qua URI. Một công cụ thực hiện một thao tác, trong khi các phiên và hủy bỏ không mô hình hóa nội dung có thể đọc được."
+    },
+    {
+      "stage": "check",
+      "question": "Máy chủ vào ngày 2026-07-28 nên trả về gì khi resources/read nhận được một URI tài nguyên không xác định?",
+      "options": [
+        "Một thông báo resources/list_changed",
+        "Lỗi JSON-RPC -32601",
+        "Một mảng nội dung thành công rỗng",
+        "Lỗi JSON-RPC -32602"
+      ],
+      "correct": 3,
+      "explanation": "Hợp đồng Tài nguyên hiện tại sử dụng các tham số không hợp lệ, mã -32602, cho một URI tài nguyên không hợp lệ hoặc không xác định. Thành công rỗng sẽ che giấu lỗi của người gọi."
+    },
+    {
+      "stage": "check",
+      "question": "Chính sách bộ nhớ đệm nào là an toàn nhất cho một ghi chú thuộc sở hữu của người dùng được trả về bởi resources/read?",
+      "options": [
+        "Công khai vì URI ổn định",
+        "Chia sẻ giữa các người dùng khi loại MIME khớp",
+        "Riêng tư với TTL giới hạn",
+        "Công khai với TTL không giới hạn"
+      ],
+      "correct": 2,
+      "explanation": "Một kết quả thuộc sở hữu của người dùng không nên vượt qua ranh giới danh tính. Một bộ nhớ đệm riêng tư có giới hạn có thể giảm việc đọc lại trong khi vẫn bảo tồn ngữ cảnh ủy quyền."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xác định mỗi thông báo trên một luồng phản hồi subscriptions/listen?",
+      "options": [
+        "ID yêu cầu lắng nghe gốc trong siêu dữ liệu đăng ký",
+        "Loại MIME của tài nguyên",
+        "Một phiên giao thức mới được tạo",
+        "ID quy trình máy chủ"
+      ],
+      "correct": 0,
+      "explanation": "ID JSON-RPC của subscriptions/listen trở thành io.modelcontextprotocol/subscriptionId và được lặp lại trong xác nhận và mọi sự kiện sau đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao resources/list và prompts/list phải xác định cho cùng một đầu vào yêu cầu?",
+      "options": [
+        "Để cấp quyền truy cập công khai cho tất cả các mục trả về",
+        "Để tránh xác thực các con trỏ phân trang",
+        "Để ổn định bộ nhớ đệm, ảnh chụp nhanh và giao diện máy chủ",
+        "Để làm cho thành viên danh sách phụ thuộc vào một lần đọc trước"
+      ],
+      "correct": 2,
+      "explanation": "Thành viên và thứ tự ổn định ngăn chặn việc bỏ lỡ bộ nhớ đệm ồn ào và thay đổi giao diện. Ủy quyền vẫn có thể ảnh hưởng đến khả năng hiển thị vì thông tin xác thực là đầu vào yêu cầu rõ ràng."
+    },
+    {
+      "stage": "post",
+      "question": "Máy chủ MCP hiện tại phải cung cấp gì ngay cả khi khách hàng có thể gọi resources/list trực tiếp?",
+      "options": [
+        "Một phương thức resources/subscribe cho mỗi URI",
+        "Một phương thức khởi tạo tạo ra một phiên giao thức",
+        "Một luồng sự kiện HTTP GET độc lập",
+        "server/discover với các phiên bản và khả năng hỗ trợ"
+      ],
+      "correct": 3,
+      "explanation": "Các máy chủ phải triển khai server/discover để khách hàng có thể nhận được một khả năng và ảnh chụp phiên bản. Gọi nó vẫn là tùy chọn cho một khách hàng, người có thể gọi một phương thức khác và xử lý lỗi phiên bản có cấu trúc."
+    }
+  ]
+}

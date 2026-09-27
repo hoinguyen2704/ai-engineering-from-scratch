@@ -1,0 +1,78 @@
+{
+  "lesson": "11-mcp-sampling",
+  "title": "Đầu vào mô hình MCP: Di chuyển Sampling và MRTR không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một máy chủ MCP mới cần suy diễn mô hình. Kiến trúc mặc định dưới đây là gì vào ngày 2026-07-28?",
+      "options": [
+        "Tích hợp trực tiếp với nhà cung cấp mô hình",
+        "Gửi sampling/createMessage trước mỗi lần gọi công cụ",
+        "Lưu khóa mô hình của khách hàng trong phiên giao thức",
+        "Mở một luồng SSE vĩnh viễn cho Sampling"
+      ],
+      "correct": 0,
+      "explanation": "Sampling đã bị ngừng sử dụng cho các thiết kế mới. Tích hợp trực tiếp với nhà cung cấp là mặc định được khuyến nghị khi một máy chủ cần suy diễn mô hình."
+    },
+    {
+      "stage": "check",
+      "question": "Một máy chủ vào ngày 2026-07-28 yêu cầu Sampling tương thích như thế nào trong quá trình gọi công cụ?",
+      "options": [
+        "Nó ghi prompt vào server/discover",
+        "Nó đặt prompt trong tiêu đề Mcp-Session-Id",
+        "Nó trả về resultType input_required với sampling/createMessage trong inputRequests",
+        "Nó gửi yêu cầu JSON-RPC ngược trên cùng một kết nối"
+      ],
+      "correct": 2,
+      "explanation": "MRTR mang các yêu cầu từ máy chủ đến khách hàng bên trong một kết quả input_required, tránh kênh yêu cầu ngược. Công cụ summarize_repo được quảng cáo phải có sẵn trước thông qua deterministic tools/list với inputSchema hợp lệ."
+    },
+    {
+      "stage": "check",
+      "question": "Thuộc tính nào chứng minh rằng một lần thử lại MRTR là một yêu cầu JSON-RPC độc lập?",
+      "options": [
+        "Nó bỏ qua metadata theo yêu cầu",
+        "Nó sử dụng cùng một id như yêu cầu ban đầu",
+        "Nó sử dụng một id mới trong khi lặp lại phương thức và tham số ban đầu",
+        "Nó loại bỏ các tham số công cụ ban đầu"
+      ],
+      "correct": 2,
+      "explanation": "Khách hàng lặp lại hoạt động ban đầu với một id JSON-RPC mới, inputResponses hiện tại và requestState đã được phản hồi."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì phải bảo vệ requestState khi nó ảnh hưởng đến quyền truy cập tài nguyên?",
+      "options": [
+        "HMAC hoặc mã hóa xác thực gắn với principal, request và expiry",
+        "Chỉ mã hóa Base64",
+        "Một tên clientInfo",
+        "Một phiên giao thức lâu dài"
+      ],
+      "correct": 0,
+      "explanation": "requestState đi qua một khách hàng không đáng tin cậy. Bảo vệ tính toàn vẹn và gắn kết ngăn chặn việc giả mạo và phát lại yêu cầu chéo."
+    },
+    {
+      "stage": "post",
+      "question": "Khách hàng không quảng cáo Sampling trong khả năng theo yêu cầu của mình. Phản hồi giao thức chính xác nào mà máy chủ nên sử dụng?",
+      "options": [
+        "Gửi yêu cầu sampling nhúng dù sao đi nữa",
+        "Trả về -32021 với data.requiredCapabilities, hoặc chọn một con đường không phải Sampling",
+        "Thêm khả năng vào metadata của khách hàng",
+        "Giả định khả năng từ một yêu cầu trước đó"
+      ],
+      "correct": 1,
+      "explanation": "Một máy chủ không được phát ra một yêu cầu đầu vào mà khách hàng không tuyên bố hỗ trợ trong yêu cầu hiện tại. Mã khả năng thiếu chính xác là -32021."
+    },
+    {
+      "stage": "post",
+      "question": "Di chuyển nào giữ cho vòng lặp tương thích hai vòng không trạng thái ở tầng giao thức?",
+      "options": [
+        "Chỉ mang theo inputResponses của vòng hiện tại và trạng thái giai đoạn đã ký trong mỗi lần thử lại mới",
+        "Lưu trạng thái giai đoạn dưới Mcp-Session-Id",
+        "Tái sử dụng id yêu cầu ban đầu cho đến khi hoàn thành",
+        "Tích lũy tất cả các phản hồi mô hình trong một phiên ẩn"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi lần thử lại là tự chứa. requestState đã ký mang theo trạng thái trung gian đã được xác thực, và inputResponses chỉ chứa vòng hiện tại."
+    }
+  ]
+}

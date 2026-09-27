@@ -1,0 +1,90 @@
+{
+  "lesson": "04-multimodal-document-qa",
+  "title": "Capstone 04 — Multimodal Document QA (Vision-First PDF, Tables, Charts)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao biên giới năm 2026 lại ưa thích tương tác muộn theo hướng thị giác hơn là OCR-then-text trên các PDF tài chính và tài liệu khoa học?",
+      "options": [
+        "Các pipeline OCR làm hỏng các bảng xoay, phương trình dày đặc và hình ảnh biểu đồ, mất đi một nửa tín hiệu",
+        "OCR không thể chạy trên GPU",
+        "Các mô hình thị giác rẻ hơn theo trang",
+        "OCR chậm hơn so với việc kết xuất"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tương tác muộn có nghĩa là gì trong việc truy xuất theo kiểu ColPali?",
+      "options": [
+        "Mỗi token truy vấn được chấm điểm so với từng token patch, và các giá trị tối đa theo token được tổng hợp qua MaxSim",
+        "Các embedding được tính toán sau khi người dùng nhấp vào một kết quả",
+        "Bộ xếp hạng chỉ chạy trên ứng viên cuối cùng",
+        "Các embedding được hoãn lại cho đến thời gian đánh giá"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng bao nhiêu vector patch mà một embedding ColQwen tạo ra mỗi trang, và vấn đề lưu trữ nào mà điều đó tạo ra?",
+      "options": [
+        "Chính xác 128 vector, vừa vặn trong bất kỳ cơ sở dữ liệu vector nào",
+        "Khoảng 2048 vector patch mỗi trang, làm tăng lưu trữ thô so với các chỉ mục vector đơn",
+        "1 vector mỗi trang, không có vấn đề lưu trữ",
+        "16 vector với chi phí lưu trữ không đáng kể"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "DocPruner làm gì trong pipeline này?",
+      "options": [
+        "Xóa các trang PDF trùng lặp trước khi nhập",
+        "Nén chỉ mục đa vector bằng cách giữ lại các patch có tín hiệu cao khoảng 50% mà không mất nhiều độ chính xác",
+        "Cắt các hộp giới hạn xung quanh các vùng chứng cứ",
+        "Viết lại embedding truy vấn cho các vector ngắn hơn"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một kênh văn bản OCR vẫn được ghép vào cho một số trang?",
+      "options": [
+        "VLM không thể đọc hình ảnh ở 180 DPI",
+        "OCR là phương thức truy xuất chính",
+        "Nó cải thiện chất lượng kết xuất PDF",
+        "Các trang dày đặc phương trình và nặng bảng được hưởng lợi từ một fallback văn bản bên cạnh hình ảnh"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số nào mà capstone này nhắm đến để đánh giá truy xuất theo hướng thị giác?",
+      "options": [
+        "ViDoRe v3",
+        "RewardBench-2",
+        "MMLU-Pro",
+        "SWE-bench Pro"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Rubric có nghĩa là gì khi nói về việc định vị vùng chứng cứ?",
+      "options": [
+        "Độ trễ của bộ xếp hạng ở đuôi p99",
+        "Tổng số trang được truy xuất cho mỗi truy vấn",
+        "Phân số các hộp giới hạn được trích dẫn thực sự chứa khoảng trả lời",
+        "Tỷ lệ nén đạt được bởi DocPruner"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

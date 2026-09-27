@@ -1,0 +1,78 @@
+{
+  "lesson": "54-paper-writer",
+  "title": "Người Viết Bài Báo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao người viết tuyên bố các phần, hình ảnh và trích dẫn là dữ liệu trước khi viết bất kỳ đoạn văn nào?",
+      "options": [
+        "Bởi vì BibTeX không thể giải quyết các tham chiếu phía trước",
+        "Bởi vì LaTeX yêu cầu một tuyên bố phía trước",
+        "Bởi vì mô hình cần một hệ thống nhắc nhở",
+        "Bởi vì cấu trúc là hợp đồng: bộ khung có thể xác thực tính đầy đủ trước khi tạo đoạn văn"
+      ],
+      "correct": 3,
+      "explanation": "Cấu trúc trước cho phép bộ khung xác thực tính duy nhất, độ bao phủ trích dẫn và độ bao phủ hình ảnh trước khi gọi trình tạo đoạn văn. Bộ khung là hợp đồng."
+    },
+    {
+      "stage": "pre",
+      "question": "Bước tiêm hình ảnh tạo ra gì từ một bản kê thí nghiệm?",
+      "options": [
+        "Một danh sách các bản ghi Hình ảnh với id ổn định và đường dẫn được chuẩn hóa đến thư mục bài báo",
+        "Một stub thư mục",
+        "Một PDF được biên dịch từ các đối tượng",
+        "Một nhắc nhở mô hình với mô tả hình ảnh"
+      ],
+      "correct": 0,
+      "explanation": "read_experiment_manifest trả về các bản ghi Hình ảnh. Id là xác định, đường dẫn được chuẩn hóa, chú thích đến từ bản kê."
+    },
+    {
+      "stage": "check",
+      "question": "Sự cố xác thực nào gây ra PaperValidationError trước khi bất kỳ tệp nào được viết?",
+      "options": [
+        "Một tóm tắt dài hơn 200 từ",
+        "Số lượng tác giả lẻ",
+        "Một phần trích dẫn một khóa không được tuyên bố trong thư mục",
+        "Một đường dẫn hình ảnh không tồn tại trên đĩa"
+      ],
+      "correct": 2,
+      "explanation": "Thiếu khóa thư mục, id hình ảnh trùng lặp, tiêu đề trống, tóm tắt trống và tham chiếu hình ảnh không xác định đều gây ra PaperValidationError. Sự tồn tại trên đĩa không được thực thi vì trình biên dịch LaTeX thực thi điều đó sau."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao trình tạo đoạn văn lại là một đối tượng có thể gọi được tiêm vào PaperWriter thay vì một phương thức trên đó?",
+      "options": [
+        "Bởi vì các bài kiểm tra có thể thay thế một MockProseGenerator xác định cho một cuộc gọi mô hình mà không chạm vào người viết",
+        "Bởi vì LaTeX yêu cầu một callback",
+        "Bởi vì dataclass không thể giữ trạng thái",
+        "Bởi vì Python không cho phép các phương thức nhận Paper làm đối số"
+      ],
+      "correct": 0,
+      "explanation": "Người viết nhận trình tạo đoạn văn như một phụ thuộc. Bài kiểm tra thay thế MockProseGenerator. Sản xuất thay thế một cuộc gọi mô hình. Người viết không thay đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Ba tệp nào mà PaperWriter.write phát ra khi thành công?",
+      "options": [
+        "paper.tex, references.bib, manifest.json",
+        "manifest.json, prose.txt, paper.pdf",
+        "paper.tex, paper.pdf, references.bib",
+        "outline.json, paper.tex, figures.tar"
+      ],
+      "correct": 0,
+      "explanation": "paper.tex là nguồn LaTeX. references.bib là thư mục. manifest.json là đối tượng có cấu trúc mà vòng lặp phê bình đọc tiếp theo."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao manifest lại là một phần của hợp đồng của người viết thay vì chỉ là tệp LaTeX?",
+      "options": [
+        "Bởi vì các công cụ hạ nguồn (nhà phê bình, bảng điều khiển) đọc các manifest có cấu trúc, không phải LaTeX",
+        "Bởi vì manifest.json là tệp duy nhất mà BibTeX chấp nhận",
+        "Bởi vì LaTeX quá lớn để phân tích",
+        "Bởi vì các trình biên dịch LaTeX từ chối các phần không kiểu"
+      ],
+      "correct": 0,
+      "explanation": "Manifest là một giao diện ổn định cho các giai đoạn hạ nguồn. Các nhà phê bình và bảng điều khiển kiểm tra manifest.json. LaTeX là đối tượng có thể đọc được cho con người, không phải giao diện máy."
+    }
+  ]
+}

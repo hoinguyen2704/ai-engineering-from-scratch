@@ -1,0 +1,78 @@
+{
+  "lesson": "16-red-team-tooling-garak-llamaguard-pyrit",
+  "title": "Công cụ Đội Đỏ - Garak, Llama Guard, PyRIT",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Vai trò của Llama Guard trong một triển khai điển hình năm 2026 là gì?",
+      "options": [
+        "Một cấu trúc lý luận cho chuỗi suy nghĩ",
+        "Một mô hình thưởng cho RLHF",
+        "Một lựa chọn tokenizer",
+        "Một bộ phân loại an toàn đầu vào và/hoặc đầu ra trong các danh mục nguy cơ MLCommons, được đặt trước và sau LLM"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng bao nhiêu danh mục nguy cơ MLCommons mà Llama Guard 3 bao phủ?",
+      "options": [
+        "3",
+        "40",
+        "14",
+        "7"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kiến trúc của Garak được tổ chức như thế nào?",
+      "options": [
+        "Probes (máy phát tấn công), Detectors (máy chấm điểm đầu ra), Harnesses (quản lý chiến dịch)",
+        "Embeddings, retrievers, rerankers",
+        "Công cụ, tài nguyên, prompt",
+        "Routers, agents, queues"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "PyRIT chủ yếu được thiết kế cho mục đích gì, và nó khác gì so với Garak?",
+      "options": [
+        "PyRIT chạy các chiến dịch đa lượt sâu (chuỗi chuyển đổi, nhạc trưởng như Crescendo và TAP, chấm điểm) trong khi Garak chạy hàng nghìn probe đơn lượt",
+        "Chúng giống hệt nhau về phạm vi và đối tượng",
+        "PyRIT là một biến thể của Llama Guard; Garak là một biến thể của Prompt-Guard",
+        "PyRIT là một huấn luyện viên mô hình thưởng; Garak là một tokenizer"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cấu hình ngăn xếp đội đỏ mặc định được khuyến nghị cho năm 2026 là gì?",
+      "options": [
+        "Sử dụng PAIR thay vì bất kỳ công cụ nào",
+        "Chạy Garak một lần khi khởi động",
+        "Thay thế đánh giá LLM bằng đánh giá thủ công",
+        "Đặt Llama Guard ở cả hai bên của mô hình, chạy Garak hàng đêm để kiểm tra hồi quy, và chạy PyRIT cho các chiến dịch trước khi phát hành"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cạm bẫy đánh giá nào được chia sẻ giữa Llama Guard, Garak và PyRIT?",
+      "options": [
+        "Chúng yêu cầu quyền truy cập hộp trắng",
+        "Chúng chỉ hoạt động bằng tiếng Anh",
+        "Chúng không thể chạy trên GPU",
+        "Tỷ lệ tấn công/phòng thủ được báo cáo phụ thuộc vào danh tính thẩm phán và độ cũ của probe; bạn phải chỉ định thẩm phán và làm mới probe khi các mô hình được vá"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "09-hybrid-memory-mem0",
+  "title": "Bộ nhớ hỗn hợp: Vector + Đồ thị + KV",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Lớp truy vấn nào mà kho KV xử lý tốt nhất?",
+      "options": [
+        "Khả năng tiếp cận giữa các khách hàng chia sẻ một thực thể thanh toán",
+        "Tra cứu thông tin trực tiếp theo (người dùng, loại, thực thể)",
+        "Truy vấn tạm thời có hiệu lực tại thời điểm",
+        "Sự tương đồng ngữ nghĩa qua các cuộc trò chuyện dài"
+      ],
+      "correct": 1,
+      "explanation": "KV có độ phức tạp O(1) trên các khóa chính xác; vector dùng cho sự tương đồng, đồ thị dùng cho các mối quan hệ."
+    },
+    {
+      "stage": "pre",
+      "question": "Mem0 ghi vào ba kho nào song song trong mỗi lần add()?",
+      "options": [
+        "Postgres, Redis, ClickHouse",
+        "Cache, hàng đợi, nhật ký",
+        "Embedding, attention, FFN",
+        "Vector, KV, đồ thị"
+      ],
+      "correct": 3,
+      "explanation": "Mem0 phân phối mỗi lần ghi ra các kho vector, KV và đồ thị."
+    },
+    {
+      "stage": "check",
+      "question": "Ba chiều nào cung cấp điểm số hợp nhất cho Mem0?",
+      "options": [
+        "Độ tin cậy, độ khó, BLEU",
+        "Độ chính xác, độ hồi tưởng, F1",
+        "Sự liên quan, tầm quan trọng, độ gần đây",
+        "Độ trễ, thông lượng, chi phí"
+      ],
+      "correct": 2,
+      "explanation": "Điểm số là tổng trọng số của sự liên quan, tầm quan trọng và độ gần đây; trọng số được điều chỉnh theo từng sản phẩm."
+    },
+    {
+      "stage": "check",
+      "question": "Mem0g làm gì khi một thông tin đến mâu thuẫn với một cạnh hiện có?",
+      "options": [
+        "Ném ra một ngoại lệ",
+        "Ghi lại user_id",
+        "Đánh dấu cạnh hiện có là không hợp lệ nhưng không xóa nó, để các truy vấn tạm thời vẫn có thể duyệt qua",
+        "Xóa cạnh đó"
+      ],
+      "correct": 2,
+      "explanation": "Việc không hợp lệ mềm giữ lại lịch sử cho các truy vấn tạm thời (có hiệu lực tại thời điểm)."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học khuyến nghị điều chỉnh trọng số hợp nhất theo từng sản phẩm?",
+      "options": [
+        "Nó được yêu cầu bởi Apache 2.0",
+        "Thư viện vector từ chối trọng số bằng nhau",
+        "Độ gần đây chiếm ưu thế cho các tác nhân trò chuyện trong khi tầm quan trọng chiếm ưu thế cho các tác nhân tuân thủ và sự liên quan chiếm ưu thế cho các tác nhân truy xuất",
+        "Các nhà cung cấp yêu cầu điều đó"
+      ],
+      "correct": 2,
+      "explanation": "Các sản phẩm khác nhau muốn có sự thiên lệch khác nhau về sự liên quan/tầm quan trọng/độ gần đây; một bộ trọng số không phù hợp cho tất cả."
+    },
+    {
+      "stage": "post",
+      "question": "Phân loại phạm vi mà Mem0 sử dụng là gì?",
+      "options": [
+        "Người dùng, phiên, tác nhân",
+        "Địa phương, khu vực, toàn cầu",
+        "Công khai, riêng tư, bí mật",
+        "Đọc, ghi, quản trị"
+      ],
+      "correct": 0,
+      "explanation": "Các phạm vi là người dùng (qua các phiên), phiên (một luồng), tác nhân (trạng thái theo từng thể hiện)."
+    },
+    {
+      "stage": "post",
+      "question": "Sự trôi dạt embedding trong mẫu này là gì, và bài học khuyến nghị giảm thiểu nó như thế nào?",
+      "options": [
+        "Các vector được mã hóa; xoay vòng khóa",
+        "API embedding thay đổi URL; cố định một miền",
+        "Embeddings tràn số nguyên; chuyển sang float64",
+        "Chất lượng truy xuất vector giảm khi tập hợp dữ liệu lớn lên; định kỳ tái embedding các bản ghi được sử dụng nhiều nhất"
+      ],
+      "correct": 3,
+      "explanation": "Việc tái embedding định kỳ các bản ghi nóng giữ cho chất lượng truy xuất ổn định khi tập hợp dữ liệu lớn lên."
+    }
+  ]
+}

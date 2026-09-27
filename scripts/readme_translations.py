@@ -64,6 +64,7 @@ README_NOTE = {
     "ar": '<p align="center" dir="rtl"><sub>ترجمة مجتمعية. النسخة <a href="../../README.md">الإنجليزية هي المرجعية</a> · <a href="https://aiengineeringfromscratch.com">aiengineeringfromscratch.com</a></sub></p>',
     "ru": '<p align="center"><sub>Перевод сообщества. Каноничной является <a href="../../README.md">английская версия</a> · <a href="https://aiengineeringfromscratch.com">aiengineeringfromscratch.com</a></sub></p>',
     "tr": '<p align="center"><sub>Topluluk çevirisi. Esas alınan sürüm <a href="../../README.md">İngilizce</a>dir · <a href="https://aiengineeringfromscratch.com">aiengineeringfromscratch.com</a></sub></p>',
+    "vi": '<p align="center"><sub>Bản dịch cộng đồng. Bản <a href="../../README.md">tiếng Anh là phiên bản chuẩn</a> · <a href="https://aiengineeringfromscratch.com">aiengineeringfromscratch.com</a></sub></p>',
 }
 
 TRANSLATIONS = {
@@ -269,6 +270,42 @@ TRANSLATIONS = {
         H_WHERE: "Nereden başlamalı", H_WHY: "Bu neden şimdi önemli", H_CONTRIB: "Katkıda bulunma",
         H_SPONSOR: "Projeye sponsor olun", H_STAR: "Yıldız geçmişi", H_LICENSE: "Lisans",
     },
+    "vi": {
+        HERO1: "**84% sinh viên đã sử dụng các công cụ AI. Chỉ 18% cảm thấy sẵn sàng sử dụng chúng một cách chuyên nghiệp.** Giáo trình này xóa bỏ khoảng cách đó.",
+        HERO2: "523 bài học. 20 giai đoạn. ~342 giờ. Python, TypeScript, Rust, Julia. Mỗi bài học đều tạo ra một sản phẩm tái sử dụng: prompt, skill, agent, hoặc MCP server. Miễn phí, mã nguồn mở, giấy phép MIT.",
+        HERO3: "Bạn không chỉ học AI. Bạn tự tay xây dựng nó. Toàn diện từ đầu đến cuối. Bằng chính đôi tay mình.",
+        H_START_BUILD: "Bắt đầu tại đây: chọn mục tiêu bạn muốn xây dựng",
+        START_BUILD: "Bạn không cần phải đọc lướt cả 523 bài học trước khi bắt đầu. Hãy chọn một mục tiêu. Mỗi liên kết đều dẫn đến cùng một giáo trình trên GitHub hoặc website, và cả hai phiên bản đều dùng chung mã nguồn bài học.",
+        "| Your goal | Learn on GitHub | Learn on the website |": "| Mục tiêu của bạn | Học trên GitHub | Học trên website |",
+        "| I am new and want the complete foundation | [Phase 0: Setup and Tooling](phases/00-setup-and-tooling/) | [Dev Environment](https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/01-dev-environment) |": "| Tôi là người mới và muốn có nền tảng hoàn chỉnh | [Giai đoạn 0: Cài đặt và công cụ](phases/00-setup-and-tooling/) | [Môi trường phát triển](https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/01-dev-environment) |",
+        "| I know Python and want math plus ML foundations | [Phase 1: Math Foundations](phases/01-math-foundations/) | [Linear Algebra Intuition](https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/01-linear-algebra-intuition) |": "| Tôi biết Python và muốn học toán cùng nền tảng ML | [Giai đoạn 1: Nền tảng toán học](phases/01-math-foundations/) | [Trực giác đại số tuyến tính](https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/01-linear-algebra-intuition) |",
+        "| I want to build production LLM applications | [Phase 11: LLM Engineering](phases/11-llm-engineering/) | [Prompt Engineering](https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/01-prompt-engineering) |": "| Tôi muốn xây dựng ứng dụng LLM trong thực tế | [Giai đoạn 11: Kỹ nghệ LLM](phases/11-llm-engineering/) | [Kỹ nghệ Prompt](https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/01-prompt-engineering) |",
+        "| I want to build agents | [Phase 14: Agent Engineering](phases/14-agent-engineering/) | [The Agent Loop](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/01-the-agent-loop) |": "| Tôi muốn xây dựng các agent | [Giai đoạn 14: Kỹ nghệ Agent](phases/14-agent-engineering/) | [Vòng lặp Agent](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/01-the-agent-loop) |",
+        "| I want to use coding agents on real repositories | [Agent-Assisted Engineering path](learning-paths/using-coding-agents.json) | [Agent-Assisted Engineering](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/31-agent-workbench-why-models-fail&learningPath=using-coding-agents) |": "| Tôi muốn dùng coding agent trên kho mã nguồn thực tế | [Lộ trình kỹ nghệ hỗ trợ bởi agent](learning-paths/using-coding-agents.json) | [Kỹ nghệ hỗ trợ bởi agent](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/31-agent-workbench-why-models-fail&learningPath=using-coding-agents) |",
+        "| I want to shape the right build before implementation | [Product Judgment and Delivery path](learning-paths/shaping-the-build.json) | [Product Judgment and Delivery](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/47-outcomes-before-output&learningPath=shaping-the-build) |": "| Tôi muốn định hình đúng giải pháp trước khi code | [Lộ trình định hình sản phẩm & bàn giao](learning-paths/shaping-the-build.json) | [Định hình sản phẩm & bàn giao](https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/47-outcomes-before-output&learningPath=shaping-the-build) |",
+        "| I want to build with Model Context Protocol (MCP) | [Model Context Protocol (MCP) route](phases/13-tools-and-protocols/README.md#model-context-protocol-mcp-path) | [Model Context Protocol (MCP) path](https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/06-mcp-fundamentals&learningPath=model-context-protocol) |": "| Tôi muốn xây dựng với Model Context Protocol (MCP) | [Lộ trình Model Context Protocol (MCP)](phases/13-tools-and-protocols/README.md#model-context-protocol-mcp-path) | [Lộ trình Model Context Protocol (MCP)](https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/06-mcp-fundamentals&learningPath=model-context-protocol) |",
+        "| I want to write and ship Agent Skills | [Focused Agent Skills route](phases/13-tools-and-protocols/README.md#agent-skills-fast-path) | [Agent Skills path](https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/22-skills-and-agent-sdks&learningPath=agent-skills) |": "| Tôi muốn viết và phát hành Agent Skills | [Lộ trình chuyên sâu Agent Skills](phases/13-tools-and-protocols/README.md#agent-skills-fast-path) | [Lộ trình Agent Skills](https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/22-skills-and-agent-sdks&learningPath=agent-skills) |",
+        "| I want to prepare for a Claude certification | [Certification onboarding](certifications/claude/GETTING_STARTED.md) | [Certification Academy](https://aiengineeringfromscratch.com/certifications.html) |": "| Tôi muốn chuẩn bị cho chứng chỉ Claude | [Hướng dẫn chứng chỉ](certifications/claude/GETTING_STARTED.md) | [Học viện chứng chỉ](https://aiengineeringfromscratch.com/certifications.html) |",
+        NOT_SURE: "Chưa biết bắt đầu từ đâu? Hãy dùng [gia sư xếp lớp `start-learning`](skills/start-learning/SKILL.md) hoặc [hướng dẫn điều kiện tiên quyết trên website](https://aiengineeringfromscratch.com/prereqs.html).",
+        LEARNING_PATHS: "So sánh 4 lĩnh vực cốt lõi và 6 định hướng sự nghiệp trong [Lộ trình học AI Engineering](https://aiengineeringfromscratch.com/learning-paths.html).",
+        H_USE_LESSON: "Cách tiếp cận thống nhất cho mọi bài học",
+        "1. **Read** `docs/en.md` and explain the core idea in your own words.": "1. **Đọc** `docs/en.md` và giải thích ý tưởng cốt lõi bằng lời văn của chính bạn.",
+        "2. **Type and build** the important code instead of treating the code block as decoration.": "2. **Tự tay gõ và xây dựng** phần mã nguồn quan trọng thay vì chỉ xem khối mã như một hình ảnh minh họa.",
+        "3. **Run** the lesson command from the repository root, the directory containing `README.md` and `phases/`.": "3. **Chạy** lệnh của bài học từ thư mục gốc của repo, nơi chứa `README.md` và `phases/`.",
+        "4. **Keep evidence**: the command, working directory, exit code, meaningful output, and the artifact you changed or produced.": "4. **Lưu giữ bằng chứng**: câu lệnh, thư mục làm việc, mã thoát (exit code), kết quả có ý nghĩa và artifact bạn tạo ra hoặc chỉnh sửa.",
+        "5. **Continue** only when you can explain the output and make one small change without guessing.": "5. **Chỉ tiếp tục** khi bạn có thể giải thích kết quả và tự tin thực hiện một thay đổi nhỏ mà không phải đoán mò.",
+        LESSON_COMMANDS: "Các câu lệnh trong trang bài học đều tính từ thư mục gốc của repo, trừ khi bài học yêu cầu chuyển thư mục. Nếu bài học hỗ trợ nhiều ngôn ngữ lập trình, hãy chạy triển khai của ngôn ngữ bạn đang học.",
+        H_CLONE_EVIDENCE: "Clone repo và tạo bằng chứng học tập đầu tiên",
+        PREFLIGHT: "Kiểm tra sơ bộ phân tách các yêu cầu cần ngay bây giờ và các công cụ cần cho sau này. Mọi lỗi phát hiện đều kèm theo nguyên nhân và lệnh khắc phục. Lệnh thứ hai chạy bài học không phụ thuộc thư viện ngoài, minh họa phép nhân ma trận với vector trong một tầng mạng neural. Hãy lưu kết quả terminal đó làm bằng chứng đầu tiên của bạn.",
+        WAYS: "Ba cách bắt đầu. Hãy chọn một cách.",
+        LICENSE_LINE: "MIT. Tự do sử dụng theo cách bạn muốn — fork, giảng dạy, kinh doanh, phát hành. Ghi nhận nguồn gốc được hoan nghênh nhưng không bắt buộc.",
+        MAINTAINED: "Được duy trì bởi [Rohit Ghumare](https://github.com/rohitg00) và cộng đồng.",
+        H_HOW: "Cách thức hoạt động", H_CURR: "Cấu trúc của giáo trình", H_LESSON: "Cấu trúc của một bài học",
+        H_START: "Bắt đầu nhanh", H_PREREQ: "Kiến thức tiên quyết", H_BOOK: "Đọc dưới dạng sách",
+        H_SHIPS: "Mỗi bài học đều tạo ra sản phẩm thực tế", H_CONTENTS: "Mục lục", H_TOOLKIT: "Bộ công cụ",
+        H_WHERE: "Nên bắt đầu từ đâu", H_WHY: "Tại sao điều này quan trọng vào lúc này", H_CONTRIB: "Đóng góp cho dự án",
+        H_SPONSOR: "Tài trợ cho dự án", H_STAR: "Lịch sử Star", H_LICENSE: "Giấy phép",
+    },
 }
 
 SPONSOR_TRANSLATIONS = {
@@ -379,6 +416,15 @@ SPONSOR_TRANSLATIONS = {
         SEE_SUPPORTERS: "Tüm destekçileri görüntüle",
         SPONSOR_CLOSING: "Ücretsiz, MIT lisanslı, 523 ders. Bu çalışmayı mümkün kılan sponsorlara ve destekçilere teşekkür ederiz. [Tüm sponsorları ve destekçileri görüntüle](BACKERS.md).",
         SPONSOR_INVITE: "Çalışmayı desteklemek ister misiniz? [Sponsorluk seçeneklerini](SPONSORS.md), [donanım sponsorluğunu](SPONSORS.md#hardware-lab-partner) inceleyin veya [GitHub üzerinden sponsor olun](https://github.com/sponsors/rohitg00).",
+    },
+    "vi": {
+        H_SPONSORS: "Nhà tài trợ",
+        SPONSOR_ALT: "SerpApi. Web Search API cho các ứng dụng AI của bạn. Hỗ trợ định dạng Markdown và JSON cho mọi tích hợp.",
+        SPONSOR_THANKS: "Cảm ơn các nhà tài trợ của chúng tôi.",
+        SPONSOR_SUPPORT: "Sự ủng hộ của bạn giúp mọi bài học luôn miễn phí và là mã nguồn mở.",
+        SEE_SUPPORTERS: "Xem tất cả người ủng hộ",
+        SPONSOR_CLOSING: "Miễn phí, giấy phép MIT, 523 bài học. Cảm ơn các nhà tài trợ và người ủng hộ đã giúp dự án này trở nên khả thi. [Xem tất cả nhà tài trợ và người ủng hộ](BACKERS.md).",
+        SPONSOR_INVITE: "Bạn muốn ủng hộ dự án? Xem [các lựa chọn tài trợ](SPONSORS.md), bao gồm [tài trợ phòng lab phần cứng](SPONSORS.md#hardware-lab-partner), hoặc [tài trợ trên GitHub](https://github.com/sponsors/rohitg00).",
     },
 }
 

@@ -1,0 +1,78 @@
+{
+  "lesson": "09-production-quantization",
+  "title": "Số Hóa Sản Xuất — AWQ, GPTQ, GGUF K-quants, FP8, MXFP4/NVFP4",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Định dạng số hóa nào được bài học gọi là mặc định sản xuất cho CPU và phục vụ biên giới?",
+      "options": [
+        "GGUF Q4_K_M / Q5_K_M",
+        "NVFP4",
+        "FP8",
+        "AWQ INT4"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Định dạng nào là lựa chọn của bài học cho phục vụ GPU trung tâm dữ liệu khi cần multi-LoRA trong vLLM?",
+      "options": [
+        "NVFP4",
+        "GGUF Q4_K_M",
+        "GPTQ với các kernel Marlin",
+        "AWQ"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cái bẫy \"mô hình của tôi bây giờ là 4 GB\" với AWQ là gì?",
+      "options": [
+        "AWQ thực sự không làm nhỏ trọng số",
+        "AWQ không tương thích với vLLM",
+        "AWQ chỉ làm nhỏ trọng số; bộ nhớ KV và các kích hoạt là riêng biệt và có thể thêm 30-50 GB ở kích thước lô sản xuất",
+        "AWQ yêu cầu bộ nhớ KV INT8"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc hiệu chỉnh AWQ trên văn bản web tổng quát lại gây hại cho các mô hình miền?",
+      "options": [
+        "Nó làm tăng kích thước mô hình",
+        "Nó chỉ hoạt động trên GPU AMD",
+        "Thuật toán đưa ra quyết định sai về trọng số nào cần bảo vệ, làm giảm độ chính xác miền (ví dụ, một số điểm Pass@1 trên HumanEval)",
+        "Nó vô hiệu hóa các kernel Marlin"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Đối với một khối lượng công việc nặng về lý luận mà chất lượng là không thể thương lượng, độ chính xác nào mà bài học khuyến nghị theo mặc định?",
+      "options": [
+        "Trọng số NVFP4",
+        "GPTQ INT4",
+        "Trọng số FP8",
+        "INT2 GGUF"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Giới hạn số hóa nào vào năm 2026 mà bài học chỉ ra cho NVFP4 vào đầu năm 2026?",
+      "options": [
+        "Không thể kết hợp với bộ nhớ KV FP8",
+        "Chỉ chạy trên CPU",
+        "Chưa có hỗ trợ LoRA",
+        "Không được hỗ trợ trên H100"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

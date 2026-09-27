@@ -1,0 +1,78 @@
+{
+  "lesson": "20-bias-representational-harm",
+  "title": "Thiên kiến và Tổn hại Đại diện trong LLMs",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bài học phân biệt tổn hại đại diện với tổn hại phân bổ như thế nào?",
+      "options": [
+        "Tổn hại đại diện là tính toán; tổn hại phân bổ là thống kê",
+        "Tổn hại phân bổ chỉ xảy ra ngoại tuyến",
+        "Tổn hại đại diện chỉ quan trọng đối với các mô hình thị giác",
+        "Tổn hại đại diện là khuôn mẫu / xóa bỏ / miêu tả hạ thấp; tổn hại phân bổ là kết quả vật chất không công bằng cho một nhóm"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong số này, đâu là ba loại chỉ số đánh giá từ Gallegos et al. 2024?",
+      "options": [
+        "Thị giác, âm thanh, văn bản",
+        "WEAT, BLEU, ROUGE",
+        "Dựa trên nhúng, dựa trên xác suất, dựa trên văn bản được tạo ra",
+        "Trước-RLHF, giữa-RLHF, sau-RLHF"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần đánh giá công bằng giao thoa ngoài đánh giá trục đơn?",
+      "options": [
+        "Các chỉ số trục đơn rẻ hơn về mặt tính toán",
+        "Giao thoa là giống như kiểm tra chéo",
+        "Trục đơn là phương pháp duy nhất được pháp luật cho phép",
+        "Thiên kiến chỉ xuất hiện ở các giao điểm (ví dụ: giới tính x chủng tộc) bị bỏ qua bởi các đánh giá chỉ nhìn vào một trục tại một thời điểm"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "WinoIdentity (COLM 2025) giới thiệu điều gì?",
+      "options": [
+        "Đánh giá công bằng giao thoa dựa trên sự không chắc chắn so sánh sự không chắc chắn của mô hình về kết quả qua các bộ đôi danh tính giao thoa, không chỉ dự đoán điểm",
+        "Một cuộc tấn công đối kháng vào các bộ phân loại nhân khẩu học",
+        "Một sự thay thế cho WEAT trong không gian nhúng",
+        "Một bộ phân tách mới cho các thuật ngữ danh tính"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Trong số này, đâu là một phương pháp giải thích cơ chế đối với thiên kiến?",
+      "options": [
+        "Gán nhãn lại tập huấn luyện",
+        "Xác định các nơ-ron giới tính trong các lớp MLP, sử dụng SAE để làm nổi bật các đặc điểm liên quan đến chủng tộc, hoặc thao tác các đầu chú ý cụ thể (UniBias)",
+        "Chuyển sang DPO từ PPO",
+        "Thêm nhiều điều chỉnh KL hơn"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Phê bình meta 10 năm (arXiv:2508.11067) lập luận gì về tài liệu thiên kiến?",
+      "options": [
+        "Nó tập trung không cân xứng vào thiên kiến giới tính nhị phân, bỏ qua các trục khác (khuyết tật, tôn giáo, tình trạng di cư, danh tính đa ngôn ngữ) có thể gây hại cho các nhóm bị thiệt thòi do sự bỏ qua",
+        "Nó cân bằng trên tất cả các trục danh tính",
+        "Nó tránh các phương pháp định lượng",
+        "Nó nhấn mạnh quá mức về giao thoa"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

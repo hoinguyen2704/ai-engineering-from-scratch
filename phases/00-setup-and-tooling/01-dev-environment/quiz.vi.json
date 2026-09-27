@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao các dự án AI cần một môi trường ảo riêng biệt?",
+      "options": [
+        "Python yêu cầu môi trường ảo để nhập các gói",
+        "Chúng cô lập các phụ thuộc để các dự án khác nhau không xung đột",
+        "Môi trường ảo làm cho mã chạy nhanh hơn",
+        "Môi trường ảo cung cấp quyền truy cập GPU"
+      ],
+      "correct": 1,
+      "explanation": "Môi trường ảo cô lập các phiên bản gói theo từng dự án. Nếu không có chúng, việc nâng cấp PyTorch cho một dự án có thể làm hỏng dự án khác phụ thuộc vào phiên bản cũ hơn."
+    },
+    {
+      "stage": "pre",
+      "question": "CUDA cung cấp gì cho các tác vụ AI?",
+      "options": [
+        "Tính toán song song trên GPU NVIDIA cho các phép toán ma trận",
+        "Một trình quản lý gói Python cho các thư viện ML",
+        "Một framework web để triển khai các mô hình",
+        "Một runtime container cho việc phục vụ mô hình"
+      ],
+      "correct": 0,
+      "explanation": "CUDA là nền tảng tính toán song song của NVIDIA cho phép bạn thực hiện các phép toán ma trận trên hàng ngàn lõi GPU đồng thời. PyTorch và TensorFlow sử dụng nó ở phía dưới."
+    },
+    {
+      "stage": "post",
+      "question": "Trong ngăn xếp môi trường bốn lớp, lớp nào phải được cài đặt trước tiên?",
+      "options": [
+        "Runtime ngôn ngữ (Python, Node.js)",
+        "Nền tảng hệ thống (OS, shell, driver GPU)",
+        "Trình quản lý gói (pip, npm, cargo)",
+        "Thư viện AI/ML (PyTorch, JAX)"
+      ],
+      "correct": 1,
+      "explanation": "Bạn cài đặt từ dưới lên: nền tảng hệ thống trước (OS, driver), sau đó là trình quản lý gói, tiếp theo là runtime ngôn ngữ, và cuối cùng là thư viện AI. Mỗi lớp phụ thuộc vào lớp bên dưới."
+    },
+    {
+      "stage": "post",
+      "question": "Mục đích của uv trong một dự án AI Python là gì?",
+      "options": [
+        "Một công cụ giám sát GPU",
+        "Một thư viện trực quan hóa mạng nơ-ron",
+        "Một trình cài đặt và giải quyết gói Python siêu nhanh",
+        "Một trình biên dịch CUDA cho các kernel tùy chỉnh"
+      ],
+      "correct": 2,
+      "explanation": "uv là một trình cài đặt gói Python nhanh được viết bằng Rust. Nó thay thế pip với việc giải quyết và cài đặt phụ thuộc nhanh hơn nhiều, thường nhanh hơn 10-100 lần."
+    },
+    {
+      "stage": "post",
+      "question": "Làm thế nào để bạn xác minh rằng PyTorch có thể truy cập GPU của bạn?",
+      "options": [
+        "python -c 'import gpu'",
+        "import torch; print(torch.cuda.is_available())",
+        "import torch; print(torch.__version__)",
+        "nvidia-smi --query"
+      ],
+      "correct": 1,
+      "explanation": "torch.cuda.is_available() trả về True nếu PyTorch có thể truy cập GPU CUDA. Trên Apple Silicon, sử dụng torch.backends.mps.is_available() cho Metal Performance Shaders."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "41-workbench-for-real-repos",
+  "title": "Bàn làm việc trên một kho thực tế",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mục tiêu của việc chạy cùng một tác vụ qua các pipeline chỉ dùng prompt và được hướng dẫn bởi bàn làm việc là gì?",
+      "options": [
+        "Để đánh giá hiệu suất GPU",
+        "Để so sánh các mô hình",
+        "Để tạo ra một báo cáo trước/sau mà bạn có thể đưa cho một người hoài nghi với các con số, không phải lập luận",
+        "Để chọn nhà cung cấp"
+      ],
+      "correct": 2,
+      "explanation": "Các con số thực hiện việc lập luận; trường hợp được đưa ra trên một tác vụ cảm giác thực tế, không phải đồ chơi."
+    },
+    {
+      "stage": "pre",
+      "question": "Kết quả nào KHÔNG phải là một trong năm kết quả được đo lường?",
+      "options": [
+        "files_outside_scope",
+        "model_perplexity",
+        "acceptance_met",
+        "tests_actually_run"
+      ],
+      "correct": 1,
+      "explanation": "Năm kết quả là tests_actually_run, acceptance_met, files_outside_scope, handoff_quality, reviewer_total."
+    },
+    {
+      "stage": "check",
+      "question": "Anatomy of an Agent Harness của LangChain đã đo lường gì trên Terminal Bench 2.0?",
+      "options": [
+        "Mô hình hàng đầu mất 25 vị trí",
+        "Các mô hình đều hội tụ ở top-3",
+        "Thay đổi của harness không làm thay đổi thứ hạng",
+        "Cùng một mô hình đã di chuyển từ ngoài top 30 lên hạng năm chỉ bằng cách thay đổi harness"
+      ],
+      "correct": 3,
+      "explanation": "Sự thay đổi 25 hạng trên cùng một mô hình là thông tin chính về sự so sánh giữa harness và mô hình."
+    },
+    {
+      "stage": "check",
+      "question": "Bài báo trên preprints.org trích dẫn tỷ lệ thất bại cho các dự án agent doanh nghiệp là gì?",
+      "options": [
+        "8%",
+        "Khoảng 88% không đạt đến sản xuất, với các thất bại tập trung quanh thời gian chạy, không phải lý do",
+        "Khoảng 50%",
+        "Không có thất bại nào"
+      ],
+      "correct": 1,
+      "explanation": "Bài báo Harness Engineering for Language Agents theo dõi các thất bại đến từ các vấn đề thời gian chạy (trạng thái cũ, thử lại dễ vỡ, ngữ cảnh quá lớn)."
+    },
+    {
+      "stage": "check",
+      "question": "Độ chính xác cơ bản của WebAgent hoạt động như thế nào trong điều kiện ngữ cảnh dài?",
+      "options": [
+        "Giữ nguyên",
+        "Giảm từ 40-50% xuống dưới 10% chủ yếu do vòng lặp vô hạn và mất mục tiêu",
+        "Tăng lên 30%",
+        "Giảm một nửa nhưng vẫn trên 30%"
+      ],
+      "correct": 1,
+      "explanation": "Sự sụp đổ trong ngữ cảnh dài là điều mà Ralph Loop và gói handoff tồn tại để hấp thụ."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học nói gì về các trường hợp âm tính giả (trường hợp mà chỉ dùng prompt nhanh hơn)?",
+      "options": [
+        "Các tác vụ thực tế một bước, lint một dòng, chạy định dạng nhanh hơn khi chỉ dùng prompt; liệt kê chúng một cách trung thực để bàn làm việc không bị coi là thừa thãi",
+        "Chúng chứng minh rằng bàn làm việc thất bại",
+        "Chúng không tồn tại",
+        "Chúng làm vô hiệu hóa luận điểm của harness"
+      ],
+      "correct": 0,
+      "explanation": "Liệt kê trung thực các trường hợp nhanh nhất khi chỉ dùng prompt giữ cho lập luận về harness có độ tin cậy."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn trích dẫn báo cáo từ bài học này ở đâu?",
+      "options": [
+        "Đánh giá nội bộ HR",
+        "Chỉ tại các hackathon",
+        "Khi ai đó muốn bỏ qua cổng xác minh 'chỉ cho sprint này', hoặc khi một sản phẩm agent mới ra mắt và cần một tiêu chuẩn tiết kiệm thời gian có thể di chuyển",
+        "Chỉ trong các tài liệu tiếp thị"
+      ],
+      "correct": 2,
+      "explanation": "Các con số đi xa hơn so với lời giải thích; hãy trích dẫn báo cáo khi áp lực cố gắng rút ngắn bề mặt."
+    }
+  ]
+}

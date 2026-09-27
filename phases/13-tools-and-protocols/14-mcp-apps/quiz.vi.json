@@ -1,0 +1,78 @@
+{
+  "lesson": "14-mcp-apps",
+  "title": "Ứng dụng MCP trên Giao thức Không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một ứng dụng MCP hiện đại nên gán tài nguyên UI của nó cho công cụ ở đâu?",
+      "options": [
+        "Chỉ trong kết quả văn bản cuối cùng",
+        "Trong một luồng HTTP GET độc lập",
+        "Trong cookie phiên MCP",
+        "Trong định nghĩa công cụ được trả về bởi tools/list"
+      ],
+      "correct": 3,
+      "explanation": "Nested _meta.ui.resourceUri trên định nghĩa công cụ cho phép máy chủ tải trước và xem xét UI trước khi gọi."
+    },
+    {
+      "stage": "check",
+      "question": "Một khách hàng vào ngày 2026-07-28 quảng bá hỗ trợ ứng dụng MCP như thế nào?",
+      "options": [
+        "Với notifications/initialized",
+        "Với Mcp-Session-Id",
+        "Trong io.modelcontextprotocol/clientCapabilities.extensions trên mỗi yêu cầu",
+        "Bằng cách chấp nhận tất cả các tài nguyên ui://"
+      ],
+      "correct": 2,
+      "explanation": "Các phần mở rộng là tùy chọn thông qua bản đồ khả năng của khách hàng theo yêu cầu."
+    },
+    {
+      "stage": "check",
+      "question": "ui/initialize khởi tạo cái gì?",
+      "options": [
+        "Một phiên máy chủ ở cấp độ giao thức",
+        "Đăng ký khách hàng OAuth",
+        "Cầu nối postMessage của các ứng dụng giữa iframe và máy chủ",
+        "Kênh HTTP GET có thể phát trực tuyến"
+      ],
+      "correct": 2,
+      "explanation": "ui/initialize thuộc về phương ngữ cầu nối của các ứng dụng và tách biệt với bắt tay MCP core đã bị loại bỏ."
+    },
+    {
+      "stage": "check",
+      "question": "Phản hồi tài nguyên nào là an toàn nhất cho một ứng dụng gói không phụ thuộc người dùng?",
+      "options": [
+        "Không có resultType và không có chính sách cache",
+        "resultType hoàn chỉnh, một ttlMs giới hạn, cacheScope công khai, và CSP từ chối trước",
+        "Một mã thông báo phiên nhúng trong HTML",
+        "Một ttlMs không giới hạn và các miền CSP wildcard"
+      ],
+      "correct": 1,
+      "explanation": "Một kết quả hoàn chỉnh, gợi ý cache rõ ràng, và một CSP hẹp làm cho các chính sách mạng và trình duyệt có thể kiểm tra."
+    },
+    {
+      "stage": "post",
+      "question": "Một máy chủ nhận được một body resources/read cho một URI nhưng một tiêu đề Mcp-Name khác. Điều gì nên xảy ra?",
+      "options": [
+        "Mở cả hai tài nguyên",
+        "Ưu tiên tiêu đề",
+        "Ưu tiên body",
+        "Trả về HTTP 400 với lỗi JSON-RPC -32020"
+      ],
+      "correct": 3,
+      "explanation": "Các tiêu đề định tuyến và body phải khớp trước khi hỗ trợ phiên bản hoặc chính sách tính năng được đánh giá; giao thông trả về HTTP 400 với lỗi JSON-RPC -32020."
+    },
+    {
+      "stage": "post",
+      "question": "Giải pháp dự phòng đúng cho một máy chủ không hỗ trợ ứng dụng MCP là gì?",
+      "options": [
+        "Trả về HTML như chrome máy chủ đáng tin cậy",
+        "Giữ cho công cụ có thể sử dụng với văn bản thông thường hoặc đầu ra có cấu trúc và bỏ qua việc gán UI",
+        "Tạo một phiên ẩn và thử lại",
+        "Cấp quyền cho phần mở rộng tự động"
+      ],
+      "correct": 1,
+      "explanation": "Một phần mở rộng tùy chọn không được làm cho công cụ cơ sở không thể sử dụng cho các khách hàng không thương lượng nó."
+    }
+  ]
+}

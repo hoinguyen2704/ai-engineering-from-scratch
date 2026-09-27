@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bạn đánh giá một mô hình và báo cáo 'trung bình 12ms cho mỗi hình ảnh trên một chiếc 4090'. Điều gì còn thiếu?",
+      "options": [
+        "Tên tập dữ liệu",
+        "Kích thước mô hình",
+        "Không có gì; đó là một đánh giá hoàn chỉnh",
+        "Phân vị (p50/p95/p99), quy tắc khởi động, và đồng bộ hóa CUDA; chỉ một giá trị trung bình ẩn giấu độ trễ đuôi và có thể đo lường việc phát lệnh kernel thay vì thực thi kernel"
+      ],
+      "correct": 3,
+      "explanation": "Độ trễ sản xuất được đo bằng phân vị vì các hệ thống thời gian thực thất bại ở đuôi, không phải trung bình. Nếu không có khởi động, biên dịch JIT làm tăng các phép đo đầu tiên. Nếu không có torch.cuda.synchronize, việc khởi chạy kernel GPU trả về trước khi kernel hoàn thành, vì vậy bạn đo lường việc phát lệnh, không phải thực thi. Tất cả ba yếu tố này phải đúng để con số có ý nghĩa."
+    },
+    {
+      "stage": "pre",
+      "question": "FLOPs và độ trễ trên thiết bị không tương quan hoàn hảo. Tại sao?",
+      "options": [
+        "Các phép toán khác nhau có độ thân thiện với phần cứng khác nhau; các phép tích chập theo chiều sâu có thể có FLOPs thấp hơn nhưng bị giới hạn bởi bộ nhớ trên GPU, trong khi các phép tích chập dày sử dụng Tensor Cores một cách hiệu quả. Băng thông bộ nhớ, chi phí khởi chạy kernel, và hành vi bộ nhớ đệm cũng hình thành độ trễ ngoài FLOPs thô",
+        "Bộ đếm FLOPs bị lỗi",
+        "FLOPs không tính đến kích thước lô",
+        "PyTorch đếm FLOPs không chính xác"
+      ],
+      "correct": 0,
+      "explanation": "FLOPs là một đại diện rẻ tiền. Độ trễ theo thời gian thực phụ thuộc vào việc một phép toán khớp với sức mạnh của phần cứng như thế nào: các phép nhân ma trận dày gắn chặt Tensor Cores; các phép tích chập theo chiều sâu bị tắc nghẽn bởi băng thông bộ nhớ; attention bị tắc nghẽn bởi các phép đọc bộ nhớ theo chiều dài chuỗi^2. Đối với tìm kiếm kiến trúc, FLOPs là hữu ích; đối với quyết định triển khai, hãy đo lường trên thiết bị mục tiêu."
+    },
+    {
+      "stage": "post",
+      "question": "Sau khi huấn luyện, việc lượng tử hóa tĩnh INT8 thường mất bao nhiêu độ chính xác trên các mô hình thị giác lớp ImageNet?",
+      "options": [
+        "Luôn luôn 0; nó là không mất mát",
+        "20+ điểm; không sử dụng được",
+        "5-10 điểm phần trăm",
+        "0.1-1 điểm phần trăm khi được hiệu chỉnh đúng; các mô hình tích chập đã hợp nhất BatchNorm hoạt động đặc biệt tốt dưới INT8"
+      ],
+      "correct": 3,
+      "explanation": "PTQ tĩnh trên các mô hình thị giác được hiệu chỉnh tốt mất một phần nhỏ đến khoảng 1 điểm. Các chế độ mất mát lớn hơn là (a) dữ liệu hiệu chỉnh không đủ, (b) lượng tử hóa các hoạt động với các giá trị ngoại lệ cực đoan (khắc phục bằng cách lượng tử hóa theo kênh hoặc cắt), (c) các lớp BatchNorm chưa hợp nhất. Khi những điều này được xử lý, INT8 về cơ bản là miễn phí."
+    },
+    {
+      "stage": "post",
+      "question": "Ứng dụng di động của bạn cần một mô hình thị giác dưới 10MB với độ trễ dưới 10ms. Bạn chọn backbone nào?",
+      "options": [
+        "ResNet-50",
+        "ConvNeXt-Large",
+        "ViT-Base",
+        "MobileNetV3-Small hoặc EfficientNet-Lite-B0 được lượng tử hóa thành INT8; cả hai đều nhắm đến ngân sách này và biên dịch sạch sẽ thành TFLite / Core ML"
+      ],
+      "correct": 3,
+      "explanation": "Thị giác di động vào năm 2026 vẫn bị chi phối bởi các biến thể MobileNetV3 và EfficientNet-Lite vì chúng được thiết kế cho ngân sách này: các phép tích chập theo chiều sâu, h-swish, squeeze-excite, nhận thức lượng tử từ ngày đầu tiên. ResNet-50 và ViT-Base có kích thước 100MB+ trong FP32 và 25MB+ trong INT8, vượt quá ngân sách kích thước trước khi độ trễ được đo lường."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn xuất một mô hình PyTorch sang ONNX với opset 17 và nó thất bại với 'Toán tử không được hỗ trợ'. Nguyên nhân có khả năng nhất là gì?",
+      "options": [
+        "Mô hình có quá nhiều tham số",
+        "Hình dạng đầu vào không đúng",
+        "Thư viện ONNX đã lỗi thời",
+        "(1) Một toán tử tùy chỉnh không có ánh xạ ONNX; (2) một đường đi điều khiển không xác định mà tracing không thể nắm bắt; (3) một tương tác tensor-scalar mà ngầm định trong Python nhưng không có tương đương ONNX. Cách khắc phục: thay thế toán tử, sử dụng `torch.jit.script` cho điều khiển luồng, hoặc nâng cấp opset"
+      ],
+      "correct": 3,
+      "explanation": "Xuất ONNX mặc định là tracing, vì vậy bất cứ điều gì mà tracing không thể nắm bắt — luồng điều khiển thời gian chạy, nhánh cấp độ Python, toán tử CUDA tùy chỉnh — đều thất bại. Hầu hết các lỗi là một nút đơn không có tương đương ONNX (thường là một toán tử tùy chỉnh nhỏ hoặc một cuộc gọi đến torch.special.*). Cách khắc phục là thay thế toán tử, chuyển sang `torch.jit.script`, hoặc chuyển sang một opset mới hơn nơi toán tử tồn tại."
+    }
+  ]
+}

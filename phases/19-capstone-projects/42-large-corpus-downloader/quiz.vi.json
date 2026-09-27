@@ -1,0 +1,78 @@
+{
+  "lesson": "42-large-corpus-downloader",
+  "title": "Trình Tải Tập Dữ Liệu Lớn",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao trình tải giữ một điểm kiểm tra .partial.json riêng cho mỗi shard?",
+      "options": [
+        "Để làm cho thư mục cache trông gọn gàng",
+        "Để một tải xuống tiếp tục có thể xác minh tiền tố sha256 trên các byte đã được xác minh trước khi thêm vào, làm cho sự hỏng hóc âm thầm trở nên không thể",
+        "Để lưu trữ URL trong trường hợp tệp shard di chuyển",
+        "Bởi vì urllib yêu cầu điều đó"
+      ],
+      "correct": 1,
+      "explanation": "Điểm kiểm tra ghi lại verified_bytes và sha256 của các byte đó; việc tiếp tục chỉ diễn ra khi băm trên đĩa khớp với."
+    },
+    {
+      "stage": "check",
+      "question": "Kế hoạch băng LSH mang lại điều gì mà dedup exact-hash không có?",
+      "options": [
+        "Sử dụng bộ nhớ không đổi",
+        "Nén không mất dữ liệu",
+        "Tra cứu siêu tuyến tính đánh dấu các bản sao gần giống với độ tương đồng Jaccard cao ngay cả khi các tài liệu khác nhau chỉ bởi một vài token",
+        "Tính toán sha256 nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "MinHash cộng với LSH bắt được các cách diễn đạt và biến thể mẫu mà dedup exact-hash bỏ qua."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao điểm kiểm tra được ghi trước khi các byte được thêm vào, không phải sau?",
+      "options": [
+        "Nếu quá trình chết giữa việc ghi và cập nhật điểm kiểm tra, việc tiếp tục tiếp theo sẽ đọc một điểm kiểm tra mà bị lùi lại so với các byte và âm thầm thêm lại, làm hỏng tệp",
+        "Nó tiết kiệm không gian đĩa",
+        "Nó thuận tiện",
+        "Nó nhanh hơn"
+      ],
+      "correct": 0,
+      "explanation": "Điểm kiểm tra trước khớp với một nhật ký ghi trước: một sự cố để lại offset đã được xác minh lùi lại hoặc bằng với tệp, không bao giờ vượt trước."
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của tệp khóa sha256 manifest là gì?",
+      "options": [
+        "Nó tăng tốc độ đọc",
+        "Nó là một bản sao lưu của manifest",
+        "Các giai đoạn hạ nguồn từ chối bắt đầu trừ khi nội dung manifest khớp với băm đã được ghim, đóng lại bề mặt tấn công âm thầm nơi một kẻ tấn công chỉnh sửa một tệp",
+        "Nó ghi lại ngày tháng"
+      ],
+      "correct": 2,
+      "explanation": "Ghim băm manifest tạo ra liên kết giữa mã và dữ liệu là một hợp đồng địa chỉ nội dung."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao dedup được đặt ở phía trên của phân tách token thay vì sau?",
+      "options": [
+        "Các bộ phân tách từ chối các bản sao",
+        "Phân tách từ tốn kém; chạy nó hai lần trên cùng một tài liệu làm tăng gấp đôi chi phí mà không có lợi ích đường cong mất mát, vì vậy việc loại bỏ các bản sao trước là rẻ hơn",
+        "Bộ phân tách từ cần một từ vựng trước",
+        "Bộ phân tách từ không thể đọc JSONL"
+      ],
+      "correct": 1,
+      "explanation": "Dedup là giai đoạn đầu tiên mà mỗi tài liệu bị loại bỏ bản sao tiết kiệm cho bộ phân tách từ một lượt."
+    },
+    {
+      "stage": "post",
+      "question": "Tombstoning một bản sao bị loại bỏ bảo tồn điều gì mà một xóa âm thầm không có?",
+      "options": [
+        "Tỷ lệ nén",
+        "Không gian đĩa",
+        "Sự ổn định sha256 của manifest",
+        "Liên kết giữa bản sao và người giữ mà nó va chạm, cộng với một dấu vết kiểm toán tồn tại sau một thay đổi ngưỡng sau đó"
+      ],
+      "correct": 3,
+      "explanation": "Tombstones cho phép một lượt tương lai xem lại ngưỡng dedup; các lần xóa mất chứng cứ."
+    }
+  ]
+}

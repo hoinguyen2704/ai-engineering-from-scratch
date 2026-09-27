@@ -1,0 +1,78 @@
+{
+  "lesson": "27-finops-llms",
+  "title": "FinOps cho LLMs — Kinh tế đơn vị và Phân bổ đa người dùng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao FinOps truyền thống lại gặp vấn đề với chi phí LLM?",
+      "options": [
+        "LLM không tốn tiền",
+        "Các nhà cung cấp đám mây từ chối phân loại chi phí",
+        "Hóa đơn LLM luôn miễn phí",
+        "Chi phí là giao dịch token thay vì thời gian sử dụng tài nguyên; các thẻ không tự động lan truyền từ các cuộc gọi API và bạn phải đóng dấu người dùng/nhiệm vụ/người thuê tại vị trí gọi"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ba chiều phân bổ nào mà bài học yêu cầu phải đo lường ngay từ ngày đầu tiên?",
+      "options": [
+        "Nhà cung cấp, mô hình, phiên bản API",
+        "Khu vực, AZ, trung tâm dữ liệu",
+        "Theo người dùng (user_id), theo nhiệm vụ (task_id + route), theo người thuê (tenant_id)",
+        "GPU, CPU, RAM"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bốn lớp token nào nên được tách ra trong phân bổ chi phí?",
+      "options": [
+        "GPU, CPU, RAM, lưu trữ",
+        "Bộ nhớ đệm, mô hình, cổng, khả năng quan sát",
+        "Đầu vào, đầu ra, mạng, đĩa",
+        "Lời nhắc, công cụ, bộ nhớ, phản hồi"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kích hoạt công tắc ngắt trong thang thực thi là gì?",
+      "options": [
+        "Chi tiêu trên 1 đô la trong một phút",
+        "Bất kỳ phản hồi 5xx nào",
+        "Chi tiêu của người thuê z-score > 4 so với mức cơ sở; tự động tạm dừng người thuê và trang gọi",
+        "Độ trễ P50 > 2s"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số đơn vị nào mà bài học khuyến nghị thay vì $/M token?",
+      "options": [
+        "Chi phí mỗi giây",
+        "Chi phí mỗi giờ GPU",
+        "Chi phí mỗi kết quả sản phẩm (ví dụ: chi phí mỗi vé hỗ trợ đã giải quyết, chi phí mỗi bài viết được tạo, chi phí mỗi nhiệm vụ đại lý thành công)",
+        "Chi phí mỗi cổng"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu phân bổ nào mà bài học gọi là mẫu có độ chính xác cao nhất mà các đội trưởng thành sử dụng?",
+      "options": [
+        "Chỉ gán nhãn và tổng hợp",
+        "Phân bổ dựa trên mô hình",
+        "Kết nối telemetry — kết nối các dấu vết với thanh toán qua ID dấu vết",
+        "Lấy mẫu và ngoại suy"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

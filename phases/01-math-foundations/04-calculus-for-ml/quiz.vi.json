@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đạo hàm của một hàm tại một điểm cho bạn biết điều gì?",
+      "options": [
+        "Giá trị tối đa mà hàm có thể đạt được",
+        "Diện tích dưới hàm đến điểm đó",
+        "Tốc độ thay đổi (độ dốc) của hàm tại điểm đó",
+        "Giá trị của hàm tại điểm đó"
+      ],
+      "correct": 2,
+      "explanation": "Đạo hàm f'(x) đo lường mức độ thay đổi của đầu ra trên mỗi đơn vị thay đổi của đầu vào. Về mặt hình học, nó là độ dốc của đường tiếp tuyến tại điểm đó."
+    },
+    {
+      "stage": "pre",
+      "question": "Gradient trong bối cảnh học máy là gì?",
+      "options": [
+        "Sự khác biệt giữa giá trị dự đoán và giá trị thực tế",
+        "Một thước đo độ chính xác của mô hình",
+        "Một vector của tất cả các đạo hàm riêng hướng về phía tăng dốc nhất",
+        "Tốc độ học được sử dụng trong quá trình huấn luyện"
+      ],
+      "correct": 2,
+      "explanation": "Gradient thu thập mọi đạo hàm riêng vào một vector. Nó chỉ hướng đến phía tăng nhanh nhất của hàm. Để giảm thiểu mất mát, bạn di chuyển ngược lại với gradient."
+    },
+    {
+      "stage": "post",
+      "question": "Trong gradient descent, quy tắc cập nhật 'w = w - lr * dL/dw' đạt được điều gì?",
+      "options": [
+        "Nó chuẩn hóa trọng số để có độ lớn bằng 1",
+        "Nó tăng cường mất mát để kiểm tra độ bền của mô hình",
+        "Nó đặt lại trọng số về giá trị ban đầu trừ đi gradient",
+        "Nó điều chỉnh từng trọng số theo hướng giảm thiểu mất mát, được điều chỉnh bởi tốc độ học"
+      ],
+      "correct": 3,
+      "explanation": "dL/dw cho bạn biết hướng nào làm tăng mất mát. Việc trừ nó (nhân với tốc độ học) di chuyển trọng số theo hướng giảm thiểu mất mát. Điều này được lặp lại cho mọi trọng số trong mô hình."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao phương pháp Newton (sử dụng ma trận Hessian) không thể được áp dụng trực tiếp cho mạng nơ-ron với hàng triệu tham số?",
+      "options": [
+        "Phương pháp Newton hội tụ quá chậm cho các mạng sâu",
+        "Ma trận Hessian là ma trận N x N, yêu cầu O(N^2) bộ nhớ và O(N^3) tính toán mỗi bước, điều này không khả thi cho hàng triệu tham số",
+        "Phương pháp Newton yêu cầu các đạo hàm phân tích mà không thể tính toán cho mạng nơ-ron",
+        "Phương pháp Newton chỉ hoạt động cho các hàm lồi"
+      ],
+      "correct": 1,
+      "explanation": "Đối với N=1 triệu tham số, ma trận Hessian có 1 triệu tỷ mục. Việc tính toán và đảo ngược nó là không thể. Đây là lý do tại sao chúng ta sử dụng các phương pháp bậc nhất (SGD, Adam) để xấp xỉ thông tin bậc hai một cách rẻ tiền."
+    },
+    {
+      "stage": "post",
+      "question": "Phương pháp xấp xỉ số (chênh lệch trung tâm) cho f'(x) là gì?",
+      "options": [
+        "(f(x+h) - f(x)) / h",
+        "f(x) * h",
+        "(f(x+h) - f(x-h)) / (2*h)",
+        "f(x+h) / h"
+      ],
+      "correct": 2,
+      "explanation": "Chênh lệch trung tâm (f(x+h) - f(x-h)) / (2h) chính xác hơn so với chênh lệch tiến vì nó trung bình độ dốc ở cả hai bên của x, loại bỏ sai số dẫn đầu."
+    }
+  ]
+}

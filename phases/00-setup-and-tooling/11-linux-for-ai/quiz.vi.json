@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ký hiệu '~' đại diện cho điều gì trong đường dẫn tệp của Linux?",
+      "options": [
+        "Thư mục gốc của hệ thống tệp",
+        "Thư mục tệp tạm thời",
+        "Thư mục chính của người dùng hiện tại",
+        "Thư mục nơi các chương trình hệ thống được cài đặt"
+      ],
+      "correct": 2,
+      "explanation": "Ký tự tilde (~) là một phím tắt cho thư mục chính của người dùng hiện tại, thường là /home/username trên Linux. 'cd ~' đưa bạn về thư mục chính từ bất kỳ đâu."
+    },
+    {
+      "stage": "pre",
+      "question": "Mục đích của 'sudo' trước một lệnh là gì?",
+      "options": [
+        "Nó chạy lệnh với quyền root (quản trị viên)",
+        "Nó chạy lệnh trong một môi trường sandbox",
+        "Nó tăng tốc độ thực thi lệnh",
+        "Nó ghi lại đầu ra lệnh vào một tệp hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "sudo (superuser do) tạm thời nâng cao quyền của bạn lên mức root cho một lệnh duy nhất. Cần thiết cho các thao tác cấp hệ thống như cài đặt gói với apt."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn nhận được 'Permission denied' khi cố gắng chạy một tập lệnh shell. Lệnh nào sửa lỗi này?",
+      "options": [
+        "chown root script.sh",
+        "mv script.sh /usr/bin/",
+        "chmod +x script.sh",
+        "sudo rm script.sh"
+      ],
+      "correct": 2,
+      "explanation": "chmod +x thêm quyền thực thi cho tệp. Nếu không có bit thực thi được thiết lập, shell từ chối chạy tập lệnh ngay cả khi bạn sở hữu nó."
+    },
+    {
+      "stage": "post",
+      "question": "Trên một máy GPU từ xa, dữ liệu huấn luyện của bạn đã chiếm đầy đĩa. Lệnh nào hiển thị các thư mục lớn nhất đang tiêu tốn không gian?",
+      "options": [
+        "ls -la /",
+        "cat /proc/meminfo",
+        "du -h --max-depth=1 / | sort -hr | head -20",
+        "free -h"
+      ],
+      "correct": 2,
+      "explanation": "du -h hiển thị mức sử dụng đĩa theo thư mục, --max-depth=1 giới hạn ở các thư mục cấp cao nhất, và sort -hr sắp xếp theo kích thước theo thứ tự giảm dần. Điều này cho thấy các thư mục nào đang tiêu tốn nhiều không gian nhất."
+    },
+    {
+      "stage": "post",
+      "question": "Sự khác biệt chính giữa các phiên bản 'sed -i' trên macOS và Linux là gì?",
+      "options": [
+        "sed trên Linux nhanh hơn sed trên macOS",
+        "sed trên Linux không hỗ trợ biểu thức chính quy",
+        "sed trên macOS không thể sửa đổi tệp tại chỗ",
+        "sed trên macOS yêu cầu một đối số chuỗi rỗng sau -i ('sed -i \"\"'), trong khi Linux thì không"
+      ],
+      "correct": 3,
+      "explanation": "macOS sử dụng sed BSD yêu cầu 'sed -i \"\" pattern file', trong khi Linux sử dụng sed GNU chấp nhận 'sed -i pattern file'. Đây là một cạm bẫy phổ biến khi di chuyển các tập lệnh giữa các hệ thống."
+    }
+  ]
+}

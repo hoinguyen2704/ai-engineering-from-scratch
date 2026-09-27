@@ -1,0 +1,90 @@
+{
+  "lesson": "22-jsonrpc-stdio-transport",
+  "title": "JSON-RPC 2.0 qua Stdio phân cách bằng dòng mới",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì phân biệt một thông báo JSON-RPC với một yêu cầu trên đường truyền?",
+      "options": [
+        "Thông báo bỏ qua trường id; máy chủ không được phản hồi cho chúng",
+        "Trường phiên bản jsonrpc khác nhau",
+        "Thông báo sử dụng không gian tên phương thức khác",
+        "Thông báo được bọc trong một mảng"
+      ],
+      "correct": 0,
+      "explanation": "Sự vắng mặt của id là dấu hiệu duy nhất. Các máy chủ không phản hồi, vì không có id để liên kết."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao JSON phân cách bằng dòng mới là đủ cho việc định dạng stdio?",
+      "options": [
+        "Bởi vì UTF-8 không có byte dòng mới",
+        "Bởi vì đặc tả quy định điều đó",
+        "Bởi vì ống dẫn đảm bảo tính nguyên tử của dòng mới",
+        "Bởi vì JSON không cho phép dòng mới nguyên văn bên trong chuỗi mà không có dấu thoát, vì vậy mỗi đối tượng có thể là một dòng"
+      ],
+      "correct": 3,
+      "explanation": "json.dumps phát ra một dòng cho mỗi đối tượng; dòng mới nguyên văn bên trong chuỗi được thoát. Điều đó làm cho \\n trở thành một dấu phân cách bản ghi an toàn."
+    },
+    {
+      "stage": "check",
+      "question": "Mã lỗi nào mà transport trả về khi phân tích JSON thất bại?",
+      "options": [
+        "-32600",
+        "-32700",
+        "-32603",
+        "-32601"
+      ],
+      "correct": 1,
+      "explanation": "-32700 là lỗi phân tích. id phản hồi là null vì không thể trích xuất id."
+    },
+    {
+      "stage": "check",
+      "question": "Nếu một trình xử lý ném ra một ValueError thông thường, transport sẽ trả về gì?",
+      "options": [
+        "Nó không trả về; kết nối bị ngắt",
+        "Tham số không hợp lệ (-32602)",
+        "Phương thức không tìm thấy (-32601)",
+        "Lỗi nội bộ (-32603) với tên lớp ngoại lệ trong dữ liệu"
+      ],
+      "correct": 3,
+      "explanation": "Các ngoại lệ không được ánh xạ xuất hiện dưới dạng -32603. data.exception giữ lại tên lớp cho khách hàng."
+    },
+    {
+      "stage": "check",
+      "question": "Máy chủ trả về gì khi một lô chỉ chứa thông báo?",
+      "options": [
+        "Không có gì — không có byte nào được ghi",
+        "Một null cho mỗi thông báo",
+        "Một mảng rỗng",
+        "Một phản hồi null duy nhất"
+      ],
+      "correct": 0,
+      "explanation": "Quy tắc đặc tả: nếu mọi mục đều là thông báo, máy chủ giữ im lặng."
+    },
+    {
+      "stage": "post",
+      "question": "Một dòng với JSON bị hỏng đến giữa phiên. Điều gì xảy ra với các dòng tiếp theo?",
+      "options": [
+        "Chúng được đệm cho đến khi dòng bị hỏng được thử lại",
+        "Transport ghi một phản hồi -32700 và tiếp tục đọc dòng tiếp theo như mới",
+        "Transport đóng luồng",
+        "Tất cả đều bị từ chối với -32600"
+      ],
+      "correct": 1,
+      "explanation": "Lớp định dạng không được làm ô nhiễm luồng. Một lỗi phân tích có nghĩa là một phản hồi lỗi và vòng lặp tiếp tục."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao transport không tham khảo trực tiếp vào registry công cụ?",
+      "options": [
+        "Để giữ cho lớp transport chỉ có hình dạng JSON-RPC; trình xử lý kết nối transport với registry",
+        "Bởi vì registry là bất đồng bộ",
+        "Bởi vì registry giữ bí mật",
+        "Bởi vì transport chạy trong một quy trình khác"
+      ],
+      "correct": 0,
+      "explanation": "Transport giao tiếp qua đường truyền. Bộ phân phối (bài học tiếp theo) là nơi transport gặp registry gặp thời gian chờ."
+    }
+  ]
+}

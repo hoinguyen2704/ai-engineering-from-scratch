@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Eigenvector của một ma trận là gì?",
+      "options": [
+        "Một vector mà ma trận chỉ thay đổi kích thước (không bao giờ xoay) khi nhân",
+        "Các phần tử chéo của ma trận được biểu diễn dưới dạng vector",
+        "Hàng lớn nhất trong ma trận",
+        "Một vector vuông góc với tất cả các cột của ma trận"
+      ],
+      "correct": 0,
+      "explanation": "Một eigenvector v thỏa mãn Av = lambda*v, có nghĩa là ma trận A chỉ kéo dài v theo hệ số vô hướng lambda (eigenvalue) mà không thay đổi hướng của nó."
+    },
+    {
+      "stage": "pre",
+      "question": "Định thức của một ma trận biến đổi 2D đại diện cho điều gì về mặt hình học?",
+      "options": [
+        "Số lượng eigenvector mà ma trận có",
+        "Góc xoay được áp dụng bởi ma trận",
+        "Hệ số mà ma trận thay đổi diện tích",
+        "Trace của ma trận"
+      ],
+      "correct": 2,
+      "explanation": "Định thức đo lường mức độ mà biến đổi thay đổi diện tích. det=1 bảo tồn diện tích (xoay), det=2 gấp đôi diện tích, det=0 làm nén xuống một chiều thấp hơn, và det=-1 bảo tồn diện tích nhưng đảo ngược hướng."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao thứ tự của các biến đổi ma trận lại quan trọng? (tức là, tại sao R @ S khác với S @ R?)",
+      "options": [
+        "Một thứ tự tạo ra một ma trận lớn hơn thứ tự kia",
+        "Các định thức khác nhau cho mỗi thứ tự",
+        "Phép nhân ma trận không giao hoán: xoay rồi thay đổi kích thước cho kết quả khác với thay đổi kích thước rồi xoay",
+        "Phép cộng ma trận không giao hoán"
+      ],
+      "correct": 2,
+      "explanation": "Phép nhân ma trận không giao hoán. Xoay (1,0) 90 độ rồi thay đổi kích thước bằng (2,0.5) cho (0,0.5), nhưng thay đổi kích thước trước rồi xoay cho (0,2). Các phép toán hình học kết hợp khác nhau."
+    },
+    {
+      "stage": "post",
+      "question": "Trong một mạng nơ-ron hồi tiếp, điều gì xảy ra khi ma trận trọng số có các eigenvalue có độ lớn lớn hơn 1?",
+      "options": [
+        "Các eigenvalue hội tụ về 1 trong quá trình huấn luyện",
+        "Mạng trở nên ổn định hơn",
+        "Đầu ra bùng nổ theo cấp số nhân theo các bước thời gian (vấn đề gradient bùng nổ)",
+        "Mạng học nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "Nhân lặp lại bởi một ma trận khuếch đại các hướng eigenvalue. Eigenvalue > 1 gây ra sự tăng trưởng theo cấp số nhân (gradient bùng nổ), trong khi eigenvalue < 1 gây ra sự suy giảm theo cấp số nhân (gradient biến mất)."
+    },
+    {
+      "stage": "post",
+      "question": "Ma trận A = [[2, 1], [1, 2]] có các eigenvalue 3 và 1. Phân rã eigen A = V @ D @ V^(-1) tiết lộ điều gì?",
+      "options": [
+        "A có hạng 1 và ánh xạ tất cả các vector đến một đường thẳng",
+        "A tương đương với hai phép xoay",
+        "A nén tất cả các vector theo hệ số 2",
+        "A kéo dài không gian theo 3 lần theo hướng [1,1] và giữ nguyên hướng [1,-1]"
+      ],
+      "correct": 3,
+      "explanation": "Eigenvalue 3 với eigenvector [1,1] có nghĩa là A kéo dài 3 lần theo đường chéo. Eigenvalue 1 với eigenvector [1,-1] có nghĩa là A giữ nguyên đường chéo ngược. D chứa {3,1}, V chứa các eigenvector."
+    }
+  ]
+}

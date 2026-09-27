@@ -1,0 +1,78 @@
+{
+  "lesson": "24-skill-discovery-and-progressive-disclosure",
+  "title": "Khám Phá Kỹ Năng và Tiết Lộ Tiến Bộ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một host tìm thấy cùng một tên kỹ năng trong phạm vi dự án và người dùng. Điều gì xác định cái nào sẽ thắng?",
+      "options": [
+        "Chính sách ưu tiên phạm vi được tài liệu hóa của host",
+        "Thư mục có dấu thời gian mới nhất",
+        "Nội dung SKILL.md dài nhất",
+        "Động từ đầu tiên trong mô tả kỹ năng"
+      ],
+      "correct": 0,
+      "explanation": "Định dạng kỹ năng di động không tạo ra một thứ tự ưu tiên toàn cầu. Một host phải tuyên bố cách mà các phạm vi che khuất lẫn nhau và nên báo cáo các va chạm thay vì âm thầm dựa vào thứ tự lặp qua hệ thống tệp."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì thuộc về danh mục khám phá đầu tiên được gửi đến một mô hình trước khi triển khai?",
+      "options": [
+        "Mọi kịch bản, tài sản và tham chiếu đầy đủ",
+        "Một bản ghi danh tính ngắn gọn như tên và mô tả",
+        "Đầu ra từ việc chạy mọi kịch bản đóng gói",
+        "Chỉ dấu thời gian sửa đổi"
+      ],
+      "correct": 1,
+      "explanation": "Khám phá cấp một nên mang đủ siêu dữ liệu để định tuyến một nhiệm vụ mà không cần tải đầy đủ hướng dẫn. Nội dung và tài nguyên được tham chiếu sẽ được tiết lộ sau, điều này bảo vệ ngân sách ngữ cảnh và tránh thực thi sớm."
+    },
+    {
+      "stage": "check",
+      "question": "Chuỗi nào thực hiện tiết lộ tiến bộ đúng theo hợp đồng này?",
+      "options": [
+        "Tải tất cả nội dung, loại bỏ hầu hết, sau đó xây dựng danh mục",
+        "Đọc các tham chiếu trước, sau đó suy ra kỹ năng nào sở hữu chúng",
+        "Chạy các kịch bản, tải tài sản, sau đó khám phá tên",
+        "Danh mục siêu dữ liệu, tải nội dung SKILL.md đã chọn, sau đó đọc một tham chiếu cần thiết"
+      ],
+      "correct": 3,
+      "explanation": "Khám phá, kích hoạt và tải tài nguyên là các giai đoạn riêng biệt. Mỗi giai đoạn chỉ tiêu tốn nhiều ngữ cảnh hơn sau khi giai đoạn trước xác lập tính liên quan, vì vậy các nội dung và tham chiếu kỹ năng không liên quan vẫn nằm ngoài lời nhắc."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một bản sao có ưu tiên bằng nhau nên được báo cáo là mơ hồ?",
+      "options": [
+        "Bởi vì việc chọn theo thứ tự thư mục ngẫu nhiên khiến việc định tuyến không xác định và khó kiểm toán",
+        "Bởi vì mỗi va chạm có nghĩa là cả hai kỹ năng đều không hợp lệ YAML",
+        "Bởi vì các tên trùng lặp tự động nhận quyền truy cập mạng",
+        "Bởi vì phạm vi người dùng phải luôn thắng"
+      ],
+      "correct": 0,
+      "explanation": "Nếu hai ứng viên có cùng tên và cấp độ chính sách, thứ tự từ vựng hoặc lặp lại không có ý nghĩa quyền lực. Việc thất bại rõ ràng buộc host hoặc người dùng phải giải quyết danh tính thay vì tạo ra hành vi phụ thuộc vào môi trường."
+    },
+    {
+      "stage": "post",
+      "question": "Một SKILL.md tham chiếu `references/archive/schema.md` trong một gói chỉ cho phép tham chiếu một cấp độ. Xác thực nên làm gì?",
+      "options": [
+        "Tự động sao chép tệp vào bộ nhớ cache toàn cầu",
+        "Thực thi nó để khám phá xem nó có hữu ích không",
+        "Từ chối nó vì đây là chuỗi tham chiếu sâu hơn so với hợp đồng gói cho phép",
+        "Theo dõi nó vì mọi đường dẫn tương đối đều an toàn"
+      ],
+      "correct": 2,
+      "explanation": "Một hợp đồng một cấp độ cho phép các tệp hoặc đường dẫn trực tiếp như `references/schema.md`, không phải chuỗi lồng ghép theo kiểu đệ quy. Giới hạn giữ cho các gói có thể kiểm tra và chặn độ phức tạp kiểu duyệt trước khi nội dung được tải."
+    },
+    {
+      "stage": "post",
+      "question": "Phản hồi nào là hợp lý nhất khi một danh mục vượt quá ngân sách ngữ cảnh đã tuyên bố?",
+      "options": [
+        "Áp dụng giới hạn xác định, báo cáo các mục bị bỏ qua và cho phép khám phá hẹp hơn",
+        "Bỏ qua ngân sách bất cứ khi nào một kỹ năng có mô tả dài",
+        "Loại bỏ tên kỹ năng trong khi giữ nguyên nội dung hướng dẫn đầy đủ",
+        "Lấy mẫu ngẫu nhiên các mục trong mỗi lần chạy"
+      ],
+      "correct": 0,
+      "explanation": "Cắt bỏ hoặc bỏ qua xác định làm cho hành vi của danh mục có thể tái tạo và đo lường được. Báo cáo các mục bị bỏ qua bảo tồn khả năng quan sát, trong khi phạm vi hoặc tìm kiếm hẹp hơn có thể lấy lại các ứng viên không phù hợp với danh mục đầu tiên."
+    }
+  ]
+}

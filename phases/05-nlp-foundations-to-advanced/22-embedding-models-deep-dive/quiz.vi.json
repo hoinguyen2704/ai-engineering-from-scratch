@@ -1,0 +1,102 @@
+{
+  "lesson": "22-embedding-models-deep-dive",
+  "title": "Mô Hình Nhúng — Khám Phá Sâu Năm 2026",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Nhúng dày đặc là gì?",
+      "options": [
+        "Một vector kích thước cố định cho mỗi văn bản, trong đó độ tương đồng cosine xếp hạng các đoạn văn theo độ gần gũi ngữ nghĩa",
+        "Một ma trận căn chỉnh cấp độ token",
+        "Một trọng số thưa cho mỗi token từ vựng",
+        "Một đồ thị trên các tài liệu"
+      ],
+      "correct": 0,
+      "explanation": "Nhúng dày đặc cung cấp một vector cho mỗi văn bản (thường là 384-3072 chiều); cosine xếp hạng độ tương đồng."
+    },
+    {
+      "stage": "pre",
+      "question": "Học đại diện Matryoshka cho phép điều gì?",
+      "options": [
+        "Softmax nhanh hơn",
+        "Đào tạo đa ngôn ngữ",
+        "Tái đánh giá cross-encoder",
+        "Cắt ngắn một nhúng đã được đào tạo xuống N chiều đầu tiên và nhận được một nhúng nhỏ hơn vẫn hữu ích"
+      ],
+      "correct": 3,
+      "explanation": "Đào tạo Matryoshka làm cho N chiều đầu tiên của vector có thể sử dụng độc lập, cho phép cắt ngắn rẻ."
+    },
+    {
+      "stage": "check",
+      "question": "Nhúng đa vector (ColBERT) đánh giá các cặp truy vấn-tài liệu như thế nào?",
+      "options": [
+        "Cosine của các vector token trung bình",
+        "Cross-entropy",
+        "MaxSim: cho mỗi token truy vấn tìm token tài liệu tương tự nhất, sau đó cộng các giá trị cực đại",
+        "Khoảng cách của người vận chuyển"
+      ],
+      "correct": 2,
+      "explanation": "Tương tác muộn theo phong cách ColBERT sử dụng MaxSim trên các vector theo token."
+    },
+    {
+      "stage": "check",
+      "question": "BGE-M3 xuất ra đồng thời điều gì?",
+      "options": [
+        "Chỉ một vector thưa",
+        "Chỉ một vector dày đặc",
+        "Các đại diện dày đặc, thưa và đa vector (colbert) từ một mô hình trong một lần suy diễn duy nhất",
+        "Chỉ một vector colbert"
+      ],
+      "correct": 2,
+      "explanation": "BGE-M3 phát ra ba chế độ truy xuất từ một mô hình, hữu ích cho việc xếp hạng lai ghép."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bạn phải tái chuẩn hóa một vector đã cắt ngắn Matryoshka trước khi tính độ tương đồng cosine?",
+      "options": [
+        "Cắt ngắn thay đổi chuẩn của vector; nếu không tái chuẩn hóa, tích vô hướng không còn bằng cosine",
+        "Cosine không quan tâm đến chuẩn hóa",
+        "Cắt ngắn làm hỏng quá trình đào tạo",
+        "Chỉ yêu cầu bởi FAISS"
+      ],
+      "correct": 0,
+      "explanation": "Tái chuẩn hóa sau khi cắt ngắn phục hồi chuẩn đơn vị để tích vô hướng bằng cosine một lần nữa."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các mô hình BGE thường cần một chuỗi tiền tố ở phía truy vấn?",
+      "options": [
+        "Để nén các truy vấn",
+        "Các tiền tố thay đổi hành vi của bộ phân tách",
+        "Yêu cầu bởi FAISS",
+        "BGE đã được đào tạo với một lời nhắc truy vấn rõ ràng; việc bỏ qua nó sẽ mất 3-5 điểm hồi tưởng"
+      ],
+      "correct": 3,
+      "explanation": "Các mô hình BGE mong đợi một tiền tố 'Đại diện cho câu này để tìm kiếm...' trên các truy vấn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao MTEB là cần thiết nhưng không đủ để chọn một mô hình nhúng?",
+      "options": [
+        "MTEB chỉ bao phủ tiếng Anh",
+        "MTEB thưởng cho các mô hình lớn hơn",
+        "MTEB bỏ qua độ trễ",
+        "Xếp hạng bảng điều khiển là trung bình trên nhiều nhiệm vụ; miền cụ thể của bạn có thể khác, vì vậy luôn kiểm tra trên dữ liệu của bạn"
+      ],
+      "correct": 3,
+      "explanation": "MTEB trung bình trên các nhiệm vụ; đánh giá theo miền cụ thể có thể đảo ngược xếp hạng."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên thêm truy xuất thưa SPLADE bên cạnh các nhúng dày đặc?",
+      "options": [
+        "Chỉ trên các tập dữ liệu nhỏ",
+        "Bất cứ khi nào bộ mã hóa là đa ngôn ngữ",
+        "Khi các truy vấn nặng về từ khóa hoặc chứa các định danh/mã mà các nhúng dày đặc làm mờ",
+        "Bất cứ khi nào Matryoshka được sử dụng"
+      ],
+      "correct": 2,
+      "explanation": "SPLADE nắm bắt các khớp từ vựng/từ khóa mà các mô hình dày đặc có thể bỏ lỡ; kết hợp với dày đặc qua RRF."
+    }
+  ]
+}

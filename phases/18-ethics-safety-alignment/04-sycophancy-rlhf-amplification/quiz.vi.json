@@ -1,0 +1,78 @@
+{
+  "lesson": "04-sycophancy-rlhf-amplification",
+  "title": "Sycophancy như là Tăng cường RLHF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cái nào mô tả tốt nhất về sự nịnh bợ trong một mô hình ngôn ngữ?",
+      "options": [
+        "Chuyển đổi ngôn ngữ giữa cuộc trò chuyện",
+        "Từ chối trả lời bất kỳ câu hỏi nào về niềm tin của người dùng",
+        "Trích dẫn nguồn cho mọi tuyên bố",
+        "Đồng ý với một giả định đã nêu của người dùng bất kể sự thật của nó"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Shapira et al. (2026) chính thức hóa sự tăng cường nịnh bợ như một cơ chế hai giai đoạn. Giai đoạn 1 là gì?",
+      "options": [
+        "Bộ tối ưu thêm một thuật ngữ nịnh bợ vào hàm mất mát trực tiếp",
+        "Các hoàn thành nịnh bợ được đại diện quá mức trong số các đầu ra có phần thưởng cao của chính sách cơ bản",
+        "Người gán nhãn chọn rõ ràng các đầu ra nịnh bợ trong 100% các cặp",
+        "Sự nịnh bợ được mã hóa trong bộ phân tách"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao sự nịnh bợ được coi là giảm thiểu ngược trong bài học?",
+      "options": [
+        "Nó chỉ được quan sát trong các mô hình dưới 1B tham số",
+        "Nó theo dõi hàm mất mát huấn luyện theo chiều ngược lại",
+        "Nó giảm khi kích thước mô hình tăng lên",
+        "Nó tăng lên với kích thước mô hình và thời gian huấn luyện RLHF dài hơn, không giống như hầu hết các khả năng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cheng, Tramel et al. (Khoa học, tháng 3 năm 2026) tách biệt sự nịnh bợ khỏi sự trung thực bằng cách:",
+      "options": [
+        "Yêu cầu các mô hình tự xem xét lý do của chính chúng",
+        "Đo lường các khung niềm tin của người dùng so với niềm tin của bên thứ ba về cùng một tuyên bố thực tế",
+        "Chỉ sử dụng các câu hỏi trắc nghiệm",
+        "Chỉ kiểm tra trên các bài toán toán học"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự điều chỉnh hình phạt đồng ý mà Shapira et al. đề xuất là gì?",
+      "options": [
+        "Phạt chính sách khi KL của nó dưới một ngưỡng",
+        "Sắp xếp lại các đầu ra chỉ theo độ dài",
+        "Bỏ các cặp mà người dùng sai",
+        "Trừ đi một điểm số đồng ý được đo bằng bộ phân loại từ phần thưởng proxy: r'(x, y) = r(x, y) - alpha * agree(x, y)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự đánh đổi nào mà hình phạt đồng ý tạo ra khi alpha tăng lên?",
+      "options": [
+        "Chỉ có sự hữu ích thay đổi, sự nịnh bợ không bị ảnh hưởng",
+        "Sự nịnh bợ tăng lên vì bộ phân loại có độ nhiễu",
+        "Sự nịnh bợ giảm, nhưng sự đồng ý hợp pháp (mô hình có phần hơi trái ngược với các niềm tin đúng của người dùng) cũng giảm",
+        "Nó luôn cải thiện nghiêm ngặt cả sự nịnh bợ và sự hữu ích"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "04-glove-fasttext-subword",
+  "title": "GloVe, FastText, và Nhúng Subword",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "GloVe đã đóng góp gì so với Word2Vec?",
+      "options": [
+        "Một mạng nơ-ron sâu hơn",
+        "Nhúng n-gram subword",
+        "Phân tích trực tiếp ma trận đồng xuất hiện từ với một hàm mất mát có trọng số",
+        "Phân tách theo byte"
+      ],
+      "correct": 2,
+      "explanation": "GloVe phân tích ma trận đồng xuất hiện toàn cầu với một hàm mất mát log có trọng số được suy nghĩ kỹ lưỡng."
+    },
+    {
+      "stage": "pre",
+      "question": "FastText giải quyết vấn đề gì mà Word2Vec và GloVe không làm được?",
+      "options": [
+        "Giảm chi phí đào tạo",
+        "Chuyển giao đa ngôn ngữ",
+        "Giải nghĩa đa nghĩa",
+        "Tạo ra vector cho các từ chưa thấy bằng cách kết hợp các n-gram ký tự"
+      ],
+      "correct": 3,
+      "explanation": "FastText kết hợp một vector từ từ các n-gram subword của nó, vì vậy các từ OOV vẫn nhận được một vector hợp lý."
+    },
+    {
+      "stage": "check",
+      "question": "Trong GloVe, hàm trọng số f(x) = (x/x_max)^alpha đóng vai trò gì?",
+      "options": [
+        "Chọn mẫu âm",
+        "Chuẩn hóa vector về độ dài đơn vị",
+        "Khởi tạo trọng số ngẫu nhiên",
+        "Giảm trọng số các cặp cực kỳ thường gặp để chúng không chiếm ưu thế trong hàm mất mát"
+      ],
+      "correct": 3,
+      "explanation": "Hàm trọng số ngăn chặn các đồng xuất hiện phổ biến như (the, and) chiếm ưu thế trong quá trình đào tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Bước gộp BPE chọn cặp nào để kết hợp tiếp theo như thế nào?",
+      "options": [
+        "Một cặp ngẫu nhiên",
+        "Cặp đầu tiên theo thứ tự từ điển",
+        "Cặp token liền kề thường gặp nhất trong toàn bộ tập dữ liệu",
+        "Cặp có IDF cao nhất"
+      ],
+      "correct": 2,
+      "explanation": "BPE gộp lần lượt cặp liền kề thường gặp nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao GPT-2 sử dụng BPE cấp byte?",
+      "options": [
+        "Từ vựng cơ bản 256 byte bao phủ bất kỳ đầu vào nào, loại bỏ hoàn toàn từ ngoài từ vựng",
+        "Byte đào tạo nhanh hơn ký tự",
+        "Byte giữ nguyên kiểu chữ một cách ngầm định",
+        "BPE byte bỏ qua đào tạo gộp"
+      ],
+      "correct": 0,
+      "explanation": "Bắt đầu từ 256 byte có nghĩa là mọi chuỗi UTF-8 đều được phân tách; không có gì là OOV."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn nên sử dụng bộ phân tách nào khi tinh chỉnh một transformer đã được đào tạo trước?",
+      "options": [
+        "Luôn luôn BPE cấp byte",
+        "Luôn luôn SentencePiece",
+        "Bất kỳ bộ nào có từ vựng lớn nhất",
+        "Bộ phân tách chính xác mà mô hình đã được gửi kèm; sự không khớp sẽ làm hỏng các nhúng"
+      ],
+      "correct": 3,
+      "explanation": "Sự không khớp giữa bộ phân tách và mô hình sẽ âm thầm làm hỏng đầu vào; luôn luôn ghép bộ phân tách đã gửi kèm với mô hình của nó."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn sẽ chọn FastText thay vì GloVe cho các vector từ đã được đào tạo trước?",
+      "options": [
+        "Khi bạn cần một mô hình 50d",
+        "Khi độ trễ là chặt chẽ nhất",
+        "Khi tập dữ liệu rất nhỏ",
+        "Đối với các ngôn ngữ phong phú về hình thái hoặc các lĩnh vực có nhiều từ mới và lỗi chính tả thường xuyên"
+      ],
+      "correct": 3,
+      "explanation": "Cấu trúc subword của FastText xử lý các biến thể, từ mới và lỗi chính tả mà GloVe không thể."
+    },
+    {
+      "stage": "post",
+      "question": "Đơn vị nào tạo thành cơ sở của từ vựng WordPiece, BPE và SentencePiece?",
+      "options": [
+        "Câu",
+        "Toàn bộ từ",
+        "Đoạn văn",
+        "Các mảnh subword (ký tự, n-gram, hoặc các gộp đã học) dưới cấp độ từ"
+      ],
+      "correct": 3,
+      "explanation": "Cả ba đều là bộ phân tách subword; chúng khác nhau ở cách các gộp hoặc mảnh được học, không phải ở việc là subword."
+    }
+  ]
+}

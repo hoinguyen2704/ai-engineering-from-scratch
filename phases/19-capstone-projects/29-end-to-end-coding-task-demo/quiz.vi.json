@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/29-end-to-end-coding-task-demo",
+  "title": "Đại lý Lập trình Từ Đầu Đến Cuối trên Harness",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc bài học: tại sao bản demo từ đầu đến cuối thay thế LLM bằng một chính sách xác định?",
+      "options": [
+        "Các chính sách xác định luôn vượt trội hơn LLM trong các nhiệm vụ lập trình.",
+        "Bài học không thể chi trả chi phí suy diễn.",
+        "LLM quá chậm để chạy trong các bài kiểm tra.",
+        "Harness là thứ mà bài học đang kiểm tra; chính sách là phần thay thế được."
+      ],
+      "correct": 3,
+      "explanation": "Hợp đồng harness không quan tâm liệu chính sách là LLM hay máy trạng thái. Việc loại bỏ LLM sẽ loại bỏ mạng và độ biến thiên, biến bài học thành một bài kiểm tra tích hợp có thể tái tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Máy trạng thái của đại lý có năm trạng thái. Nó thực hiện chúng theo thứ tự nào trong một lần chạy bình thường?",
+      "options": [
+        "RUN_TESTS -> SURVEY -> INSPECT -> FIX -> VERIFY.",
+        "SURVEY -> RUN_TESTS -> INSPECT -> FIX -> VERIFY.",
+        "SURVEY -> FIX -> VERIFY -> RUN_TESTS -> INSPECT.",
+        "SURVEY -> INSPECT -> FIX -> RUN_TESTS -> VERIFY."
+      ],
+      "correct": 1,
+      "explanation": "Đại lý khảo sát dự án, chạy các bài kiểm tra, kiểm tra bài kiểm tra thất bại, sửa lỗi, sau đó xác minh. RUN_TESTS đến trước INSPECT vì sự thất bại của bài kiểm tra là tín hiệu mà chính sách đọc."
+    },
+    {
+      "stage": "check",
+      "question": "Lỗi của bộ công cụ đi kèm là một lỗi off-by-one trong src/fizz.py: range(1, n) thay vì range(1, n + 1). Chính sách quyết định áp dụng sửa lỗi ở đâu?",
+      "options": [
+        "Bên trong trạng thái SURVEY, bằng cách đọc tiêu đề tệp.",
+        "Ngoài máy trạng thái, trong chuỗi gate.",
+        "Bên trong trạng thái VERIFY, sau khi chạy lại.",
+        "Bên trong trạng thái INSPECT, sau khi lỗi bài kiểm tra đã chỉ định đầu ra mong đợi."
+      ],
+      "correct": 3,
+      "explanation": "INSPECT là nơi chính sách đọc bài kiểm tra thất bại và học hình dạng mong đợi. Sửa lỗi được xác định ở đó và được viết trong trạng thái FIX tiếp theo."
+    },
+    {
+      "stage": "check",
+      "question": "Mỗi cuộc gọi công cụ đi qua chuỗi thành phần nào theo thứ tự?",
+      "options": [
+        "ObservationLedger -> GateChain -> Sandbox -> SpanBuilder.",
+        "SpanBuilder -> GateChain -> Sandbox -> ObservationLedger.",
+        "GateChain -> SpanBuilder -> Sandbox -> ObservationLedger.",
+        "Sandbox -> GateChain -> SpanBuilder -> ObservationLedger."
+      ],
+      "correct": 2,
+      "explanation": "Gate trước (cho phép / từ chối), span tiếp theo (để từ chối cũng được ghi lại), sandbox thứ ba (chỉ nếu được cho phép), ledger cuối cùng (chỉ khi thành công). Mã bài học kết nối theo cách đó."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn thay thế chính sách xác định bằng một LLM thực sự. Thành phần nào của harness thay đổi?",
+      "options": [
+        "Sandbox phải được củng cố với seccomp.",
+        "Định dạng phơi bày Prometheus trở nên không tương thích.",
+        "Chuỗi gate phải được viết lại để xử lý tính ngẫu nhiên của LLM.",
+        "Không có gì trong harness thay đổi; chính sách là phần duy nhất thay thế."
+      ],
+      "correct": 3,
+      "explanation": "Điểm của bài học: harness là không phụ thuộc vào chính sách. Phần nối là giao diện next_action / observe. LLM cắm vào đó mà không chạm vào gate, sandbox, ledger, hoặc spans."
+    },
+    {
+      "stage": "post",
+      "question": "Bản demo khẳng định đại lý giải quyết bộ công cụ trong ít hơn 12 bước. Chính sách xác định sử dụng 5. Đại lý LLM thực sự có khả năng làm gì, và harness xử lý điều đó như thế nào?",
+      "options": [
+        "LLM không thể chạy bên trong harness này.",
+        "LLM cũng sử dụng 5 bước; harness không thay đổi.",
+        "Harness lặng lẽ mở rộng ngân sách.",
+        "LLM có thể sử dụng nhiều bước hơn; step_budget giới hạn vòng lặp và một lần chạy chưa giải quyết được báo cáo là thất bại với một halted_reason."
+      ],
+      "correct": 3,
+      "explanation": "Ngân sách bước là tiêu chí dừng rõ ràng, xác định. Một LLM lang thang sẽ bị giới hạn và báo cáo cho bạn biết chính xác lý do tại sao."
+    }
+  ]
+}

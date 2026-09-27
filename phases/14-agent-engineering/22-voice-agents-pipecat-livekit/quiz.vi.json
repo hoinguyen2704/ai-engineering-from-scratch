@@ -1,0 +1,90 @@
+{
+  "lesson": "22-voice-agents-pipecat-livekit",
+  "title": "Đại lý Giọng nói: Pipecat và LiveKit",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hai hướng dòng nào mà pipeline Pipecat sử dụng?",
+      "options": [
+        "Đọc và ghi",
+        "Nóng và lạnh",
+        "Vào và ra",
+        "HẠNG HẠT (nguồn đến đích) và HẠNG CAO (phản hồi, hủy, chen ngang)"
+      ],
+      "correct": 3,
+      "explanation": "Các khung dữ liệu chảy xuống hạ nguồn từ nguồn đến đích và lên hạ nguồn cho điều khiển và hủy bỏ."
+    },
+    {
+      "stage": "pre",
+      "question": "Pipeline giọng nói Pipecat chuẩn là gì?",
+      "options": [
+        "VAD -> STT -> LLM -> TTS -> vận chuyển",
+        "Âm thanh -> JSON -> SQL -> phản hồi",
+        "LLM -> nhúng -> truy xuất -> trả lời",
+        "TTS -> STT -> LLM -> VAD"
+      ],
+      "correct": 0,
+      "explanation": "VAD phát hiện hoạt động giọng nói, STT chuyển đổi văn bản, LLM phản hồi, TTS nói, vận chuyển giao hàng."
+    },
+    {
+      "stage": "check",
+      "question": "Hai lớp đại lý giọng nói nào mà LiveKit Agents cung cấp?",
+      "options": [
+        "BatchAgent và StreamAgent",
+        "TextAgent và SpeechAgent",
+        "MultimodalAgent (âm thanh trực tiếp) và VoicePipelineAgent (chuỗi STT/LLM/TTS)",
+        "LocalAgent và CloudAgent"
+      ],
+      "correct": 2,
+      "explanation": "MultimodalAgent sử dụng âm thanh trực tiếp (kiểu Realtime); VoicePipelineAgent sử dụng STT->LLM->TTS cho điều khiển cấp văn bản."
+    },
+    {
+      "stage": "check",
+      "question": "Barge-in là gì và nó được xử lý như thế nào?",
+      "options": [
+        "Một đỉnh chi phí LLM; giảm token",
+        "Người dùng chen ngang trong khi đại lý đang nói; các khung hủy UPSTREAM dừng TTS giữa câu",
+        "Thất bại Captcha; thử lại",
+        "Một sự cố của nhà cung cấp; chuyển vùng"
+      ],
+      "correct": 1,
+      "explanation": "Barge-in là sự gián đoạn của người dùng; hủy UPSTREAM là cách mà Pipecat xử lý nó một cách sạch sẽ."
+    },
+    {
+      "stage": "check",
+      "question": "Độ trễ end-to-end nào mà bài học mô tả là cao cấp?",
+      "options": [
+        "Khoảng 450-600 ms",
+        "Khoảng 1500 ms",
+        "Khoảng 50 ms",
+        "Khoảng 5000 ms"
+      ],
+      "correct": 0,
+      "explanation": "Các stack cao cấp thường rơi vào khoảng 450-600 ms; 800-1200 ms là phổ biến; trên 1500 ms cảm thấy bị lỗi."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì sẽ xảy ra nếu độ tin cậy của STT bị bỏ qua?",
+      "options": [
+        "Cuộc gọi trở nên rẻ hơn",
+        "Độ trễ cải thiện",
+        "TTS trở nên nhanh hơn",
+        "Các bản sao có độ tin cậy thấp nuôi dưỡng LLM như thể là chân lý, tạo ra các câu trả lời sai; kiểm soát độ tin cậy hoặc yêu cầu xác nhận"
+      ],
+      "correct": 3,
+      "explanation": "Xem xét STT có độ tin cậy thấp như sự thật là một chế độ thất bại hàng đầu của đại lý giọng nói."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học khuyến nghị cộng dồn độ trễ của các thành phần trước khi vận chuyển?",
+      "options": [
+        "Độ trễ là yêu cầu của WebRTC",
+        "Mỗi thành phần thêm 50-200 ms; tổng cộng xác định xem trải nghiệm có cảm thấy bị lỗi hay không",
+        "Các nhà cung cấp tính phí theo độ trễ",
+        "Nó đáp ứng yêu cầu tuân thủ"
+      ],
+      "correct": 1,
+      "explanation": "Cộng dồn chuỗi (VAD + STT + LLM + TTS + vận chuyển) trước khi vận chuyển; các mục tiêu là chặt chẽ."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì làm cho việc gỡ lỗi mã AI/ML khác biệt cơ bản so với việc gỡ lỗi một ứng dụng web thông thường?",
+      "options": [
+        "Mã AI luôn yêu cầu GPU để gỡ lỗi",
+        "Mã AI sử dụng các ngôn ngữ lập trình khác nhau",
+        "Lỗi AI thường không làm sập ứng dụng -- chúng âm thầm tạo ra kết quả không chính xác mà không có thông báo lỗi",
+        "Mã AI không thể được gỡ lỗi bằng các công cụ tiêu chuẩn như câu lệnh in"
+      ],
+      "correct": 2,
+      "explanation": "Các lỗi AI tồi tệ nhất tạo ra đầu ra trông hợp lệ. Một vòng lặp huấn luyện được cấu hình sai có thể chạy hàng giờ mà không có lỗi trong khi mô hình không học được gì hữu ích, khác với các ứng dụng web thường sập với các trace ngăn xếp."
+    },
+    {
+      "stage": "pre",
+      "question": "Profiler đo lường điều gì?",
+      "options": [
+        "Thời gian và bộ nhớ mà mỗi phần của mã tiêu thụ",
+        "Số lượng lỗi tồn tại trong mã nguồn",
+        "Liệu mã có tạo ra đầu ra chính xác hay không",
+        "Độ bao phủ mã của các bài kiểm tra đơn vị"
+      ],
+      "correct": 0,
+      "explanation": "Profilers đo lường mức tiêu thụ tài nguyên -- thời gian thực thi mỗi hàm, phân bổ bộ nhớ và sử dụng GPU -- giúp bạn tìm ra các điểm nghẽn và tối ưu hóa hiệu suất."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình của bạn đạt được độ chính xác 99% trên tập kiểm tra. Lỗi AI nào bạn nên nghi ngờ đầu tiên?",
+      "options": [
+        "Kích thước lô quá lớn",
+        "Rò rỉ dữ liệu -- mẫu kiểm tra có thể đã rò rỉ vào tập huấn luyện",
+        "Tốc độ học quá cao",
+        "Mô hình có quá nhiều tham số"
+      ],
+      "correct": 1,
+      "explanation": "Độ chính xác cao đáng ngờ thường chỉ ra rò rỉ dữ liệu -- sự chồng chéo giữa dữ liệu huấn luyện và kiểm tra, hoặc các đặc trưng chứa nhãn mục tiêu. Luôn kiểm tra sự chồng chéo giữa huấn luyện/kiểm tra."
+    },
+    {
+      "stage": "post",
+      "question": "Phát hiện phổ biến nhất khi phân tích thời gian của vòng lặp huấn luyện là gì?",
+      "options": [
+        "Phân bổ bộ nhớ GPU là điểm nghẽn",
+        "Quá trình lùi mất 90% thời gian",
+        "Tải dữ liệu mất nhiều thời gian hơn so với quá trình tiến và lùi cộng lại",
+        "Việc ghi nhật ký mất nhiều thời gian nhất"
+      ],
+      "correct": 2,
+      "explanation": "Tải dữ liệu thường mất hơn 60% thời gian huấn luyện khi num_workers=0 trong DataLoader. Giải pháp là thiết lập num_workers > 0 để tải dữ liệu song song với tính toán GPU."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn thấy loss NaN ở bước 500. Cách tiếp cận nào sẽ giúp bạn tìm ra nguyên nhân gốc rễ?",
+      "options": [
+        "Chuyển từ Adam sang bộ tối ưu SGD",
+        "Khởi động lại quá trình huấn luyện từ đầu với một seed ngẫu nhiên khác",
+        "Tăng kích thước lô để ổn định các gradient",
+        "Sử dụng detect_nan để kiểm tra NaN/Inf trong các gradient và thêm breakpoint() tại điểm thất bại"
+      ],
+      "correct": 3,
+      "explanation": "Đầu tiên xác định NƠI NaN xuất hiện bằng cách kiểm tra các gradient cho mỗi tham số. Một breakpoint có điều kiện tại bước NaN cho phép bạn kiểm tra các giá trị tensor một cách tương tác. Nguyên nhân phổ biến: tốc độ học quá cao, log(0), hoặc chia cho không."
+    }
+  ]
+}

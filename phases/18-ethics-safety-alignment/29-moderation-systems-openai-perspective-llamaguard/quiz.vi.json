@@ -1,0 +1,78 @@
+{
+  "lesson": "29-moderation-systems-openai-perspective-llamaguard",
+  "title": "Hệ thống Kiểm duyệt - OpenAI, Perspective, Llama Guard",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "OpenAI's omni-moderation-latest (2024) là gì?",
+      "options": [
+        "Một điểm cuối watermarking C2PA",
+        "Một bộ phân loại kiểm duyệt dựa trên GPT-4o xử lý văn bản và hình ảnh trong một lần gọi, trả về một sơ đồ phản hồi 13 danh mục (quấy rối, thù hận, tự hại, tình dục, bạo lực, bất hợp pháp, với các danh mục con), miễn phí cho hầu hết các nhà phát triển",
+        "Một mô hình thưởng RLHF",
+        "Một mô hình biên giới tập trung vào lý luận"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong số này, cái nào KHÔNG phải là một trong những danh mục cấp cao chính của OpenAI Moderation?",
+      "options": [
+        "can thiệp bầu cử",
+        "bạo lực",
+        "tự hại",
+        "quấy rối"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ba lớp của mẫu kiểm duyệt tiêu chuẩn 2026 là gì?",
+      "options": [
+        "Kiểm duyệt đầu vào (trước khi tạo), Kiểm duyệt đầu ra (sau khi tạo), Kiểm duyệt tùy chỉnh (quy tắc miền)",
+        "Kính viễn vọng / kính tiềm vọng / kính hiển vi",
+        "Cảm biến / phát hiện / harness",
+        "Bộ phân tách / mô hình / bộ không phân tách"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Perspective API (Google Jigsaw) chủ yếu được thiết kế để đánh giá điều gì?",
+      "options": [
+        "Phần thưởng trên sự hài lòng của người dùng",
+        "Chất lượng lý luận",
+        "Độ mạnh của watermark",
+        "Độc hại (với các chiều phụ độc hại nặng, xúc phạm, thô tục, đe dọa, tấn công danh tính) như một tiêu chuẩn kiểm duyệt nội dung trước thời kỳ LLM"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Một chế độ thất bại của kiểm duyệt chỉ đầu vào là gì?",
+      "options": [
+        "Nó không phát hiện được các lỗi đầu ra của mô hình hoặc ảo tưởng; các cuộc tấn công mã hóa (Bài học 12-14) có thể vượt qua hoàn toàn các bộ phân loại đầu vào",
+        "Nó không thể chạy trên GPU",
+        "Nó luôn chặn nội dung hợp pháp",
+        "Nó loại bỏ nhu cầu về các bộ phân loại đầu ra"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mục tiêu ngừng sử dụng và di chuyển của Azure Content Moderator là gì?",
+      "options": [
+        "Gộp vào Llama Guard 4",
+        "Thay thế bằng Perspective API",
+        "Ngừng sử dụng vào tháng 2 năm 2024, nghỉ hưu vào ngày 15 tháng 3 năm 2027; mục tiêu di chuyển là Azure AI Content Safety (dựa trên LLM, tích hợp với Azure OpenAI)",
+        "Ngừng sử dụng ngay lập tức mà không có sự thay thế"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

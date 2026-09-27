@@ -1,0 +1,78 @@
+{
+  "lesson": "06-mcp-fundamentals",
+  "title": "Cơ bản về MCP: Yêu cầu không trạng thái và JSON-RPC",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì tạo ra trạng thái giao thức giữa hai yêu cầu MCP 2026-07-28?",
+      "options": [
+        "Kết nối HTTP",
+        "Không có gì trong lõi giao thức",
+        "Mcp-Session-Id",
+        "Quá trình stdio"
+      ],
+      "correct": 1,
+      "explanation": "Lõi giao thức hiện đại là không trạng thái. Mỗi yêu cầu mang theo phiên bản và khả năng của riêng nó."
+    },
+    {
+      "stage": "check",
+      "question": "Hai trường params._meta nào là bắt buộc trên mỗi yêu cầu hiện đại?",
+      "options": [
+        "clientInfo và cacheScope",
+        "protocolVersion và clientCapabilities",
+        "sessionId và capabilities",
+        "serverInfo và ttlMs"
+      ],
+      "correct": 1,
+      "explanation": "Phiên bản giao thức và khả năng của khách hàng là bắt buộc. Danh tính của khách hàng được khuyến nghị."
+    },
+    {
+      "stage": "check",
+      "question": "Phương thức nào mà mỗi máy chủ MCP hiện đại phải triển khai để phát hiện trước?",
+      "options": [
+        "tools/list",
+        "initialize",
+        "server/discover",
+        "notifications/initialized"
+      ],
+      "correct": 2,
+      "explanation": "server/discover quảng bá các phiên bản, khả năng, hướng dẫn và danh tính của máy chủ được hỗ trợ."
+    },
+    {
+      "stage": "check",
+      "question": "Mã lỗi -32022 có nghĩa là gì?",
+      "options": [
+        "Lỗi nội bộ",
+        "Không khớp tiêu đề",
+        "Phương thức không tìm thấy",
+        "Phiên bản giao thức không được hỗ trợ"
+      ],
+      "correct": 3,
+      "explanation": "UnsupportedProtocolVersionError bao gồm phiên bản được yêu cầu và các phiên bản mà máy chủ hỗ trợ."
+    },
+    {
+      "stage": "post",
+      "question": "Kết quả nào yêu cầu ttlMs và cacheScope trong MCP 2026-07-28?",
+      "options": [
+        "Một lỗi JSON-RPC",
+        "Một kết quả tools/list",
+        "Một kết quả tools/call",
+        "Một thông báo hủy bỏ"
+      ],
+      "correct": 1,
+      "explanation": "Kết quả danh sách và resources/read là các kết quả có thể lưu cache với các gợi ý cache cần thiết."
+    },
+    {
+      "stage": "post",
+      "question": "Máy chủ nên chọn khả năng cho yêu cầu hiện tại như thế nào?",
+      "options": [
+        "Đọc chúng từ Mcp-Session-Id",
+        "Suy ra từ quá trình",
+        "Tái sử dụng tuyên bố của yêu cầu đầu tiên",
+        "Đọc chúng từ siêu dữ liệu yêu cầu hiện tại"
+      ],
+      "correct": 3,
+      "explanation": "Một máy chủ không được suy ra khả năng hiện đại từ trạng thái kết nối hoặc yêu cầu trước đó."
+    }
+  ]
+}

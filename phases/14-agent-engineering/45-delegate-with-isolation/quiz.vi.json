@@ -1,0 +1,78 @@
+{
+  "lesson": "45-delegate-with-isolation",
+  "title": "Ủy quyền với sự cách ly",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khi nào việc ủy quyền song song là hợp lý?",
+      "options": [
+        "Khi công việc có sự độc lập thực sự trong quyết định, con đường hoặc thời gian chờ",
+        "Đối với mọi nhiệm vụ trên mười phút",
+        "Bất cứ khi nào có nhiều tác nhân hơn",
+        "Chỉ dành cho tài liệu"
+      ],
+      "correct": 0,
+      "explanation": "Sự song song chỉ hữu ích khi các đơn vị có thể tiến triển mà không cần quyết định hoặc quyền sở hữu chung."
+    },
+    {
+      "stage": "check",
+      "question": "Sự cách ly hệ thống tệp không cung cấp đảm bảo nào?",
+      "options": [
+        "Quyền sở hữu thiết kế và đường dẫn độc quyền",
+        "Thực thi lệnh độc lập",
+        "Nhánh có thể khôi phục",
+        "Thư mục riêng biệt"
+      ],
+      "correct": 0,
+      "explanation": "Hai cây làm việc cách ly vẫn có thể thực hiện các thiết kế mâu thuẫn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao mỗi đơn vị công việc phải có chứng cứ?",
+      "options": [
+        "Để tránh việc chuyển giao",
+        "Để tăng cường tính đồng thời",
+        "Để người tích hợp nhận được chứng cứ có thể tái tạo",
+        "Để người lao động có thể tuyên bố thành công"
+      ],
+      "correct": 2,
+      "explanation": "Người tích hợp phải xác minh kết quả, không phải tin vào các tóm tắt."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì nên xảy ra khi hai đơn vị sở hữu các đường dẫn chồng chéo?",
+      "options": [
+        "Để người lao động cuối cùng thắng",
+        "Gộp mà không xem xét",
+        "Chạy chúng nhanh hơn",
+        "Chặn và thiết kế lại sự phân chia"
+      ],
+      "correct": 3,
+      "explanation": "Quyền sở hữu ghi chồng chéo tạo ra xung đột và sự mơ hồ có thể tránh được."
+    },
+    {
+      "stage": "post",
+      "question": "Tự chủ được hiệu chỉnh là gì?",
+      "options": [
+        "Công việc thủ công chỉ",
+        "Tự do nơi chứng cứ và khả năng quay lại mạnh mẽ, điểm kiểm tra nơi hậu quả cao",
+        "Tự động hóa hoàn toàn",
+        "Phê duyệt ngẫu nhiên"
+      ],
+      "correct": 1,
+      "explanation": "Quyền lực nên theo hậu quả và khả năng đảo ngược."
+    },
+    {
+      "stage": "post",
+      "question": "Trách nhiệm cuối cùng của người tích hợp là gì?",
+      "options": [
+        "Xóa các chuyển giao",
+        "Chọn một mô hình lớn hơn",
+        "Viết lại mọi đơn vị",
+        "Chạy cổng xác minh toàn bộ giữa các đơn vị và thực thi phạm vi"
+      ],
+      "correct": 3,
+      "explanation": "Chứng cứ đơn vị không thay thế chứng cứ tích hợp từ đầu đến cuối."
+    }
+  ]
+}

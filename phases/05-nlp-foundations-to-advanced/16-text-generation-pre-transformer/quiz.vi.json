@@ -1,0 +1,102 @@
+{
+  "lesson": "16-text-generation-pre-transformer",
+  "title": "Tạo văn bản trước Transformers — Mô hình ngôn ngữ N-gram",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mô hình ngôn ngữ n-gram ước lượng cái gì?",
+      "options": [
+        "Embedding tài liệu",
+        "Khoảng cách chỉnh sửa giữa các từ",
+        "P(từ tiếp theo | n-1 từ trước) từ thống kê đếm",
+        "P(nhãn | tài liệu)"
+      ],
+      "correct": 2,
+      "explanation": "Mô hình n-gram ước lượng P(w | n-1 từ cuối) thông qua số lần xuất hiện đã đếm."
+    },
+    {
+      "stage": "pre",
+      "question": "Vấn đề nào mà smoothing giải quyết trong các mô hình n-gram?",
+      "options": [
+        "Độ chính xác số",
+        "Gán xác suất bằng không cho các n-gram không thấy trong quá trình huấn luyện, điều này làm cho xác suất câu trở thành bằng không",
+        "Sử dụng bộ nhớ",
+        "Sự không khớp trong phân đoạn"
+      ],
+      "correct": 1,
+      "explanation": "Smoothing phân bổ lại khối lượng xác suất để các n-gram không thấy nhận được xác suất khác không."
+    },
+    {
+      "stage": "check",
+      "question": "Nhận thức nào làm cho smoothing Kneser-Ney tốt hơn so với giảm giá trị tuyệt đối ngây thơ?",
+      "options": [
+        "Nó sử dụng n lớn hơn",
+        "Nó sử dụng TF-IDF",
+        "Nó sử dụng gradient descent",
+        "Nó ước lượng phân phối bậc thấp hơn với xác suất tiếp diễn (số ngữ cảnh khác nhau mà một từ xuất hiện) thay vì tần suất thô"
+      ],
+      "correct": 3,
+      "explanation": "Xác suất tiếp diễn ghi nhận sự đa dạng ngữ cảnh, không chỉ là số đếm thô."
+    },
+    {
+      "stage": "check",
+      "question": "Perplexity đo lường cái gì?",
+      "options": [
+        "Số lượng n-gram khác nhau",
+        "exp của log-likelihood âm trung bình trên mỗi token trong tập kiểm tra giữ lại; giá trị thấp hơn thì tốt hơn",
+        "Cross-entropy của các nhãn",
+        "Thông lượng của việc tạo ra"
+      ],
+      "correct": 1,
+      "explanation": "Perplexity = exp(- trung bình log P); giá trị thấp hơn có nghĩa là mô hình ít ngạc nhiên hơn với văn bản kiểm tra."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tập huấn luyện và tập kiểm tra phải sử dụng phân đoạn giống nhau khi so sánh các số liệu perplexity?",
+      "options": [
+        "Để tránh OOV",
+        "Perplexity phụ thuộc vào sơ đồ phân đoạn; các bộ phân đoạn không khớp tạo ra các điểm số không thể so sánh",
+        "Yêu cầu bởi gradient descent",
+        "Để kiểm soát kích thước batch"
+      ],
+      "correct": 1,
+      "explanation": "Các phân đoạn khác nhau thay đổi số lượng token và xác suất, làm cho các giá trị perplexity không thể so sánh."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các câu được tạo ra từ trigram-LM lại cảm thấy trôi chảy cục bộ nhưng không nhất quán toàn cầu?",
+      "options": [
+        "Ngữ cảnh trigram cục bộ hướng dẫn mỗi từ tiếp theo nhưng mô hình không có bộ nhớ dài hạn vượt quá n-1 token",
+        "Chúng bỏ qua dấu câu",
+        "Chúng sử dụng smoothing Laplace",
+        "Beam search thất bại"
+      ],
+      "correct": 0,
+      "explanation": "Điều kiện chỉ dựa trên n-1 token cuối làm cho sự nhất quán dài hạn trở thành ngẫu nhiên."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình n-gram vẫn được sử dụng trong sản xuất ở đâu vào năm 2026?",
+      "options": [
+        "Dịch đa ngôn ngữ",
+        "Tóm tắt",
+        "Chatbot mở",
+        "Các đường dẫn nhạy cảm về độ trễ như tái đánh giá nhận diện giọng nói và tự động hoàn thành trên thiết bị thông qua các thư viện như KenLM"
+      ],
+      "correct": 3,
+      "explanation": "Mô hình n-gram kiểu KenLM vẫn phục vụ như các thành phần nhanh trên thiết bị hoặc tái đánh giá."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc tính toán một baseline n-gram trước khi tuyên bố một LM thần kinh 'tốt' vẫn được khuyến nghị?",
+      "options": [
+        "Nó tăng tốc độ huấn luyện",
+        "Yêu cầu bởi ROUGE",
+        "Nó loại bỏ OOV",
+        "Nếu một LM transformer không vượt qua một baseline Kneser-Ney đã tinh chỉnh với một khoảng cách lớn trên cùng một phân đoạn, có điều gì đó không ổn trong quy trình huấn luyện"
+      ],
+      "correct": 3,
+      "explanation": "Các baseline KN mạnh một cách đáng ngạc nhiên; một LM thần kinh nên thắng với một khoảng cách lớn hoặc bạn có một lỗi."
+    }
+  ]
+}

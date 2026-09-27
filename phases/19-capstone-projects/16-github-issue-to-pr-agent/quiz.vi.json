@@ -1,0 +1,90 @@
+{
+  "lesson": "16-github-issue-to-pr-agent",
+  "title": "Capstone 16 — Tác nhân Tự động Chuyển đổi Vấn đề GitHub thành PR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tác nhân lập trình đám mây bất đồng bộ được kích hoạt như thế nào trong sản xuất?",
+      "options": [
+        "Một webhook GitHub được kích hoạt bởi nhãn vấn đề hoặc bình luận PR, được gửi đến một worker sandbox",
+        "Một tệp được tải lên thủ công",
+        "Một phiên SSH kéo dài vào một VM",
+        "Một tác vụ cron đã lên lịch truy cập vào repo"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao tác nhân phải chạy với mã thông báo cài đặt GitHub App ngắn hạn thay vì mã thông báo truy cập cá nhân?",
+      "options": [
+        "Mã thông báo truy cập cá nhân không thể mở PR",
+        "Mã thông báo App cấp quyền truy cập chi tiết, có phạm vi, và ngắn hạn phù hợp cho các worker theo tác vụ",
+        "Apps hoàn toàn tránh được giới hạn tỷ lệ của GitHub",
+        "Apps yêu cầu ít mã hơn so với PATs"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hai biện pháp bảo vệ nào ngăn tác nhân ghi đè lên main?",
+      "options": [
+        "Vô hiệu hóa git trên worker",
+        "Bảo vệ nhánh yêu cầu không được đẩy trực tiếp hoặc đẩy cưỡng bức lên main, với app không nằm trong danh sách bỏ qua",
+        "Yêu cầu một captcha cho mỗi lần đẩy",
+        "Mã hóa repo trước khi sao chép"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bảo vệ theo đường dẫn cho .github/workflows được thực thi tại worker thay vì như một quyền của GitHub App?",
+      "options": [
+        ".github/workflows là một đường dẫn ảo",
+        "Quyền của GitHub App không có phạm vi theo đường dẫn, vì vậy việc kiểm tra danh sách cho phép của worker trên sự khác biệt đề xuất là nơi đúng để thực thi",
+        "Bảo vệ theo đường dẫn là không thể ở bất kỳ hình thức nào",
+        "Các workflows được lưu trữ bên ngoài repo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Giai đoạn nào xảy ra sau khi vòng lặp của tác nhân kết thúc, trước khi mở một PR?",
+      "options": [
+        "Mô hình người đánh giá viết lại sự khác biệt",
+        "PR được mở ngay lập tức mà không có kiểm tra",
+        "CI đầy đủ chạy trong sandbox; delta bao phủ được tính toán; các PR có sự hồi quy vượt quá ngưỡng được gán nhãn cần xem xét",
+        "Repo được đẩy cưỡng bức lên main"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Những điều chỉnh ngân sách nào mà bộ điều phối thực thi cho mỗi repo mỗi ngày?",
+      "options": [
+        "Chỉ một giới hạn lượt",
+        "Một trần chi phí cho mỗi PR cộng với số lượng tối đa PR cho mỗi repo mỗi ngày",
+        "Không giới hạn PR và chi phí không giới hạn",
+        "Chỉ một giới hạn thời gian thực"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Nội dung nào được đưa vào thân PR mà tác nhân đăng tải?",
+      "options": [
+        "Lý do, tóm tắt sự khác biệt, URL theo dõi, chi phí, và số lượt để người đánh giá có thể kiểm tra và theo dõi",
+        "Chỉ sự khác biệt",
+        "Không có gì; PR có thân rỗng",
+        "Chỉ một nhật ký thay đổi được tạo ra"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

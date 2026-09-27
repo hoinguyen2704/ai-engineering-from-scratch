@@ -1,0 +1,78 @@
+{
+  "lesson": "16-mcp-security-oauth-2-1",
+  "title": "Ủy quyền MCP: CIMD, Ràng buộc Nhà phát hành, PKCE và Tăng cường",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cơ chế nào được ưa chuộng cho việc đăng ký khách hàng MCP OAuth mới vào ngày 2026-07-28?",
+      "options": [
+        "Mã truy cập trong URL",
+        "Mcp-Session-Id",
+        "Tài liệu Metadata ID Khách hàng",
+        "Đăng ký Khách hàng Động"
+      ],
+      "correct": 2,
+      "explanation": "CIMD được ưa chuộng; DCR đã bị ngừng sử dụng và được giữ lại như một con đường tương thích."
+    },
+    {
+      "stage": "check",
+      "question": "Loại ứng dụng nào nên được một khách hàng desktop với chuyển hướng loopback khai báo trong quá trình DCR fallback?",
+      "options": [
+        "web",
+        "không trạng thái",
+        "native",
+        "bí mật"
+      ],
+      "correct": 2,
+      "explanation": "Khách hàng desktop, di động, dòng lệnh và loopback là các ứng dụng native."
+    },
+    {
+      "stage": "check",
+      "question": "Khách hàng phải làm gì với giá trị iss trong phản hồi ủy quyền?",
+      "options": [
+        "Chuẩn hóa nó và so sánh tên miền",
+        "Lưu trữ nó như clientInfo",
+        "Bỏ qua nó sau khi PKCE thành công",
+        "So sánh chính xác với nhà phát hành đã ghi trước khi sử dụng phản hồi"
+      ],
+      "correct": 3,
+      "explanation": "Kiểm tra nhà phát hành theo RFC 9207 ngăn chặn sự nhầm lẫn phản hồi ủy quyền giữa các nhà phát hành."
+    },
+    {
+      "stage": "check",
+      "question": "Khách hàng nên khóa thông tin ủy quyền và mã truy cập OAuth như thế nào?",
+      "options": [
+        "Thông tin ủy quyền do nhà phát hành cấp và mã do nhà phát hành cộng với tài nguyên",
+        "Tất cả các đăng ký và mã dưới một tên khách hàng toàn cầu",
+        "Chỉ theo tên hiển thị của máy chủ",
+        "Theo định danh phiên giao thức"
+      ],
+      "correct": 0,
+      "explanation": "Khóa nhà phát hành và tài nguyên ngăn chặn thông tin ủy quyền đã cấp từ việc vượt qua các cơ quan an ninh hoặc đối tượng. Một URL CIMD tự lưu trữ vẫn giữ được tính di động."
+    },
+    {
+      "stage": "post",
+      "question": "Một tài nguyên trả về 403 với ghi chú phạm vi:delete. Bước tiếp theo đúng là gì?",
+      "options": [
+        "Thêm ghi chú:delete cục bộ mà không cần ủy quyền",
+        "Giải thích phạm vi, thu thập sự đồng ý, ủy quyền cho nó, sau đó thử lại với một id yêu cầu mới",
+        "Gửi mã MCP đến một API hạ nguồn",
+        "Tái sử dụng mã hiện tại và bỏ qua thách thức"
+      ],
+      "correct": 1,
+      "explanation": "Tăng cường có được một mã ủy quyền mới trước khi thử lại thao tác."
+    },
+    {
+      "stage": "post",
+      "question": "URL metadata RFC 9728 cho tài nguyên MCP https://notes.example.com/mcp là gì?",
+      "options": [
+        "https://notes.example.com/.well-known/oauth-protected-resource/mcp",
+        "https://auth.example.com/.well-known/oauth-protected-resource",
+        "https://notes.example.com/.well-known/oauth-protected-resource",
+        "https://notes.example.com/mcp/.well-known/oauth-protected-resource"
+      ],
+      "correct": 0,
+      "explanation": "RFC 9728 bảo tồn đường dẫn tài nguyên được bảo vệ sau đoạn well-known, vì vậy phần đuôi /mcp là cần thiết."
+    }
+  ]
+}

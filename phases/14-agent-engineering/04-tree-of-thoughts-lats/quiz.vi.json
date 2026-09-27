@@ -1,0 +1,90 @@
+{
+  "lesson": "04-tree-of-thoughts-lats",
+  "title": "Cây của Những Suy Nghĩ và LATS: Tìm Kiếm Cẩn Thận",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao chuỗi suy nghĩ gặp khó khăn trong Game of 24?",
+      "options": [
+        "Một bước đi tuyến tính không thể quay lại khi một bước sớm sai, do đó các bước sau làm tăng thêm lỗi",
+        "CoT yêu cầu một công cụ máy tính mà GPT-4 không có",
+        "Mô hình không thể nhân các số nguyên",
+        "Lời nhắc quá ngắn"
+      ],
+      "correct": 0,
+      "explanation": "Không có nhánh, một biểu thức con sai ở giai đoạn đầu làm hỏng phần còn lại của chuỗi; tài liệu chỉ đo được 4 phần trăm cho CoT."
+    },
+    {
+      "stage": "pre",
+      "question": "Một nút trong tìm kiếm Cây của Những Suy Nghĩ là gì?",
+      "options": [
+        "Một công cụ được đăng ký với thời gian chạy",
+        "Một cập nhật trọng số trong quá trình tinh chỉnh",
+        "Một token được tạo ra bởi mô hình",
+        "Một bước hoặc suy nghĩ trung gian nhất quán, với K khả năng mở rộng con"
+      ],
+      "correct": 3,
+      "explanation": "ToT coi lý luận như một cái cây, trong đó mỗi nút là một suy nghĩ trung gian có thể mở rộng thành K con."
+    },
+    {
+      "stage": "check",
+      "question": "Trong ba vai trò của LATS cho LLM, vai trò nào KHÔNG phải là một trong số đó?",
+      "options": [
+        "Người tự phản ánh viết những suy nghĩ về thất bại",
+        "Bộ tối ưu hóa cập nhật trọng số mô hình giữa các lần triển khai",
+        "Hàm giá trị chấm điểm các quỹ đạo một phần",
+        "Chính sách đề xuất các hành động tiếp theo"
+      ],
+      "correct": 1,
+      "explanation": "LATS không có độ dốc; ba vai trò của LLM là chính sách, giá trị và người tự phản ánh. Không có cập nhật trọng số."
+    },
+    {
+      "stage": "check",
+      "question": "Hãy nêu bốn giai đoạn MCTS mà bài học liệt kê.",
+      "options": [
+        "Mẫu, Chấm điểm, Sắp xếp, Gửi",
+        "Lập kế hoạch, Thực hiện, Phản ánh, Dừng",
+        "Chọn, Mở rộng, Mô phỏng, Lan truyền ngược",
+        "Tìm kiếm, Tổng hợp, Tổng hợp-Lại, Dừng"
+      ],
+      "correct": 2,
+      "explanation": "MCTS tiến hành theo chọn, mở rộng, mô phỏng, lan truyền ngược cho mỗi lần lặp."
+    },
+    {
+      "stage": "check",
+      "question": "Trong UCT, vai trò của hằng số khám phá c là gì?",
+      "options": [
+        "Nó điều chỉnh ước lượng giá trị Q",
+        "Nó đặt độ sâu tối đa của cây",
+        "Nó kiểm soát số lượng lần triển khai",
+        "Nó cân nhắc thuật ngữ khám phá sqrt(ln N / n) so với thuật ngữ khai thác Q"
+      ],
+      "correct": 3,
+      "explanation": "c cân bằng khai thác (Q) với thuật ngữ khám phá; điều chỉnh theo từng nhiệm vụ."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào tìm kiếm có hại so với một quỹ đạo đơn lẻ?",
+      "options": [
+        "Bất cứ khi nào token rẻ",
+        "Khi nhiệm vụ là tạo mã",
+        "Khi nhiệm vụ liên quan đến nhiều câu trả lời đúng",
+        "Khi người đánh giá ồn ào và có một câu trả lời đúng duy nhất, do đó tìm kiếm hội tụ vào một câu trả lời sai có điểm tốt"
+      ],
+      "correct": 3,
+      "explanation": "Một hàm giá trị ồn ào cộng với một câu trả lời đúng duy nhất chính là khi tìm kiếm bị quá khớp với tiếng ồn."
+    },
+    {
+      "stage": "post",
+      "question": "Khoảng bao nhiêu mức sử dụng token bạn nên dự trù cho ToT trên Game of 24 so với CoT?",
+      "options": [
+        "100x đến 1000x",
+        "Ít hơn CoT do cắt tỉa",
+        "Khoảng 2x",
+        "Khoảng 10x"
+      ],
+      "correct": 0,
+      "explanation": "Bài học trích dẫn chi phí token 100-1000x cho ToT trên Game of 24 so với CoT."
+    }
+  ]
+}

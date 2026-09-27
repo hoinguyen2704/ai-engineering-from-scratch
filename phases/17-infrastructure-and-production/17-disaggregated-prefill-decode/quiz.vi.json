@@ -1,0 +1,78 @@
+{
+  "lesson": "17-disaggregated-prefill-decode",
+  "title": "Disaggregated Prefill/Decode — NVIDIA Dynamo và llm-d",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao prefill và decode lại muốn cấu hình GPU tối ưu khác nhau?",
+      "options": [
+        "Prefill phải chạy trên AMD và decode trên NVIDIA",
+        "Chúng sử dụng các trọng số mô hình khác nhau",
+        "Prefill bị giới hạn bởi thông lượng matmul; decode bị giới hạn bởi băng thông HBM, vì vậy việc đặt chúng cùng nhau lãng phí một tài nguyên",
+        "Decode yêu cầu băng thông mạng nhiều hơn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "NVIDIA Dynamo sử dụng phương thức nào để di chuyển KV cache giữa các pool prefill và decode?",
+      "options": [
+        "Chỉ gRPC bidi",
+        "NIXL (RDMA/InfiniBand khi có sẵn, TCP dự phòng)",
+        "HTTP thông thường",
+        "Hệ thống tệp chia sẻ trên NFS"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào việc phân tách không mang lại lợi ích theo bài học?",
+      "options": [
+        "RAG với 8K+ tiền tố",
+        "Tải công việc MoE trên Blackwell",
+        "Phục vụ đa người dùng với các prompt hệ thống chia sẻ",
+        "Các prompt dưới 512 token và đầu ra dưới 200 token, nơi mà thuế chuyển giao KV chiếm ưu thế hơn lợi ích"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt kiến trúc cốt lõi giữa Dynamo và llm-d là gì?",
+      "options": [
+        "Dynamo là mã nguồn mở; llm-d là mã nguồn đóng",
+        "Dynamo chạy trên CPU; llm-d chạy trên GPU",
+        "Dynamo là một bộ điều phối trên vLLM/SGLang/TRT-LLM; llm-d là bản địa Kubernetes với prefill/decode/router như các dịch vụ độc lập",
+        "Dynamo yêu cầu AMD; llm-d yêu cầu NVIDIA"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Các thành phần nào của Dynamo tự động điều chỉnh tỷ lệ prefill:decode cho một SLO?",
+      "options": [
+        "Các kernel Marlin",
+        "Planner Profiler và SLA Planner",
+        "Cluster Autoscaler",
+        "Proxy sidecar và bộ lọc Envoy"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Phân tách tương tác như thế nào với định tuyến nhận thức cache từ Giai đoạn 17 · 11?",
+      "options": [
+        "Phân tách hoàn toàn vô hiệu hóa việc tái sử dụng KV cache",
+        "Bộ định tuyến nhận thức cache có thể đưa một yêu cầu vào pool decode đã giữ tiền tố của nó; khi không có nó sẽ chảy prefill -> decode, vì vậy hai cái này kết hợp lại",
+        "Chúng là loại trừ lẫn nhau",
+        "Định tuyến nhận thức cache chỉ dành cho phục vụ cùng nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

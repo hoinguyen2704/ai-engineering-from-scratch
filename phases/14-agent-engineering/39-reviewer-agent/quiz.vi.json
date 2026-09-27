@@ -1,0 +1,90 @@
+{
+  "lesson": "39-reviewer-agent",
+  "title": "Đại diện đánh giá: Tách biệt Builder khỏi Marker",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao builder không thể đánh giá công việc của chính mình một cách đáng tin cậy?",
+      "options": [
+        "Nó hết token",
+        "Mô hình từ chối tự đánh giá",
+        "Chấp nhận là cần thiết nhưng không đủ; sự phù hợp với vấn đề, kỷ luật phạm vi, giả định đã được tài liệu hóa và sự sẵn sàng chuyển giao cần một vai trò khác với các đầu vào khác",
+        "Nó mất xác thực"
+      ],
+      "correct": 2,
+      "explanation": "Khoảng cách giữa builder và reviewer là nơi sự đáng tin cậy tồn tại; chấp nhận chỉ chứng minh một phiên bản yếu hơn."
+    },
+    {
+      "stage": "pre",
+      "question": "Cái nào KHÔNG phải là một trong năm chiều đánh giá?",
+      "options": [
+        "Độ trễ suy diễn",
+        "Sự phù hợp với vấn đề",
+        "Kỷ luật phạm vi",
+        "Chất lượng xác minh"
+      ],
+      "correct": 0,
+      "explanation": "Năm chiều là sự phù hợp với vấn đề, kỷ luật phạm vi, giả định, chất lượng xác minh, sự sẵn sàng chuyển giao."
+    },
+    {
+      "stage": "check",
+      "question": "Sự tách biệt vai trò yêu cầu điều gì?",
+      "options": [
+        "Một prompt hệ thống khác và các đầu vào khác; cùng một mô hình có thể đảm nhận cả hai vai trò nếu tư thế thay đổi và reviewer không có quyền ghi vào sự khác biệt",
+        "Một mô hình khác",
+        "Một tài khoản mới",
+        "Phần cứng vật lý khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Kỷ luật nằm ở tư thế và đầu vào, không phải ở danh tính mô hình."
+    },
+    {
+      "stage": "check",
+      "question": "Kiến trúc đánh giá của Cloudflare năm 2026 trông như thế nào?",
+      "options": [
+        "Hai reviewer theo vòng tròn",
+        "Tối đa bảy reviewer chuyên gia song song dưới một Điều phối viên Đánh giá mà loại bỏ trùng lặp phát hiện; mô hình hàng đầu chỉ dành cho điều phối viên, các cấp rẻ hơn cho chuyên gia",
+        "Một reviewer lớn",
+        "LLM tuần tự đơn"
+      ],
+      "correct": 1,
+      "explanation": "Cloudflare đã thực hiện 131,246 phiên đánh giá trong 30 ngày sử dụng kiến trúc chuyên gia + điều phối viên."
+    },
+    {
+      "stage": "check",
+      "question": "Cái nào trong số này KHÔNG phải là một trong bốn thiên kiến LLM-judge mà bài học liệt kê?",
+      "options": [
+        "Tính cục bộ của vector",
+        "Thiên kiến độ dài (các đầu ra dài hơn được đánh giá cao hơn)",
+        "Sở thích bản thân (cùng một gia đình mô hình)",
+        "Thiên kiến vị trí (A,B so với B,A không nhất quán trong thứ tự)"
+      ],
+      "correct": 0,
+      "explanation": "Bốn thiên kiến là vị trí, độ dài, sở thích bản thân, thẩm quyền; tính cục bộ của vector không phải là một trong số đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tập hợp hiệu chỉnh là gì?",
+      "options": [
+        "Một tập hợp dữ liệu huấn luyện mới",
+        "10-20 kết thúc nhiệm vụ lịch sử với phán quyết đúng đã biết; chạy lại trên mỗi thay đổi prompt; nếu sự đồng thuận của reviewer giảm xuống dưới 80%, hãy sửa đổi rubic trước khi giao hàng",
+        "Một công cụ thử nghiệm A/B",
+        "Một chỉ mục vector"
+      ],
+      "correct": 1,
+      "explanation": "Các tập hợp hiệu chỉnh giữ cho reviewer trung thực; nếu sự đồng thuận trôi dạt, bạn sửa đổi rubic, không phải dữ liệu."
+    },
+    {
+      "stage": "post",
+      "question": "Báo cáo của reviewer tích hợp với phần còn lại của bàn làm việc ở đâu?",
+      "options": [
+        "Nó thay thế xác minh",
+        "Nó chỉ gửi đến người quản lý",
+        "Nó được gộp vào gói chuyển giao (Bài học 40); đánh giá của con người bắt đầu từ báo cáo, không phải từ một trang trắng",
+        "Nó ghi đè lên cổng"
+      ],
+      "correct": 2,
+      "explanation": "Báo cáo đánh giá cung cấp thông tin cho việc chuyển giao để phiên tiếp theo và reviewer con người bắt đầu từ một phán quyết đã viết."
+    }
+  ]
+}

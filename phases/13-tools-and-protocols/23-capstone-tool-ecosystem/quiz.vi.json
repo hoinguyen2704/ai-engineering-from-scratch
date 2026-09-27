@@ -1,0 +1,78 @@
+{
+  "lesson": "23-capstone-tool-ecosystem",
+  "title": "Capstone: Hệ sinh thái công cụ không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Chạy thành công của bộ công cụ stdlib trong bài học này chứng minh điều gì?",
+      "options": [
+        "Luồng chính sách và dữ liệu trong quá trình hoạt động đã hoạt động như đã khẳng định",
+        "Một phương tiện MCP thực đã hoàn tất khởi tạo",
+        "Một máy chủ ủy quyền OAuth đã phát hành một mã thông báo hợp lệ",
+        "Một bộ thu đã nhận mọi khoảng thời gian OpenTelemetry"
+      ],
+      "correct": 0,
+      "explanation": "Bộ công cụ sử dụng các hàm Python, mã thông báo tĩnh, các đối tượng mẫu và các khoảng thời gian trong bộ nhớ. Nó xác thực các ranh giới cục bộ trong khi để lại tích hợp giao thức, ủy quyền, xuất khẩu, trình duyệt và sandbox cho các bài kiểm tra sau."
+    },
+    {
+      "stage": "check",
+      "question": "Luồng nào phù hợp với phiên bản MCP 2026-07-28 để phát hiện một máy chủ và lấy thông tin công việc lâu dài?",
+      "options": [
+        "server/connect, tools/poll, tasks/status",
+        "server/discover, tools/call trả về một tay cầm tác vụ, tasks/get",
+        "initialize, tools/call, tasks/result",
+        "GET /mcp, tools/call, tasks/list"
+      ],
+      "correct": 1,
+      "explanation": "Phiên bản không trạng thái sử dụng `server/discover` là bắt buộc. Phần mở rộng tùy chọn `io.modelcontextprotocol/tasks` trả về một tay cầm tác vụ và sử dụng `tasks/get`; một tác vụ cuối cùng mang kết quả cuối cùng của nó. Bắt tay cũ, điểm cuối GET, `tasks/result`, và `tasks/list` không có trong luồng này."
+    },
+    {
+      "stage": "check",
+      "question": "A2A v1 đặt tên cho hoạt động gửi tin nhắn trong các liên kết gRPC và JSON-RPC của nó như thế nào?",
+      "options": [
+        "AgentMessage",
+        "message/create",
+        "tasks/send",
+        "SendMessage"
+      ],
+      "correct": 3,
+      "explanation": "A2A v1 sử dụng `SendMessage` cho gRPC và JSON-RPC. Liên kết HTTP+JSON của nó tiết lộ `POST /message:send`."
+    },
+    {
+      "stage": "check",
+      "question": "Cuộc gọi MCP Apps SDK nào cho phép một ứng dụng yêu cầu một công cụ trên máy chủ gốc của nó?",
+      "options": [
+        "host.callTool(name, args)",
+        "app.callServerTool({ name, arguments })",
+        "app.invoke(name, args)",
+        "server.tools.call(args)"
+      ],
+      "correct": 1,
+      "explanation": "Thể hiện ứng dụng gọi `callServerTool` với một đối tượng chứa `name` và các `arguments` tùy chọn; máy chủ chuyển tiếp yêu cầu `tools/call` cơ bản."
+    },
+    {
+      "stage": "post",
+      "question": "Quyền hạn nào mà Kỹ năng Đại lý capstone cung cấp đối với các công cụ MCP và sandbox?",
+      "options": [
+        "Nó bỏ qua phê duyệt sau khi được gọi rõ ràng",
+        "Nó cấp quyền cho mọi công cụ được nêu trong nội dung",
+        "Nó cấp quyền truy cập mạng chỉ đọc",
+        "Không; các bộ điều hợp máy chủ và chính sách vẫn ủy quyền cho mỗi khả năng"
+      ],
+      "correct": 3,
+      "explanation": "Một kỹ năng cung cấp quy trình. Khám phá, gọi, phơi bày công cụ, ủy quyền, thông tin xác thực và cách ly được thực thi bởi máy chủ và các ranh giới thời gian bên ngoài."
+    },
+    {
+      "stage": "post",
+      "question": "Bằng chứng nào tốt nhất chứng minh rằng telemetry đã vượt qua ranh giới xuất sản xuất?",
+      "options": [
+        "Một hướng dẫn kỹ năng nói để phát ra các khoảng thời gian",
+        "Một từ điển cục bộ chứa khóa traceId",
+        "Một sơ đồ của cấu trúc khoảng thời gian dự kiến",
+        "Dữ liệu bộ thu phía người nhận với các khẳng định về trace và parent"
+      ],
+      "correct": 3,
+      "explanation": "Một quan sát phía người nhận chứng minh rằng SDK, bộ phát, bộ xuất, phương tiện vận chuyển và đường dẫn bộ thu đã hoạt động. Dữ liệu cục bộ và sơ đồ chỉ chứng minh cấu trúc hoặc ý định cục bộ."
+    }
+  ]
+}

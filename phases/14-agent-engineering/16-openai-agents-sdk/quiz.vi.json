@@ -1,0 +1,90 @@
+{
+  "lesson": "16-openai-agents-sdk",
+  "title": "OpenAI Agents SDK: Chuyển giao, Rào chắn, Theo dõi",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Năm nguyên thủy của OpenAI Agents SDK là gì?",
+      "options": [
+        "Kế hoạch, Công nhân, Giải pháp, Đánh giá, Phản ánh",
+        "Công cụ, Lời nhắc, Mô hình, Bộ nhớ, Theo dõi",
+        "Đại lý, Chuyển giao, Rào chắn, Phiên, Theo dõi",
+        "Nút, Cạnh, Giảm thiểu, Kiểm tra điểm, Đồ thị con"
+      ],
+      "correct": 2,
+      "explanation": "SDK cung cấp năm nguyên thủy này."
+    },
+    {
+      "stage": "pre",
+      "question": "Mô hình nhìn nhận một chuyển giao như thế nào?",
+      "options": [
+        "Như một token đặc biệt",
+        "Như một thông điệp hệ thống",
+        "Như một điểm cuối HTTP tùy chỉnh",
+        "Như một công cụ có tên transfer_to_<agent_name>"
+      ],
+      "correct": 3,
+      "explanation": "Chuyển giao được hiển thị dưới dạng công cụ với hình dạng tên transfer_to_<agent>."
+    },
+    {
+      "stage": "check",
+      "question": "SDK cung cấp ba loại rào chắn nào?",
+      "options": [
+        "Rào chắn cứng, mềm và nỗ lực tốt nhất",
+        "Rào chắn trước, sau và nội tuyến",
+        "Rào chắn đầu vào, đầu ra và công cụ",
+        "Rào chắn tĩnh, động và liên bang"
+      ],
+      "correct": 2,
+      "explanation": "Rào chắn đầu vào (đại lý đầu tiên), đầu ra (đại lý cuối cùng) và công cụ (theo chức năng công cụ)."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt giữa rào chắn song song và rào chắn chặn là gì?",
+      "options": [
+        "Song song chạy song song với LLM chính (độ trễ thấp hơn, lãng phí token khi bị kích hoạt); chặn chạy trước (không lãng phí token khi bị kích hoạt)",
+        "Chặn chỉ hoạt động trên đầu ra",
+        "Song song luôn tốn nhiều tiền hơn",
+        "Chặn là bất đồng bộ; song song là đồng bộ"
+      ],
+      "correct": 0,
+      "explanation": "Song song tối ưu hóa độ trễ với chi phí lãng phí token khi bị kích hoạt; chặn tiết kiệm token nhưng tăng độ trễ."
+    },
+    {
+      "stage": "check",
+      "question": "Theo dõi được kích hoạt trong SDK như thế nào?",
+      "options": [
+        "Chỉ trên bảng điều khiển được lưu trữ",
+        "Tắt theo mặc định; kích hoạt theo từng đại lý",
+        "Chỉ qua bộ thu thập OpenTelemetry",
+        "Bật theo mặc định; OPENAI_AGENTS_DISABLE_TRACING=1 để từ chối"
+      ],
+      "correct": 3,
+      "explanation": "Các khoảng thời gian cho LLM, công cụ, chuyển giao và rào chắn được phát ra theo mặc định; một biến môi trường sẽ vô hiệu hóa chúng."
+    },
+    {
+      "stage": "post",
+      "question": "Chuyển giao drift là gì và bài học khuyến nghị giảm thiểu nó như thế nào?",
+      "options": [
+        "Đại lý A chuyển giao cho B và B chuyển lại cho A trong một vòng lặp; thêm một bộ đếm nhảy",
+        "Các phiên bị tràn; lưu trữ các phiên cũ",
+        "Theo dõi bị chậm; giảm khối lượng khoảng thời gian",
+        "Rào chắn không đồng bộ; đào tạo lại"
+      ],
+      "correct": 0,
+      "explanation": "Một bộ đếm nhảy giới hạn các chuỗi chuyển giao trước khi chúng lặp vô hạn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các công cụ tích hợp sẵn lại là một khoảng trống rào chắn?",
+      "options": [
+        "Chúng không hỗ trợ chuyển giao",
+        "Rào chắn công cụ chỉ kích hoạt trên các công cụ chức năng; các công cụ tích hợp sẵn (đọc tệp, lấy web) cần chính sách riêng",
+        "Chúng không thể được theo dõi",
+        "Chúng chậm hơn các công cụ chức năng"
+      ],
+      "correct": 1,
+      "explanation": "Rào chắn theo từng công cụ bao phủ các công cụ chức năng; các công cụ tích hợp sẵn yêu cầu một lớp chính sách riêng biệt."
+    }
+  ]
+}

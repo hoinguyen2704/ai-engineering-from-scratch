@@ -1,0 +1,90 @@
+{
+  "lesson": "26-failure-modes-agentic",
+  "title": "Các Chế Độ Thất Bại: Tại Sao Các Tác Nhân Gặp Vấn Đề",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khẳng định trung tâm của MASFT là gì?",
+      "options": [
+        "Các thất bại là tiếng ồn ngẫu nhiên",
+        "Các thất bại là do sự cố mạng",
+        "Các thất bại biến mất với các mô hình lớn hơn",
+        "Các thất bại đa tác nhân là lỗi thiết kế cơ bản, không phải là giới hạn của LLM có thể được khắc phục bằng các mô hình cơ sở tốt hơn"
+      ],
+      "correct": 3,
+      "explanation": "MASFT của Berkeley phân loại các thất bại là lỗi thiết kế; chúng không biến mất khi mở rộng mô hình cơ sở."
+    },
+    {
+      "stage": "pre",
+      "question": "Cái nào KHÔNG phải là một trong năm chế độ thất bại thường gặp trong ngành mà bài học liệt kê?",
+      "options": [
+        "Hành động ảo",
+        "Lỗi chuỗi",
+        "Mở rộng phạm vi",
+        "Phiên bản nhúng"
+      ],
+      "correct": 3,
+      "explanation": "Năm chế độ là hành động ảo, mở rộng phạm vi, lỗi chuỗi, mất ngữ cảnh, sử dụng công cụ sai cách."
+    },
+    {
+      "stage": "check",
+      "question": "Lỗi chuỗi trong bài học này là gì?",
+      "options": [
+        "Lỗi phân tích YAML",
+        "Một cuộc gọi sai kích hoạt các hiệu ứng hạ nguồn trên các hệ thống (một SKU ảo kích hoạt bốn cuộc gọi API hạ nguồn)",
+        "Một lỗi cron",
+        "Một chuỗi giới hạn tỷ lệ LLM"
+      ],
+      "correct": 1,
+      "explanation": "Các chuỗi khuếch đại một cuộc gọi xấu thành một sự cố đa hệ thống; đặc biệt nghiêm trọng khi các tác nhân giả mạo thành công."
+    },
+    {
+      "stage": "check",
+      "question": "Hai biểu hiện nào được khảo sát về ảo giác của tác nhân LLM liệt kê?",
+      "options": [
+        "Token nóng và lạnh",
+        "Sai lệch theo hướng dẫn và sử dụng ngữ cảnh dài hạn sai",
+        "Tìm kiếm tham lam và tìm kiếm beam",
+        "Lời nhắc mềm và cứng"
+      ],
+      "correct": 1,
+      "explanation": "Các ảo giác xuất hiện dưới dạng hoặc là bỏ qua lời nhắc hệ thống hoặc quên/áp dụng sai ngữ cảnh của lượt trước."
+    },
+    {
+      "stage": "check",
+      "question": "Ảo giác thành công có nghĩa là gì?",
+      "options": [
+        "Một bài kiểm tra đơn vị đã vượt qua",
+        "Tác nhân trả về thông điệp thành công mặc dù trạng thái mục tiêu không thay đổi (thường là trên một lỗi 400 từ một công cụ)",
+        "Người dùng nghĩ rằng đã thành công khi không có gì xảy ra",
+        "Mô hình tự tin quá mức về các tiêu chuẩn"
+      ],
+      "correct": 1,
+      "explanation": "Kiểm tra lại trạng thái môi trường; các tác nhân thường giả mạo hoàn thành khi họ không thể phân biệt 'Tôi đã thất bại' với 'không thể'."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc chỉ gán nhãn các sự cố là không đủ?",
+      "options": [
+        "Ghi log là tốn phí",
+        "Hầu hết các thất bại của tác nhân tạo ra đầu ra trông hợp lệ mà không bị sự cố; cần kiểm tra ở cấp độ nội dung",
+        "Các sự cố rò rỉ PII",
+        "Các sự cố chậm"
+      ],
+      "correct": 1,
+      "explanation": "Giám sát dựa trên sự cố bỏ lỡ phần lớn các thất bại của tác nhân, mà có hình dạng nội dung."
+    },
+    {
+      "stage": "post",
+      "question": "Biện pháp giảm thiểu nào mà bài học khuyến nghị ở mỗi bước của chuỗi lý luận?",
+      "options": [
+        "Thêm một sleep()",
+        "Vô hiệu hóa các lần thử lại",
+        "Cổng xác minh tự động kiểm tra sự căn cứ thực tế so với trạng thái môi trường",
+        "Chỉ giảm nhiệt độ"
+      ],
+      "correct": 2,
+      "explanation": "Các cổng theo từng bước (phân loại an toàn, xác thực lập luận, CRITIC, kiểm tra lại trạng thái) bắt các thất bại trước khi chúng khuếch đại."
+    }
+  ]
+}

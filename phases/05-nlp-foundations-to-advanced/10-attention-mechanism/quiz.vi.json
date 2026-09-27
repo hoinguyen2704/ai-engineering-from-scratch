@@ -1,0 +1,102 @@
+{
+  "lesson": "10-attention-mechanism",
+  "title": "Cơ Chế Attention — Bước Đột Phá",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Vấn đề nào trong seq2seq mà attention Bahdanau đã giải quyết?",
+      "options": [
+        "Sự không khớp trong phân tách token",
+        "Độ trễ tìm kiếm beam",
+        "Nút thắt của vector ngữ cảnh kích thước cố định, nơi bộ giải mã chỉ thấy trạng thái cuối cùng của bộ mã hóa",
+        "Gradient biến mất trong các bộ mã hóa"
+      ],
+      "correct": 2,
+      "explanation": "Attention cho phép bộ giải mã tham khảo mọi trạng thái của bộ mã hóa, không chỉ trạng thái cuối cùng."
+    },
+    {
+      "stage": "pre",
+      "question": "Vector ngữ cảnh attention tại bước giải mã t là gì?",
+      "options": [
+        "Trạng thái ẩn cuối cùng của bộ mã hóa",
+        "Embedding đầu vào của bộ giải mã",
+        "Một phép chiếu ngẫu nhiên",
+        "Một trung bình có trọng số của các trạng thái ẩn của bộ mã hóa, trong đó trọng số đến từ điểm số truy vấn-khóa"
+      ],
+      "correct": 3,
+      "explanation": "Ngữ cảnh = tổng của alpha_i * h_i, một trung bình có trọng số phụ thuộc vào bước của các trạng thái bộ mã hóa."
+    },
+    {
+      "stage": "check",
+      "question": "Trong attention Bahdanau (cộng), vector v_a đóng vai trò gì?",
+      "options": [
+        "Nó mã hóa các vị trí",
+        "Nó điều chỉnh softmax",
+        "Nó kiểm soát dropout",
+        "Nó là phép chiếu biến đổi sự kết hợp ẩn theo chiều attention thành một điểm số vô hướng cho mỗi vị trí bộ mã hóa"
+      ],
+      "correct": 3,
+      "explanation": "v_a thực hiện phép nhân điểm với tanh(W_a s + U_a h) để thu gọn một vector d_attn thành một điểm số vô hướng."
+    },
+    {
+      "stage": "check",
+      "question": "Trong biến thể attention 'dot' của Luong, ràng buộc nào phải được giữ?",
+      "options": [
+        "Cần có tìm kiếm beam",
+        "Trạng thái bộ giải mã và trạng thái bộ mã hóa phải chia sẻ cùng một kích thước (d_s == d_h)",
+        "Softmax phải ở không gian log",
+        "Bộ mã hóa phải là hai chiều"
+      ],
+      "correct": 1,
+      "explanation": "dot sử dụng s^T h mà không có phép chiếu, vì vậy các kích thước phải khớp chính xác."
+    },
+    {
+      "stage": "check",
+      "question": "Mapping Q/K/V nào mô tả attention cổ điển (Bahdanau/Luong)?",
+      "options": [
+        "Q từ bộ mã hóa, K và V từ bộ giải mã",
+        "Q, K, V là ba phép chiếu độc lập được học từ nguồn",
+        "Q = trạng thái bộ giải mã; K và V = trạng thái bộ mã hóa (cùng tensor)",
+        "Q là ngẫu nhiên, K và V được học"
+      ],
+      "correct": 2,
+      "explanation": "Trong attention cổ điển, khóa và giá trị đều là trạng thái của bộ mã hóa; transformers tách K và V thông qua các phép chiếu được học."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc báo cáo trọng số attention thô như 'giải thích' được coi là mong manh?",
+      "options": [
+        "Nghiên cứu (ví dụ: Jain và Wallace, 2019) cho thấy phân phối attention có thể được hoán đổi mà không thay đổi dự đoán trên một số nhiệm vụ",
+        "Trọng số attention không khả vi",
+        "Trọng số attention rò rỉ nhãn",
+        "Chúng quá nhỏ để vẽ"
+      ],
+      "correct": 0,
+      "explanation": "Trọng số attention có tương quan với dự đoán nhưng không phải là giải thích trung thực mà không có kiểm tra ablation/đối chứng."
+    },
+    {
+      "stage": "post",
+      "question": "Bước nào kết nối attention Bahdanau với self-attention của transformer?",
+      "options": [
+        "Truy vấn một chuỗi với chính nó bằng các phép chiếu Q, K và V được học riêng biệt, chạy song song trong các đầu",
+        "Bỏ tìm kiếm beam",
+        "Thay thế softmax bằng sigmoid",
+        "Thêm nhiều lớp RNN"
+      ],
+      "correct": 0,
+      "explanation": "Self-attention truy vấn cùng một chuỗi, với các phép chiếu K và V tách biệt, được song song hóa qua các đầu."
+    },
+    {
+      "stage": "post",
+      "question": "Một trường hợp sử dụng thực tiễn cho việc masking trong attention là gì?",
+      "options": [
+        "Thay thế dropout",
+        "Mã hóa các vị trí",
+        "Đặt trọng số attention cho các token padding bằng không để chúng không góp phần vào vector ngữ cảnh",
+        "Giảm kích thước mô hình"
+      ],
+      "correct": 2,
+      "explanation": "Masking padding (hoặc các token tương lai trong bộ giải mã) ngăn softmax không phân bổ trọng số lên các vị trí không hợp lệ."
+    }
+  ]
+}

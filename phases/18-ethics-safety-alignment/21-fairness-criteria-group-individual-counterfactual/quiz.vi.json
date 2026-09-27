@@ -1,0 +1,78 @@
+{
+  "lesson": "21-fairness-criteria-group-individual-counterfactual",
+  "title": "Tiêu chí công bằng - Nhóm, Cá nhân, Phản thực tế",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Định nghĩa về sự công bằng theo nhân khẩu học nào phù hợp nhất với các nhóm A=a và A=a'?",
+      "options": [
+        "Giá trị dự đoán bằng nhau giữa các nhóm",
+        "Tỷ lệ dương tính thật và dương tính giả bằng nhau giữa các nhóm",
+        "Tỷ lệ chấp nhận bằng nhau: P(Y=1 | A=a) = P(Y=1 | A=a')",
+        "Hằng số Lipschitz bằng nhau giữa các nhóm"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kết quả không thể của Chouldechova / Kleinberg-Mullainathan-Raghavan 2017 nói gì?",
+      "options": [
+        "Dưới các tỷ lệ cơ sở không bằng nhau, sự công bằng theo nhân khẩu học, tỷ lệ cơ hội bằng nhau và sự chính xác sử dụng có điều kiện không thể đồng thời tồn tại",
+        "Công bằng cá nhân ngụ ý công bằng phản thực tế cho bất kỳ DAG nào",
+        "Công bằng phản thực tế ngụ ý sự công bằng theo nhân khẩu học",
+        "Công bằng nhóm luôn có thể đạt được bằng cách điều chỉnh trọng số"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dwork et al. 2012 định nghĩa công bằng cá nhân thông qua:",
+      "options": [
+        "Một DAG nguyên nhân với can thiệp thuộc tính nhạy cảm",
+        "Độ chính xác bằng nhau giữa các nhóm được bảo vệ",
+        "Một điều kiện Lipschitz trên bản đồ quyết định liên quan đến một chỉ số tương đồng cụ thể cho nhiệm vụ, để những cá nhân tương tự nhận được quyết định tương tự",
+        "Sự công bằng theo nhân khẩu học ở cấp độ cá nhân"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Công bằng phản thực tế (Kusner et al. 2017) yêu cầu:",
+      "options": [
+        "Hằng số Lipschitz bằng nhau cho tất cả các nhóm",
+        "Chỉ thống kê ở cấp nhóm",
+        "Không có giả định nguyên nhân",
+        "Một DAG nguyên nhân; quyết định không thay đổi khi thuộc tính nhạy cảm của cá nhân bị thay đổi phản thực tế"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các phản thực tế quay ngược (arXiv:2401.13935) lại quan trọng cho sự tuân thủ pháp lý?",
+      "options": [
+        "Chúng thay thế các chỉ số thiên lệch dựa trên nhúng",
+        "Chúng loại bỏ nhu cầu về bất kỳ mô hình nguyên nhân nào",
+        "Chúng chứng minh định lý không thể là sai",
+        "Thay vì can thiệp vào một thuộc tính được bảo vệ (điều này có vấn đề về pháp lý), chúng hỏi sự kết hợp nào của các đặc điểm thực tế sẽ tạo ra kết quả phản thực tế"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài viết triết học hòa giải ICLR Blogposts 2024 lập luận điều gì?",
+      "options": [
+        "Với một đồ thị nguyên nhân rõ ràng, việc thỏa mãn một số biện pháp công bằng nhóm nhất định dẫn đến công bằng phản thực tế, vì vậy sự đối lập rõ ràng giữa các gia đình phần nào là sản phẩm của việc để mô hình nguyên nhân ngầm",
+        "Công bằng nhóm và công bằng phản thực tế không liên quan",
+        "Chỉ công bằng cá nhân là có thể biện minh",
+        "Các định lý không thể được giải quyết bằng cách điều chỉnh trọng số"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

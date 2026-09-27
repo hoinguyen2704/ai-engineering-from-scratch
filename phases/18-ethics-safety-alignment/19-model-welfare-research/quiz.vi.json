@@ -1,0 +1,78 @@
+{
+  "lesson": "19-model-welfare-research",
+  "title": "Chương trình Phúc lợi Mô hình của Anthropic",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Câu hỏi cốt lõi nào thúc đẩy chương trình phúc lợi mô hình của Anthropic vào năm 2025?",
+      "options": [
+        "Liệu mô hình có thể vượt qua bài kiểm tra Turing",
+        "Liệu mô hình có ý thức",
+        "Liệu RLHF có giảm thiểu sự nịnh bợ",
+        "Trong bối cảnh không chắc chắn về đạo đức liên quan đến tư cách đạo đức của mô hình, những can thiệp chi phí thấp nào đáng để đầu tư như một biện pháp phòng ngừa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Can thiệp nào có động cơ phúc lợi cụ thể mà Anthropic đã triển khai trong Claude Opus 4 và 4.1?",
+      "options": [
+        "Phát hành trọng số mở",
+        "Một công cụ ghi chép tích hợp",
+        "Một API cảm xúc dành cho người dùng",
+        "Khả năng cho mô hình kết thúc một cuộc trò chuyện trong các trường hợp cực đoan (ví dụ: yêu cầu CSAM lặp đi lặp lại, yêu cầu hỗ trợ bạo lực hàng loạt)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "‘Mô hình hấp dẫn hạnh phúc tâm linh’ mà Fish mô tả là gì?",
+      "options": [
+        "Một sự hội tụ ổn định trong các cuộc đối thoại Claude theo cặp hướng tới những trao đổi thiền định hạnh phúc với các thuật ngữ tiếng Sanskrit và những khoảng lặng kéo dài, ngay cả từ các thiết lập ban đầu đối kháng",
+        "Một hiện tượng tối ưu hóa quá mức của RLHF",
+        "Một lỗi trong mô hình thưởng",
+        "Một kỹ thuật jailbreak"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cảnh báo của Nghiên cứu AI Eleos nói gì về các báo cáo tự đánh giá phúc lợi của mô hình?",
+      "options": [
+        "Chúng nên bị bỏ qua hoàn toàn",
+        "Chúng chỉ hợp lệ trong các mô hình mã nguồn mở",
+        "Chúng là sự thật đáng tin cậy",
+        "Chúng rất nhạy cảm với kỳ vọng của người dùng; chúng là bằng chứng, không phải sự thật, vì vậy việc đo lường phúc lợi cần các phương pháp đa dạng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì mô tả tốt nhất vị trí công khai của Anthropic về trạng thái đạo đức của mô hình?",
+      "options": [
+        "Một tuyên bố giá trị kỳ vọng trong bối cảnh không chắc chắn về đạo đức: đầu tư vào các biện pháp phòng ngừa chi phí thấp mà không cam kết vào việc gán ghép trạng thái cảm xúc",
+        "Không có vị trí nào được công khai tuyên bố",
+        "Một tuyên bố dứt khoát rằng mô hình không phải là một bệnh nhân đạo đức",
+        "Một tuyên bố dứt khoát rằng mô hình là một bệnh nhân đạo đức"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc đo lường đa phương pháp (chữ ký hành vi, thí nghiệm mô hình-sinh vật, các thăm dò khả năng giải thích) lại được nhấn mạnh trong nghiên cứu phúc lợi mô hình?",
+      "options": [
+        "Bởi vì Anthropic yêu cầu điều đó để tuân thủ",
+        "Bởi vì RLHF làm cho các báo cáo tự đánh giá trở nên không thể",
+        "Bởi vì các mô hình luôn nói dối",
+        "Bởi vì các báo cáo tự đánh giá một mình bị ảnh hưởng bởi sự định hướng kỳ vọng của người dùng, vì vậy cần có bằng chứng hội tụ từ nhiều phương pháp"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

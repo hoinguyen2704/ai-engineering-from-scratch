@@ -1,0 +1,102 @@
+{
+  "lesson": "15-topic-modeling",
+  "title": "Mô Hình Chủ Đề — LDA và BERTopic",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "LDA giả định điều gì về mỗi tài liệu?",
+      "options": [
+        "Mỗi tài liệu thuộc về đúng một chủ đề",
+        "Tài liệu là các câu",
+        "Mỗi tài liệu là sự pha trộn của các chủ đề; mỗi chủ đề là một phân phối trên các từ",
+        "Tài liệu độc lập với các chủ đề"
+      ],
+      "correct": 2,
+      "explanation": "Câu chuyện sinh ra của LDA là thành viên hỗn hợp: mỗi tài liệu có một phân phối chủ đề, mỗi chủ đề có một phân phối từ."
+    },
+    {
+      "stage": "pre",
+      "question": "BERTopic sử dụng gì để hình thành các cụm chủ đề?",
+      "options": [
+        "Chạy BM25 sau đó là k-means",
+        "Mã hóa tài liệu bằng một transformer câu, giảm chiều với UMAP, sau đó cụm với HDBSCAN",
+        "Đào tạo một LSTM từ đầu đến cuối",
+        "Softmax trực tiếp trên từ vựng"
+      ],
+      "correct": 1,
+      "explanation": "BERTopic = embeddings + UMAP + HDBSCAN, với TF-IDF dựa trên lớp cho các từ chủ đề."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao LDA của scikit-learn mong đợi các số đếm thô (CountVectorizer), không phải TF-IDF?",
+      "options": [
+        "LDA không thể xử lý số thực",
+        "Mô hình xác suất của LDA được định nghĩa trên các số đếm từ nguyên; TF-IDF làm biến dạng phân phối cơ bản",
+        "Giới hạn bộ nhớ",
+        "TF-IDF quá chậm"
+      ],
+      "correct": 1,
+      "explanation": "Xác suất của LDA giả định các số đếm; việc cung cấp các giá trị TF-IDF vi phạm giả định của mô hình."
+    },
+    {
+      "stage": "check",
+      "question": "Nhãn -1 của HDBSCAN có nghĩa là gì trong đầu ra của BERTopic?",
+      "options": [
+        "Cụm từ dừng",
+        "Một cụm ngoại lai của các tài liệu mà thuật toán dựa trên mật độ không thể gán một cách tự tin",
+        "Một danh mục dự trữ",
+        "Chủ đề hàng đầu"
+      ],
+      "correct": 1,
+      "explanation": "HDBSCAN đánh dấu các điểm không được cụm với -1; trong BERTopic, đây là các tài liệu không phù hợp với bất kỳ chủ đề nào."
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số độ tương thích nào là mặc định phổ biến cho việc đánh giá mô hình chủ đề?",
+      "options": [
+        "BLEU",
+        "độ tương thích c_v qua NPMI trên các cửa sổ trượt của các từ chủ đề hàng đầu",
+        "Độ chính xác",
+        "Chỉ perplexity"
+      ],
+      "correct": 1,
+      "explanation": "Độ tương thích c_v (Roder et al., 2015) là chỉ số tự động chuẩn cho độ tương thích chủ đề."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào LDA thường phù hợp hơn so với BERTopic?",
+      "options": [
+        "Khi các embeddings bị nhiễu",
+        "Khi bạn cần một chủ đề duy nhất cho mỗi tài liệu",
+        "Tài liệu dài mà phân phối chủ đề thành viên hỗn hợp là hữu ích và embeddings sẽ cắt ngắn đầu vào",
+        "Trên các tweet ngắn"
+      ],
+      "correct": 2,
+      "explanation": "Các tài liệu dài hưởng lợi từ mô hình thành viên hỗn hợp của LDA; các bộ mã hóa BERT cắt ngắn đầu vào."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao BERTopic thường thắng trong văn bản ngắn (tweet, tiêu đề)?",
+      "options": [
+        "Văn bản ngắn có ít chủ đề hơn",
+        "Nó hỗ trợ nhiều ngôn ngữ hơn",
+        "Sự tương đồng ngữ nghĩa trong không gian embedding nắm bắt ý nghĩa nơi mà số đếm bag-of-words quá thưa thớt",
+        "Nó nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "Các embeddings BERT cung cấp sự tương đồng ngữ nghĩa cho văn bản ngắn nơi mà thống kê chồng từ thất bại."
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ thất bại phổ biến của LDA mà bạn nên theo dõi các chủ đề là gì?",
+      "options": [
+        "Các chủ đề khớp hoàn hảo với các danh mục được gán nhãn",
+        "Các chủ đề có quá ít tài liệu",
+        "Các chủ đề rác hấp thụ các từ dừng hoặc các thuật ngữ cực kỳ phổ biến",
+        "Các hỗn hợp tài liệu tổng cộng bằng 1"
+      ],
+      "correct": 2,
+      "explanation": "LDA có thể tạo ra các chủ đề rác hấp thụ các từ dừng; việc lọc min_df/max_df chặt chẽ và từ dừng giảm thiểu."
+    }
+  ]
+}

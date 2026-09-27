@@ -1,0 +1,102 @@
+{
+  "lesson": "12-text-summarization",
+  "title": "Tóm tắt văn bản",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt hành vi chính giữa tóm tắt trích xuất và tóm tắt trừu tượng là gì?",
+      "options": [
+        "Trích xuất chỉ hỗ trợ đa ngôn ngữ",
+        "Trích xuất trả về các câu nguyên văn từ nguồn; trừu tượng tạo ra văn bản mới và có thể tạo ra thông tin sai lệch",
+        "Trích xuất sử dụng TF-IDF; trừu tượng sử dụng Word2Vec",
+        "Trích xuất chậm hơn so với trừu tượng"
+      ],
+      "correct": 1,
+      "explanation": "Trích xuất lấy các câu nguyên văn; trừu tượng viết lại và có nguy cơ tạo ra thông tin sai lệch."
+    },
+    {
+      "stage": "pre",
+      "question": "ROUGE đo lường điều gì?",
+      "options": [
+        "Perplexity cấp độ token",
+        "Sự tương đồng embedding",
+        "Sự chồng chéo n-gram và chuỗi con chung dài nhất giữa tóm tắt hệ thống và tóm tắt tham chiếu",
+        "Thời gian đọc"
+      ],
+      "correct": 2,
+      "explanation": "ROUGE-1/2/L đo lường sự chồng chéo unigram, bigram và LCS với các tham chiếu."
+    },
+    {
+      "stage": "check",
+      "question": "TextRank chấm điểm các câu trong tóm tắt trích xuất như thế nào?",
+      "options": [
+        "Bằng cách thực hiện một vòng lặp theo kiểu PageRank trên một đồ thị mà các cạnh là trọng số tương đồng câu",
+        "Bằng cách nhúng cosine vào câu hỏi",
+        "Bằng cách so sánh với một tóm tắt tham chiếu",
+        "Bằng cách đếm số từ thô"
+      ],
+      "correct": 0,
+      "explanation": "TextRank sử dụng PageRank trên một đồ thị tương đồng câu; các câu có kết nối cao nhất sẽ có điểm cao nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần bật stemming khi tính toán ROUGE?",
+      "options": [
+        "Nếu không có stemming, 'running' và 'run' được tính là các token khác nhau và ROUGE sẽ đánh giá thấp sự chồng chéo thực sự",
+        "Stemming chuẩn hóa trường hợp",
+        "Stemming là yêu cầu của gói rouge-score",
+        "Để tăng tốc ROUGE"
+      ],
+      "correct": 0,
+      "explanation": "Stemming hợp nhất các biến thể hình thái để ROUGE ghi nhận các dạng tương đương về mặt ngữ nghĩa."
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số nào trong năm 2026 được thiết kế đặc biệt để phát hiện thông tin sai lệch trong tóm tắt thông qua sự suy diễn NLI?",
+      "options": [
+        "Kiểm tra độ trung thực (ví dụ: FactCC hoặc độ trung thực RAGAS) sử dụng NLI giữa các tuyên bố nguồn và tóm tắt",
+        "BLEU",
+        "chrF",
+        "ROUGE-L"
+      ],
+      "correct": 0,
+      "explanation": "Điểm số độ trung thực dựa trên NLI đánh dấu các tuyên bố trong tóm tắt không được suy diễn từ nguồn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tóm tắt trích xuất được ưa chuộng cho nội dung liên quan đến tuân thủ?",
+      "options": [
+        "Trích xuất hỗ trợ đầu ra dài hơn",
+        "Đầu ra được lấy nguyên văn từ nguồn, loại bỏ lớp thông tin sai lệch trừu tượng",
+        "Nó nhanh hơn",
+        "Điểm ROUGE cao hơn"
+      ],
+      "correct": 1,
+      "explanation": "Việc trích xuất nguyên văn không thể tạo ra nội dung, điều này quan trọng khi tính xác thực được quy định."
+    },
+    {
+      "stage": "post",
+      "question": "Loại thông tin sai lệch trừu tượng nào trong số này cần được theo dõi?",
+      "options": [
+        "Câu dài",
+        "Hoán đổi thực thể (ví dụ: 'John Smith' được thể hiện là 'John Brown'), trôi số, đảo cực, hoặc phát minh sự thật",
+        "Trôi dấu câu",
+        "Loại bỏ từ dừng"
+      ],
+      "correct": 1,
+      "explanation": "Hoán đổi thực thể, trôi số, đảo cực và các sự thật được phát minh là các chế độ thất bại trừu tượng điển hình."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn sẽ chọn một điểm kiểm tra Pegasus thay vì BART-large-CNN?",
+      "options": [
+        "Khi đánh giá BLEU",
+        "Khi bạn cần đầu ra trích xuất",
+        "Cho các lĩnh vực như tóm tắt khoa học nơi mục tiêu tiền huấn luyện câu khoảng cách của Pegasus phù hợp hơn",
+        "Khi đầu vào ngắn"
+      ],
+      "correct": 2,
+      "explanation": "Mục tiêu câu khoảng cách của Pegasus xuất sắc trong việc tóm tắt lĩnh vực dài (ví dụ: pubmed)."
+    }
+  ]
+}

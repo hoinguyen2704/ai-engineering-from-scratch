@@ -1,0 +1,78 @@
+{
+  "lesson": "28-self-hosted-serving-selection",
+  "title": "Lựa Chọn Phục Vụ Tự Chủ — Kết Nối Động Cơ Với Phần Cứng Và Quy Mô",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Động cơ nào được bài học chọn làm mặc định một lệnh cho máy phát triển?",
+      "options": [
+        "llama.cpp",
+        "vLLM",
+        "TGI",
+        "Ollama"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Sự kiện nào vào năm 2025 thay đổi mặc định khỏi TGI cho các dự án mới?",
+      "options": [
+        "TGI đã vào chế độ bảo trì vào ngày 11 tháng 12 năm 2025 — chỉ sửa lỗi từ đây trở đi",
+        "TGI đã ngừng hỗ trợ CUDA",
+        "TGI đã tăng giá",
+        "TGI đã được Anthropic mua lại"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ràng buộc phần cứng nào buộc phải sử dụng llama.cpp và loại trừ vLLM / TRT-LLM?",
+      "options": [
+        "Chỉ CPU (không có bộ tăng tốc)",
+        "AMD MI300X",
+        "NVIDIA Hopper",
+        "Apple M4"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Động cơ nào được bài học định vị cho các tác vụ đa lượt và nặng tiền tố nhờ vào RadixAttention?",
+      "options": [
+        "SGLang",
+        "Ollama",
+        "TGI",
+        "llama.cpp"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Pipeline từ phát triển đến sản xuất nào mà bài học khuyến nghị trên cùng trọng số GGUF hoặc HF?",
+      "options": [
+        "TGI ở mọi nơi",
+        "Ollama trong phát triển và Ollama trong sản xuất",
+        "Ollama trong phát triển, llama.cpp trong staging, vLLM (hoặc SGLang cho nặng tiền tố) trong sản xuất",
+        "Chỉ TRT-LLM, từ trên xuống dưới"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao Ollama không được khuyến khích cho sản xuất chia sẻ?",
+      "options": [
+        "Nó không thể tải GGUF",
+        "Nó chỉ chạy trên Windows",
+        "Nó là mã nguồn đóng",
+        "Phân tích HTTP của Go thêm chi phí, quản lý đồng thời đơn giản hơn so với vLLM, và hỗ trợ OpenTelemetry chậm"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

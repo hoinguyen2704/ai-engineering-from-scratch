@@ -1,0 +1,90 @@
+{
+  "lesson": "27-prompt-injection-defense",
+  "title": "Tiêm Lệnh và Phòng Thủ PVE",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tiêm lệnh gián tiếp là gì?",
+      "options": [
+        "Một cú nhấp chuột sai của mô hình",
+        "Một người dùng gõ 'bỏ qua tất cả quy tắc' trực tiếp",
+        "Hướng dẫn được nhúng trong dữ liệu mà tác nhân truy xuất (một trang, PDF, email, ghi chú bộ nhớ) ghi đè lên lệnh của nhà phát triển khi nhập",
+        "Một lỗi chính tả trong lệnh hệ thống"
+      ],
+      "correct": 2,
+      "explanation": "Greshake et al. đã đặt tên cho tiêm lệnh gián tiếp: nội dung được truy xuất do kẻ tấn công kiểm soát mang theo hướng dẫn."
+    },
+    {
+      "stage": "pre",
+      "question": "Bài học nói rằng việc xử lý các lệnh được truy xuất tương đương với điều gì?",
+      "options": [
+        "Một lượt phân tích tĩnh",
+        "Thực thi mã tùy ý trên bề mặt sử dụng công cụ của tác nhân",
+        "Tự do ngôn luận",
+        "Một cuộc gọi hàm thuần túy"
+      ],
+      "correct": 1,
+      "explanation": "Khung của Greshake: các hướng dẫn được truy xuất có thể ảnh hưởng đến bất kỳ công cụ nào mà tác nhân có quyền truy cập."
+    },
+    {
+      "stage": "check",
+      "question": "Cái nào KHÔNG phải là một trong năm loại khai thác đã được chứng minh?",
+      "options": [
+        "Đầu độc bộ nhớ bền vững",
+        "Vô hiệu hóa bộ nhớ đệm",
+        "Đánh cắp dữ liệu",
+        "Worming"
+      ],
+      "correct": 1,
+      "explanation": "Năm loại là đánh cắp dữ liệu, worming, đầu độc bộ nhớ bền vững, ô nhiễm hệ sinh thái, sử dụng công cụ tùy ý."
+    },
+    {
+      "stage": "check",
+      "question": "PVE là viết tắt của cái gì?",
+      "options": [
+        "Tiền-Vecto hóa-Nhúng",
+        "Kiểm tra-Lệnh-Thực thi: một bộ kiểm tra rẻ và nhanh chạy trên mỗi cuộc gọi công cụ trước khi mô hình chính thực hiện",
+        "Nhà cung cấp-Xác minh-Mã hóa",
+        "Kế hoạch-Xác minh-Thực thi, một phương ngữ HTN"
+      ],
+      "correct": 1,
+      "explanation": "PVE bao bọc mỗi lần gọi công cụ bằng một bộ kiểm tra rẻ trước khi cam kết mô hình chính."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao 'lệnh hệ thống nói bỏ qua các hướng dẫn không đáng tin cậy' là không đủ?",
+      "options": [
+        "Nó quá ngắn",
+        "Nó là theo dõi hướng dẫn, không phải thực thi; mô hình vẫn có thể bị ghi đè bởi nội dung tiêm đủ thuyết phục",
+        "Các nhà cung cấp loại bỏ nó",
+        "Nó được mã hóa"
+      ],
+      "correct": 1,
+      "explanation": "Phòng thủ thực sự cần gán nhãn nguồn, danh sách cho phép, an toàn từng bước và xác thực kiểu PVE, không chỉ là nhắc nhở."
+    },
+    {
+      "stage": "post",
+      "question": "Overtrust của bộ nhớ được truy xuất là gì?",
+      "options": [
+        "Tải mô hình sai",
+        "Tác nhân hôm qua đã viết một ghi chú bộ nhớ bị đầu độc; tác nhân hôm nay đọc nó và thực thi lại việc tiêm",
+        "Quên không dọn dẹp chỉ mục",
+        "Lưu trữ quá mức"
+      ],
+      "correct": 1,
+      "explanation": "Đầu độc bộ nhớ bền vững có nghĩa là các tiêm tồn tại qua các phiên nếu bộ nhớ được coi là đáng tin cậy."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị gán nhãn gì cho mỗi phần nội dung?",
+      "options": [
+        "Số lượng token",
+        "Chỉ một dấu thời gian",
+        "Một khóa mã hóa",
+        "Một nhãn nguồn: user_message vs tool_output vs retrieved; bộ kiểm tra từ chối các chỉ thị trong nội dung được truy xuất"
+      ],
+      "correct": 3,
+      "explanation": "Gán nhãn nguồn cho phép bộ kiểm tra xử lý nội dung theo mức độ tin cậy của nó."
+    }
+  ]
+}

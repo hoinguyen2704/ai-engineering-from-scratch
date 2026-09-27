@@ -1,0 +1,102 @@
+{
+  "lesson": "26-relation-extraction-kg",
+  "title": "Trích xuất Quan hệ & Xây dựng Đồ thị Tri thức",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đơn vị nguyên tử của một đồ thị tri thức là gì?",
+      "options": [
+        "Một token",
+        "Một thẻ POS",
+        "Một bộ ba (chủ thể, quan hệ, đối tượng)",
+        "Một câu"
+      ],
+      "correct": 2,
+      "explanation": "KGs lưu trữ thông tin dưới dạng các bộ ba (s, r, o); các bộ ba được tổng hợp tạo thành đồ thị."
+    },
+    {
+      "stage": "pre",
+      "question": "AEVS viết tắt cho điều gì trong trích xuất quan hệ 2026?",
+      "options": [
+        "Sơ đồ Giá trị-Thực thể Tổng hợp",
+        "Dịch vụ Xác thực Thực thể Bất đồng bộ",
+        "Tìm kiếm Vector Mã hóa Tự động",
+        "Xác minh-Trích xuất-Bổ sung: các khoảng anchor, trích xuất bộ ba, xác minh với nguồn, bổ sung độ phủ"
+      ],
+      "correct": 3,
+      "explanation": "AEVS là khung giảm thiểu ảo giác năm 2026 cho RE có căn cứ."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao mỗi bộ ba phải mang nguồn gốc (id tài liệu + khoảng cách)?",
+      "options": [
+        "Nguồn gốc được yêu cầu bởi SPARQL",
+        "Nó tăng tốc độ trích xuất",
+        "Nguồn gốc thay đổi hệ thống ngữ nghĩa",
+        "Nguồn gốc cho phép bạn kiểm toán các bộ ba và từ chối các ảo giác mà khoảng cách của chúng không khớp với văn bản nguồn"
+      ],
+      "correct": 3,
+      "explanation": "Nguồn gốc cho phép kiểm toán và là cốt lõi của phát hiện ảo giác theo kiểu AEVS."
+    },
+    {
+      "stage": "check",
+      "question": "Việc chuẩn hóa các quan hệ có tác dụng gì?",
+      "options": [
+        "Thêm các embedding",
+        "Loại bỏ các bộ ba",
+        "Ánh xạ các cụm động từ bề mặt (ví dụ: 'được sinh ra ở', 'là người bản địa của') vào một id thuộc tính cố định để đồ thị có thể truy vấn",
+        "Dịch tài liệu"
+      ],
+      "correct": 2,
+      "explanation": "Chuẩn hóa gộp các cách diễn đạt thành các id thuộc tính KG chuẩn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao trích xuất quan hệ thường cần giải quyết tham chiếu trước?",
+      "options": [
+        "Đại từ như 'anh ấy đã thành lập Apple' phải được giải quyết thành một thực thể có tên trước khi trích xuất bộ ba",
+        "Coref chuẩn hóa trường hợp",
+        "Coref cung cấp vị trí",
+        "Coref thêm các embedding"
+      ],
+      "correct": 0,
+      "explanation": "Nếu không có coref, RE gán các quan hệ cho đại từ thay vì thực thể có tên bên dưới."
+    },
+    {
+      "stage": "post",
+      "question": "Lựa chọn nào đánh đổi độ nhớ của IE mở để lấy khả năng truy vấn đồ thị?",
+      "options": [
+        "Lấy mẫu ngẫu nhiên các bộ ba",
+        "Đồ thị chỉ chứa embedding",
+        "Ánh xạ các quan hệ IE mở vào một hệ thống ngữ nghĩa đóng (ví dụ: thuộc tính Wikidata) trước khi gộp vào KG",
+        "Bỏ qua NER"
+      ],
+      "correct": 2,
+      "explanation": "Các hệ thống ngữ nghĩa đóng làm cho đồ thị có thể truy vấn; bước chuẩn hóa tự chi trả cho mình ở hạ nguồn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao nhiều KG sản xuất sử dụng các định tính tạm thời (thời gian bắt đầu/kết thúc)?",
+      "options": [
+        "Yêu cầu bởi RDF",
+        "Để loại bỏ các thực thể NIL",
+        "SPARQL nhanh hơn",
+        "Nhiều quan hệ có giới hạn thời gian (nhà tuyển dụng, vợ/chồng, vai trò); các định tính ngăn chặn các tuyên bố 'mãi mãi đúng' trở nên lỗi thời"
+      ],
+      "correct": 3,
+      "explanation": "Các quan hệ có giới hạn thời gian cần các định tính (ví dụ: Wikidata P580/P582) hoặc các sự thật sẽ trở nên lỗi thời một cách im lặng."
+    },
+    {
+      "stage": "post",
+      "question": "REBEL là gì?",
+      "options": [
+        "Một bộ phân tách",
+        "Một mô hình tham chiếu",
+        "Một bộ trích xuất quan hệ seq2seq xuất ra các bộ ba đã có trong các id thuộc tính Wikidata",
+        "Một cơ sở dữ liệu vector"
+      ],
+      "correct": 2,
+      "explanation": "REBEL (Babelscape) là một mô hình RE seq2seq được đào tạo trên các bộ ba Wikidata được giám sát từ xa."
+    }
+  ]
+}

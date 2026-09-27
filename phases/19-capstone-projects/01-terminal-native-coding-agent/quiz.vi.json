@@ -1,0 +1,90 @@
+{
+  "lesson": "01-terminal-native-coding-agent",
+  "title": "Capstone 01 — Terminal-Native Coding Agent",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hình dạng vòng lặp nào mà các tác nhân lập trình đầu cuối năm 2026 chia sẻ?",
+      "options": [
+        "Lấy, nhúng, xếp hạng, tổng hợp",
+        "Lập kế hoạch, hành động, quan sát, phục hồi",
+        "Đào tạo, đánh giá, triển khai, giám sát",
+        "Mã hóa, giải mã, lấy mẫu, phát trực tiếp"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ điều khiển chạy mỗi tác vụ bên trong một E2B hoặc Daytona sandbox?",
+      "options": [
+        "Để cho phép truy cập GPU cho vòng lặp tác nhân",
+        "Để vượt qua giới hạn tỷ lệ của nhà cung cấp mô hình",
+        "Để cô lập hệ thống tệp và thực thi công cụ khỏi máy chủ để cây công việc có thể bị xóa sau khi hoàn thành",
+        "Để đo hiệu suất thông lượng token trên bộ nhớ cache lạnh"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hook tích hợp sẵn nào là nơi tự nhiên để chặn các lệnh shell phá hoại trước khi chúng thực thi?",
+      "options": [
+        "Dừng",
+        "Sử dụngSauCôngCụ",
+        "Sử dụngTrướcCôngCụ",
+        "BắtĐầuPhiên"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Capstone giới hạn mỗi kết quả công cụ ở khoảng 4k token. Chế độ thất bại nào mà điều đó chủ yếu ngăn chặn?",
+      "options": [
+        "Mô hình bị quá khớp với các dấu vết gọi công cụ",
+        "Thoát khỏi sandbox qua các ký tự đặc biệt độc hại trong shell",
+        "Trạng thái kế hoạch lỗi thời giữa các phiên đã được tiếp tục",
+        "Nhiễm độc ngữ cảnh và chi phí không kiểm soát khi một công cụ trả về một lượng lớn dữ liệu"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hook PreCompact làm gì tại mốc 150k-token?",
+      "options": [
+        "Hủy bỏ quá trình và hoàn lại ngân sách cho người dùng",
+        "Đẩy nhánh hiện tại để sao lưu tiến trình",
+        "Tóm tắt các lượt cũ thành một khối trạng thái trước đó để kế hoạch và các quan sát mới vẫn phù hợp",
+        "Chuyển đổi mô hình hỗ trợ sang một mô hình nháp nhỏ hơn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Baseline nào mà capstone so sánh bộ điều khiển của nó với trên một tập con Pro SWE-bench 30 vấn đề?",
+      "options": [
+        "Aider",
+        "mini-swe-agent",
+        "Live-SWE-agent",
+        "OpenCode"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tập hợp chỉ số nào là chỉ tiêu đo lường của sản phẩm?",
+      "options": [
+        "WER, MOS và first-audio-out",
+        "MRR@10 và nDCG@10",
+        "Perplexity, BLEU và ROUGE",
+        "pass@1, turns-per-task và dollar-per-task"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

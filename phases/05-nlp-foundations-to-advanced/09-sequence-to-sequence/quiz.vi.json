@@ -1,0 +1,102 @@
+{
+  "lesson": "09-sequence-to-sequence",
+  "title": "Mô Hình Sequence-to-Sequence",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Vai trò của bộ mã hóa trong mô hình seq2seq kiểu 2014 là gì?",
+      "options": [
+        "Tạo ra các token mục tiêu",
+        "Thực hiện tìm kiếm beam",
+        "Tính toán trọng số Attention",
+        "Đọc nguồn và tạo ra một vector ngữ cảnh có kích thước cố định tóm tắt nó"
+      ],
+      "correct": 3,
+      "explanation": "Bộ mã hóa RNN nén nguồn thành một trạng thái ẩn cuối cùng được sử dụng bởi bộ giải mã."
+    },
+    {
+      "stage": "pre",
+      "question": "Teacher forcing trong quá trình huấn luyện seq2seq là gì?",
+      "options": [
+        "Gán nhãn thủ công cho từng bước của bộ giải mã",
+        "Thêm một mạng giáo viên trong quá trình suy diễn",
+        "Gấp đôi kích thước batch",
+        "Cung cấp token trước đó đúng (thay vì dự đoán của mô hình) làm đầu vào cho bộ giải mã"
+      ],
+      "correct": 3,
+      "explanation": "Teacher forcing ổn định quá trình huấn luyện bằng cách sử dụng các token trước đó đúng; nếu không, các lỗi sớm sẽ lan truyền."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao độ chính xác của seq2seq với vector ngữ cảnh cố định giảm khi độ dài đầu vào tăng?",
+      "options": [
+        "Cross-entropy phân kỳ",
+        "Các token padding tích lũy",
+        "Từ vựng trở nên quá lớn",
+        "Tất cả thông tin về nguồn phải vừa vặn trong một trạng thái ẩn bộ mã hóa có kích thước cố định, điều này mất chi tiết trên các đầu vào dài"
+      ],
+      "correct": 3,
+      "explanation": "Nút thắt vector ngữ cảnh cố định có nghĩa là các đầu vào dài không thể được tóm tắt mà không mất mát."
+    },
+    {
+      "stage": "check",
+      "question": "Bias phơi bày là gì?",
+      "options": [
+        "Bias từ sự mất cân bằng lớp",
+        "Bias trong các embedding của bộ mã hóa",
+        "Sự không đồng thuận của người chú thích",
+        "Khoảng cách huấn luyện/suy diễn từ việc huấn luyện trên các token đúng nhưng tạo ra từ các dự đoán của mô hình trong suy diễn"
+      ],
+      "correct": 3,
+      "explanation": "Mô hình chưa bao giờ thực hành phục hồi từ những sai lầm của chính nó trong quá trình huấn luyện, vì vậy các lỗi lan truyền trong suy diễn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tìm kiếm beam thường vượt trội hơn so với giải mã tham lam trong việc tạo ra?",
+      "options": [
+        "Tìm kiếm beam nhanh hơn",
+        "Tìm kiếm beam giữ lại các chuỗi một phần hàng đầu-k sống ở mỗi bước thay vì cam kết không thể thay đổi vào một token",
+        "Tìm kiếm beam tránh bias phơi bày",
+        "Tìm kiếm beam giảm thiểu tổn thất"
+      ],
+      "correct": 1,
+      "explanation": "Giải mã tham lam cam kết mỗi bước; tìm kiếm beam khám phá nhiều giả thuyết, sau đó chọn giả thuyết hoàn chỉnh tốt nhất."
+    },
+    {
+      "stage": "post",
+      "question": "Gia đình kiến trúc nào đã thay thế RNN seq2seq cho các tác vụ tạo ra chung?",
+      "options": [
+        "Naive Bayes",
+        "Mạng nơ-ron đồ thị",
+        "1D CNNs",
+        "Mô hình bộ mã hóa-giải mã Transformer (BART, T5, mBART, NLLB)"
+      ],
+      "correct": 3,
+      "explanation": "Các bộ mã hóa-giải mã Transformer đã loại bỏ sự hồi tiếp và hiện chiếm ưu thế trong các tác vụ tạo ra."
+    },
+    {
+      "stage": "post",
+      "question": "Sampling theo lịch trình làm gì?",
+      "options": [
+        "Thêm nhiễu ngẫu nhiên vào các embedding",
+        "Giảm tỷ lệ teacher-forcing xuống trong quá trình huấn luyện để mô hình học cách phục hồi từ các dự đoán của chính nó",
+        "Sắp xếp lại tập huấn luyện",
+        "Lên lịch giảm tốc độ học"
+      ],
+      "correct": 1,
+      "explanation": "Sampling theo lịch trình dần dần trộn các dự đoán của mô hình vào để thu hẹp khoảng cách huấn luyện/suy diễn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao giải mã tham lam một mình thường thất bại trong việc tạo ra cho người dùng?",
+      "options": [
+        "Nó luôn chọn <EOS> trước tiên",
+        "Nó không thể sử dụng các embedding",
+        "Giải mã tham lam có thể lặp lại hoặc vòng lặp và không thể quay lại từ một lựa chọn token tốt cục bộ nhưng kém toàn cục",
+        "Nó yêu cầu nhiều bộ nhớ hơn"
+      ],
+      "correct": 2,
+      "explanation": "Lựa chọn không thể thay đổi của giải mã tham lam mỗi bước gây ra vòng lặp và lặp lại mà không có tìm kiếm beam hoặc sampling."
+    }
+  ]
+}

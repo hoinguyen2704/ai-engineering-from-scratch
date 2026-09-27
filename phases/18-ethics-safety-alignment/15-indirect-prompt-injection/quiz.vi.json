@@ -1,0 +1,78 @@
+{
+  "lesson": "15-indirect-prompt-injection",
+  "title": "Tiêm Lệnh Gián Tiếp - Bề Mặt Tấn Công Sản Xuất",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì phân biệt tiêm lệnh gián tiếp (IPI) với tiêm lệnh trực tiếp?",
+      "options": [
+        "IPI là một từ đồng nghĩa với việc jailbreak",
+        "IPI nhúng các hướng dẫn bên trong nội dung bên ngoài (trang web, email, đầu ra công cụ) mà tác nhân tiêu thụ trong quá trình hoạt động bình thường, mà không cần kẻ tấn công chạm vào lệnh của người dùng",
+        "IPI chỉ hoạt động trên các mô hình đa phương thức",
+        "IPI yêu cầu tinh chỉnh mô hình mục tiêu"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong số này, cái nào KHÔNG phải là một trong ba vectơ giao hàng IPI được liệt kê trong bài học?",
+      "options": [
+        "Chỉnh sửa lệnh hệ thống trực tiếp bởi người dùng",
+        "Đầu ra công cụ",
+        "Luồng công việc hộp thư / tài liệu",
+        "Tạo ra tăng cường truy xuất (truy xuất bị nhiễm độc)"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bộ lọc đầu vào của người dùng lại bỏ lỡ IPI?",
+      "options": [
+        "Bộ lọc không thể đọc JSON",
+        "Bộ lọc chỉ chạy sau khi mô hình phản hồi",
+        "Bộ lọc đầu vào của người dùng phân biệt chữ hoa chữ thường",
+        "Tải trọng không bao giờ xuất hiện trong đầu vào của người dùng; nó xuất hiện trong nội dung được truy xuất hoặc cung cấp bởi công cụ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nguyên tắc trung tâm của Kiểm Soát Luồng Thông Tin (IFC) cho các tác nhân AI là gì?",
+      "options": [
+        "Vô hiệu hóa tất cả các công cụ theo mặc định",
+        "Mã hóa tất cả nội dung được truy xuất",
+        "Gán nhãn nội dung theo nguồn là đáng tin cậy hoặc không đáng tin cậy; các hành động được kích hoạt bởi nội dung không đáng tin cậy phải được xác nhận bởi đầu vào đáng tin cậy trước khi thực hiện",
+        "Chỉ sử dụng các lệnh một lần"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Nasr et al. (tháng 10 năm 2025, 'Kẻ Tấn Công Di Chuyển Thứ Hai') đã phát hiện điều gì về 12 biện pháp phòng thủ IPI được công bố với các cuộc tấn công thích ứng?",
+      "options": [
+        "Các cuộc tấn công thích ứng quá đắt để đánh giá",
+        "Tỷ lệ thành công gần như bằng không được báo cáo của họ vẫn giữ nguyên dưới cuộc tấn công thích ứng",
+        "Các cuộc tấn công thích ứng (gradient, RL, tìm kiếm ngẫu nhiên, nhóm đỏ con người) đã phá vỡ >90% trong số đó mặc dù họ đã tuyên bố tỷ lệ thành công gần như bằng không ban đầu",
+        "Chỉ có một biện pháp phòng thủ bị phá vỡ"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tiêm lệnh đứng ở vị trí nào trong danh sách 10 mối đe dọa hàng đầu OWASP LLM năm 2025?",
+      "options": [
+        "LLM10 (thấp nhất)",
+        "LLM01 (cao nhất, mối đe dọa lớp ứng dụng #1)",
+        "Không có trong danh sách",
+        "LLM05"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

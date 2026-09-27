@@ -1,0 +1,90 @@
+{
+  "lesson": "14-autogen-actor-model",
+  "title": "Mô Hình Diễn Viên cho Các Tác Nhân — Tin Nhắn Không Đồng Bộ và Thời Gian Thực Được Kiểu Hóa",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cách duy nhất hợp pháp để các diễn viên tương tác trong AutoGen v0.4 là gì?",
+      "options": [
+        "Truy cập trực tiếp vào một từ điển chia sẻ",
+        "Thay đổi các prompt của nhau",
+        "Giao dịch SQL chia sẻ",
+        "Tin nhắn không đồng bộ được trao đổi qua hộp thư; không có bộ nhớ chia sẻ"
+      ],
+      "correct": 3,
+      "explanation": "Các diễn viên có trạng thái riêng tư và một hộp thư; tin nhắn là cách tương tác duy nhất."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba lớp API của AutoGen v0.4 là gì?",
+      "options": [
+        "Core, AgentChat, Extensions",
+        "Frontend, Backend, Database",
+        "Tools, Models, Memory",
+        "Plan, Act, Reflect"
+      ],
+      "correct": 0,
+      "explanation": "Core là khung diễn viên cấp thấp, AgentChat là API cấp cao dựa trên nhiệm vụ, Extensions là các tích hợp."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc tách biệt việc giao hàng khỏi việc xử lý lại mang lại sự cách ly lỗi?",
+      "options": [
+        "Thời gian thực bắt lỗi của trình xử lý trong B mà không làm sập A; send() của A trả về ngay lập tức và không bao giờ bị chặn",
+        "Mỗi diễn viên chạy trên một máy riêng biệt",
+        "Các trình xử lý là các hàm thuần túy",
+        "Thời gian thực khởi động lại hệ điều hành khi gặp lỗi"
+      ],
+      "correct": 0,
+      "explanation": "send() đưa tin nhắn vào hộp thư của người nhận và trả về; sự cố của trình xử lý chỉ xảy ra cục bộ với diễn viên đó."
+    },
+    {
+      "stage": "check",
+      "question": "Topology AgentChat nào xoay vòng các diễn viên theo thứ tự cố định?",
+      "options": [
+        "SelectorGroupChat",
+        "Magentic-One",
+        "RoundRobinGroupChat",
+        "Supervisor"
+      ],
+      "correct": 2,
+      "explanation": "RoundRobinGroupChat là vòng quay cố định; SelectorGroupChat sử dụng một bộ chọn để chọn tiếp theo."
+    },
+    {
+      "stage": "check",
+      "question": "Magentic-One trong bài học này là gì?",
+      "options": [
+        "Một đội đa tác nhân tham khảo cho việc duyệt web, thực thi mã và xử lý tệp được xây dựng trên AgentChat",
+        "Một bộ xuất OTel",
+        "Một mô hình LLM mới",
+        "Một định dạng tuần tự hóa"
+      ],
+      "correct": 0,
+      "explanation": "Magentic-One là đội tham khảo của Microsoft thể hiện API AgentChat."
+    },
+    {
+      "stage": "post",
+      "question": "Trạng thái được nêu của AutoGen v0.4 trong đầu năm 2026 là gì?",
+      "options": [
+        "Đã ngừng sử dụng và bị xóa",
+        "Thay thế bởi LangGraph",
+        "Mới được công bố",
+        "Ổn định nhưng ở chế độ bảo trì; Microsoft Agent Framework là con đường phía trước"
+      ],
+      "correct": 3,
+      "explanation": "AutoGen v0.7.x ổn định cho nghiên cứu; phát triển tích cực đã chuyển sang Microsoft Agent Framework."
+    },
+    {
+      "stage": "post",
+      "question": "Tiêu chuẩn quan sát nào mà AutoGen v0.4 phát ra theo mặc định?",
+      "options": [
+        "Datadog APM",
+        "Chỉ số liệu Prometheus",
+        "Các khoảng OpenTelemetry với các thuộc tính gen_ai.* theo các quy ước ngữ nghĩa OTel GenAI",
+        "StatsD"
+      ],
+      "correct": 2,
+      "explanation": "Mỗi tin nhắn phát ra một khoảng; các cuộc gọi công cụ mang theo các thuộc tính gen_ai.* theo các quy ước OTel GenAI."
+    }
+  ]
+}

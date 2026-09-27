@@ -1,0 +1,78 @@
+{
+  "lesson": "68-rag-eval-precision-recall",
+  "title": "Đánh giá RAG: Độ chính xác, Độ hồi tưởng, MRR, nDCG, Độ trung thành, Sự liên quan của câu trả lời",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao recall@k thường là chỉ số truy xuất chính trong RAG sản xuất?",
+      "options": [
+        "Recall không quan tâm đến thứ hạng",
+        "Recall là yêu cầu của đặc tả OpenAPI",
+        "Recall giống như độ chính xác trong RAG",
+        "Việc sinh ra có thể bỏ qua các đoạn không liên quan nhưng không thể phát minh ra câu trả lời từ một đoạn mà nó chưa thấy, vì vậy việc bỏ lỡ đoạn đúng là thất bại tốn kém hơn"
+      ],
+      "correct": 3,
+      "explanation": "Một bộ truy xuất bỏ lỡ đoạn đúng không thể được sửa chữa ở giai đoạn sau; các đoạn thừa lãng phí token nhưng hiếm khi làm hỏng câu trả lời."
+    },
+    {
+      "stage": "pre",
+      "question": "MRR tính toán cái gì?",
+      "options": [
+        "Số lượng token của câu trả lời",
+        "Trung bình hình học của độ tương đồng cosine",
+        "Thứ hạng trung vị của tài liệu liên quan thứ hai",
+        "Trung bình của 1 / vị trí-của-tài-liệu-liên-quan-đầu-tiên trên các truy vấn"
+      ],
+      "correct": 3,
+      "explanation": "MRR bị chi phối bởi đầu danh sách: thứ hạng 1 đóng góp 1.0, thứ hạng 2 đóng góp 0.5, thứ hạng 10 đóng góp 0.1."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bạn nên sử dụng nDCG thay vì recall@k?",
+      "options": [
+        "Khi bộ truy xuất không trả về điểm số",
+        "Khi tập dữ liệu nhỏ",
+        "Không bao giờ",
+        "Khi các nhãn vàng mang độ liên quan có phân loại (ví dụ: tài liệu A là 3, tài liệu B là 2, tài liệu C là 1) và các chỉ số nhị phân mất thông tin"
+      ],
+      "correct": 3,
+      "explanation": "nDCG sử dụng lợi ích có phân loại và giảm giá vị trí; recall làm phẳng mọi thứ thành nhị phân."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt giữa độ trung thành và sự liên quan của câu trả lời là gì?",
+      "options": [
+        "Độ trung thành là một chỉ số truy xuất và sự liên quan là một chỉ số phân đoạn",
+        "Chúng là cùng một chỉ số với hai tên gọi",
+        "Độ trung thành đo lường độ chính xác; sự liên quan đo lường độ hồi tưởng",
+        "Độ trung thành hỏi 'câu trả lời có được dựa trên ngữ cảnh đã truy xuất không'; sự liên quan của câu trả lời hỏi 'câu trả lời có giải quyết câu hỏi không'"
+      ],
+      "correct": 3,
+      "explanation": "Một câu trả lời trung thành nhưng không liên quan có điểm cao về độ trung thành, thấp về sự liên quan; một câu trả lời liên quan nhưng không có cơ sở có điểm cao về sự liên quan, thấp về độ trung thành."
+    },
+    {
+      "stage": "check",
+      "question": "Một quy trình cho thấy độ hồi tưởng@5 khá tốt nhưng MRR thấp. Bạn nên điều tra giai đoạn nào trước tiên?",
+      "options": [
+        "Trình sinh",
+        "Trình phân đoạn",
+        "Bộ nhập liệu tập dữ liệu",
+        "Trình xếp lại, vì đoạn đúng nằm trong top-k nhưng không ở vị trí đầu"
+      ],
+      "correct": 3,
+      "explanation": "Recall@5 có nghĩa là vàng nằm trong top-5; MRR thấp có nghĩa là nó không ở đầu danh sách. Đó là công việc của giai đoạn xếp lại."
+    },
+    {
+      "stage": "post",
+      "question": "Nguy cơ sản xuất nào khiến tệp qrels bị đóng băng trở nên nguy hiểm theo thời gian?",
+      "options": [
+        "Bộ đánh giá sử dụng hết dung lượng đĩa",
+        "Các vector nhúng hết hạn",
+        "Bộ truy xuất ngừng hoạt động sau sáu tháng",
+        "Qrels bị phân hủy: tập dữ liệu thay đổi và một tài liệu mà là câu trả lời vàng trong quý trước không còn là câu trả lời đúng; các chỉ số được báo cáo dựa trên các nhãn cũ"
+      ],
+      "correct": 3,
+      "explanation": "Lên lịch xem xét qrels hàng quý hoặc các chỉ số của bạn sẽ đo lường sai điều gì đó khi tập dữ liệu phát triển."
+    }
+  ]
+}

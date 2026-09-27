@@ -1,0 +1,102 @@
+{
+  "lesson": "19-subword-tokenization",
+  "title": "Phân đoạn từ con — BPE, WordPiece, Unigram, SentencePiece",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Phân đoạn từ con mang lại lợi ích gì so với từ vựng cấp từ?",
+      "options": [
+        "Đào tạo nhanh hơn",
+        "Mô hình nhỏ hơn",
+        "Nhúng tốt hơn",
+        "Các từ hiếm phân tách thành các mảnh từ con đã biết, loại bỏ OOV trong khi giữ cho từ vựng có giới hạn"
+      ],
+      "correct": 3,
+      "explanation": "Các token từ con bao phủ bất kỳ đầu vào nào bằng cách phân tách, loại bỏ vấn đề OOV của từ vựng cấp từ."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao GPT-2 sử dụng BPE cấp byte thay vì BPE cấp ký tự?",
+      "options": [
+        "Yêu cầu bởi transformers",
+        "Một từ vựng cơ bản 256 byte bao phủ bất kỳ đầu vào UTF-8 nào, đảm bảo không có token [UNK]",
+        "Byte nhỏ hơn",
+        "BPE cấp byte bỏ qua các phép gộp"
+      ],
+      "correct": 1,
+      "explanation": "BPE cấp byte bắt đầu từ 256 byte nên mọi đầu vào đều được mã hóa; không có gì là OOV."
+    },
+    {
+      "stage": "check",
+      "question": "Tokenizer Unigram xây dựng từ vựng của nó như thế nào?",
+      "options": [
+        "Gộp cặp thường xuyên tham lam",
+        "Lấy mẫu ngẫu nhiên",
+        "Bắt đầu từ một tập hợp ứng viên lớn, loại bỏ tuần tự các token mà việc loại bỏ ít làm tổn thương đến xác suất log-likelihood của tập hợp văn bản",
+        "Cân nặng IDF tham lam"
+      ],
+      "correct": 2,
+      "explanation": "Unigram phù hợp với một LM unigram và loại bỏ tuần tự các token ít hữu ích nhất để đạt kích thước từ vựng mục tiêu."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì phân biệt tiêu chí gộp của WordPiece với BPE?",
+      "options": [
+        "WordPiece sử dụng byte",
+        "WordPiece bỏ qua các phép gộp",
+        "WordPiece không giám sát",
+        "WordPiece gộp các cặp tối đa hóa xác suất tập huấn luyện, trong khi BPE gộp cặp thường xuyên nhất"
+      ],
+      "correct": 3,
+      "explanation": "WordPiece chọn các phép gộp dựa trên xác suất; BPE chọn theo tần suất thô."
+    },
+    {
+      "stage": "check",
+      "question": "Công cụ nào đào tạo một tokenizer trực tiếp trên văn bản Unicode đa ngôn ngữ thô?",
+      "options": [
+        "spaCy",
+        "tiktoken",
+        "tokenizers-lite",
+        "SentencePiece (mã hóa khoảng trắng như một dấu hiệu đặc biệt và đào tạo BPE hoặc Unigram)"
+      ],
+      "correct": 3,
+      "explanation": "SentencePiece đào tạo BPE/Unigram trên văn bản thô mà không cần phân đoạn trước; tiktoken chỉ mã hóa."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao CI sản xuất phải kiểm tra băm của tokenizer.json đã triển khai?",
+      "options": [
+        "Sự trôi dạt của tokenizer tạo ra các ID token khác với những ID mà mô hình đã được đào tạo, làm hỏng đầu ra một cách âm thầm",
+        "Để nén lưu trữ",
+        "Nó giảm kích thước từ vựng",
+        "Yêu cầu bởi Hugging Face"
+      ],
+      "correct": 0,
+      "explanation": "Ngay cả những thay đổi nhỏ của tokenizer cũng làm thay đổi ID; kiểm tra băm phát hiện sự trôi dạt trước khi nó đến tay người dùng."
+    },
+    {
+      "stage": "post",
+      "question": "Lý do phổ biến nào khiến một emoji chiếm nhiều token?",
+      "options": [
+        "Emojis là ký tự dừng",
+        "Emojis được dự trữ",
+        "Emojis đa mã điểm mã hóa thành nhiều byte UTF-8; nếu không có token chuyên dụng, mỗi byte là một từ con riêng",
+        "Emojis được lưu trữ dưới dạng số thực"
+      ],
+      "correct": 2,
+      "explanation": "Các emoji phức hợp mã hóa thành nhiều byte; các tokenizer cấp byte có thể sử dụng nhiều token cho mỗi ký tự."
+    },
+    {
+      "stage": "post",
+      "question": "Heuristic nào hướng dẫn kích thước từ vựng cho một transformer đơn ngôn ngữ mới?",
+      "options": [
+        "Khớp kích thước tập huấn luyện",
+        "Khoảng 32k cho các mô hình dưới 1B tham số; 50-100k cho 1-10B; 200k+ cho các mô hình đa ngôn ngữ hoặc tiên tiến",
+        "Luôn luôn 1M",
+        "Luôn luôn 8000"
+      ],
+      "correct": 1,
+      "explanation": "Kích thước từ vựng tỷ lệ với mô hình và phạm vi ngôn ngữ; đây là các mặc định cộng đồng thô."
+    }
+  ]
+}

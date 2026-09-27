@@ -1,0 +1,90 @@
+{
+  "lesson": "32-minimal-agent-workbench",
+  "title": "Bảng làm việc tác nhân tối thiểu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba tệp nào tạo thành bảng làm việc hữu ích nhỏ nhất?",
+      "options": [
+        "model.py, prompts.py, tools.py",
+        "Dockerfile, Makefile, .gitignore",
+        "AGENTS.md (bộ định tuyến), agent_state.json (trạng thái), task_board.json (hàng đợi)",
+        "README.md, CHANGELOG.md, LICENSE"
+      ],
+      "correct": 2,
+      "explanation": "Một bộ định tuyến ngắn, trạng thái bền và hàng đợi tác vụ là nền tảng."
+    },
+    {
+      "stage": "pre",
+      "question": "Khung của AGENTS.md trong bài học là gì?",
+      "options": [
+        "Một bí mật được giữ kín khỏi repo",
+        "Một khóa bộ nhớ đệm thuần túy",
+        "Một bộ định tuyến ngắn chỉ vào tài liệu sâu hơn và trạng thái cũng như bảng",
+        "Một hướng dẫn onboarding dài 3000 dòng"
+      ],
+      "correct": 2,
+      "explanation": "AGENTS.md là một bộ định tuyến, không phải là một hướng dẫn; các hướng dẫn dài thường bị bỏ qua."
+    },
+    {
+      "stage": "check",
+      "question": "Dữ liệu của Augment Code nói gì về một AGENTS.md tốt?",
+      "options": [
+        "Một AGENTS.md tốt mang lại sự cải thiện chất lượng tương đương với việc nâng cấp từ Haiku lên Opus; một cái tồi tệ hơn thì còn tệ hơn không có tệp nào",
+        "Độ dài luôn hữu ích",
+        "Chỉ có Claude đọc nó",
+        "Nó không có tác động đo lường được"
+      ],
+      "correct": 0,
+      "explanation": "Đo lường của Augment Code: các tệp tốt nhất có hình dạng nâng cấp mô hình, tệ nhất thì còn tệ hơn không có gì."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học khuyến nghị trạng thái dựa trên tệp hơn trạng thái lịch sử trò chuyện?",
+      "options": [
+        "Các tệp nhỏ hơn",
+        "Ổ đĩa rẻ hơn",
+        "Lịch sử trò chuyện không ổn định; tệp tồn tại qua cái chết phiên, cắt giảm cuộc trò chuyện và đặt lại công cụ",
+        "Nó được yêu cầu bởi SOC 2"
+      ],
+      "correct": 2,
+      "explanation": "Các phiên chết và trò chuyện bị cắt giảm; tệp là hệ thống ghi chép bền vững."
+    },
+    {
+      "stage": "check",
+      "question": "Bài học nói gì xảy ra khi các hướng dẫn mâu thuẫn xuất hiện trong AGENTS.md?",
+      "options": [
+        "Chi phí tăng nhẹ",
+        "Không có gì",
+        "Độ trễ giảm",
+        "Các hướng dẫn mâu thuẫn âm thầm chuyển tác nhân từ chế độ tương tác sang chế độ tham lam (AMBIG-SWE: tỷ lệ giải quyết giảm từ 48.8% xuống 28%)"
+      ],
+      "correct": 3,
+      "explanation": "AMBIG-SWE đã đo lường một sự giảm tỷ lệ giải quyết lớn khi có mâu thuẫn xuất hiện; số ưu tiên thay vào đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học khuyến nghị các liên kết symlink giữa các công cụ như CLAUDE.md -> AGENTS.md?",
+      "options": [
+        "Để thỏa mãn MIT",
+        "Để vượt qua kiểm toán",
+        "Để một nguồn sự thật duy nhất phân tán đến mọi tác nhân lập trình mà không cần phân nhánh",
+        "Để tiết kiệm byte"
+      ],
+      "correct": 2,
+      "explanation": "Các liên kết symlink (hoặc các trình tạo kiểu Nx) giữ một nguồn chính thống nhất trên Claude Code, Codex, Cursor, Copilot, v.v."
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu nào mà các tệp AGENTS.md lồng nhau theo?",
+      "options": [
+        "Chỉ tệp gốc được đọc",
+        "Đi từ tệp làm việc về phía gốc repo, nối tất cả các AGENTS.md tìm thấy trên đường đi (gần nhất thắng; các thư mục con mở rộng gốc)",
+        "Lựa chọn ngẫu nhiên",
+        "Gộp theo thứ tự chữ cái"
+      ],
+      "correct": 1,
+      "explanation": "OpenAI cung cấp 88 tệp AGENTS.md trên repo chính của mình; các công cụ nối các tệp gần nhất lên cây."
+    }
+  ]
+}

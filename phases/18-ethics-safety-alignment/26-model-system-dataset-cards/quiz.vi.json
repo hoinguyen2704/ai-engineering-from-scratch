@@ -1,0 +1,78 @@
+{
+  "lesson": "26-model-system-dataset-cards",
+  "title": "Thẻ Mô Hình, Hệ Thống và Tập Dữ Liệu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cái nào mô tả tốt nhất Thẻ Mô Hình gốc của Mitchell et al. (2019)?",
+      "options": [
+        "Chỉ là một bản kê khai điểm kiểm tra mô hình",
+        "Một hợp đồng pháp lý quy định",
+        "Một 'nhãn dinh dưỡng' cho các mô hình ML: dữ liệu đào tạo, mục đích sử dụng, các yếu tố, chỉ số, dữ liệu đánh giá, phân tích định lượng phân tách, các cân nhắc đạo đức, các lưu ý",
+        "Một đặc tả OpenAPI"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Oreamuno et al. (2023) đã phát hiện điều gì về việc áp dụng các cân nhắc đạo đức trong thẻ mô hình của Hugging Face?",
+      "options": [
+        "Không có thẻ mô hình nào có bất kỳ văn bản nào",
+        "Khoảng 0.3% tài liệu ghi lại các cân nhắc đạo đức",
+        "Khoảng 80% ghi lại các cân nhắc đạo đức",
+        "Tất cả các thẻ mô hình đều ghi lại chúng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Lớp kính viễn vọng / kính tiềm vọng / kính hiển vi trong Thẻ Dữ Liệu của Pushkarna et al. (Google 2022) cung cấp điều gì?",
+      "options": [
+        "Một danh sách kiểm tra kiểm toán trước RLHF",
+        "Một thư viện hình ảnh theo chủ đề kính viễn vọng",
+        "Một khung đối tượng biên giới nơi cùng một tài liệu phục vụ cho các độc giả khác nhau (không chuyên gia, thực hành ML, kiểm toán viên) thông qua ba mức độ chi tiết khác nhau",
+        "Một giao diện truy vấn bảo vệ quyền riêng tư"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Thẻ Hệ Thống bao quát phạm vi gì mà Thẻ Mô Hình không có?",
+      "options": [
+        "Chỉ là bộ phân tách",
+        "Hệ thống AI end-to-end: mô hình + ngăn xếp an toàn + ngữ cảnh triển khai, bao gồm khả năng bảo mật, bảo vệ chống tiêm lệnh, phát hiện rò rỉ dữ liệu, căn chỉnh và phản ứng sự cố",
+        "Chỉ là mẫu lệnh",
+        "Chỉ là tập dữ liệu"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Liang et al. (2024) đã báo cáo điều gì về chi tiết thẻ mô hình và tỷ lệ tải xuống của Hugging Face?",
+      "options": [
+        "Chỉ các phần cân nhắc đạo đức ảnh hưởng đến việc tải xuống",
+        "Chi tiết làm giảm tỷ lệ tải xuống",
+        "Các thẻ mô hình chi tiết thúc đẩy tăng 29.0% tỷ lệ tải xuống hàng tuần trên HF cho nhóm điều trị so với nhóm đối chứng (diff-in-diff); áp lực áp dụng hiện nay được thúc đẩy bởi thị trường, không chỉ bởi tuân thủ",
+        "Chi tiết không ảnh hưởng đến việc tải xuống"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Laminator (Duddu et al. 2024) đóng góp gì cho tài liệu?",
+      "options": [
+        "Một bộ công cụ chuẩn hóa tự động",
+        "Các chứng thực có thể xác minh thông qua TEE phần cứng / chữ ký mật mã, vì vậy thẻ có thể mang theo bằng chứng về yêu cầu thay vì chỉ là một yêu cầu",
+        "Một trình tạo tóm tắt dựa trên LLM",
+        "Một sự thay thế cho tiêu chuẩn Datasheets"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

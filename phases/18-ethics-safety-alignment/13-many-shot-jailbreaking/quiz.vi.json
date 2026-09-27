@@ -1,0 +1,78 @@
+{
+  "lesson": "13-many-shot-jailbreaking",
+  "title": "Nhiều Lượt Jailbreaking",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Thuộc tính cửa sổ ngữ cảnh nào mà nhiều lượt jailbreaking (MSJ) khai thác?",
+      "options": [
+        "Sự mơ hồ của tokenizer trên các ký tự Unicode",
+        "Cửa sổ ngữ cảnh rất dài cho phép hàng trăm lượt tương tác giả mạo giữa người dùng và trợ lý trước truy vấn mục tiêu",
+        "Embedding vị trí quay vượt quá 2048 token",
+        "Attention cửa sổ trượt cắt ngắn prompt của hệ thống"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tỷ lệ thành công của cuộc tấn công (ASR) thay đổi như thế nào với số lượt trong MSJ?",
+      "options": [
+        "Hàm bước tại 100 lượt",
+        "Đường thẳng với độ dốc âm",
+        "Logistic, ổn định ở 50%",
+        "Luật lũy thừa theo số lượt; không ổn định, tiếp tục tăng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao MSJ lại chia sẻ cơ chế với học tập trong ngữ cảnh vô hại (ICL)?",
+      "options": [
+        "Cả hai đều bỏ qua tokenization",
+        "Cả hai đều dựa vào RLHF",
+        "Cả hai đều cần một scratchpad ẩn",
+        "Cả hai đều phụ thuộc vào mô hình trích xuất cấu trúc nhiệm vụ từ các ví dụ trong ngữ cảnh và thực hiện nó trên truy vấn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nỗi dilemma phòng thủ trung tâm cho MSJ là gì?",
+      "options": [
+        "Các biện pháp phòng thủ phải chạy trên mỗi token của phản hồi",
+        "Các biện pháp phòng thủ cần cụm GPU",
+        "Các biện pháp phòng thủ phải được áp dụng ở nhiệt độ sampling bằng không",
+        "Việc ngăn chặn trích xuất mẫu từ các ngữ cảnh dài cũng sẽ vô hiệu hóa học tập trong ngữ cảnh vô hại; các biện pháp phòng thủ phải phân biệt giữa các mẫu có hại và vô hại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Biện pháp phòng thủ sửa đổi prompt dựa trên phân loại của Anthropic giảm tỷ lệ thành công của cuộc tấn công MSJ từ mức nào xuống mức nào trong các cài đặt đã thử nghiệm?",
+      "options": [
+        "Từ 30% xuống 25%",
+        "Từ 99% xuống 50%",
+        "Từ 61% xuống 2%",
+        "Nó làm tăng ASR"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "MSJ tương tác như thế nào với PAIR (Bài học 12)?",
+      "options": [
+        "MSJ kết hợp với PAIR; sử dụng PAIR để tìm cấu trúc tấn công và sau đó lấp đầy nó bằng nhiều lượt có thể đạt ASR cao hơn so với từng cái riêng lẻ",
+        "PAIR trung hòa MSJ",
+        "Chúng là loại trừ lẫn nhau",
+        "PAIR chỉ hoạt động trên các mô hình mã nguồn đóng"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

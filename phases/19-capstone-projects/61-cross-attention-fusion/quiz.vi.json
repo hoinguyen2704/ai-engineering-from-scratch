@@ -1,0 +1,78 @@
+{
+  "lesson": "61-cross-attention-fusion",
+  "title": "Kết Hợp Chú Ý Chéo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt về hoạt động giữa kết hợp sớm và kết hợp muộn trong mô hình ngôn ngữ-ảnh là gì?",
+      "options": [
+        "Kết hợp muộn sử dụng nhiều bộ nhớ hơn",
+        "Kết hợp sớm là bất hợp pháp",
+        "Kết hợp sớm nối ghép các token hình ảnh và văn bản thành một chuỗi; kết hợp muộn giữ chúng tách biệt và kết nối qua chú ý chéo tại mỗi khối",
+        "Kết hợp sớm chạy trước trong thời gian thực"
+      ],
+      "correct": 2,
+      "explanation": "Chameleon và Emu3 là kết hợp sớm; Flamingo và BLIP-2 là kết hợp muộn. Lựa chọn kiến trúc thay đổi hình dạng mặt nạ và bộ nhớ KV."
+    },
+    {
+      "stage": "pre",
+      "question": "Trong một khối giải mã với cả chú ý tự động và chú ý chéo, cái nào sử dụng mặt nạ nguyên nhân?",
+      "options": [
+        "Không cái nào",
+        "Cả hai",
+        "Chú ý chéo thôi",
+        "Chú ý tự động thôi; hình ảnh được quan sát hoàn toàn và chú ý chéo không có thứ tự tạm thời"
+      ],
+      "correct": 3,
+      "explanation": "Tạo văn bản là tự hồi quy, vì vậy chú ý tự động văn bản là nguyên nhân. Các token hình ảnh đều có thể nhìn thấy trước khi bất kỳ văn bản nào được giải mã."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bộ nhớ KV của chú ý chéo được xây dựng một lần cho mỗi hình ảnh?",
+      "options": [
+        "Các khóa và giá trị hình ảnh không thay đổi khi văn bản được giải mã, vì vậy việc chiếu bộ nhớ một lần và tái sử dụng K và V qua tất cả các bước giải mã là toàn bộ sự tăng tốc suy diễn",
+        "Nó tránh việc sử dụng GPU",
+        "PyTorch yêu cầu bộ nhớ đệm",
+        "Bộ nhớ đệm tiết kiệm không gian đĩa"
+      ],
+      "correct": 0,
+      "explanation": "Bộ mã hóa hình ảnh chạy một lần. Chiếu KV của nó được tính toán một lần. Mỗi token văn bản tái sử dụng bộ nhớ đệm miễn phí."
+    },
+    {
+      "stage": "check",
+      "question": "Hình dạng đầu ra của chú ý chéo khi độ dài văn bản là Nt=10 và độ dài hình ảnh là Nv=197 với hidden=256 là gì?",
+      "options": [
+        "(B, 10, 256)",
+        "(B, 207, 256)",
+        "(B, 10, 197)",
+        "(B, 197, 256)"
+      ],
+      "correct": 0,
+      "explanation": "Hình dạng đầu ra của chú ý chéo theo dòng truy vấn, vì vậy đầu ra là (B, Nt, hidden) bất kể độ dài khóa."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao không sử dụng mặt nạ trên chú ý chéo?",
+      "options": [
+        "Mặt nạ luôn gây ra NaN",
+        "Mặt nạ quá tốn kém",
+        "Hình ảnh được quan sát hoàn toàn trước khi bắt đầu tạo văn bản; mỗi vị trí văn bản có thể chú ý đến mọi mảnh",
+        "PyTorch không hỗ trợ mặt nạ chéo"
+      ],
+      "correct": 2,
+      "explanation": "Không có thứ tự tạm thời trên các mảnh hình ảnh và không có rò rỉ nào cần ngăn chặn, vì vậy chú ý chéo thấy toàn bộ hình ảnh."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn sẽ thêm phần mở rộng nào để phục hồi độ ổn định kiểu Flamingo trong quá trình huấn luyện?",
+      "options": [
+        "Loại bỏ FFN",
+        "Chèn một cổng tanh học được vào phần dư chú ý chéo để mô hình có thể bắt đầu từ hành vi chỉ văn bản và phát triển vào dòng hình ảnh",
+        "Bỏ qua lớp chú ý tự động",
+        "Chỉ sử dụng một đầu chú ý"
+      ],
+      "correct": 1,
+      "explanation": "Cổng tanh của Flamingo bắt đầu từ zero, phục hồi hành vi chỉ văn bản tại khởi tạo, và cho mô hình một sự chuyển tiếp mượt mà vào chú ý chéo."
+    }
+  ]
+}

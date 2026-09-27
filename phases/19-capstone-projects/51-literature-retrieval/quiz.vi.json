@@ -1,0 +1,78 @@
+{
+  "lesson": "51-literature-retrieval",
+  "title": "Truy xuất Tài liệu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao khách hàng truy xuất lại thực hiện một lượt BM25 và một lượt đồ thị trích dẫn?",
+      "options": [
+        "Bởi vì các API giả lập yêu cầu điều đó",
+        "Bởi vì trình phân tích cú pháp sẽ thất bại nếu không có",
+        "Bởi vì BM25 cần đồ thị để xây dựng chỉ mục của nó",
+        "Bởi vì các kết quả từ từ vựng bỏ lỡ các tài liệu cơ bản với từ vựng khác nhau, và các kết quả từ đồ thị bỏ lỡ các tài liệu không chia sẻ trích dẫn với tài liệu gốc"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi lượt bắt được những gì lượt kia bỏ lỡ. Từ vựng bao phủ từ vựng chung; đồ thị bao phủ các tài liệu tổ tiên và hậu duệ bất kể từ vựng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao việc duyệt đồ thị trích dẫn lại bị giới hạn ở hai bước nhảy?",
+      "options": [
+        "Bởi vì giới hạn đệ quy của Python cấm ba bước nhảy",
+        "Bởi vì vượt quá hai bước nhảy, tập kết quả có xu hướng lệch chủ đề và làm quá tải xếp hạng phía dưới",
+        "Bởi vì BM25 chỉ tính điểm cho hai bước nhảy",
+        "Bởi vì tập hợp chỉ lưu trữ hai lớp trích dẫn"
+      ],
+      "correct": 1,
+      "explanation": "Hai bước nhảy là giới hạn thực tiễn. Ba bước nhảy làm phình to tập kết quả trên một đồ thị liên kết và hiếm khi trả về nhiều tài liệu đúng chủ đề hơn."
+    },
+    {
+      "stage": "check",
+      "question": "idf đánh giá như thế nào cho một thuật ngữ xuất hiện trong mọi tài liệu?",
+      "options": [
+        "Âm vô cùng",
+        "Một giá trị dương lớn",
+        "Không xác định; triển khai BM25 bỏ qua nó",
+        "Một giá trị gần bằng không"
+      ],
+      "correct": 3,
+      "explanation": "Khi df bằng N, tử số và mẫu số bên trong log gần nhau, và +1 giữ cho thuật ngữ không âm nhưng nhỏ. Đóng góp của các thuật ngữ phổ biến toàn cầu gần bằng không."
+    },
+    {
+      "stage": "check",
+      "question": "Các khóa nào được bước hợp nhất sử dụng để loại bỏ trùng lặp từ hai lượt?",
+      "options": [
+        "Thùng điểm BM25",
+        "ID tài liệu ổn định",
+        "Năm và tác giả đầu tiên",
+        "Văn bản tiêu đề"
+      ],
+      "correct": 1,
+      "explanation": "ID tài liệu là tay cầm ổn định. Tiêu đề và tác giả bị trùng lặp qua các phiên bản, chỉ năm thì không rõ ràng."
+    },
+    {
+      "stage": "check",
+      "question": "graph_score trả về giá trị gì cho một tài liệu cách hai bước nhảy từ tập tài liệu gốc?",
+      "options": [
+        "Điểm BM25 chia cho mười",
+        "0.3 theo mặc định",
+        "1.0 theo mặc định",
+        "Không"
+      ],
+      "correct": 1,
+      "explanation": "Lịch trình điểm đồ thị mặc định là 1.0 tại không bước nhảy, 0.6 tại một bước nhảy, 0.3 tại hai bước nhảy, và không có gì sau đó."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tập hợp được tải một lần vào RetrievalClient thay vì được lấy lại cho mỗi truy vấn?",
+      "options": [
+        "Bởi vì điểm gần đây yêu cầu điều đó",
+        "Bởi vì chỉ mục BM25 và đồ thị trích dẫn được xây dựng một lần tại thời điểm xây dựng và được sử dụng lại qua các truy vấn",
+        "Bởi vì các API giả lập chậm trong mỗi lần gọi",
+        "Bởi vì trình phân tích cú pháp là toàn cục"
+      ],
+      "correct": 1,
+      "explanation": "Xây dựng chỉ mục là bước tốn kém. Sử dụng lại chỉ mục phân bổ chi phí đó qua mỗi truy vấn mà khách hàng xử lý."
+    }
+  ]
+}

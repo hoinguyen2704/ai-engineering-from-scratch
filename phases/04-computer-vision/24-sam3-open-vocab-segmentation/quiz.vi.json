@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khái niệm Phân đoạn Khái niệm Có thể Nhắc lại (PCS) là gì, được giới thiệu bởi SAM 3?",
+      "options": [
+        "Một chuỗi nhiều bước của một bộ phát hiện theo sau là SAM",
+        "Phân đoạn tất cả các trường hợp của một khái niệm được mô tả bởi một cụm danh từ ngắn hoặc ví dụ hình ảnh trong một lần truyền tiến duy nhất, trả về mặt nạ cộng với ID trường hợp duy nhất",
+        "Một phân đoạn nhắc nhở hình ảnh (điểm/hộp) giống như SAM cổ điển",
+        "Một chế độ chỉ theo dõi"
+      ],
+      "correct": 1,
+      "explanation": "PCS là khả năng đặc trưng của SAM 3. Bạn truyền vào 'xe buýt trường học màu vàng' hoặc một ví dụ hình ảnh của một chiếc xe buýt; SAM 3 trả về mọi trường hợp phù hợp với mặt nạ riêng và ID duy nhất của nó, cộng với điểm hiện diện. SAM cổ điển cần một nhắc nhở cho mỗi trường hợp; PCS tạo ra tất cả các kết quả từ đầu đến cuối."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao giữ một bộ phát hiện tách rời + quy trình SAM 2 (Grounded SAM 2) vào năm 2026 nếu SAM 3 đã thực hiện phân đoạn theo nhắc nhở văn bản?",
+      "options": [
+        "SAM 3 chỉ có sẵn trên đám mây",
+        "Grounded SAM 2 luôn chính xác hơn",
+        "Tính mô-đun — bạn có thể thay thế các bộ phát hiện từ vựng mở khác (DINO-X, Florence-2, Grounding DINO 1.5) cho các miền khác nhau, ràng buộc giấy phép hoặc hành vi ngưỡng; kiến trúc của SAM 3 là đơn khối",
+        "SAM 3 không hỗ trợ video"
+      ],
+      "correct": 2,
+      "explanation": "Grounded SAM 2 là sự kết hợp của một bộ phát hiện và SAM 2 với trọng số đã đóng băng. Tính mô-đun đó đôi khi chính xác là những gì bạn cần — một bộ phát hiện hình ảnh y tế, một bộ phát hiện thân thiện với giấy phép, hoặc kiểm soát ngưỡng chặt chẽ. SAM 3 chính xác hơn từ đầu đến cuối cho các trường hợp sử dụng phổ biến nhưng khó tùy chỉnh hơn. Cả hai đều có vai trò sản xuất vào năm 2026."
+    },
+    {
+      "stage": "post",
+      "question": "Đầu ra hiện diện của SAM 3 tạo ra gì?",
+      "options": [
+        "Một xác suất vô hướng rằng khái niệm được truy vấn tồn tại trong hình ảnh, tách rời khỏi định vị; cho phép mô hình nói 'không có mặt' một cách rõ ràng và giảm thiểu các dương tính giả trên các khái niệm không có mặt",
+        "Danh sách các hộp giới hạn ứng cử viên",
+        "Một ngân hàng bộ nhớ theo dõi",
+        "Mặt nạ cuối cùng"
+      ],
+      "correct": 0,
+      "explanation": "Đầu ra hiện diện tách biệt quyết định 'cái này có ở đây không?' khỏi quyết định 'nó ở đâu?'. Một mô hình phải tạo ra hộp mỗi khi được yêu cầu có xu hướng ảo tưởng các kết quả cho các khái niệm không có mặt. Với đầu ra hiện diện, SAM 3 có thể trả về không có phát hiện một cách rõ ràng. Điều này cũng cải thiện khả năng phân biệt giữa các nhắc nhở liên quan chặt chẽ (ví dụ: 'một cầu thủ trong trang phục trắng' so với 'một cầu thủ trong trang phục đỏ')."
+    },
+    {
+      "stage": "post",
+      "question": "SAM 3.1 Object Multiplex (Tháng 3 năm 2026) giới thiệu một cơ chế bộ nhớ chia sẻ cho việc theo dõi. Nó thay thế cái gì?",
+      "options": [
+        "Ngân hàng bộ nhớ riêng biệt cho mỗi trường hợp; Multiplex gộp chúng thành một bộ nhớ chia sẻ với các truy vấn theo trường hợp để theo dõi N đối tượng chạy nhanh hơn đáng kể trong khi vẫn giữ độ chính xác",
+        "Toàn bộ đầu ra hiện diện",
+        "SAM 2 hoàn toàn",
+        "Khung xương ViT"
+      ],
+      "correct": 0,
+      "explanation": "Theo dõi SAM 2 / SAM 3 trước đây duy trì một ngân hàng bộ nhớ cho mỗi trường hợp được theo dõi, vì vậy chi phí tăng theo tuyến tính với số lượng đối tượng. Object Multiplex giới thiệu một bộ nhớ chia sẻ duy nhất cộng với các truy vấn theo trường hợp lấy các đặc điểm cụ thể cho từng trường hợp. Theo dõi nhiều trường hợp giờ đây hiệu quả — điều này rất cần thiết cho đám đông và các cảnh đa đối tượng dày đặc."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn cần PHÁT HIỆN từ vựng mở thời gian thực (chỉ hộp, không có mặt nạ) trên một thiết bị biên. Gia đình mô hình nào năm 2026 là lựa chọn đúng?",
+      "options": [
+        "Một chuỗi CLIP + bộ phát hiện tùy chỉnh",
+        "SAM 3",
+        "Grounded SAM 2",
+        "YOLO-World (và các bộ phát hiện từ vựng mở thời gian thực liên quan); SAM 3 tạo ra mặt nạ và nặng hơn, trong khi YOLO-World được thiết kế đặc biệt cho hộp ở tốc độ khung hình cao trên phần cứng biên"
+      ],
+      "correct": 3,
+      "explanation": "YOLO-World và các mô hình tương tự (OV-DINO, LLMDet) là các bộ phát hiện từ vựng mở thời gian thực. Chúng không tạo ra mặt nạ nhưng đạt 30-60 fps ở độ phân giải 640x640 trên các GPU khiêm tốn. SAM 3 là lựa chọn đúng khi mặt nạ và theo dõi quan trọng. Luôn khớp trọng lượng công cụ với nhiệm vụ: chỉ phát hiện là đủ mà không có chi phí mặt nạ."
+    }
+  ]
+}

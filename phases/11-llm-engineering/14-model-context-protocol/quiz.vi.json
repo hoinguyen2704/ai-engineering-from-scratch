@@ -1,0 +1,78 @@
+{
+  "lesson": "14-model-context-protocol",
+  "title": "Giao thức Ngữ cảnh Mô hình",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trong MCP 2026-07-28, khách hàng gửi phiên bản giao thức và khả năng của mình ở đâu?",
+      "options": [
+        "Chỉ trong cookie HTTP",
+        "Chỉ trong yêu cầu khởi tạo",
+        "Trong params._meta trên mỗi yêu cầu",
+        "Trong bản ghi phiên phía máy chủ"
+      ],
+      "correct": 2,
+      "explanation": "MCP hiện đại là không trạng thái. Mỗi yêu cầu mang phiên bản giao thức và khả năng của khách hàng trong params._meta."
+    },
+    {
+      "stage": "check",
+      "question": "Mỗi máy chủ MCP hiện đại phải triển khai cái gì để phát hiện phiên bản và khả năng ngay từ đầu?",
+      "options": [
+        "server/discover",
+        "sessions/create",
+        "logging/setLevel",
+        "initialize"
+      ],
+      "correct": 0,
+      "explanation": "server/discover quảng bá các phiên bản được hỗ trợ, khả năng của máy chủ và danh tính của máy chủ."
+    },
+    {
+      "stage": "check",
+      "question": "Hình thức HTTP Streamable nào hiện tại trong MCP 2026-07-28?",
+      "options": [
+        "Một yêu cầu DELETE sau mỗi lần gọi công cụ",
+        "Một phiên WebSocket được xác định bởi Mcp-Session-Id",
+        "Một POST cho mỗi thông điệp JSON-RPC; các yêu cầu POST nhận JSON hoặc SSE theo phạm vi yêu cầu",
+        "Một luồng GET cộng với một điểm cuối POST riêng biệt"
+      ],
+      "correct": 2,
+      "explanation": "Phương thức vận chuyển hiện tại có một điểm cuối POST. Các yêu cầu POST nhận JSON hoặc SSE theo phạm vi yêu cầu; một thông báo POST được chấp nhận nhận HTTP 202 mà không có nội dung."
+    },
+    {
+      "stage": "check",
+      "question": "Máy chủ nên phân biệt như thế nào giữa metadata phiên bản giao thức bị thiếu và một phiên bản không được hỗ trợ nhưng có định dạng đúng?",
+      "options": [
+        "Trả về -32022 cho cả hai trường hợp",
+        "Trả về HTTP 301 cho một phiên bản bị thiếu và tạo Mcp-Session-Id cho một phiên bản không được hỗ trợ",
+        "Trả về -32602 cho metadata bị thiếu hoặc không phải chuỗi và -32022 với hỗ trợ/yêu cầu cho một chuỗi không được hỗ trợ",
+        "Chấp nhận một phiên bản bị thiếu và trả về -32601 cho một phiên bản không được hỗ trợ"
+      ],
+      "correct": 2,
+      "explanation": "Một trường bắt buộc bị thiếu hoặc có kiểu không đúng là params JSON-RPC không hợp lệ. UnsupportedProtocolVersionError chỉ áp dụng khi một chuỗi phiên bản được cung cấp không được triển khai."
+    },
+    {
+      "stage": "post",
+      "question": "Một công cụ đa bước cần sự liên tục giữa các lần gọi. Thiết kế MCP hiện đại là gì?",
+      "options": [
+        "Đặt trạng thái có thể thay đổi trong clientInfo",
+        "Khôi phục Mcp-Session-Id chỉ cho công cụ này",
+        "Tạo một tay cầm mờ và yêu cầu nó như một tham số công cụ sau này",
+        "Lưu trữ trạng thái phía sau kết nối TCP"
+      ],
+      "correct": 2,
+      "explanation": "Trạng thái giữa các lần gọi là trạng thái ứng dụng rõ ràng. Một tay cầm do máy chủ tạo ra di chuyển như một tham số thông thường, được ủy quyền."
+    },
+    {
+      "stage": "post",
+      "question": "Một máy chủ hiện đại yêu cầu đầu vào từ người dùng, mô hình hoặc gốc như thế nào trong quá trình hoạt động của công cụ?",
+      "options": [
+        "Nó ghi câu hỏi vào stderr",
+        "Nó mở một kết nối SSE thứ hai",
+        "Nó trả về input_required và khách hàng thử lại với inputResponses",
+        "Nó gửi một yêu cầu JSON-RPC độc lập từ máy chủ đến khách hàng"
+      ],
+      "correct": 2,
+      "explanation": "Mô hình Yêu cầu Đa Vòng đi kèm với inputRequests trong một kết quả input_required và thử lại hoạt động ban đầu."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ý nghĩa hình học của việc hệ thống Ax = b không có nghiệm chính xác là gì?",
+      "options": [
+        "Vecto b không nằm trong không gian cột của A",
+        "Ma trận A có tất cả các phần tử bằng 0",
+        "Hệ thống có nhiều ẩn hơn phương trình",
+        "Ma trận A là đối xứng"
+      ],
+      "correct": 0,
+      "explanation": "Trong hình ảnh cột, Ax = b hỏi: tổ hợp tuyến tính nào của các cột của A tạo ra b? Nếu b không nằm trong không gian cột (không gian sinh của các cột của A), thì không có nghiệm chính xác. Điều này xảy ra khi hệ thống bị xác định quá (nhiều phương trình hơn ẩn)."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao lại sử dụng phép hoán vị một phần trong loại bỏ Gaussian?",
+      "options": [
+        "Nó chọn pivot lớn nhất có sẵn để giảm thiểu sự khuếch đại lỗi từ việc chia cho các số nhỏ",
+        "Nó loại bỏ nhu cầu về việc thay thế ngược",
+        "Nó giảm độ phức tạp thời gian từ O(n^3) xuống O(n^2)",
+        "Nó đảm bảo rằng kết quả luôn là một số nguyên"
+      ],
+      "correct": 0,
+      "explanation": "Nếu không có phép hoán vị, việc chia cho một pivot nhỏ sẽ khuếch đại các lỗi làm tròn. Phép hoán vị một phần hoán đổi các hàng để đặt giá trị tuyệt đối lớn nhất vào vị trí pivot, giữ cho các hệ số nhỏ và tính toán ổn định về mặt số học."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao phân tích Cholesky được ưa chuộng hơn LU để giải (X^T X + lambda I) w = X^T y trong hồi quy ridge?",
+      "options": [
+        "Cholesky cho câu trả lời chính xác hơn so với LU",
+        "Cholesky hoạt động trên bất kỳ ma trận nào trong khi LU yêu cầu ma trận vuông",
+        "Phân tích LU không thể xử lý các hạng mục điều chỉnh",
+        "Ma trận X^T X + lambda I là đối xứng dương xác định, vì vậy Cholesky nhanh gấp đôi so với LU và yêu cầu một nửa dung lượng lưu trữ"
+      ],
+      "correct": 3,
+      "explanation": "Khi lambda > 0, X^T X + lambda I luôn là đối xứng dương xác định. Cholesky phân tích A = LL^T trong O(n^3/3) phép toán — khoảng một nửa O(2n^3/3) của LU — và chỉ cần tam giác dưới. Nó khai thác tính đối xứng mà LU không có."
+    },
+    {
+      "stage": "post",
+      "question": "Một ma trận có số điều kiện kappa = 10^8. Bạn đang sử dụng float64 (~15 chữ số chính xác). Bạn có thể tin tưởng bao nhiêu chữ số của nghiệm?",
+      "options": [
+        "Khoảng 15 chữ số",
+        "Khoảng 7 chữ số (15 - log10(10^8) = 15 - 8)",
+        "Không có chữ số nào — nghiệm là vô nghĩa",
+        "Khoảng 8 chữ số"
+      ],
+      "correct": 1,
+      "explanation": "Bạn mất khoảng log10(kappa) chữ số chính xác. Với kappa = 10^8, bạn mất khoảng 8 chữ số từ ~15 chữ số của float64, để lại khoảng 7 chữ số đáng tin cậy. Nếu kappa tiến gần 10^16, nghiệm trở nên vô nghĩa trong float64."
+    },
+    {
+      "stage": "post",
+      "question": "Lợi thế chính của phân tích LU so với loại bỏ Gaussian khi bạn cần giải Ax = b cho nhiều vecto b khác nhau là gì?",
+      "options": [
+        "Phân tích O(n^3) được thực hiện một lần; mỗi lần giải tiếp theo với một b mới chỉ tốn O(n^2)",
+        "Phân tích LU ổn định hơn về mặt số học",
+        "Phân tích LU hoạt động trên các ma trận hình chữ nhật",
+        "LU luôn tạo ra một nghiệm duy nhất"
+      ],
+      "correct": 0,
+      "explanation": "LU phân tích A = LU một lần trong O(n^3). Sau đó, cho mỗi b mới, bạn giải Ly = b (thay thế tiến) và Ux = y (thay thế ngược), mỗi cái tốn O(n^2). Loại bỏ Gaussian sẽ làm lại toàn bộ O(n^3) cho mỗi b mới."
+    }
+  ]
+}

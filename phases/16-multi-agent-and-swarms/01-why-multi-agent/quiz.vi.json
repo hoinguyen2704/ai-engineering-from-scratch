@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cái gọi là 'trần đơn tác nhân' là gì?",
+      "options": [
+        "Điểm mà một tác nhân đơn thất bại vì nhiệm vụ vượt quá một cửa sổ ngữ cảnh, yêu cầu chuyên môn khác nhau, hoặc cần làm việc song song",
+        "Kích thước mô hình tối đa có thể chạy trên một GPU đơn",
+        "Số lượng công cụ tối đa mà một tác nhân có thể sử dụng",
+        "Giới hạn về số lần gọi API mà một tác nhân có thể thực hiện mỗi phút"
+      ],
+      "correct": 0,
+      "explanation": "Một tác nhân đơn có một cửa sổ ngữ cảnh, một lời nhắc hệ thống và xử lý tuần tự. Khi nhiệm vụ yêu cầu đọc 50 tệp (tràn ngữ cảnh), chuyển đổi giữa nghiên cứu và lập trình (chuyên môn hỗn hợp), hoặc làm việc độc lập đồng thời (song song), một tác nhân đơn sẽ bị hỏng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bạn có thể sử dụng nhiều tác nhân chuyên biệt thay vì một tác nhân tổng quát mạnh mẽ?",
+      "options": [
+        "Mỗi tác nhân có thể có một lời nhắc hệ thống tập trung, ngữ cảnh nhỏ hơn và công cụ chuyên biệt, dẫn đến hiệu suất tốt hơn trên nhiệm vụ con cụ thể của nó",
+        "Nhiều tác nhân luôn rẻ hơn một mô hình lớn duy nhất",
+        "Các tác nhân tổng quát không thể sử dụng công cụ",
+        "Nhiều tác nhân có thể chia sẻ cùng một cửa sổ ngữ cảnh"
+      ],
+      "correct": 0,
+      "explanation": "Một tác nhân nghiên cứu tối ưu cho tìm kiếm, một tác nhân lập trình tối ưu cho triển khai, và một tác nhân đánh giá tối ưu cho chất lượng mã đều thực hiện công việc của họ tốt hơn so với một tác nhân đơn cố gắng làm cả ba cùng một lúc."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào mô hình đa tác nhân theo chuỗi (pipeline) tốt hơn mô hình phân nhánh song song?",
+      "options": [
+        "Khi mỗi giai đoạn phụ thuộc vào đầu ra của giai đoạn trước, chẳng hạn như nghiên cứu rồi mã rồi đánh giá",
+        "Khi bạn có nhiều GPU hơn số nhiệm vụ",
+        "Khi bạn muốn giảm thiểu độ trễ tổng thể",
+        "Khi tất cả các nhiệm vụ con độc lập với nhau"
+      ],
+      "correct": 0,
+      "explanation": "Mô hình pipeline là đúng khi công việc vốn dĩ là tuần tự: lập trình viên cần đầu ra của nhà nghiên cứu, và người đánh giá cần đầu ra của lập trình viên. Phân nhánh song song tốt hơn khi các nhiệm vụ con độc lập."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình giám sát trong hệ thống đa tác nhân là gì?",
+      "options": [
+        "Một người điều phối thủ công phân công nhiệm vụ cho từng tác nhân",
+        "Một mô hình mà các tác nhân bỏ phiếu cho phản hồi tốt nhất",
+        "Một tác nhân điều phối trung tâm phân tách nhiệm vụ, phân công cho các tác nhân làm việc, thu thập kết quả và quyết định bước tiếp theo",
+        "Một hệ thống giám sát ghi lại hành động của các tác nhân để gỡ lỗi"
+      ],
+      "correct": 2,
+      "explanation": "Tác nhân giám sát hoạt động như một quản lý dự án: nó phân tách nhiệm vụ thành các nhiệm vụ con, phân công cho các công nhân chuyên biệt, xem xét đầu ra của họ và quyết định có lặp lại hay hoàn thiện. Điều này cung cấp kiểm soát tập trung đối với quy trình làm việc."
+    },
+    {
+      "stage": "post",
+      "question": "Sự đánh đổi chính của hệ thống đa tác nhân so với các tác nhân đơn là gì?",
+      "options": [
+        "Hệ thống đa tác nhân luôn tạo ra kết quả chất lượng thấp hơn",
+        "Hệ thống đa tác nhân không thể sử dụng công cụ bên ngoài",
+        "Hệ thống đa tác nhân yêu cầu nhiều dữ liệu huấn luyện hơn",
+        "Tăng độ phức tạp, độ trễ và chi phí từ nhiều lần gọi LLM và giao tiếp giữa các tác nhân, đổi lấy khả năng xử lý tốt hơn các nhiệm vụ phức tạp"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi tác nhân bổ sung có nghĩa là nhiều lần gọi LLM (chi phí), nhiều lượt đi lại (độ trễ), và nhiều chế độ thất bại hơn (độ phức tạp gỡ lỗi). Hệ thống đa tác nhân chỉ đáng giá khi nhiệm vụ thực sự vượt quá khả năng của một tác nhân đơn."
+    }
+  ]
+}

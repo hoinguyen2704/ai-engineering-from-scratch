@@ -1,0 +1,78 @@
+{
+  "lesson": "44-cosine-lr-warmup",
+  "title": "Cosine LR với Linear Warmup",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao lịch trình cosine-with-warmup bắt đầu từ zero thay vì từ lr_max?",
+      "options": [
+        "Truyền thống ngẫu nhiên",
+        "Bởi vì lr_max là không hợp lệ tại bước zero",
+        "Một nghìn cập nhật đầu tiên là ồn ào; một ramp tuyến tính từ zero đến lr_max cung cấp cho bộ tối ưu một kích thước bước hiệu quả nhỏ trong khi các ước lượng đang ổn định",
+        "Bởi vì Adam yêu cầu điều đó"
+      ],
+      "correct": 2,
+      "explanation": "Warmup giữ cho các cập nhật sớm dễ vỡ nhỏ; mô hình nếu không sẽ hoặc phân kỳ hoặc ổn định."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lịch trình được thực hiện như một hàm duy nhất trên bước thay vì ba đoạn dán lại với nhau?",
+      "options": [
+        "Một lịch trình dán lại mất một ranh giới lần đầu tiên khi lr_max được thay đổi; hàm đơn lẻ đánh giá cùng một biểu thức dạng đóng và duy trì tính liên tục tại các điểm kết thúc warmup và tổng",
+        "Linters yêu cầu điều đó",
+        "Ngẫu nhiên",
+        "Các hàm đơn lẻ nhỏ hơn"
+      ],
+      "correct": 0,
+      "explanation": "Tính liên tục tại lr(warmup_steps) và lr(total_steps) theo từ dạng đóng."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra cho bước > total_steps trong lịch trình?",
+      "options": [
+        "Nó trả về nan",
+        "Nó ném ra một ngoại lệ",
+        "Nó quay vòng",
+        "Nó giữ ở lr_min; lịch trình không ngoại suy, và các huấn luyện viên cần mở rộng đào tạo thay đổi total_steps một cách rõ ràng"
+      ],
+      "correct": 3,
+      "explanation": "Một sàn được giữ giúp một huấn luyện viên vượt quá ở trong một trạng thái đã được tài liệu thay vì bị sập."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao ghi log độ lớn gradient L2 bên cạnh tốc độ học?",
+      "options": [
+        "Truyền thống",
+        "Độ lớn là nửa còn lại của sức khỏe đào tạo: một lần chạy phân kỳ tăng độ lớn của nó trước khi mất mát; một đỉnh quá hung hãn xuất hiện như một độ lớn vẫn cao sau warmup",
+        "Nó trông đẹp",
+        "Adam yêu cầu điều đó"
+      ],
+      "correct": 1,
+      "explanation": "Ghi log đồng thời làm cho các lịch trình bệnh lý trở nên rõ ràng tại thời gian chạy, không phải sau đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cấu hình warmup_steps như một phần của total_steps trong sản xuất?",
+      "options": [
+        "Các phần thì sạch hơn",
+        "Một số lượng warmup cố định phù hợp với một lần chạy 20k bước về cơ bản là không có warmup trong một lần chạy 200M bước; phần (thường 1-3 phần trăm) tỷ lệ với thời gian đào tạo",
+        "Yêu cầu phần cứng",
+        "Sở thích ngẫu nhiên"
+      ],
+      "correct": 1,
+      "explanation": "Các số lượng warmup tuyệt đối hoạt động không tốt trên các quy mô thời gian đào tạo."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao một lr_min không bằng không là điển hình trong sản xuất?",
+      "options": [
+        "Một sàn gần 10 phần trăm của lr_max giữ cho bộ tối ưu học trong suốt đuôi dài; một lr_min bằng không tạo ra một đường cong trông đẹp và một mô hình chưa hoàn thành đào tạo",
+        "Tính ổn định số",
+        "Tương thích ngược",
+        "Adam yêu cầu không bằng không"
+      ],
+      "correct": 0,
+      "explanation": "Đuôi của lịch trình là nơi mà các tinh chỉnh giai đoạn muộn hạ cánh; việc đặt nó bằng không lãng phí tín hiệu đó."
+    }
+  ]
+}

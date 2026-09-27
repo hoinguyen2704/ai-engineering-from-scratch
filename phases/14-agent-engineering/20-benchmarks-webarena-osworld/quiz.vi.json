@@ -1,0 +1,90 @@
+{
+  "lesson": "20-benchmarks-webarena-osworld",
+  "title": "Các tiêu chuẩn: WebArena và OSWorld",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao WebArena tự lưu trữ bốn ứng dụng mục tiêu của mình?",
+      "options": [
+        "Để tránh TLS",
+        "Để cố định các phiên bản có thể tái tạo để đánh giá dựa trên thực thi và không bị không ổn định",
+        "Để tiết kiệm chi phí",
+        "Để chạy trên GPU"
+      ],
+      "correct": 1,
+      "explanation": "Các ứng dụng tự lưu trữ cố định làm cho việc đánh giá dựa trên thực thi trở nên đáng tin cậy và có thể so sánh theo thời gian."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao OSWorld sử dụng ảnh chụp màn hình hệ điều hành thực tế thay vì API truy cập?",
+      "options": [
+        "Ảnh chụp màn hình có chi phí thấp hơn",
+        "API truy cập rò rỉ PII",
+        "API truy cập quá nhanh",
+        "Ảnh chụp màn hình buộc tác nhân phải thực hiện việc định vị GUI thực tế ở độ phân giải 1920x1080, phù hợp với các ràng buộc sản xuất"
+      ],
+      "correct": 3,
+      "explanation": "Đánh giá dựa trên ảnh chụp màn hình buộc phải định vị pixel đến phần tử, là ràng buộc sản xuất thực tế."
+    },
+    {
+      "stage": "check",
+      "question": "Hai chế độ thất bại chính nào mà OSWorld làm nổi bật?",
+      "options": [
+        "Độ trễ và băng thông",
+        "Ảo giác và từ chối",
+        "Sự trôi dạt nhúng và rò rỉ token",
+        "Định vị GUI và kiến thức vận hành"
+      ],
+      "correct": 3,
+      "explanation": "Định vị (pixel đến phần tử) và kiến thức vận hành (menu, phím tắt) là những rào cản chính."
+    },
+    {
+      "stage": "check",
+      "question": "OSWorld-Human bổ sung gì lên trên tiêu chuẩn cơ bản?",
+      "options": [
+        "Các quỹ đạo hành động được biên soạn thủ công làm nổi bật khoảng cách không hiệu quả 1.4-2.7x của tác nhân",
+        "Độ phân giải màn hình lớn hơn",
+        "Nhiều nhiệm vụ hơn",
+        "Một hệ điều hành mới"
+      ],
+      "correct": 0,
+      "explanation": "Các quỹ đạo vàng làm cho hiệu quả quỹ đạo có thể đo lường được, không chỉ là tỷ lệ thành công."
+    },
+    {
+      "stage": "check",
+      "question": "Số liệu nào được trích dẫn cho WebArena vào thời điểm phát hành?",
+      "options": [
+        "Tác nhân tốt nhất ở 50% với con người ở 50%",
+        "Tác nhân tốt nhất ở 0% trên toàn bộ",
+        "Tác nhân tốt nhất ở 99% với con người ở 100%",
+        "Tác nhân GPT-4 tốt nhất 14.41% thành công so với con người 78.24%"
+      ],
+      "correct": 3,
+      "explanation": "Khoảng cách 14.41% so với 78.24% là số liệu thời điểm phát hành của WebArena."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học cảnh báo điều gì xảy ra với đánh giá chỉ dựa trên ảnh chụp màn hình khi tác nhân sử dụng DOM hoặc API truy cập?",
+      "options": [
+        "Không có gì thay đổi",
+        "Các bài kiểm tra vượt qua một cách dễ dàng",
+        "Bạn vượt quá giới hạn tốc độ",
+        "Bạn bỏ lỡ thách thức định vị mà OSWorld được thiết kế để đo lường"
+      ],
+      "correct": 3,
+      "explanation": "Đánh giá một tác nhân API truy cập trên các tiêu chuẩn chỉ dựa trên ảnh chụp màn hình bỏ qua bài kiểm tra định vị."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc bỏ qua độ dài quỹ đạo lại là một thất bại trong việc đánh giá?",
+      "options": [
+        "Độ dài là chỉ số duy nhất quan trọng",
+        "Nó che giấu chi phí và sự không hiệu quả mà tỷ lệ thành công đơn thuần không thể phát hiện (khoảng cách 1.4-2.7x mà OSWorld-Human làm nổi bật)",
+        "Quỹ đạo không thể đo lường",
+        "Độ dài quỹ đạo luôn khớp với vàng"
+      ],
+      "correct": 1,
+      "explanation": "Hai tác nhân ở 60% thành công có thể khác nhau 2-3 lần về số bước; chi phí và hiệu quả chỉ xuất hiện nếu bạn đo lường độ dài quỹ đạo."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "30-bpe-tokenizer-from-scratch",
+  "title": "BPE Tokenizer Từ Đầu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một byte-level BPE tokenizer bắt đầu từ bảng chữ cái 256 ký tự?",
+      "options": [
+        "Đây là bảng chữ cái nhỏ nhất hỗ trợ ngôn ngữ tiếng Anh",
+        "Nó đảm bảo bất kỳ đầu vào UTF-8 nào cũng có thể được biểu diễn trước khi bất kỳ phép gộp nào được học",
+        "Nó loại bỏ nhu cầu lưu trữ bảng gộp",
+        "Nó khớp với kích thước warp GPU trên hầu hết các bộ tăng tốc"
+      ],
+      "correct": 1,
+      "explanation": "256 id byte thô bao phủ mọi đầu vào UTF-8 có thể. Không bao giờ cần một token không xác định vì bất kỳ đầu vào nào cũng có thể được biểu diễn dưới dạng một chuỗi byte."
+    },
+    {
+      "stage": "check",
+      "question": "Mỗi bước huấn luyện BPE thực hiện điều gì?",
+      "options": [
+        "Giảm từ vựng bằng cách loại bỏ id ít phổ biến nhất",
+        "Huấn luyện một mạng nơ-ron nhỏ để đánh giá các từ con",
+        "Chia một từ ngẫu nhiên và gán cho nó một id mới",
+        "Đếm các cặp ký tự liền kề trong toàn bộ tập dữ liệu và gộp cặp phổ biến nhất"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi bước tìm cặp liền kề có tần suất cao nhất trong toàn bộ tập dữ liệu, gộp nó thành một ký hiệu mới và ghi lại phép gộp."
+    },
+    {
+      "stage": "check",
+      "question": "Khi mã hóa văn bản mới, các phép gộp được áp dụng theo thứ tự nào?",
+      "options": [
+        "Theo vị trí trong đầu vào, từ trái sang phải, bất kể thứ hạng huấn luyện",
+        "Theo thứ hạng mà phép gộp nhận được trong quá trình huấn luyện, thứ hạng thấp nhất trước",
+        "Theo các byte của cặp, được sắp xếp theo thứ tự bảng chữ cái",
+        "Theo thứ tự ngẫu nhiên cho đến khi không còn áp dụng được"
+      ],
+      "correct": 1,
+      "explanation": "Suy diễn áp dụng các phép gộp theo thứ tự mà chúng được học. Phép gộp sớm nhất trong bảng sẽ thắng khi có nhiều phép gộp có thể áp dụng."
+    },
+    {
+      "stage": "check",
+      "question": "Hành vi của bộ mã hóa trên một chuỗi special-token khi allow_special là False là gì?",
+      "options": [
+        "Nó phát sinh lỗi",
+        "Nó mã hóa các byte nguyên của chuỗi",
+        "Nó lặng lẽ bỏ qua chuỗi",
+        "Nó ánh xạ chuỗi đến id đã được dự trữ của nó"
+      ],
+      "correct": 1,
+      "explanation": "Khi allow_special tắt, một chuỗi như <|endoftext|> được coi là byte thô và đi qua vòng lặp gộp như bất kỳ đầu vào nào khác."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bộ giải mã không bao giờ cần một id token không xác định?",
+      "options": [
+        "Mỗi token đã học là sự nối tiếp của hai token đã biết, đệ quy xuống các byte đơn",
+        "Bộ mã hóa loại bỏ các token không xác định trước khi giải mã",
+        "Bộ giải mã luôn trả về chuỗi rỗng cho các id không xác định",
+        "Mô hình từ chối các id không xác định trong quá trình lấy mẫu"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi id đều giải quyết hoặc thành một byte thô hoặc thành hai id đã biết trước đó. Mở rộng đệ quy luôn kết thúc ở các byte, mà giải mã thành UTF-8."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì xảy ra với độ dài mã hóa của một câu cố định khi từ vựng mục tiêu tăng lên?",
+      "options": [
+        "Nó có xu hướng giảm vì từ vựng lớn hơn bao phủ nhiều từ con hơn",
+        "Nó dao động ngẫu nhiên vì BPE là không xác định",
+        "Nó giữ nguyên vì mỗi id mã hóa một byte đơn",
+        "Nó tăng tuyến tính với kích thước từ vựng"
+      ],
+      "correct": 0,
+      "explanation": "Từ vựng lớn hơn học được nhiều phép gộp hơn, vì vậy các từ con phổ biến gộp lại thành các id đơn và chuỗi mã hóa trở nên ngắn hơn."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "13-langgraph-stateful-graphs",
+  "title": "Điều phối đồ thị có trạng thái - Thực thi bền vững và điểm kiểm tra",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "LangGraph coi đơn vị cốt lõi của tác nhân là gì?",
+      "options": [
+        "Một chỉ mục vector",
+        "Một máy trạng thái với trạng thái kiểu, nút hàm và cạnh điều kiện",
+        "Một danh sách công cụ đơn lẻ",
+        "Một cuộc gọi LLM tự do"
+      ],
+      "correct": 1,
+      "explanation": "LangGraph mô hình hóa tác nhân như một đồ thị trạng thái: các nút là các hàm thuần túy, các cạnh là các chuyển tiếp, trạng thái có kiểu và không thay đổi."
+    },
+    {
+      "stage": "pre",
+      "question": "Vấn đề nào mà thực thi bền vững giải quyết?",
+      "options": [
+        "Giảm chi phí suy diễn",
+        "Tạo embedding nhanh hơn",
+        "Tiếp tục một lần chạy 40 bước từ bước 38 khi nó thất bại, với trạng thái chính xác, thay vì bắt đầu lại",
+        "Dịch giữa các nhà cung cấp"
+      ],
+      "correct": 2,
+      "explanation": "Các điểm kiểm tra sau mỗi nút cho phép thời gian chạy tiếp tục từ bước thành công cuối cùng."
+    },
+    {
+      "stage": "check",
+      "question": "Cái nào trong số này KHÔNG phải là một trong ba cấu trúc mà LangGraph hỗ trợ?",
+      "options": [
+        "Vòng gradient",
+        "Cấu trúc phân cấp (các đồ thị con lồng nhau)",
+        "Người giám sát",
+        "Swarm (peer-to-peer)"
+      ],
+      "correct": 0,
+      "explanation": "Các cấu trúc là người giám sát, swarm và phân cấp. Vòng gradient không phải là một cấu trúc của LangGraph."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao các nút phải xác định để việc tiếp tục hoạt động một cách sạch sẽ?",
+      "options": [
+        "Nó được yêu cầu bởi GIL",
+        "Tính xác định giảm chi phí token",
+        "Tiếp tục giả định rằng cùng một đầu vào tạo ra cùng một cập nhật trạng thái; hạt giống ngẫu nhiên, đồng hồ tường và API bên ngoài phải được ghi lại",
+        "Các nhà cung cấp yêu cầu tính xác định"
+      ],
+      "correct": 2,
+      "explanation": "Nếu một nút phụ thuộc vào tính không xác định không được ghi lại, việc tiếp tục không thể tái tạo trạng thái sau bước."
+    },
+    {
+      "stage": "check",
+      "question": "Cạnh điều kiện là gì?",
+      "options": [
+        "Một cạnh có TTL",
+        "Một cạnh được chọn bởi một hàm của trạng thái, được sử dụng để phân nhánh đồ thị",
+        "Một cạnh chỉ chạy trên GPU",
+        "Một cạnh được trọng số bởi tổn thất huấn luyện"
+      ],
+      "correct": 1,
+      "explanation": "Các cạnh điều kiện phân nhánh dựa trên trạng thái; việc sử dụng quá nhiều chúng khiến đồ thị khó lý giải."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì xảy ra sai khi các điểm kiểm tra quá nhỏ?",
+      "options": [
+        "Ổ đĩa bị đầy",
+        "Đồ thị không thể đạt đến END",
+        "Trạng thái công cụ và ghi nhớ không thể phục hồi; trạng thái đầy đủ phải được tuần tự hóa",
+        "Mô hình tạo ra các câu trả lời ngắn hơn"
+      ],
+      "correct": 2,
+      "explanation": "Chỉ điểm kiểm tra các lượt hội thoại để lại trạng thái công cụ và ghi nhớ bên ngoài tầm với của việc tiếp tục."
+    },
+    {
+      "stage": "post",
+      "question": "Con người trong vòng lặp phù hợp với thiết kế của LangGraph ở đâu?",
+      "options": [
+        "Tạm dừng trước một nút quan trọng, hiển thị trạng thái đã tuần tự hóa cho một con người, chấp nhận sửa đổi, tiếp tục; bộ kiểm tra làm điều này rẻ",
+        "Chỉ tại BẮT ĐẦU và KẾT THÚC",
+        "Thông qua một API nhà cung cấp riêng",
+        "Nó yêu cầu một nhánh của thời gian chạy"
+      ],
+      "correct": 0,
+      "explanation": "Bởi vì trạng thái đã được tuần tự hóa giữa các nút, việc xem xét và chỉnh sửa của con người là một mẫu tạm dừng và tiếp tục tự nhiên."
+    }
+  ]
+}

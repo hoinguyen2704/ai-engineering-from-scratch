@@ -1,0 +1,78 @@
+{
+  "lesson": "17-mcp-gateways-and-registries",
+  "title": "Cổng MCP Không Trạng Thái và Nhập Đăng Ký",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cổng MCP hiện tại phải bảo tồn điều gì giữa các yêu cầu của khách hàng thông thường?",
+      "options": [
+        "Một Mcp-Session-Id cho mỗi backend",
+        "Kết nối HTTP cuối cùng",
+        "Một luồng sự kiện GET độc lập",
+        "Không có phiên giao thức; mỗi yêu cầu mang theo thông tin cần thiết để xác thực và định tuyến"
+      ],
+      "correct": 3,
+      "explanation": "Các yêu cầu thông thường MCP 2026-07-28 là tự chứa và có thể đến bất kỳ phiên bản cổng nào khỏe mạnh."
+    },
+    {
+      "stage": "check",
+      "question": "Kết quả danh sách công cụ đã lọc theo nguyên tắc thường sử dụng phạm vi bộ nhớ cache nào?",
+      "options": [
+        "công khai",
+        "toàn cầu",
+        "riêng tư",
+        "phiên"
+      ],
+      "correct": 2,
+      "explanation": "Danh sách công cụ cụ thể cho người dùng không được chia sẻ giữa các ngữ cảnh ủy quyền."
+    },
+    {
+      "stage": "check",
+      "question": "Cổng nên chuyển tiếp cuộc gọi công cụ đến backend hiện tại như thế nào?",
+      "options": [
+        "Mở một luồng GET trước",
+        "Sao chép mã thông báo mang theo bên ngoài và id phiên",
+        "Tái sử dụng id JSON-RPC bên ngoài như trạng thái bền vững",
+        "Tạo một yêu cầu mới tự chứa với siêu dữ liệu khách hàng cổng và khả năng trung gian"
+      ],
+      "correct": 3,
+      "explanation": "Cổng là khách hàng của backend và tạo ra một yêu cầu mới hợp lệ độc lập."
+    },
+    {
+      "stage": "check",
+      "question": "Cổng nên sử dụng bản ghi server.json của Registry chính thức như thế nào trong quá trình nhập?",
+      "options": [
+        "Xác thực hình dạng công bố của nó, sau đó kết hợp nó với nhà xuất bản đã xác minh, nguồn gốc, chính sách và trạng thái phê duyệt riêng biệt",
+        "Xem công bố như một đánh giá an ninh đã hoàn thành",
+        "Sao chép các yêu cầu xác minh từ các trường bản ghi tùy ý",
+        "Tin tưởng bất kỳ bản ghi nào có tên trông quen thuộc"
+      ],
+      "correct": 0,
+      "explanation": "server.json mang theo siêu dữ liệu công bố. Nguồn gốc đã xác minh và quyết định phê duyệt của cổng vẫn là bằng chứng nhập bên ngoài."
+    },
+    {
+      "stage": "post",
+      "question": "Các thông báo thay đổi danh sách lâu dài được mở như thế nào trong HTTP Streamable hiện đại?",
+      "options": [
+        "Thông qua yêu cầu POST subscriptions/listen mà phản hồi của nó là SSE",
+        "Thông qua resources/subscribe",
+        "Thông qua một GET độc lập với Last-Event-ID",
+        "Thông qua notifications/initialized"
+      ],
+      "correct": 0,
+      "explanation": "subscriptions/listen thay thế mô hình GET không yêu cầu cũ và mô hình đăng ký tài nguyên."
+    },
+    {
+      "stage": "post",
+      "question": "Quy tắc định tuyến mở rộng Tasks nào là hiện tại?",
+      "options": [
+        "Sử dụng tasks/result cho đầu ra cuối cùng",
+        "Sử dụng tasks/list để phục hồi tất cả các tác vụ trong một phiên",
+        "Định tuyến tasks/get, tasks/update, và tasks/cancel sử dụng taskId như Mcp-Name",
+        "Lưu trữ tác vụ trong Mcp-Session-Id"
+      ],
+      "correct": 2,
+      "explanation": "Mở rộng chính thức sử dụng get, update, và cancel; id tác vụ cung cấp tay cầm định tuyến mà không cần phiên giao thức."
+    }
+  ]
+}

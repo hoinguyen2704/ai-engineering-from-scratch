@@ -1,0 +1,102 @@
+{
+  "lesson": "05-sentiment-analysis",
+  "title": "Phân Tích Tâm Trạng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao 'Thức ăn không ngon' là một trường hợp khó cho các bộ phân loại BoW ngây thơ?",
+      "options": [
+        "Nó không có dấu câu",
+        "Nó trộn lẫn tiếng Anh và tiếng Pháp",
+        "Nó chứa quá ít token",
+        "Phủ định đảo ngược nghĩa, nhưng bag of words loại bỏ liên kết giữa 'not' và 'great'"
+      ],
+      "correct": 3,
+      "explanation": "BoW không thể liên kết 'not' với từ mà nó phủ định, vì vậy bộ phân loại bỏ lỡ sự đảo ngược độ cực."
+    },
+    {
+      "stage": "pre",
+      "question": "Hai bước nào tạo nên phân tích tâm trạng cổ điển?",
+      "options": [
+        "Dịch, sau đó phân loại",
+        "Biểu diễn (vector hóa văn bản) và phân loại (mô hình tuyến tính trên vector)",
+        "Tìm kiếm, sau đó xếp hạng",
+        "Nhúng, sau đó phân cụm"
+      ],
+      "correct": 1,
+      "explanation": "Phân tích tâm trạng cổ điển là trích xuất đặc trưng theo sau bởi một bộ phân loại tuyến tính."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao Naive Bayes hoạt động mặc dù giả định độc lập 'ngây thơ' của nó?",
+      "options": [
+        "Làm mịn Laplace sửa chữa sự phụ thuộc",
+        "Giả định thực sự đúng cho văn bản",
+        "Naive Bayes bí mật học các tương tác",
+        "Với các đặc trưng văn bản thưa thớt và dữ liệu vừa phải, bộ phân loại chủ yếu quan tâm đến phía nào mỗi từ nghiêng về, không phải xác suất chung chính xác"
+      ],
+      "correct": 3,
+      "explanation": "Ngay cả khi độc lập sai, thông tin về hướng nghiêng của mỗi từ là đủ để phân loại tốt."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bao gồm các token có tiền tố 'NOT_' trong quá trình tiền xử lý?",
+      "options": [
+        "Để gốc từ",
+        "Để thu nhỏ từ vựng",
+        "Để chuẩn hóa chữ hoa",
+        "Để biến 'good' so với 'NOT_good' thành các đặc trưng riêng biệt mà bộ phân loại có thể trọng số ngược lại"
+      ],
+      "correct": 3,
+      "explanation": "Phạm vi phủ định tách các hình thức bị phủ định thành các đặc trưng riêng biệt để bộ phân loại BoW có thể mô hình hóa sự đảo ngược."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc loại bỏ stopwords lại có rủi ro cho phân tích tâm trạng?",
+      "options": [
+        "Việc loại bỏ stopword phá vỡ việc phân tách token",
+        "Nó làm tăng độ thưa thớt",
+        "Danh sách stopword quá dài",
+        "Các từ phủ định ('not', 'no', 'never') thường được coi là stopword nhưng mang tín hiệu tâm trạng"
+      ],
+      "correct": 3,
+      "explanation": "Các danh sách stopword mặc định loại bỏ các từ phủ định và các yếu tố tương tự mang tín hiệu tâm trạng."
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số nào bạn nên báo cáo khi các lớp tâm trạng không cân bằng?",
+      "options": [
+        "Chỉ số chính xác",
+        "Macro-F1 (trung bình của các F1 theo lớp, trọng số bằng nhau)",
+        "Sai số bình phương trung bình",
+        "Chỉ Micro-F1"
+      ],
+      "correct": 1,
+      "explanation": "Macro-F1 buộc lớp thiểu số phải được tính; độ chính xác hoặc micro-F1 ẩn giấu điều đó."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên bỏ qua các mô hình cổ điển và sử dụng transformer cho tâm trạng?",
+      "options": [
+        "Khi bạn có dưới 100 ví dụ",
+        "Phát hiện mỉa mai, tài liệu dài thay đổi, tâm trạng dựa trên khía cạnh, hoặc ngôn ngữ tài nguyên thấp",
+        "Khi độ trễ là quan trọng",
+        "Khi bạn cần khả năng giải thích"
+      ],
+      "correct": 1,
+      "explanation": "Mỉa mai, tâm trạng dựa trên khía cạnh, và tâm trạng đa ngôn ngữ vượt quá khả năng của các mô hình BoW cổ điển."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao điều chỉnh L2 lại quan trọng cho hồi quy logistic trên văn bản?",
+      "options": [
+        "Tăng tốc độ đảo ngược ma trận",
+        "Tránh các đơn vị chết ReLU",
+        "Các đặc trưng văn bản thưa thớt, chiều cao cho phép mô hình ghi nhớ các ví dụ huấn luyện",
+        "Cần thiết để tính toán gradient"
+      ],
+      "correct": 2,
+      "explanation": "L2 ngăn chặn việc quá khớp trong chế độ đặc trưng thưa thớt, chiều cao của văn bản."
+    }
+  ]
+}

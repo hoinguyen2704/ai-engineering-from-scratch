@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một bộ phát hiện YOLO với lưới 13x13, 3 điểm neo mỗi ô, và 20 lớp tạo ra đầu ra có hình dạng (N, 13, 13, 3, 25). Tại sao chiều cuối cùng lại là 25?",
+      "options": [
+        "Đó là padding đến lũy thừa tiếp theo của 2",
+        "25 là số lượng lớp trong COCO",
+        "4 tọa độ hộp + 1 độ thiên lệch + 20 lớp",
+        "4 tọa độ hộp + 1 độ tin cậy + 20 lớp = 5 + C"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi điểm neo phát ra bốn mục tiêu hồi quy hộp (tx, ty, tw, th), một điểm số độ tin cậy, và C logits lớp. Đối với các bộ phát hiện kiểu YOLO, kích thước mỗi điểm neo luôn là 5 + C. Trên COCO với 80 lớp, nó là 85; trên PASCAL VOC với 20, nó là 25."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao YOLO dự đoán tx, ty thông qua một hàm sigmoid trước khi thêm vào ô lưới?",
+      "options": [
+        "Sigmoid là cần thiết bởi vì phép tích chập",
+        "Để ngăn ngừa NaN trong quá trình huấn luyện",
+        "Để chuẩn hóa chúng về [0, 1] để tâm vẫn nằm trong ô và không thể thoát ra lãnh thổ của ô lân cận",
+        "Để làm cho hộp lớn hơn"
+      ],
+      "correct": 2,
+      "explanation": "sigmoid(tx) nằm trong [0, 1], vì vậy (sigmoid(tx) + cell_x) * stride đặt tâm ở đâu đó bên trong ô tại cột cell_x. Ràng buộc này giữ cho mỗi ô chỉ chịu trách nhiệm cho các đối tượng nằm ở trung tâm trong khu vực của nó, điều này là giả định giúp việc huấn luyện dựa trên lưới ổn định."
+    },
+    {
+      "stage": "post",
+      "question": "Bộ phát hiện của bạn dự đoán 15 hộp xung quanh một đối tượng duy nhất sau đầu ra. Bạn áp dụng NMS với iou_threshold=0.45 và nhận lại 1 hộp. NMS đã làm gì?",
+      "options": [
+        "Nó đã trung bình tất cả 15 dự đoán",
+        "Nó đã sắp xếp 15 hộp theo điểm số, giữ lại hộp có điểm số cao nhất, và xóa mọi hộp có IoU với nó vượt quá 0.45; 14 hộp còn lại đều chồng chéo với người chiến thắng trên ngưỡng nên chỉ còn lại một hộp",
+        "Nó đã chọn một người sống sót ngẫu nhiên",
+        "Nó đã hợp nhất các hộp theo hình học"
+      ],
+      "correct": 1,
+      "explanation": "NMS là một phương pháp loại bỏ trùng lặp tham lam: sắp xếp theo điểm số, giữ lại cái tốt nhất, xóa mọi thứ gần nó (IoU > ngưỡng), lặp lại. Nó không hợp nhất hay trung bình. Đó là lý do tại sao các chỉ số độ trễ phát hiện bao gồm thời gian NMS và tại sao các mô hình hiện đại như RT-DETR thay thế nó bằng một phương pháp học được."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình của bạn có mAP@0.5 = 0.75 nhưng mAP@0.5:0.95 = 0.32. Diễn giải chính xác nhất là gì?",
+      "options": [
+        "Tập dữ liệu có quá nhiều lớp",
+        "Mô hình tìm thấy các đối tượng đúng nhưng các hộp của nó không được định vị chặt chẽ — tốt ở IoU 0.5, thất bại ở IoU 0.7+",
+        "Mô hình bị hỏng; mAP@0.5 phải bằng mAP@0.5:0.95",
+        "Ngưỡng suy diễn quá cao"
+      ],
+      "correct": 1,
+      "explanation": "mAP@0.5 là dễ dãi về định vị; mAP@0.5:0.95 trung bình qua các ngưỡng nghiêm ngặt lên đến 0.95. Một khoảng cách lớn giữa hai giá trị có nghĩa là các hộp nằm ở vị trí tương đối đúng nhưng không chặt chẽ. Các cách sửa chữa điển hình: mất mát hộp CIoU/DIoU, đặc trưng độ phân giải cao hơn, tập hợp điểm neo được điều chỉnh tốt hơn cho tập dữ liệu."
+    },
+    {
+      "stage": "post",
+      "question": "Các trọng số mất mát YOLO lambda_coord=5.0 và lambda_noobj=0.5 phản ánh khá đúng bài báo gốc. Những tỷ lệ này mã hóa điều gì?",
+      "options": [
+        "Thực tế là hầu hết các ô không có đối tượng, vì vậy các ô không có đối tượng phải được giảm trọng số hoặc chúng sẽ chiếm ưu thế trong tổng mất mát; và thực tế là hồi quy hộp là một mất mát quy mô nhỏ hơn so với cross-entropy, vì vậy nó cần được tăng trọng số để tạo ra các gradient tương đương",
+        "Các giao dịch bộ nhớ GPU",
+        "Số lượng điểm neo mỗi ô",
+        "Các lựa chọn ngẫu nhiên mà các tác giả chưa bao giờ biện minh"
+      ],
+      "correct": 0,
+      "explanation": "Trong một lưới 13x13 có 169 ô, thường có từ một đến năm đối tượng. Các ô trống 160+ đều góp phần vào mất mát độ tin cậy; nếu không có lambda_noobj nhỏ, chúng sẽ áp đảo tín hiệu tích cực. Ngược lại, mất mát hộp MSE là nhỏ về mặt số học so với cross-entropy, vì vậy lambda_coord > 1 giữ cho các gradient của nó tương đương. Cả hai tỷ lệ đều liên quan đến việc cân bằng độ lớn gradient theo từng thành phần."
+    }
+  ]
+}

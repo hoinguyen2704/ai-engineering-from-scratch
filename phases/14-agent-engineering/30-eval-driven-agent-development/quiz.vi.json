@@ -1,0 +1,90 @@
+{
+  "lesson": "30-eval-driven-agent-development",
+  "title": "Phát Triển Tác Nhân Dựa Trên Đánh Giá",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba lớp đánh giá mà bài học đề cập là gì?",
+      "options": [
+        "Đơn vị, tích hợp, đầu-cuối",
+        "Khói, hồi quy, chấp nhận",
+        "Trước, kiểm tra, sau",
+        "Tiêu chuẩn tĩnh, đánh giá ngoại tuyến tùy chỉnh, đánh giá sản xuất trực tuyến"
+      ],
+      "correct": 3,
+      "explanation": "Tiêu chuẩn tĩnh (SWE-bench, GAIA), ngoại tuyến tùy chỉnh (LLM-judge, exec, trajectory), trực tuyến (replays, alerts, cost/latency)."
+    },
+    {
+      "stage": "pre",
+      "question": "Điểm khởi đầu được Anthropic khuyến nghị là gì?",
+      "options": [
+        "Bắt đầu với tranh luận đa tác nhân",
+        "Bắt đầu với các lời nhắc đơn giản, tối ưu hóa chúng với đánh giá toàn diện, và chỉ thêm các hệ thống tác nhân nhiều bước khi cần thiết",
+        "Bắt đầu chỉ với một mô hình tiên phong",
+        "Bắt đầu với điều phối phân cấp"
+      ],
+      "correct": 1,
+      "explanation": "Anthropic nói rõ rằng đánh giá là vòng lặp bên ngoài điều khiển mọi lựa chọn khác."
+    },
+    {
+      "stage": "check",
+      "question": "Vòng lặp chặt chẽ giữa người đánh giá và người tối ưu hóa là gì?",
+      "options": [
+        "Người đề xuất tạo ra đầu ra, người đánh giá phán xét, tinh chỉnh cho đến khi người đánh giá thông qua (Tự Tinh Chỉnh tổng quát)",
+        "Lấy mẫu, sắp xếp, loại bỏ trùng lặp",
+        "Lưu trữ, thử lại, thất bại",
+        "Đào tạo, đánh giá, triển khai"
+      ],
+      "correct": 0,
+      "explanation": "Đó là Tự Tinh Chỉnh tổng quát: bất kỳ quy trình nào cũng có thể bao bọc trong đề xuất-phán xét-tinh chỉnh."
+    },
+    {
+      "stage": "check",
+      "question": "Thực tiễn tốt nhất năm 2026 cho việc đánh giá ở đâu?",
+      "options": [
+        "Chỉ thuộc quyền sở hữu của đội QA",
+        "Chỉ chạy hàng quý",
+        "Bên cạnh mã, chạy trong CI trên mỗi PR, kiểm soát việc hợp nhất dựa trên điểm đánh giá",
+        "Chỉ trong bảng điều khiển nhà cung cấp riêng biệt"
+      ],
+      "correct": 2,
+      "explanation": "Được đặt cạnh mã, kiểm soát bởi CI, theo dõi hồi quy là tiêu chuẩn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học cảnh báo về một LLM-judge mà không có cơ sở?",
+      "options": [
+        "Nó vi phạm Apache 2.0",
+        "Người đánh giá cũng có thể ảo tưởng; kết hợp với mẫu CRITIC để phán xét dựa trên các công cụ bên ngoài",
+        "Nó quá chậm",
+        "Nó chỉ hoạt động trên GPU"
+      ],
+      "correct": 1,
+      "explanation": "CRITIC (Bài học 5) áp dụng: xác minh dựa trên công cụ giữ cho người đánh giá trung thực."
+    },
+    {
+      "stage": "post",
+      "question": "Nguy cơ của việc quá khớp với các đánh giá là gì?",
+      "options": [
+        "Chỉ số vector bị phân mảnh",
+        "Chi phí tính toán tăng",
+        "Độ trễ giảm quá mức",
+        "Tối ưu hóa cho tập đánh giá khác với tính hữu ích trong sản xuất; xoay vòng các trường hợp"
+      ],
+      "correct": 3,
+      "explanation": "Xoay vòng tập đánh giá giữ cho tối ưu hóa phù hợp với thực tế sản xuất."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các đánh giá không ổn định gây ra vấn đề?",
+      "options": [
+        "Chúng vượt quá cửa sổ ngữ cảnh",
+        "Chúng không thể truy cập cơ sở dữ liệu",
+        "Chúng làm tăng gấp đôi chi phí suy diễn",
+        "Các trường hợp không xác định tạo ra báo động giả; cố định hạt giống và chụp trạng thái"
+      ],
+      "correct": 3,
+      "explanation": "Sự không ổn định làm cho các hồi quy trở nên khó đọc; tính xác định (hạt giống, chụp trạng thái) là cần thiết."
+    }
+  ]
+}

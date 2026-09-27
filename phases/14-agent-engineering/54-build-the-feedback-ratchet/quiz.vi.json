@@ -1,0 +1,78 @@
+{
+  "lesson": "54-build-the-feedback-ratchet",
+  "title": "Xây dựng Feedback Ratchet",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khi nào phản hồi trở thành cơ sở hạ tầng?",
+      "options": [
+        "Khi nó được tóm tắt",
+        "Khi nó xuất hiện trên bảng điều khiển",
+        "Khi nó được thu thập",
+        "Khi nó có một con đường đến sự thay đổi bền vững và xác minh được sở hữu"
+      ],
+      "correct": 3,
+      "explanation": "Khuyến khích và quyền sở hữu biến quan sát thành học hệ thống."
+    },
+    {
+      "stage": "check",
+      "question": "Một nỗ lực ghi vào sản xuất nên được định tuyến đến đâu?",
+      "options": [
+        "Chỉ tài liệu",
+        "Ranh giới chính sách hoặc quyền hạn",
+        "Danh sách công việc chung",
+        "Thiết kế hình ảnh"
+      ],
+      "correct": 1,
+      "explanation": "Quyền lực không an toàn thuộc về một lớp chính sách có thể thi hành."
+    },
+    {
+      "stage": "check",
+      "question": "Một thay đổi dương tính giả nên thay đổi điều gì trước?",
+      "options": [
+        "Tiêu đề nhóm",
+        "Khu vực triển khai",
+        "Giá cả",
+        "Đánh giá hoặc phạm vi kiểm tra"
+      ],
+      "correct": 3,
+      "explanation": "Lớp đánh giá nên bảo tồn sự thất bại như một trường hợp có thể tái tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một người sở hữu là một phần của kiểm soát?",
+      "options": [
+        "Những cải tiến không được sở hữu không thay đổi đáng tin cậy hoặc không giữ được tính hiện tại",
+        "Để tăng số cuộc họp",
+        "Để che giấu tín hiệu",
+        "Để loại bỏ bằng chứng"
+      ],
+      "correct": 0,
+      "explanation": "Ai đó phải thực hiện, xác minh, xem xét và ngừng hành động."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào nên ngừng một kiểm soát?",
+      "options": [
+        "Không bao giờ",
+        "Khi bằng chứng cho thấy nó đã bị thay thế, lỗi thời, hoặc tạo ra nhiều ma sát hơn so với rủi ro được bảo vệ",
+        "Khi nó cảm thấy cũ",
+        "Ngay lập tức sau khi thêm nó"
+      ],
+      "correct": 1,
+      "explanation": "Việc ngừng nên được hỗ trợ bởi bằng chứng giống như việc khuyến khích."
+    },
+    {
+      "stage": "post",
+      "question": "Làm thế nào phản hồi từ shaping và coding-agent kết nối với nhau?",
+      "options": [
+        "Chỉ các gợi ý mới quan trọng",
+        "Chỉ các chỉ số mới quan trọng",
+        "Bằng chứng sản phẩm thay đổi kết quả và phạm vi, trong khi các sửa chữa của agent thay đổi bàn làm việc; các sự cố có thể thay đổi cả hai",
+        "Chúng không kết nối"
+      ],
+      "correct": 2,
+      "explanation": "Cả hai lộ trình đều sử dụng cùng một ratchet từ bằng chứng đến thay đổi hệ thống bền vững."
+    }
+  ]
+}

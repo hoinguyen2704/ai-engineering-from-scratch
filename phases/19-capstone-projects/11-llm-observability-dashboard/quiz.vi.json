@@ -1,0 +1,90 @@
+{
+  "lesson": "11-llm-observability-dashboard",
+  "title": "Capstone 11 — Bảng điều khiển Quan sát & Đánh giá LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mô hình ingest nào mà Langfuse, Phoenix và OpenLLMetry đồng nhất?",
+      "options": [
+        "Định dạng xuất Prometheus",
+        "Các quy tắc ngữ nghĩa GenAI của OpenTelemetry qua OTLP HTTP",
+        "JSON độc quyền theo từng nhà cung cấp",
+        "Tệp log CSV thông thường"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao lại tách ClickHouse và Postgres trong tầng lưu trữ?",
+      "options": [
+        "Chúng có thể thay thế cho nhau và một trong số đó được chọn ngẫu nhiên",
+        "Postgres nhanh hơn cho việc ingest span",
+        "ClickHouse xử lý phân tích cột trên các span trong khi Postgres lưu trữ người dùng, phiên và siêu dữ liệu ứng dụng",
+        "ClickHouse không thể lưu trữ chuỗi"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bộ xử lý tail-sampling trong OpenTelemetry Collector làm gì?",
+      "options": [
+        "Quyết định xem có giữ lại một trace sau khi hoàn thành hay không, sử dụng các quy tắc như giữ lỗi cộng với mẫu thành công",
+        "Phát lại các trace cũ vào Postgres",
+        "Truyền tải từng byte mà không có điều kiện",
+        "Cắt ngắn các span dưới 100ms"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bảng điều khiển phát hiện sự trôi dạt qua các tuần như thế nào?",
+      "options": [
+        "Đếm ID trace duy nhất",
+        "Tính toán PSI hoặc KL divergence trên các embedding prompt được gộp lại và theo dõi xu hướng điểm đánh giá",
+        "Nhìn bằng mắt thủ công vào bảng điều khiển",
+        "Đọc thời gian triển khai mới nhất"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mục tiêu MTTR của sản phẩm đối với một sự cố rò rỉ PII được tiêm là gì?",
+      "options": [
+        "Dưới 1 giờ",
+        "Trong vòng 24 giờ",
+        "Dưới 5 phút từ khi lỗi được triển khai đến khi có cảnh báo trên Slack",
+        "Trong ca trực tiếp theo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Các gia đình SDK nào phải sản xuất các span GenAI chuẩn để đáp ứng tiêu chí bao phủ trace?",
+      "options": [
+        "Chỉ OpenAI và Anthropic",
+        "Bất kỳ một SDK nào cũng đủ",
+        "Chỉ vLLM",
+        "Ít nhất sáu: OpenAI, Anthropic, Google GenAI, LangChain, LlamaIndex và vLLM"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Kết quả đánh giá được liên kết trở lại với cuộc gọi LLM gốc như thế nào?",
+      "options": [
+        "Như một bảng Postgres riêng biệt không có ID trace",
+        "Như một tệp CSV được gửi qua email hàng đêm",
+        "Chỉ như các tin nhắn trên Slack",
+        "Như các span đánh giá được ghi dưới dạng con của trace cha trong ClickHouse"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

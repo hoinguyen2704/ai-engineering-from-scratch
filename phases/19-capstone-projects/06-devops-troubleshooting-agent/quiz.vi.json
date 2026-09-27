@@ -1,0 +1,90 @@
+{
+  "lesson": "06-devops-troubleshooting-agent",
+  "title": "Capstone 06 — Đại lý Khắc phục sự cố DevOps cho Kubernetes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Chế độ quyền mặc định cho bề mặt RBAC của đại lý khắc phục sự cố là gì?",
+      "options": [
+        "Quản trị viên cụm để nó có thể tự phục hồi",
+        "Chỉ đọc theo mặc định, với các động từ phá hủy bị giới hạn bởi một máy chủ riêng và sự chấp thuận của con người",
+        "Tương đương với kỹ sư trực",
+        "Quản trị viên không gian tên chỉ trong không gian tên bị ảnh hưởng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Đồ thị tri thức mà đại lý đi qua trong phân tích nguyên nhân gốc là gì?",
+      "options": [
+        "Các nút là các đối tượng K8s cộng với các nguồn telemetry; các cạnh mã hóa quyền sở hữu, lập lịch và quan sát",
+        "Tên chỉ số Prometheus được tổ chức theo nhóm",
+        "Một danh sách phẳng của các pod vừa được khởi động lại gần đây",
+        "Một đồ thị của các cam kết GitHub và đánh giá PR"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Các giả thuyết nguyên nhân gốc được xếp hạng như thế nào cho bản tóm tắt Slack?",
+      "options": [
+        "Theo tên cảnh báo theo thứ tự chữ cái",
+        "Theo xác suất log của mô hình một mình",
+        "Theo thứ tự chúng được tạo ra",
+        "Theo điểm chứng cứ kết hợp độ gần đây, tính cụ thể, độ dài đường đồ thị và số lượng trích dẫn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao nhật ký kiểm toán ghi lại các lệnh mà đại lý đã xem xét cũng như những lệnh đã thực thi?",
+      "options": [
+        "ArgoCD chỉ chấp nhận các lệnh đã xem xét",
+        "Các cuộc tấn công phát lại yêu cầu cả hai danh sách",
+        "API Slack cần cả hai để giao hàng",
+        "Người đánh giá có thể phát hiện các trường hợp gần như sai sót nơi đại lý gần như đã chạy một lệnh phá hủy"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cơ chế nào ngăn đại lý quay lại một cách đơn phương trên một triển khai xấu?",
+      "options": [
+        "Các công cụ phá hủy sống trên một máy chủ MCP riêng biệt sau một mã thông báo chấp thuận từ một thẻ Slack",
+        "PagerDuty tự động tạm dừng việc triển khai",
+        "Bảo vệ nhánh trên kho GitOps",
+        "Một LLM-judge thứ hai bỏ phiếu cho việc quay lại"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mục tiêu thời gian đến giả thuyết p50 mà bảng đánh giá đo lường là gì?",
+      "options": [
+        "Dưới 1 giờ",
+        "Dưới 30 giây",
+        "Dưới ca trực tiếp theo",
+        "Dưới 5 phút từ cảnh báo đến bản tóm tắt Slack"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Kích thước của bộ sự cố tổng hợp được sử dụng để đánh giá độ chính xác RCA là bao nhiêu?",
+      "options": [
+        "5 kịch bản",
+        "20 kịch bản bao gồm OOMKill, DNS flap, HPA thrash, PVC fill, và nhiều hơn nữa",
+        "1 sự cố demo kịch bản",
+        "100 cảnh báo sản xuất được lấy mẫu ngẫu nhiên"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

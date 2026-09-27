@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao mô hình video 2D+pool lại thất bại trên tập dữ liệu Something-Something V2?",
+      "options": [
+        "Kiến trúc mô hình không tương thích",
+        "Hình ảnh quá nhỏ",
+        "Có quá nhiều lớp",
+        "Những nhãn của tập dữ liệu được định nghĩa bởi hướng chuyển động ('đẩy một cái gì đó từ trái sang phải'), không phải hình thức; trung bình không phụ thuộc thứ tự trên các đặc trưng từng khung hình không thể phân biệt được hướng chuyển động"
+      ],
+      "correct": 3,
+      "explanation": "Các nhãn Something-Something thực sự là 'X di chuyển từ trái sang phải' so với 'X di chuyển từ phải sang trái'. Hai cái này trông giống hệt nhau trong bất kỳ khung hình nào, và việc trung bình các embedding khung hình là không phụ thuộc thứ tự nên pool(f1, f2, ..., fT) == pool(fT, ..., f2, f1). Các nhãn được định nghĩa bởi chuyển động yêu cầu một mô hình chú ý đến thứ tự tạm thời."
+    },
+    {
+      "stage": "pre",
+      "question": "Mẹo bơm phồng của I3D là gì?",
+      "options": [
+        "Một bộ lập lịch cho tốc độ học",
+        "Một phương pháp nén video",
+        "Một cách để tiền huấn luyện trên nhiều hình ảnh hơn",
+        "Lấy các kernel đã được tiền huấn luyện của một CNN 2D, sao chép mỗi cái dọc theo một trục thời gian mới (chia cho kernel_T để bảo tồn quy mô kích hoạt), và sử dụng chúng để khởi tạo một CNN 3D — cung cấp cho mô hình 3D trọng số mạnh mà không cần tiền huấn luyện 3D"
+      ],
+      "correct": 3,
+      "explanation": "Bơm phồng khởi động các mô hình video 3D từ các trọng số 2D ImageNet mạnh. Một kernel 2D 3x3 trở thành một kernel 3D 3x3x3 bằng cách sao chép dọc theo T với một tỷ lệ 1/kernel_T. Nó chuyển giao các đặc trưng đối tượng và kết cấu đã học trên ImageNet trực tiếp vào mô hình video, đó là lý do tại sao I3D là mô hình 3D đầu tiên thực sự vượt trội hơn các chuẩn 2D+pool."
+    },
+    {
+      "stage": "post",
+      "question": "Một phép tích chập phân tách (2+1)D chia một phép tích chập 3D thành hai phép nào?",
+      "options": [
+        "Một phép tích chập không gian 1x3x3 theo sau là một phép tích chập tạm thời 3x1x1, với một BN+ReLU ở giữa để thêm một phi tuyến mà các phép tích chập 3D đầy đủ không có",
+        "Hai phép tích chập 3D với các bước khác nhau",
+        "Một phép tích chập tạm thời theo sau là một phép tích chập theo chiều sâu",
+        "Một phép tích chập nhóm và một phép tích chập 1x1"
+      ],
+      "correct": 0,
+      "explanation": "(2+1)D phân tách kernel 3x3x3 thành (1x3x3) sau đó là (3x1x1). Hai phép tích chập có một phi tuyến giữa chúng (BN+ReLU), điều này tăng cường sức mạnh biểu đạt cho mỗi tham số. Trên Kinetics, R(2+1)D-34 vượt trội hơn một R3D-34 tương đương với ít tham số hơn — phi tuyến bổ sung đang thực sự làm việc."
+    },
+    {
+      "stage": "post",
+      "question": "Trong một transformer video, 'chú ý chia sẻ' có nghĩa là gì?",
+      "options": [
+        "Chú ý bỏ qua một số lớp",
+        "Chú ý trên một nửa các token",
+        "Mỗi khối transformer có hai mô-đun chú ý: một trên các token ở cùng một vị trí không gian qua thời gian (chú ý tạm thời), sau đó một trên các token ở cùng một thời điểm qua không gian (chú ý không gian) — phá vỡ chú ý đầy đủ O((T*H*W)^2) thành O(T^2) + O((H*W)^2)",
+        "Chú ý chỉ được áp dụng trong quá trình huấn luyện"
+      ],
+      "correct": 2,
+      "explanation": "Chú ý không gian-thời gian đầy đủ là O((T*H*W)^2), điều này không khả thi cho các video dài. Chú ý chia sẻ (TimeSformer) luân phiên giữa chú ý tạm thời và không gian trong mỗi khối, đưa chi phí về O(T^2 + (H*W)^2). Nó đánh đổi một tổn thất lý thuyết trong khả năng biểu đạt để có thể huấn luyện; trong thực tế, chú ý chia sẻ tương đương hoặc vượt trội hơn chú ý chung trên hầu hết các tiêu chuẩn."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình Kinetics-400 của bạn báo cáo độ chính xác clip 76% và độ chính xác video 82%. Khoảng cách này cho bạn biết điều gì?",
+      "options": [
+        "Tập kiểm tra quá nhỏ",
+        "Mô hình bị hỏng",
+        "Dự đoán theo clip là ồn ào; trung bình các dự đoán trên nhiều clip được lấy mẫu cho mỗi video (tăng cường thời gian kiểm tra) ổn định kết quả. Một khoảng cách lớn cho thấy các đặc trưng của mô hình nhạy cảm với cửa sổ 8 khung hình nào được lấy mẫu, và các clip dài hơn hoặc tăng cường không gian mạnh hơn trong quá trình huấn luyện sẽ thu hẹp khoảng cách",
+        "Độ chính xác clip luôn thấp hơn độ chính xác video theo định nghĩa"
+      ],
+      "correct": 2,
+      "explanation": "Độ chính xác clip đánh giá mô hình trên một cửa sổ được lấy mẫu đơn lẻ; độ chính xác video trung bình các dự đoán trên nhiều cửa sổ. Một khoảng cách 6 điểm có nghĩa là mô hình nhạy cảm với cửa sổ nào bạn đã lấy mẫu. Đóng khoảng cách có nghĩa là mô hình đã tổng quát tốt hơn qua phân phối tạm thời của mỗi video — điều mà bạn muốn trong triển khai. Luôn báo cáo cả hai số."
+    }
+  ]
+}

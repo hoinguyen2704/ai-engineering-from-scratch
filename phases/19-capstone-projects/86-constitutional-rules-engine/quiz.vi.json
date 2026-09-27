@@ -1,0 +1,78 @@
+{
+  "lesson": "86-constitutional-rules-engine",
+  "title": "Capstone 86 — Công Cụ Quy Tắc Hiến Pháp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao sử dụng hiến pháp YAML khai báo thay vì kiểm tra mã ad-hoc?",
+      "options": [
+        "Bởi vì YAML hỗ trợ các neo",
+        "Bởi vì YAML nhanh hơn để phân tích cú pháp so với Python",
+        "Bởi vì các quy tắc trong YAML có thể được xem xét bởi những người không phải kỹ sư, sống trong kiểm soát phiên bản, và có thể thay thế mà không cần thay đổi mã",
+        "Bởi vì thư viện chuẩn ưa thích YAML"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Mỗi quy tắc tối thiểu phải có những trường nào?",
+      "options": [
+        "name, regex, fix",
+        "id, owner, timestamp",
+        "predicate, severity, owner",
+        "name, severity, must, explanation"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Công cụ tạo thành các predicate như thế nào?",
+      "options": [
+        "Chỉ thông qua một contains_regex duy nhất cho mỗi quy tắc",
+        "Bằng cách nhân các điểm tin cậy",
+        "Thông qua một bộ phân loại thần kinh",
+        "Thông qua all_of, any_of, và not_ mà bao bọc đệ quy các predicate nguyên tử"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của applies_when là gì?",
+      "options": [
+        "Nó ghi đè mức độ nghiêm trọng",
+        "Nó chọn thao tác sửa chữa",
+        "Nó kiểm soát predicate must để các quy tắc không áp dụng được ghi nhận là không_thích_hợp thay vì vi phạm",
+        "Nó luôn đánh giá là đúng"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Fixer làm gì?",
+      "options": [
+        "Nó gọi một mô hình từ xa để sửa chữa văn bản",
+        "Nó áp dụng sửa chữa khai báo theo quy tắc (append, prepend, replace_regex) để tạo ra văn bản đã chỉnh sửa",
+        "Nó viết lại tệp quy tắc",
+        "Nó tính toán mức độ nghiêm trọng từ sửa chữa"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bản demo chạy công cụ lần thứ hai sau khi sửa chữa?",
+      "options": [
+        "Bởi vì lần chạy đầu tiên chỉ là một lần chạy thử",
+        "Để tải lại hiến pháp",
+        "Để làm tăng kích thước báo cáo",
+        "Để xác minh văn bản đã chỉnh sửa thỏa mãn các quy tắc và để nêu bật bất kỳ quy tắc nào mà fixer không thể sửa chữa tại chỗ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

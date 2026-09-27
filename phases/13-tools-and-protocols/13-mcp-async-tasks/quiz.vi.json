@@ -1,0 +1,78 @@
+{
+  "lesson": "13-mcp-async-tasks",
+  "title": "Mở rộng nhiệm vụ MCP: Công việc bền vững trên lõi không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Làm thế nào một máy chủ MCP không trạng thái có thể hỗ trợ công việc kéo dài mười phút?",
+      "options": [
+        "Giữ kết nối Mcp-Session-Id mở trong mười phút",
+        "Lưu trữ tiến trình chỉ trong trạng thái khởi tạo",
+        "Yêu cầu mọi khách hàng sử dụng cân bằng tải dính",
+        "Trả về một tay cầm nhiệm vụ bền vững rõ ràng được hỗ trợ bởi lưu trữ ứng dụng"
+      ],
+      "correct": 3,
+      "explanation": "Không trạng thái mô tả mô hình yêu cầu giao thức. Trạng thái ứng dụng bền vững được đại diện bởi một id nhiệm vụ rõ ràng và lưu trữ chia sẻ."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào một máy chủ có thể trả về loại kết quả nhiệm vụ từ tools/call?",
+      "options": [
+        "Sau khi yêu cầu hiện tại quảng bá mở rộng và nhiệm vụ có thể đọc bền vững",
+        "Bất cứ khi nào một phiên trước đó quảng bá Nhiệm vụ",
+        "Trước khi lưu trữ để khách hàng có thể kiểm tra một cách lạc quan",
+        "Chỉ khi params._meta.task.required là đúng"
+      ],
+      "correct": 0,
+      "explanation": "Việc tạo nhiệm vụ được chỉ đạo bởi máy chủ, nhưng hỗ trợ khả năng yêu cầu hiện tại và việc tạo bền vững trước khi trả về là bắt buộc. Thiếu hỗ trợ sẽ trả về -32021 với data.requiredCapabilities."
+    },
+    {
+      "stage": "check",
+      "question": "Một phản hồi tasks/get có resultType hoàn thành và trạng thái đang làm việc. Điều đó có nghĩa là gì?",
+      "options": [
+        "Phản hồi vi phạm mở rộng",
+        "Công việc cơ bản đã hoàn thành",
+        "Nhiệm vụ đã bị hủy",
+        "RPC kiểm tra đã hoàn thành nhưng công việc vẫn đang chạy"
+      ],
+      "correct": 3,
+      "explanation": "resultType mô tả RPC tasks/get. Trạng thái nhiệm vụ độc lập mô tả công việc bền vững. Khi trạng thái hoàn thành, CallToolResult lồng ghép có resultType hoàn thành và metadata serverInfo riêng."
+    },
+    {
+      "stage": "check",
+      "question": "Làm thế nào một khách hàng trả lời input_required sau khi một nhiệm vụ đã tồn tại?",
+      "options": [
+        "Gọi tasks/result với một trường câu trả lời",
+        "Mở một phiên khởi tạo mới",
+        "Thử lại công cụ/call gốc với cùng một id",
+        "Gửi tasks/update với inputResponses cho các khóa nhiệm vụ còn lại"
+      ],
+      "correct": 3,
+      "explanation": "Đầu vào nhiệm vụ sau khi tạo được hiển thị qua tasks/get và được thực hiện thông qua tasks/update, không phải bằng cách thử lại cuộc gọi gốc."
+    },
+    {
+      "stage": "post",
+      "question": "Phản hồi tasks/cancel thành công đảm bảo điều gì?",
+      "options": [
+        "Máy chủ đã thừa nhận ý định hủy bỏ",
+        "Kết quả đã bị xóa",
+        "Trạng thái nhiệm vụ cuối cùng sẽ bị hủy",
+        "Công nhân đã dừng lại"
+      ],
+      "correct": 0,
+      "explanation": "Việc hủy bỏ là hợp tác và cuối cùng nhất quán. Công việc có thể hoàn thành hoặc bỏ qua việc hủy bỏ sau khi được thừa nhận."
+    },
+    {
+      "stage": "post",
+      "question": "Phương pháp nào phù hợp với mở rộng Nhiệm vụ chính thức hiện tại?",
+      "options": [
+        "tools/task, notifications/task_result, và roots/list",
+        "tasks/get, tasks/update, và tasks/cancel",
+        "tasks/create, tasks/subscribe, và tasks/delete",
+        "tasks/status, tasks/result, và tasks/list"
+      ],
+      "correct": 1,
+      "explanation": "Mở rộng sử dụng tasks/get, tasks/update, và tasks/cancel. Mỗi yêu cầu HTTP đặt Mcp-Name thành params.taskId. Các phương pháp trạng thái, kết quả và danh sách cũ hơn chỉ dành cho di cư."
+    }
+  ]
+}

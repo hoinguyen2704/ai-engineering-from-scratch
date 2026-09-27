@@ -1,0 +1,78 @@
+{
+  "lesson": "27-data-provenance-training-governance",
+  "title": "Nguồn gốc Dữ liệu và Quản lý Dữ liệu Đào tạo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao thời gian tuân thủ cho quản lý dữ liệu đào tạo lại là thời điểm thu thập, không phải sau khi đào tạo?",
+      "options": [
+        "Một khi dữ liệu đã vào trọng số mô hình, việc xóa bỏ một cách chính xác là không thể; việc đào tạo lại từ đầu là biện pháp khắc phục hoàn toàn duy nhất và tốn kém quá mức",
+        "Bởi vì quyền xóa bỏ theo GDPR không áp dụng cho AI",
+        "Bởi vì các cơ quan quản lý không kiểm toán các mô hình đã triển khai",
+        "Bởi vì các khung đồng ý cookie cấm việc sử dụng sau khi thu thập"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "California AB 2013 yêu cầu các nhà phát triển công bố bao nhiêu mục theo quy định trong tóm tắt tập dữ liệu?",
+      "options": [
+        "12",
+        "3",
+        "7",
+        "30"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mục nào trong AB 2013 là mới so với cấu trúc bảng dữ liệu của Gebru et al. 2018?",
+      "options": [
+        "Nguồn hoặc chủ sở hữu của các tập dữ liệu",
+        "Thời gian trong đó dữ liệu được thu thập",
+        "Liệu hệ thống có sử dụng hoặc liên tục sử dụng việc tạo dữ liệu tổng hợp hay không",
+        "Làm sạch, xử lý hoặc các sửa đổi khác"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nguyên tắc DPA 2025 hội tụ cho việc đào tạo LLM trên nội dung bên thứ nhất công khai là gì?",
+      "options": [
+        "Việc đào tạo bị cấm trong mọi hoàn cảnh",
+        "Lợi ích hợp pháp có thể biện minh cho việc đào tạo trên nội dung bên thứ nhất công khai với tùy chọn từ chối và các biện pháp bảo vệ thích hợp; sự đồng ý không được yêu cầu",
+        "Sự đồng ý rõ ràng của người dùng luôn được yêu cầu",
+        "Chỉ dữ liệu tổng hợp mới có thể được sử dụng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Trong số này, cái nào KHÔNG phải là biện pháp khắc phục một phần cho vấn đề không thể đảo ngược được liệt kê trong bài học?",
+      "options": [
+        "Quên đi (loại bỏ gần đúng được đo bằng MIA)",
+        "Định vị dựa trên hàm ảnh hưởng và cập nhật chọn lọc",
+        "Xóa trọng số tự động theo quy định của GDPR",
+        "Giảm thiểu tinh chỉnh các đầu ra được phát sinh từ dữ liệu"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sáng kiến Nguồn gốc Dữ liệu 'Sự đồng ý trong Khủng hoảng' (tháng 7 năm 2024) tìm thấy điều gì?",
+      "options": [
+        "Tỷ lệ đồng ý ổn định trên tất cả các nguồn",
+        "Dữ liệu tổng hợp đã hoàn toàn thay thế dữ liệu web",
+        "Các hạn chế robots.txt đang giảm dần qua từng năm",
+        "Các nhà xuất bản đang thêm các hạn chế robots.txt với tốc độ gia tăng; nguồn tài nguyên có thể đào tạo công khai đang thu hẹp nhanh chóng, với khoảng 25% các nguồn đào tạo hàng đầu thêm hạn chế từ 2023 đến 2024"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

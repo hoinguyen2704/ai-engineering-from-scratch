@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/41-eval-pipeline",
+  "title": "Đường ống Đánh giá Đầy đủ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc: một đồng nghiệp báo cáo rằng mô hình của họ có perplexity 4.2 trên tập dữ liệu giữ lại. Họ hỏi liệu mô hình có tốt không. Phản hồi nào là hợp lý nhất?",
+      "options": [
+        "Có: perplexity dưới 5 có nghĩa là mô hình tốt.",
+        "Perplexity cho bạn biết mô hình phù hợp với phân phối ngôn ngữ như thế nào. Nó không nói gì về việc mô hình có tuân theo hướng dẫn hay trả về câu trả lời đúng hay không.",
+        "Perplexity là vô nghĩa nếu không có một prompt rõ ràng.",
+        "Chỉ có các mô hình đánh giá mới có thể trả lời câu hỏi đó."
+      ],
+      "correct": 1,
+      "explanation": "Perplexity là một chiều. Một mô hình có thể có perplexity thấp nhưng vẫn sai trong các nhiệm vụ thực tế, hoặc có perplexity hợp lý nhưng vẫn sản xuất câu trả lời kém chất lượng. Bạn cần nhiều đánh giá, mỗi đánh giá đo lường một chiều khác nhau."
+    },
+    {
+      "stage": "check",
+      "question": "Đánh giá perplexity tổng hợp log-likelihood âm trên từng token qua các vị trí không phải pad và chia cho tổng số token không phải pad. Tại sao không trung bình perplexities theo từng batch thay vào đó?",
+      "options": [
+        "Perplexity không xác định cho dữ liệu theo batch.",
+        "Trung bình perplexities theo từng batch là tương đương về mặt toán học.",
+        "Các batch chứa các token đã được padding mà phải luôn được trung bình.",
+        "Trung bình perplexities theo từng batch làm giảm trọng số các chuỗi ngắn (perplexity theo batch của chúng mang nhiều biến thiên hơn) và tạo ra một tổng hợp thiên lệch."
+      ],
+      "correct": 3,
+      "explanation": "Tổng hợp theo từng token là định nghĩa trong sách giáo khoa và tránh được thiên lệch về kích thước batch và độ dài. Trung bình theo từng batch là một lỗi phổ biến; trên một bộ dữ liệu với độ dài chuỗi khác nhau, nó tạo ra một số khác với số đúng."
+    },
+    {
+      "stage": "check",
+      "question": "Token F1 trả về 1.0 khi cả dự đoán và tham chiếu đều trống. Trường hợp nào khác cũng phải trả về một giá trị cụ thể?",
+      "options": [
+        "Khi dự đoán trống nhưng tham chiếu không trống, F1 phải là 1.0.",
+        "Khi dự đoán chứa đúng một token khớp, F1 phải là 0.5.",
+        "Khi dự đoán không trống nhưng tham chiếu trống, F1 phải không xác định.",
+        "Khi chỉ một trong hai dự đoán hoặc tham chiếu là trống, F1 phải là 0.0."
+      ],
+      "correct": 3,
+      "explanation": "Trống-trống là một sự khớp vô nghĩa. Trống-không trống là trường hợp không mơ hồ: có nội dung ở một bên và không có gì ở bên kia. Quy ước SQuAD là F1 = 0 trong trường hợp đó."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ tổng hợp chuẩn hóa perplexity với `1 / (1 + log(max(ppl, 1.0)))`. Điều này đảm bảo điều gì về điểm số đã chuẩn hóa?",
+      "options": [
+        "Nó luôn nằm trong [0, 1] và giảm dần khi perplexity thô tăng.",
+        "Nó luôn nằm trong [0, 1] và tăng dần khi perplexity thô tăng.",
+        "Nó không bị giới hạn ở trên.",
+        "Nó chỉ trả về 0 hoặc 1 (nhị phân)."
+      ],
+      "correct": 0,
+      "explanation": "Perplexity 1 (sàn lý thuyết) ánh xạ đến 1.0. Vô cực ánh xạ đến 0. Điểm số nằm trong [0, 1] và perplexity thấp hơn thì tốt hơn, điều này phù hợp với hướng đi của các chỉ số đã chuẩn hóa khác."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn thay thế thẩm phán giả bằng một thẩm phán mô hình biên thực sự. Thay đổi tối thiểu nào cần thực hiện trong đường ống?",
+      "options": [
+        "Viết lại bộ tổng hợp để chấp nhận một phạm vi điểm số khác.",
+        "Thêm một mục mới vào DEFAULT_WEIGHTS.",
+        "Thay thế tham số `judge_fn` trong `judge_eval` bằng một hàm có cùng chữ ký: (instruction, prediction, reference) -> JudgeVerdict.",
+        "Di chuyển toàn bộ bộ đánh giá sang async I/O."
+      ],
+      "correct": 2,
+      "explanation": "Giao diện thẩm phán là `(instruction, prediction, reference) -> JudgeVerdict`. Bất kỳ hàm nào có chữ ký đó đều có thể thay thế. Đường ống được tách rời khỏi việc thực hiện thẩm phán bởi ranh giới đó, đó là điểm quan trọng."
+    },
+    {
+      "stage": "post",
+      "question": "Điểm tổng hợp của bạn là 0.72, nhưng exact-match là 0.40 và thẩm phán là 4.5/5. Mô hình đang thực hiện sự đánh đổi nào?",
+      "options": [
+        "Tổng hợp được tính toán sai.",
+        "Mô hình đang overfitting trên tập dữ liệu LM.",
+        "Thẩm phán không phù hợp với exact-match theo định nghĩa.",
+        "Mô hình đang ít khi khớp chính xác chuỗi vàng, nhưng thẩm phán nghĩ rằng các câu trả lời dạng mở là hợp lý."
+      ],
+      "correct": 3,
+      "explanation": "EM thấp với thẩm phán cao cho thấy sự diễn đạt lại: các câu trả lời đúng về nội dung nhưng không khớp từng ký tự với chuỗi vàng. Đây chính là chiều mà EM bỏ lỡ và thẩm phán nắm bắt. Sự đánh đổi là thông tin, không phải lỗi."
+    }
+  ]
+}

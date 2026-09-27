@@ -1,0 +1,102 @@
+{
+  "lesson": "28-long-context-evaluation",
+  "title": "Đánh Giá Ngữ Cảnh Dài — NIAH, RULER, LongBench, MRCR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "NIAH benchmark gốc đo lường điều gì?",
+      "options": [
+        "Liệu mô hình có thể truy xuất một sự thật đã được cài đặt ở độ sâu kiểm soát trong một ngữ cảnh dài hay không",
+        "Sự phong phú của tokenizer",
+        "Sự trôi dạt cosine của embedding",
+        "Chỉ lý luận đa bước"
+      ],
+      "correct": 0,
+      "explanation": "NIAH = kim trong đống rơm: cài đặt một sự thật, yêu cầu mô hình truy xuất nó, quét độ sâu và chiều dài."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao cửa sổ ngữ cảnh được quảng cáo thường rất khác so với ngữ cảnh có thể sử dụng?",
+      "options": [
+        "Sự tràn ngập của embeddings",
+        "Tokenizers cắt ngắn",
+        "Attention suy giảm với chiều dài và nhiệm vụ; các thông số tối đa trong bảng thông số hiếm khi giữ được dưới tải trọng đa bước hoặc lý luận",
+        "Tìm kiếm beam chậm lại"
+      ],
+      "correct": 2,
+      "explanation": "Ngữ cảnh hiệu quả cho lý luận thường chỉ chiếm 25-50% của tối đa được quảng cáo."
+    },
+    {
+      "stage": "check",
+      "question": "RULER thêm gì so với NIAH?",
+      "options": [
+        "Logprobs theo từng token",
+        "Nhiệm vụ dịch thuật",
+        "Suy diễn nhanh hơn",
+        "Mười ba loại nhiệm vụ trong truy xuất, theo dõi đa bước, tổng hợp và QA ở nhiều chiều dài ngữ cảnh khác nhau"
+      ],
+      "correct": 3,
+      "explanation": "RULER mở rộng NIAH thành một benchmark ngữ cảnh dài đa nhiệm, bắt được các mô hình bão hòa NIAH nhưng thất bại ở nơi khác."
+    },
+    {
+      "stage": "check",
+      "question": "Hiệu ứng 'mất ở giữa' là gì?",
+      "options": [
+        "Các mô hình ít chú ý đến nội dung đặt ở giữa các đầu vào dài; độ sâu=0.5 thường hoạt động kém hơn độ sâu=0 hoặc 1",
+        "Các mô hình mất dấu câu",
+        "Các mô hình quên token đầu tiên",
+        "Các mô hình sắp xếp lại các token"
+      ],
+      "correct": 0,
+      "explanation": "Nội dung ở giữa ngữ cảnh ít được chú ý nhất; quét độ sâu phơi bày đường cong độ chính xác hình chữ U."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao đánh giá chỉ với NIAH cần được bổ sung bằng các bài kiểm tra đa bước?",
+      "options": [
+        "NIAH thiếu sự thật cơ sở",
+        "Các mô hình tiên tiến có thể xuất sắc trong truy xuất đơn lẻ nhưng vẫn thất bại trong các nhiệm vụ theo dõi biến đa bước hoặc tổng hợp",
+        "Đa bước nhanh hơn",
+        "NIAH không thể chạy trên ngữ cảnh dài"
+      ],
+      "correct": 1,
+      "explanation": "Chạy truy xuất không đồng nghĩa với chạy lý luận; các benchmark đa bước phơi bày trần thực sự."
+    },
+    {
+      "stage": "post",
+      "question": "NoLiMa nhấn mạnh điều gì?",
+      "options": [
+        "Phân đoạn",
+        "Các kim không chia sẻ bất kỳ token nào với truy vấn, vì vậy việc truy xuất yêu cầu một bước lý luận ngữ nghĩa",
+        "Độ trễ",
+        "Đầu ra theo luồng"
+      ],
+      "correct": 1,
+      "explanation": "NoLiMa loại bỏ sự chồng chéo từ vựng để mô hình phải lý luận thay vì khớp từ khóa."
+    },
+    {
+      "stage": "post",
+      "question": "Hai số nào nên được báo cáo trong bảng thông số ngữ cảnh dài?",
+      "options": [
+        "Chỉ bộ nhớ GPU và độ trễ",
+        "Chỉ token mỗi giây",
+        "Chỉ tối đa được quảng cáo",
+        "Chiều dài truy xuất hiệu quả (ví dụ: 90% NIAH pass) và chiều dài lý luận hiệu quả (ví dụ: 70% multi-hop pass)"
+      ],
+      "correct": 3,
+      "explanation": "Phân biệt chiều dài hiệu quả cho truy xuất và chiều dài hiệu quả cho lý luận là rất quan trọng cho các tuyên bố trong thế giới thực."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao đo thời gian đến token đầu tiên ở các chiều dài ngữ cảnh dài?",
+      "options": [
+        "Yêu cầu bởi RAG",
+        "Tìm kiếm beam phụ thuộc vào điều đó",
+        "1 triệu token tiền lấp có thể mất hàng chục giây; độ chính xác đơn thuần che giấu độ trễ ảnh hưởng đến sản phẩm",
+        "Phân đoạn chậm"
+      ],
+      "correct": 2,
+      "explanation": "Các prompt dài có chi phí tiền lấp lớn; độ trễ phải được theo dõi cùng với độ chính xác."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "33-instructions-as-executable-constraints",
+  "title": "Hướng Dẫn Đại Lý Như Những Ràng Buộc Có Thể Thực Thi",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt giữa quy tắc khát vọng và quy tắc vận hành là gì?",
+      "options": [
+        "Quy tắc khát vọng yêu cầu một người quản lý",
+        "Quy tắc khát vọng không có kiểm tra ('hãy cẩn thận'); quy tắc vận hành có chức năng kiểm tra máy mà bàn làm việc có thể chạy",
+        "Quy tắc khát vọng là có trả phí; quy tắc vận hành là miễn phí",
+        "Quy tắc vận hành dài hơn"
+      ],
+      "correct": 1,
+      "explanation": "Quy tắc vận hành có thể kiểm tra được; quy tắc khát vọng là những mong muốn."
+    },
+    {
+      "stage": "pre",
+      "question": "Bài học đề cập đến năm loại quy tắc nào?",
+      "options": [
+        "Lập kế hoạch, hành động, phản ánh, tinh chỉnh, giao hàng",
+        "Đọc, viết, thực thi, phân nhánh, thoát",
+        "Thấp, trung bình, cao, nghiêm trọng, chết người",
+        "Khởi nghiệp, bị cấm, định nghĩa hoàn thành, xử lý không chắc chắn, phê duyệt"
+      ],
+      "correct": 3,
+      "explanation": "Khởi nghiệp, bị cấm, định nghĩa hoàn thành, xử lý không chắc chắn, ranh giới phê duyệt là năm loại quy tắc."
+    },
+    {
+      "stage": "check",
+      "question": "Thẻ độ nghiêm trọng nào dừng thực thi và yêu cầu một người điều hành ghi đè?",
+      "options": [
+        "mềm",
+        "cảnh báo",
+        "chặn",
+        "thông tin"
+      ],
+      "correct": 2,
+      "explanation": "chặn là thất bại nghiêm trọng; cảnh báo chú thích; thông tin báo cáo."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học khuyến nghị gán độ nghiêm trọng vào thời điểm viết?",
+      "options": [
+        "Linters yêu cầu điều đó",
+        "Các nhóm thường phóng đại độ nghiêm trọng sớm và làm yếu nó dưới áp lực thời hạn; việc viết độ nghiêm trọng ngay từ đầu buộc phải hiệu chỉnh",
+        "Nó trông đẹp hơn trong markdown",
+        "Nó tiết kiệm token"
+      ],
+      "correct": 1,
+      "explanation": "Việc hiệu chỉnh độ nghiêm trọng phải được thực hiện một cách có chủ đích, không phải điều chỉnh lại dưới áp lực."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu markdown-as-source, JSON-as-cache làm gì?",
+      "options": [
+        "Thay thế markdown",
+        "Mã hóa các quy tắc",
+        "Vô hiệu hóa xem xét",
+        "agent-rules.md là tệp đã được viết; agent-rules.lock.json là bộ nhớ cache đường nóng được tái tạo bởi một hook trước khi cam kết (có hình dạng giống như package.json + lock)"
+      ],
+      "correct": 3,
+      "explanation": "Markdown vẫn có thể được xem xét; việc phân tích JSON không nằm trong đường nóng."
+    },
+    {
+      "stage": "post",
+      "question": "Thời hạn quy tắc như một chức năng ép buộc là gì?",
+      "options": [
+        "Các quy tắc trên 24 giờ sẽ thất bại đóng",
+        "Mỗi quy tắc mang theo một expires_at (mặc định 90 ngày); các quy tắc chưa được kích hoạt sẽ kích hoạt một cuộc xem xét hàng quý để biện minh, làm yếu, hoặc xóa chúng",
+        "Các quy tắc tự động hết hạn; không cần xem xét",
+        "Các quy tắc hết hạn khi bộ nhớ cache đầy"
+      ],
+      "correct": 1,
+      "explanation": "Dữ liệu của Cloudflare cho thấy các tập hợp có thời hạn giữ dưới 30 quy tắc; các tập hợp không có đã phát triển lên 80+ quy tắc không sử dụng."
+    },
+    {
+      "stage": "post",
+      "question": "Các quy tắc liên quan như thế nào đến các rào cản của framework?",
+      "options": [
+        "Các quy tắc thay thế các rào cản",
+        "Chỉ một trong số chúng là cần thiết",
+        "Các rào cản thực thi các quy tắc trong thời gian chạy; tập hợp quy tắc là hợp đồng có thể đọc được của con người mà các rào cản đó thực hiện",
+        "Các rào cản là một sự thay thế cho các quy tắc"
+      ],
+      "correct": 2,
+      "explanation": "Cả hai đều cần thiết: thời gian chạy phát hiện các vi phạm; tập hợp quy tắc chứng minh rằng thời gian chạy đang thực hiện đúng điều đó."
+    }
+  ]
+}

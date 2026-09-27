@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/40-dpo-from-scratch",
+  "title": "Tối ưu hóa sở thích trực tiếp từ đầu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc: theo mô hình sở thích Bradley-Terry, xác suất một người thích hoàn thành y_w hơn y_l với điều kiện đầu vào x là sigmoid(r(x, y_w) - r(x, y_l)). Ý nghĩa của điều này là gì?",
+      "options": [
+        "Chỉ sự khác biệt trong phần thưởng là quan trọng; bất kỳ hàm nào thêm vào cả r(x, y_w) và r(x, y_l) đều bị triệt tiêu.",
+        "Bạn phải điều chỉnh r trước khi đào tạo chính sách.",
+        "Bradley-Terry yêu cầu một hằng số chuẩn hóa Z(x) không biến mất.",
+        "Sigmoid không tương thích với tối đa khả năng."
+      ],
+      "correct": 0,
+      "explanation": "Sở thích Bradley-Terry chỉ phụ thuộc vào sự khác biệt phần thưởng. Bất kỳ điều gì chung cho cả hai hoàn thành đều bị triệt tiêu. Đây là lý do cấu trúc mà DPO có thể tránh một mô hình phần thưởng rõ ràng: thuật ngữ chỉ có đầu vào trong công thức chính sách tối ưu bị triệt tiêu."
+    },
+    {
+      "stage": "check",
+      "question": "Mất mát DPO cho một bộ ba đơn lẻ là -log sigmoid( beta * ( (logp_w_pol - logp_w_ref) - (logp_l_pol - logp_l_ref) ) ). Nếu logp_w_pol = logp_w_ref và logp_l_pol = logp_l_ref, mất mát bằng bao nhiêu?",
+      "options": [
+        "beta.",
+        "-1.",
+        "log(2).",
+        "0."
+      ],
+      "correct": 2,
+      "explanation": "Cả hai sự khác biệt đều bằng không, vì vậy đối số sigmoid bằng không, giá trị sigmoid là 0.5, và -log(0.5) = log(2). Đây là mất mát khi chính sách không di chuyển từ tham chiếu chút nào."
+    },
+    {
+      "stage": "check",
+      "question": "Trong quá trình đào tạo DPO, xác suất log được chọn dưới mô hình tham chiếu thay đổi giữa các epoch vì chính sách khác biệt với nó. Đúng hay sai?",
+      "options": [
+        "Đúng chỉ khi beta không bằng không.",
+        "Sai trừ khi gradient được vô hiệu hóa rõ ràng với no_grad.",
+        "Đúng: tham chiếu trôi dạt khi chính sách cập nhật.",
+        "Sai: tham chiếu bị đóng băng; xác suất log tham chiếu được tính một lần và tái sử dụng."
+      ],
+      "correct": 3,
+      "explanation": "Tham chiếu bị đóng băng trong toàn bộ quá trình DPO. Các tham số của nó không bao giờ được cập nhật. Việc triển khai hoặc chụp lại xác suất log tham chiếu một lần hoặc bao bọc quá trình truyền tham chiếu trong no_grad với requires_grad=False được đặt trên các tham số của nó."
+    },
+    {
+      "stage": "check",
+      "question": "Lấy gradient của L_DPO theo logp_w_pol (xác suất log của chính sách cho hoàn thành được chọn), dấu là gì?",
+      "options": [
+        "Dương (mất mát tăng khi log-prob được chọn tăng).",
+        "Bằng không (mất mát không phụ thuộc vào xác suất log của chính sách).",
+        "Không xác định (phụ thuộc vào tham chiếu).",
+        "Âm (mất mát giảm khi log-prob được chọn tăng)."
+      ],
+      "correct": 3,
+      "explanation": "Gradient là -beta * (1 - sigmoid(z)), điều này không dương. Tăng xác suất log được chọn làm giảm mất mát, đây chính xác là tín hiệu đào tạo mà chúng ta muốn."
+    },
+    {
+      "stage": "post",
+      "question": "Trên thiết bị của bạn, mất mát DPO giảm nhưng chính sách bắt đầu ưa thích các hoàn thành ngắn hơn trên toàn bộ, ngay cả khi ngắn hơn là tồi tệ hơn. Nguyên nhân có khả năng nhất?",
+      "options": [
+        "Thiên lệch độ dài: các chuỗi dài hơn tích lũy nhiều thuật ngữ xác suất log hơn (mỗi cái đều âm), vì vậy tổng xác suất log phạt độ dài theo cấu trúc.",
+        "Bộ tối ưu đang sử dụng tốc độ học không đúng.",
+        "Tham chiếu không được đóng băng đúng cách.",
+        "Beta quá thấp."
+      ],
+      "correct": 0,
+      "explanation": "Tổng xác suất log có thiên lệch về các chuỗi ngắn hơn vì mỗi token bổ sung thêm một thuật ngữ xác suất log âm. Giải pháp tiêu chuẩn là chuẩn hóa xác suất log theo độ dài hoàn thành khi đào tạo và đánh giá."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn thay thế mất mát sigmoid + log bằng biến thể IPO (z - 1)^2. Tác động thực tiễn lên động lực đào tạo là gì?",
+      "options": [
+        "Nó loại bỏ hoàn toàn nhu cầu về mô hình tham chiếu.",
+        "Nó không bão hòa như cách mà mất mát sigmoid làm, điều này giữ vững hơn dưới các nhãn sở thích ồn ào.",
+        "Nó không yêu cầu tham số beta.",
+        "Nó tương đương về mặt toán học ở tất cả các điểm."
+      ],
+      "correct": 1,
+      "explanation": "Mất mát bình phương của IPO không bão hòa như cách mà sigmoid làm, điều này giúp khi các nhãn sở thích bị ồn ào hoặc khi một số bộ ba bị gán nhãn sai. Thực nghiệm cho thấy nó giảm tối ưu hóa quá mức trên các tập dữ liệu sở thích nhỏ."
+    }
+  ]
+}

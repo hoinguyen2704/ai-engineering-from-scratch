@@ -1,0 +1,78 @@
+{
+  "lesson": "13-llm-observability",
+  "title": "Lựa Chọn Ngăn Xếp Quan Sát LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bài học phân chia thị trường quan sát LLM 2026 như thế nào?",
+      "options": [
+        "Nền tảng phát triển (được gói với evals/prompts/sessions) so với công cụ gateway/telemetry",
+        "Python so với TypeScript",
+        "Nhà cung cấp so với mã nguồn mở",
+        "Tại chỗ so với đám mây"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Công cụ nào được bài học định vị là lõi có giấy phép MIT với câu chuyện tự lưu trữ mạnh mẽ và tầng đám mây miễn phí 50K sự kiện/tháng?",
+      "options": [
+        "Phoenix",
+        "Arize AX",
+        "LangSmith",
+        "Langfuse"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Yêu cầu quy mô chính của Arize AX so với các ngăn xếp quan sát đơn thể như Datadog là gì?",
+      "options": [
+        "Luôn đắt hơn",
+        "Rẻ hơn khoảng 100 lần ở quy mô thông qua tích hợp Iceberg/Parquet không sao chép",
+        "Miễn phí dưới 1 triệu sự kiện/ngày",
+        "Rẻ hơn 10%"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bài học gọi lớp đo lường sai cho khả năng di động là gì?",
+      "options": [
+        "Đo lường tại lớp HTTP/OpenAI-SDK",
+        "Lấy mẫu 5% trên các thành công",
+        "Sử dụng các quy ước ngữ nghĩa GenAI của OpenTelemetry",
+        "Đo lường bên trong khung tác nhân của bạn, vì nó gắn bạn với khung đó"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Các quy ước OpenTelemetry nào mà bài học xác định là lớp tương tác 2026 giữa các công cụ quan sát?",
+      "options": [
+        "Các quy ước ngữ nghĩa GenAI (gen_ai.system, gen_ai.request.model, gen_ai.usage.input_tokens)",
+        "Các quy ước ngữ nghĩa OTel HTTP",
+        "Các quy ước ngữ nghĩa OTel messaging",
+        "Các quy ước ngữ nghĩa OTel database"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học lập luận rằng việc giữ lại toàn bộ trace không thể mở rộng qua 1 triệu yêu cầu/ngày?",
+      "options": [
+        "Các nhà cung cấp chặn nó",
+        "Phoenix chỉ hỗ trợ 1 triệu trace",
+        "Chi phí lưu trữ giữ lại cao hơn chính các cuộc gọi LLM; các nhóm phải lấy mẫu (ví dụ: 100% lỗi, 100% chi phí cao, 5% thành công)",
+        "OpenTelemetry giới hạn khối lượng trace"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

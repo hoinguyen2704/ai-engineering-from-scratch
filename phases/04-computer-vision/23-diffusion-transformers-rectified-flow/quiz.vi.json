@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao các mô hình văn bản thành hình ảnh SOTA 2024+ (SD3, FLUX, Z-Image) thay thế bộ khử nhiễu U-Net bằng một Diffusion Transformer (DiT)?",
+      "options": [
+        "U-Net không còn được hỗ trợ trên GPU nữa",
+        "DiT mở rộng một cách dự đoán hơn so với U-Net (cùng chế độ quy mô như LLMs), xử lý các phụ thuộc không gian dài hạn tốt hơn cho việc tạo ra chính xác theo prompt, và kết hợp tự nhiên với các bộ mã hóa văn bản thông qua attention chéo hoặc chung",
+        "Transformers dễ viết hơn",
+        "DiT có ít tham số hơn"
+      ],
+      "correct": 1,
+      "explanation": "DiT coi quá trình khuếch tán như một nhiệm vụ mô hình hóa chuỗi khác. Nó mở rộng giống như các mô hình ngôn ngữ, tránh được định kiến quy nạp cố định của các phép tích chập có thể làm tắc nghẽn cấu trúc dài hạn, và tích hợp một cách sạch sẽ với các bộ mã hóa văn bản transformer. Mỗi mô hình SOTA 2026 — SD3, FLUX.1, FLUX.2, SD4, Z-Image, Qwen-Image — đều là DiT."
+    },
+    {
+      "stage": "pre",
+      "question": "Luồng đã được điều chỉnh huấn luyện mô hình để dự đoán vận tốc `v = epsilon - x_0` dọc theo một nội suy đường thẳng giữa dữ liệu và nhiễu. Tại sao điều này cho phép lấy mẫu 20 bước thay vì 1000?",
+      "options": [
+        "Nó yêu cầu một mô hình lớn hơn",
+        "ODE đã học gần với một đường thẳng hơn so với SDE cong của DDPM, vì vậy tích phân Euler với ít bước tạo ra các mẫu chính xác; kết hợp với chưng cất bạn có các biến thể 1-4 bước như FLUX schnell",
+        "Euler tốt hơn DDIM",
+        "Nó không; luồng đã được điều chỉnh cũng cần 1000 bước"
+      ],
+      "correct": 1,
+      "explanation": "Quá trình ngược của DDPM là một con đường cong ngẫu nhiên cần nhiều bước nhỏ. Luồng đã được điều chỉnh định nghĩa một nội suy đường thẳng; vận tốc đã học gần như không đổi dọc theo quỹ đạo. Tích phân một ODE gần như thẳng tốn ít bước. SD3 và FLUX lấy mẫu ở 20-30 bước với chất lượng đầy đủ; schnell/turbo/LCM chưng cất điều này thêm nữa xuống 1-4 bước."
+    },
+    {
+      "stage": "post",
+      "question": "MMDiT (SD3) sử dụng hai tập trọng số, một cho các token văn bản và một cho các token hình ảnh, chia sẻ một lớp attention chung. Tại sao?",
+      "options": [
+        "Để tiết kiệm bộ nhớ",
+        "Các embedding văn bản và hình ảnh là các phân phối khác nhau về mặt khái niệm; trọng số riêng biệt cho phép mỗi phương thức xử lý đại diện của riêng nó trong khi attention chung cho phép chúng tương tác; kết quả là sự căn chỉnh văn bản-hình ảnh tốt hơn và tuân theo prompt hơn so với một luồng chung",
+        "Đó là một thiết kế kế thừa",
+        "Chỉ các token hình ảnh thực sự đi qua attention"
+      ],
+      "correct": 1,
+      "explanation": "MMDiT của Stable Diffusion 3 giữ các luồng trọng số theo từng phương thức để bảo tồn các thống kê khác nhau của các token văn bản và hình ảnh trong khi một lớp self-attention chung cho phép chúng hòa trộn. Điều này cấu trúc có tính biểu đạt hơn so với nối và chia sẻ (mà SD1/2 đã sử dụng), và thực nghiệm nâng cao sự tuân thủ prompt và việc hiển thị văn bản. FLUX mở rộng điều này thành các khối luồng đôi xen kẽ / luồng đơn cho hiệu quả."
+    },
+    {
+      "stage": "post",
+      "question": "AdaLN-Zero có nghĩa là gì trong một khối DiT, và tại sao nó giúp ích?",
+      "options": [
+        "Một LayerNorm chỉ được áp dụng 50% thời gian",
+        "Adaptive LayerNorm mà MLP điều chỉnh của nó được khởi tạo bằng không vì vậy khối bắt đầu như một bản sao; huấn luyện sau đó học quy mô/điều chỉnh/cổng, điều này ổn định các transformer khuếch tán rất sâu",
+        "Một layer norm với epsilon bằng không",
+        "Một LayerNorm với trung bình bằng không"
+      ],
+      "correct": 1,
+      "explanation": "AdaLN dự đoán quy mô, điều chỉnh và cổng từ vector điều kiện. 'Zero' có nghĩa là MLP được khởi tạo bằng không, vì vậy cổng bắt đầu ở 0 và khối hoạt động như một bản sao. Các gradient từ từ đẩy điều chỉnh ra khỏi không, điều này ngăn chặn ngăn xếp sâu phân kỳ sớm trong quá trình huấn luyện. Đây là tương đương DiT của việc khởi tạo bằng không trong ResNet và được sử dụng trong mọi transformer khuếch tán hiện đại."
+    },
+    {
+      "stage": "post",
+      "question": "FLUX.1-schnell có thể tạo ra một hình ảnh trong 4 bước. Kỹ thuật nào cho phép điều đó?",
+      "options": [
+        "Trọng số độ chính xác thấp hơn",
+        "Số lượng tham số nhỏ hơn",
+        "Chưng cất — schnell được huấn luyện từ một giáo viên chậm nhiều bước sử dụng các mục tiêu kiểu đối kháng / nhất quán để 1-4 bước khử nhiễu khớp với đầu ra 20-30 bước của giáo viên",
+        "Một kiến trúc cơ sở khác so với FLUX.1-dev"
+      ],
+      "correct": 2,
+      "explanation": "Các biến thể Schnell / Turbo / LCM sử dụng chưng cất bước. Một học sinh với bước nhỏ học cách khớp với đầu ra của giáo viên nhiều bước. Kiến trúc cơ sở và số lượng tham số thường giống nhau (FLUX.1-dev và schnell đều là 12B). Chưng cất là điều làm cho suy diễn dưới 1 giây trở nên thực tế. Đây là cùng một ý tưởng như SDXL Turbo, SD Turbo và các Mô hình Tính nhất quán Tiềm ẩn."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "24-plan-execute-control-flow",
+  "title": "Luồng Điều Khiển Lập Kế Hoạch-Thực Thi",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trách nhiệm của người lập kế hoạch trong một tác nhân lập kế hoạch-thực thi là gì?",
+      "options": [
+        "Để xử lý giao thức JSON-RPC",
+        "Để tạo ra một danh sách có thứ tự các bước đã được gán kiểu mà người thực thi sẽ chạy",
+        "Để thực thi các giới hạn thời gian",
+        "Để gọi trình phân phối cho mỗi bước"
+      ],
+      "correct": 1,
+      "explanation": "Người lập kế hoạch phát ra các kế hoạch có cấu trúc. Người thực thi chạy chúng. Việc trộn lẫn hai điều này là cái bẫy chuỗi tư duy mà bài học này đang tránh xa."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao expected_outcome lại là một phần của hình dạng Step mặc dù người thực thi không kiểm tra nó?",
+      "options": [
+        "Bởi vì nó cung cấp cho người lập kế hoạch lại và các trình theo dõi một điều kiện thành công đã được nêu để đọc",
+        "Bởi vì mô hình được huấn luyện trên đó",
+        "Bởi vì trình phân phối sử dụng nó như một khóa bộ nhớ đệm",
+        "Bởi vì đăng ký yêu cầu điều đó"
+      ],
+      "correct": 0,
+      "explanation": "Người lập kế hoạch lại đọc nó khi sửa đổi. Trình theo dõi hiển thị nó trên dòng thời gian. Nó là một hợp đồng có thể đọc được bởi con người về bước đó."
+    },
+    {
+      "stage": "check",
+      "question": "Khi một bước thất bại và người lập kế hoạch lại trả về một kế hoạch mới, người thực thi phát ra gì trên luồng sự kiện?",
+      "options": [
+        "session.complete với status=failed",
+        "tool.error theo sau là session.start",
+        "plan.diff với các id bước đã bị xóa/thêm/sửa đổi",
+        "Không có gì — việc lập kế hoạch lại là im lặng"
+      ],
+      "correct": 2,
+      "explanation": "plan.diff làm cho việc sửa đổi trở nên rõ ràng. Một bản viết lại im lặng là lỗi mà chúng ta đang tránh."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lại có cả max_steps và max_replans như là các ngân sách riêng biệt?",
+      "options": [
+        "Bởi vì trình phân phối từ chối các kế hoạch không giới hạn",
+        "Bởi vì đăng ký đếm số lần lập kế hoạch lại",
+        "Bởi vì asyncio yêu cầu cả hai",
+        "Bởi vì chúng đo lường các đơn vị khác nhau. Các bước giới hạn tổng số thực thi; các lần lập kế hoạch lại giới hạn số lần người lập kế hoạch được gọi."
+      ],
+      "correct": 3,
+      "explanation": "max_replans bắt được một người lập kế hoạch liên tục trả về cùng một kế hoạch bị hỏng. max_steps bắt được một kế hoạch không kiểm soát liên tục phát triển."
+    },
+    {
+      "stage": "check",
+      "question": "Lý do nào được trả về khi người lập kế hoạch trả về một danh sách rỗng trong lần gọi đầu tiên?",
+      "options": [
+        "replan_budget",
+        "step_budget",
+        "no_plan",
+        "goal_met"
+      ],
+      "correct": 2,
+      "explanation": "Không có kế hoạch, không có thực thi. Phiên làm việc kết thúc với lý do=no_plan và status=failed."
+    },
+    {
+      "stage": "post",
+      "question": "Trong PlanDiff.revised có gì?",
+      "options": [
+        "Các id bước mà người lập kế hoạch yêu cầu bỏ qua",
+        "Các id bước mà tên_tool hoặc args đã thay đổi giữa các lần sửa đổi",
+        "Các id bước trong kế hoạch mới mà không có trong kế hoạch cũ",
+        "Các id bước có trong kế hoạch cũ và không có trong kế hoạch mới"
+      ],
+      "correct": 1,
+      "explanation": "revised là tập hợp các id mà chữ ký (tool_name, args) đã thay đổi qua các lần sửa đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Khi người thực thi sử dụng hết max_replans, lý do của SessionResult là gì?",
+      "options": [
+        "step_budget",
+        "replan_budget",
+        "no_plan",
+        "goal_met"
+      ],
+      "correct": 1,
+      "explanation": "replan_budget. Trạng thái là thất bại. Lịch sử chứa mọi bước đã chạy, bao gồm cả những thất bại đã kích hoạt các lần lập kế hoạch lại."
+    }
+  ]
+}

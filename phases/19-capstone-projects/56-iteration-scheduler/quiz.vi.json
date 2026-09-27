@@ -1,0 +1,78 @@
+{
+  "lesson": "56-iteration-scheduler",
+  "title": "Lịch Trình Lặp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ lập lịch sử dụng điểm số UCB thay vì luôn chọn nhánh tốt nhất hiện tại?",
+      "options": [
+        "Bởi vì hàng đợi không thể được sắp xếp nếu không",
+        "Bởi vì asyncio yêu cầu UCB",
+        "Bởi vì UCB nhanh hơn để tính toán",
+        "Bởi vì phương pháp tham lam không bao giờ khám phá; UCB cân bằng giữa khai thác và khám phá"
+      ],
+      "correct": 3,
+      "explanation": "Phương pháp tham lam khóa chặt vào đầu tiên. Uniform không bao giờ khai thác. UCB chọn người dẫn đầu trong khi giữ lại dung lượng cho các nhánh ít được khám phá hơn thông qua hạng tử sqrt(ln N / n)."
+    },
+    {
+      "stage": "pre",
+      "question": "Một nhánh có số lần chạy hoàn thành bằng không nhận được điểm số gì dưới UCB1?",
+      "options": [
+        "Vô cực dương, vì vậy các nhánh chưa thử luôn được chọn trước",
+        "Phần thưởng trung bình của tất cả các nhánh khác",
+        "Không",
+        "Hằng số khám phá c"
+      ],
+      "correct": 0,
+      "explanation": "Bài học gán +inf cho runs=0. Điều này đảm bảo rằng mỗi nhánh được thử ít nhất một lần trước khi bất kỳ nhánh nào được xem lại."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ lập lịch giữ cho nhiều slot bận rộn như thế nào?",
+      "options": [
+        "Nó sử dụng asyncio.create_task cho mỗi giả thuyết được phân phối và chờ FIRST_COMPLETED trên tập đang bay",
+        "Nó chạy runner trong một pool luồng",
+        "Nó chặn vòng lặp sự kiện trên một giấc ngủ",
+        "Nó sử dụng multiprocessing"
+      ],
+      "correct": 0,
+      "explanation": "Mỗi giả thuyết được phân phối trở thành một tác vụ. Vòng lặp chính chờ trên FIRST_COMPLETED để một slot hoàn thành được giải phóng ngay lập tức và một giả thuyết khác được phân phối."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bộ lập lịch phát ra paper.trigger cho một nhánh?",
+      "options": [
+        "Mỗi khi một kết quả rơi vào nhánh đó",
+        "Khi đạt đến sàn cắt tỉa",
+        "Chỉ vào cuối lần chạy",
+        "Vào kết quả đầu tiên mà trung bình nhánh đạt hoặc vượt qua ngưỡng giấy, và chỉ một lần cho mỗi nhánh"
+      ],
+      "correct": 3,
+      "explanation": "Trigger được kích hoạt một lần cho mỗi nhánh, lần đầu tiên mà trung bình của nhánh vượt qua ngưỡng. Cờ paper_triggered trên BranchStats ngăn chặn lặp lại."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì xảy ra với một nhánh mà phần thưởng trung bình của nó vẫn dưới sàn cắt tỉa sau ngưỡng số lần chạy tối thiểu?",
+      "options": [
+        "Không có gì; UCB cuối cùng sẽ chọn một nhánh khác",
+        "Sàn phần thưởng tự động được hạ thấp",
+        "Nhánh được đánh dấu là đã cắt tỉa và các giả thuyết còn lại trên nhánh đó bị loại bỏ khỏi hàng đợi",
+        "Bộ lập lịch phát sinh một ngoại lệ"
+      ],
+      "correct": 2,
+      "explanation": "Cắt tỉa loại bỏ nhánh khỏi lịch trình trong tương lai. Cắt tỉa tách biệt với bộ chọn: UCB xếp hạng, cắt tỉa loại bỏ."
+    },
+    {
+      "stage": "post",
+      "question": "Hai ngân sách nào mà bộ lập lịch thực thi như là giới hạn cứng?",
+      "options": [
+        "Bộ nhớ và CPU",
+        "các trigger giấy và số lượng cắt tỉa",
+        "slot và độ sâu hàng đợi",
+        "max_experiments (tổng số lần chạy) và max_seconds (thời gian thực)"
+      ],
+      "correct": 3,
+      "explanation": "Cả hai đều kích hoạt như là lý do dừng. max_experiments giới hạn tổng công việc. max_seconds giới hạn thời gian thực. Dấu vết ghi lại cái nào đã dừng lần chạy."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "31-agent-workbench-why-models-fail",
+  "title": "Kỹ Thuật Agent Workbench: Tại Sao Các Mô Hình Có Năng Lực Vẫn Thất Bại",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bài học xác định nguyên nhân gốc rễ của sự thất bại của tác nhân trong các nhiệm vụ thực tế là gì?",
+      "options": [
+        "Dữ liệu đào tạo lỗi thời",
+        "Sự cố workbench: thiếu bề mặt xung quanh mô hình, không phải giới hạn của LLM",
+        "Mạng chậm",
+        "Tham số mô hình không đủ"
+      ],
+      "correct": 1,
+      "explanation": "Mô hình không sai về Python; nó sai về công việc. Các bề mặt xung quanh mô hình đang thiếu."
+    },
+    {
+      "stage": "pre",
+      "question": "Bảy bề mặt workbench mà bài học nêu tên là gì?",
+      "options": [
+        "Đọc, ghi, thực thi, fork, thoát, chờ, giết",
+        "Lập kế hoạch, hành động, phản ánh, tinh chỉnh, tranh luận, bỏ phiếu, giao hàng",
+        "Hướng dẫn, trạng thái, phạm vi, phản hồi, xác minh, xem xét, chuyển giao",
+        "Đào tạo, đánh giá, triển khai, giám sát, đào tạo lại, mở rộng, nghỉ hưu"
+      ],
+      "correct": 2,
+      "explanation": "Bảy bề mặt là hướng dẫn, trạng thái, phạm vi, phản hồi, xác minh, xem xét, chuyển giao."
+    },
+    {
+      "stage": "check",
+      "question": "Cái nào KHÔNG phải là một trong tám nguyên thủy hệ thống phân tán mà bài học ánh xạ bề mặt tới?",
+      "options": [
+        "Công nhân",
+        "Lan truyền ngược",
+        "Hàm",
+        "Kích hoạt"
+      ],
+      "correct": 1,
+      "explanation": "Tám nguyên thủy là hàm, công nhân, kích hoạt, thời gian chạy, HTTP/RPC, hàng đợi, duy trì phiên, chính sách ủy quyền."
+    },
+    {
+      "stage": "check",
+      "question": "Thay đổi harness được báo cáo của Vercel đã làm tỷ lệ thành công thay đổi từ đâu đến đâu?",
+      "options": [
+        "50% đến 70%, bằng cách thêm RAG",
+        "20% đến 60%",
+        "0% đến 100%, bằng cách chuyển đổi mô hình",
+        "80% đến 100%, bằng cách xóa 80% công cụ của tác nhân"
+      ],
+      "correct": 3,
+      "explanation": "Xóa 80% công cụ đã đưa tác nhân của Vercel từ 80% đến 100% thành công."
+    },
+    {
+      "stage": "check",
+      "question": "Terminal Bench 2.0 chứng minh điều gì về mô hình so với harness?",
+      "options": [
+        "Cùng một mô hình đã chuyển từ ngoài top 30 lên hạng năm chỉ bằng cách thay đổi harness",
+        "Chỉ có mô hình xác định thứ hạng",
+        "Chỉ có GPU là quan trọng",
+        "Thay đổi harness không quan trọng"
+      ],
+      "correct": 0,
+      "explanation": "Anatomy of an Agent Harness của LangChain: cùng một mô hình, thay đổi harness, nhảy hạng 25+."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị làm gì khi bạn nghe từ vựng mới về harness?",
+      "options": [
+        "Từ chối nó",
+        "Chờ OpenAI chuẩn hóa nó",
+        "Áp dụng từ vựng nguyên văn",
+        "Dịch ngược về các nguyên thủy (hàm, công nhân, kích hoạt, thời gian chạy, HTTP/RPC, hàng đợi, duy trì, chính sách) trước khi áp dụng"
+      ],
+      "correct": 3,
+      "explanation": "Lập luận từ các nguyên thủy, không phải từ phân loại của nhà cung cấp; từ vựng thay đổi nhưng kỹ thuật thì không."
+    },
+    {
+      "stage": "post",
+      "question": "Lịch sử trò chuyện nằm ở đâu so với workbench?",
+      "options": [
+        "Trò chuyện là hệ thống ghi chép",
+        "Trò chuyện là tạm thời; repo là hệ thống ghi chép",
+        "Cả hai đều tương đương",
+        "Không cái nào quan trọng"
+      ],
+      "correct": 1,
+      "explanation": "Vòng lặp kết thúc trên tệp trạng thái, không phải trên lịch sử trò chuyện."
+    }
+  ]
+}

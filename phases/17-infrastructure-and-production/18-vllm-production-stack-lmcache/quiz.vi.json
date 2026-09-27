@@ -1,0 +1,78 @@
+{
+  "lesson": "18-vllm-production-stack-lmcache",
+  "title": "Cấu trúc phục vụ sản xuất — Tải KV và Định tuyến nhận thức bộ nhớ đệm",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "LMCache chủ yếu giải quyết vấn đề gì trong triển khai vLLM?",
+      "options": [
+        "Cạnh tranh GIL của Tokenizer",
+        "Lọc lưu lượng mạng ra ngoài",
+        "Kéo hình ảnh khởi động lạnh",
+        "Áp lực bộ nhớ đệm KV trong HBM gây ra việc tạm dừng và làm đầy lại các tiền tố giống nhau"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "API vLLM nào đã giới thiệu các backend bộ nhớ đệm KV có thể cắm vào?",
+      "options": [
+        "Cờ bộ nhớ đệm tiền tố",
+        "API Kết nối trong vLLM v0.9.0",
+        "PagedAttention v2",
+        "API ChunkedPrefill"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Phiên bản vLLM 0.11.0 (tháng 1 năm 2026) thêm gì vào đường dẫn tải KV?",
+      "options": [
+        "Loại bỏ hỗ trợ LMCache",
+        "Bộ nhớ đệm KV FP8 bắt buộc",
+        "Một đường dẫn tải không đồng bộ để động cơ không bị chặn khi tải trong trường hợp thông thường",
+        "Tải chỉ đồng bộ"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bạn nên chọn LMCache thay vì tải CPU gốc?",
+      "options": [
+        "Khi bạn chỉ chạy trên CPU",
+        "Khi nhiều động cơ chia sẻ các tiền tố giữa các người thuê, các biến thể LoRA, hoặc ngữ cảnh RAG lặp lại, vì vậy việc tái sử dụng giữa các động cơ có lợi",
+        "Khi một động cơ duy nhất có áp lực HBM và không chia sẻ tiền tố",
+        "Khi bạn muốn vô hiệu hóa hoàn toàn bộ nhớ đệm KV"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì xảy ra với lợi ích của LMCache khi dấu chân KV vẫn thấp hơn nhiều so với HBM?",
+      "options": [
+        "LMCache tự động vô hiệu hóa",
+        "Cấu hình khớp với cơ sở với khoảng 3-5% chi phí bổ sung và không có lợi ích thực sự",
+        "Động cơ bị sập",
+        "Nó vẫn gấp đôi thông lượng"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao LMCache kết hợp với phục vụ phân tán (Giai đoạn 17 · 17)?",
+      "options": [
+        "KV được chuyển từ làm đầy trước đến giải mã nằm trong LMCache; các truy vấn sau đó có thể lấy từ LMCache và bỏ qua làm đầy trước, vì vậy bộ định tuyến nhận thức bộ nhớ đệm có thể chọn một động cơ mà bộ nhớ đệm cục bộ hoặc chia sẻ LMCache khớp",
+        "Nó không — chúng loại trừ lẫn nhau",
+        "Bởi vì LMCache thay thế NIXL",
+        "Bởi vì LMCache chạy trên cùng một GPU với động cơ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

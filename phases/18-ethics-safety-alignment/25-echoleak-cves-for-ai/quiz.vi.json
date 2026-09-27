@@ -1,0 +1,78 @@
+{
+  "lesson": "25-echoleak-cves-for-ai",
+  "title": "EchoLeak và sự xuất hiện của CVE cho AI",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mô tả nào tốt nhất về EchoLeak (CVE-2025-32711)?",
+      "options": [
+        "Một lỗ hổng tiêm lệnh AI không cần nhấp chuột trong Microsoft 365 Copilot (CVE-2025-32711, CVSS 9.3) gây rò rỉ thông tin mạng trái phép, với việc xuất dữ liệu qua một miền Microsoft được CSP cho phép/đáng tin cậy",
+        "Một lỗ hổng phần cứng trong NPUs",
+        "Một cuộc tấn công chuỗi cung ứng trên PyPI",
+        "Một cuộc jailbreak thông qua nhồi nhét ngữ cảnh dài"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì làm cho EchoLeak trở thành 'không cần nhấp chuột'?",
+      "options": [
+        "Nó chạy trong kernel của hệ điều hành",
+        "Nó yêu cầu ba lần nhấp nhưng không cần gõ",
+        "Nạn nhân không cần mở email; Copilot lấy nó như ngữ cảnh RAG trong các truy vấn thường xuyên và các lệnh tiêm được thực thi",
+        "Nó yêu cầu người dùng nhấp vào một liên kết trong cuộc trò chuyện Teams"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Aim Labs định nghĩa EchoLeak là 'Vi phạm Phạm vi LLM'. Ba ranh giới nào cần được kiểm soát độc lập?",
+      "options": [
+        "Lấy dữ liệu, phạm vi, đầu ra",
+        "Mạng, đĩa, bộ nhớ",
+        "Lời nhắc, phản hồi, nhật ký",
+        "Đầu vào, mô hình, GPU"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Microsoft/GitHub đã khắc phục CamoLeak (CVSS 9.6, GitHub Copilot Chat) như thế nào?",
+      "options": [
+        "Tăng kích thước ngữ cảnh",
+        "Thêm bộ lọc tiêm lời nhắc XPIA",
+        "Chuyển mô hình sang Llama Guard",
+        "Vô hiệu hóa hoàn toàn việc hiển thị hình ảnh trong Copilot Chat (chi phí: khả năng sử dụng) vì bề mặt tấn công thay thế không thể được giới hạn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu nào trong việc hiệu chỉnh mức độ nghiêm trọng mà việc công bố EchoLeak đã tiết lộ?",
+      "options": [
+        "Các nhà cung cấp đã đánh giá quá cao điểm CVSS ban đầu",
+        "Tất cả các CVE AI đều tự động được đánh giá 10.0",
+        "Các nhà cung cấp ban đầu đánh giá EchoLeak thấp (rò rỉ thông tin); bằng chứng khái niệm về việc xuất mã MFA của Aim Labs đã nâng cao đánh giá lên 9.3 — những người bảo vệ phải thúc đẩy PoC toàn diện cho các lỗ hổng cụ thể của AI",
+        "Các đánh giá mức độ nghiêm trọng chỉ được quyết định bởi OWASP"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "NIST và OWASP xếp hạng tiêm lời nhắc như thế nào vào năm 2024/2025?",
+      "options": [
+        "NIST: ngoài phạm vi; OWASP: không được liệt kê",
+        "Cả hai đều gọi đây là rủi ro Cấp-2",
+        "NIST: nhỏ; OWASP: cuối danh sách",
+        "NIST AI SPD 2024 định nghĩa tiêm lời nhắc là một rủi ro an ninh thông tin lớn cho AI sinh tạo; OWASP 2025 xếp hạng nó là LLM01 (mối đe dọa hàng đầu ở lớp ứng dụng)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

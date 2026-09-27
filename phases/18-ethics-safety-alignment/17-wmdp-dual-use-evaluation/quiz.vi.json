@@ -1,0 +1,78 @@
+{
+  "lesson": "17-wmdp-dual-use-evaluation",
+  "title": "Đánh giá WMDP và khả năng sử dụng kép",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tiêu chí 'vùng vàng' mà WMDP sử dụng để chọn câu hỏi là gì?",
+      "options": [
+        "Công thức tổng hợp cho các hợp chất nguy hiểm",
+        "Kiến thức gần gũi, cho phép về một quy trình gây hại mà không phải là công thức tổng hợp trực tiếp",
+        "Nội dung trên internet mở mà không có đánh giá của chuyên gia",
+        "Lý luận toán học đa ngôn ngữ"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "WMDP bao gồm ba lĩnh vực nào?",
+      "options": [
+        "An ninh sinh học, an ninh mạng, hóa học",
+        "Thị giác, âm thanh, văn bản",
+        "Toán học, mã, ngôn ngữ",
+        "Quyền riêng tư, thiên lệch, đánh dấu bản quyền"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "RMU (phương pháp đồng hành của WMDP) làm gì?",
+      "options": [
+        "Tạo ra hình ảnh gây hại",
+        "Thay thế PPO bằng DPO trong quá trình căn chỉnh",
+        "Đào tạo một bộ mã hóa mới cho nội dung sử dụng kép",
+        "Chuyển hướng đại diện để không học lại: giảm điểm WMDP xuống gần ngẫu nhiên trong khi vẫn giữ khả năng tổng quát (ví dụ: MMLU) trong vài điểm"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Số nào mà thử nghiệm thu mua vũ khí sinh học năm 2025 của Anthropic báo cáo là 'tăng cường', và điều đó có ý nghĩa gì đối với ASL-3?",
+      "options": [
+        "100x; ASL-5 đã đạt được",
+        "2.53x; không đủ để loại trừ ASL-3",
+        "10x; dưới ASL-2",
+        "0.5x; ASL-3 đã bị loại trừ"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự khác biệt giữa tăng cường tương đối với người mới và khả năng tuyệt đối của chuyên gia là gì?",
+      "options": [
+        "Cả hai chỉ được đo lường qua MCQ",
+        "Chúng là đồng nghĩa",
+        "Tăng cường tương đối là một tiêu chuẩn; khả năng tuyệt đối của chuyên gia là một giấy phép",
+        "Tăng cường tương đối là sự trợ giúp nhân lên so với trạng thái hiện tại (ví dụ: tìm kiếm trên internet) cho những người không phải chuyên gia; khả năng tuyệt đối của chuyên gia là thông tin tối đa mà một chuyên gia có động lực có thể trích xuất từ mô hình"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Điều nào KHÔNG phải là cạm bẫy đo lường khi diễn giải điểm WMDP như là rủi ro triển khai?",
+      "options": [
+        "Kiến thức ngầm cần thiết cho việc thực hiện mà không được MCQ ghi lại",
+        "Rào cản về mua sắm và thiết bị",
+        "Giấy phép mã nguồn mở của mô hình",
+        "Kháng cự thu thập (liệu bộ lọc an toàn có chặn việc trích xuất hay không)"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

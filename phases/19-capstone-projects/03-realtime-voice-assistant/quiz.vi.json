@@ -1,0 +1,90 @@
+{
+  "lesson": "03-realtime-voice-assistant",
+  "title": "Capstone 03 — Trợ Lý Giọng Nói Thời Gian Thực (ASR đến LLM đến TTS)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một tác nhân giọng nói không thể được xây dựng bằng cách ghép ba cuộc gọi REST chặn?",
+      "options": [
+        "Các điểm cuối REST có thời gian chờ cứng 30 giây",
+        "REST không tương thích với WebRTC",
+        "Phân tích JSON quá chậm cho dữ liệu âm thanh",
+        "Độ trễ đầu cuối dưới 800ms yêu cầu phát trực tuyến theo ống ở mọi giai đoạn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Vai trò của bộ phát hiện lượt nói bên cạnh VAD là gì?",
+      "options": [
+        "Trộn nhạc nền vào luồng đầu ra",
+        "Phát hiện ai đang nói trong một cuộc gọi đa bên",
+        "Đọc các bản sao tạm thời và đánh giá xem người dùng đã thực sự hoàn thành câu nói của họ chưa",
+        "Đào tạo một bản sao giọng nói tùy chỉnh cho tác nhân"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khi người dùng bắt đầu nói trong khi tác nhân đang phản hồi, điều gì phải xảy ra để việc chen ngang cảm thấy đúng?",
+      "options": [
+        "TTS hoàn thành câu hiện tại trước khi nhường",
+        "Tác nhân tăng âm lượng TTS để khẳng định ưu tiên",
+        "TTS bị hủy ngay lập tức, đầu ra LLM còn lại bị bỏ qua, và ASR được tái kích hoạt",
+        "Dòng ống đệm âm thanh của người dùng cho đến khi TTS hoàn thành"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một đoạn lấp đầy ngắn như \"một giây, để tôi kiểm tra\" được phát ra khi một công cụ vượt quá khoảng 300ms?",
+      "options": [
+        "Nó kích hoạt một mô hình ASR dự phòng",
+        "Nó tránh im lặng để cuộc trò chuyện không bị ngưng trệ trong khi công cụ kênh phụ hoạt động",
+        "Nó cải thiện WER trên câu nói tiếp theo",
+        "Nó đặt lại bộ đệm jitter WebRTC"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khối âm thanh đầu tiên phải rời khỏi máy chủ trong khoảng thời gian bao lâu so với token LLM đầu tiên?",
+      "options": [
+        "200ms",
+        "800ms",
+        "2 giây",
+        "20ms"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số nào đo lường trực tiếp việc chen ngang không phù hợp hoặc đóng lượt quá nhiệt tình?",
+      "options": [
+        "MOS",
+        "Tỷ lệ cắt sai",
+        "Tỷ lệ chấp nhận",
+        "WER"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Dưới 3% mất gói, hai hành vi thích ứng nào mà dòng ống dựa vào?",
+      "options": [
+        "Chuyển sang LLM lớn hơn và tắt TTS",
+        "Giữ các bản sao tạm thời và tăng ngưỡng cổng phát hiện giọng nói VAD",
+        "Khởi động lại phòng LiveKit",
+        "Quay lại các codec âm thanh PSTN"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

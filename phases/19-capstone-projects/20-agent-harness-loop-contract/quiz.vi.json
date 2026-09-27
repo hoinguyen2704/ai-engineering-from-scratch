@@ -1,0 +1,90 @@
+{
+  "lesson": "20-agent-harness-loop-contract",
+  "title": "Hợp đồng Vòng Đai Đại Diện",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao mô hình vòng đai lại được mô tả như một máy trạng thái rõ ràng thay vì một vòng lặp while với các cờ?",
+      "options": [
+        "Đó là hình dạng duy nhất mà mô hình có thể gọi",
+        "Nó tránh cần thiết phải kiểm tra",
+        "Nó cho phép vòng đai từ chối các chuyển tiếp bất hợp pháp ở một nơi và phát lại các phiên từ nhật ký sự kiện",
+        "Nó nhanh hơn trên CPython"
+      ],
+      "correct": 2,
+      "explanation": "Một máy trạng thái đặt các quy tắc hợp pháp vào một hàm chuyển tiếp. Chuỗi đầu vào giống nhau tái tạo cùng một trạng thái, điều này làm cho việc phát lại phiên trở nên khả thi."
+    },
+    {
+      "stage": "pre",
+      "question": "Điểm kéo trong vòng lặp đại diện cho điều gì?",
+      "options": [
+        "Một bộ đếm thời gian kích hoạt mỗi N giây",
+        "Một điểm mà vòng lặp nhường quyền kiểm soát và chờ người gọi cung cấp đầu vào",
+        "Một người đăng ký móc mà biến đổi tải trọng",
+        "Một cuộc gọi mô hình trả về tên công cụ"
+      ],
+      "correct": 1,
+      "explanation": "Điểm kéo là các giá trị trả về, không phải ngoại lệ. Người gọi lấy những gì vòng đai yêu cầu và gọi resume()."
+    },
+    {
+      "stage": "check",
+      "question": "Trạng thái nào là điểm kéo hợp pháp duy nhất cho một cuộc gọi công cụ?",
+      "options": [
+        "PLANNING",
+        "AWAITING_TOOL",
+        "EXECUTING",
+        "REFLECTING"
+      ],
+      "correct": 1,
+      "explanation": "Chỉ AWAITING_TOOL mới nhường một điểm kéo công cụ. EXECUTING chuyển sang nó khi một bước yêu cầu một công cụ."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra khi một móc nâng cao HookAbort trong before_tool_call?",
+      "options": [
+        "Móc bị hủy đăng ký",
+        "Cuộc gọi công cụ bị bỏ qua, on_error được kích hoạt, và vòng lặp chuyển sang REFLECTING",
+        "Phiên ngay lập tức chuyển sang DONE",
+        "Ngân sách được đặt lại"
+      ],
+      "correct": 1,
+      "explanation": "HookAbort hủy bỏ việc phân phối công cụ đang diễn ra, kích hoạt on_error với lý do hủy bỏ, và tiếp tục."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao các móc và sự kiện được giữ tách biệt?",
+      "options": [
+        "Bởi vì các loại sự kiện là byte và các móc là chuỗi",
+        "Các móc là mệnh lệnh và có thể biến đổi hoặc hủy bỏ. Các sự kiện là quan sát và chỉ thêm.",
+        "Bởi vì kịch bản kiểm toán cấm các người đăng ký",
+        "Bởi vì nhật ký sự kiện không thể lưu trữ dicts"
+      ],
+      "correct": 1,
+      "explanation": "Các móc thay đổi hành vi. Các sự kiện mô tả hành vi. Việc trộn lẫn chúng làm liên kết chính sách và telemetry, đây là lỗi mà chúng ta đang tránh."
+    },
+    {
+      "stage": "post",
+      "question": "Khi ngân sách theo thời gian bị vượt quá, trạng thái tiếp theo là gì?",
+      "options": [
+        "DONE — phiên được kết thúc",
+        "IDLE — một điểm kéo được trả về với lý do ngân sách vượt quá",
+        "PLANNING — một kế hoạch mới được soạn thảo",
+        "EXECUTING — vòng lặp thử lại"
+      ],
+      "correct": 1,
+      "explanation": "Việc cạn kiệt ngân sách là một lần nhường. Vòng đai chuyển sang IDLE, kích hoạt on_budget_exceeded, và trả về một PullRequest để người gọi có thể quyết định có nên mở rộng hay đóng lại."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học này không gọi mô hình mà thay vào đó lại stub ra trình lập kế hoạch?",
+      "options": [
+        "Bởi vì các mô hình gọi chậm khi thực hiện cục bộ",
+        "Để giữ cho hợp đồng vòng lặp có thể kiểm tra và xác định trước khi bất kỳ mô hình nào được liên kết",
+        "Để tiết kiệm token",
+        "Bởi vì các mô hình không thể trả về các cuộc gọi công cụ"
+      ],
+      "correct": 1,
+      "explanation": "Việc cố định hợp đồng vòng lặp trước cho phép các bài học sau thay thế các trình lập kế hoạch, đăng ký và phân phối thực mà không cần đàm phán lại máy trạng thái."
+    }
+  ]
+}

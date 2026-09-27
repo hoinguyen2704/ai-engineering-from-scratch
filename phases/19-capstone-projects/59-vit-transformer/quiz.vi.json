@@ -1,0 +1,78 @@
+{
+  "lesson": "59-vit-transformer",
+  "title": "Bộ mã hóa Vision Transformer",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao khối ViT tiêu chuẩn sử dụng vị trí pre-LayerNorm thay vì post-LayerNorm?",
+      "options": [
+        "Pre-LN chạy nhanh hơn",
+        "Post-LN sử dụng nhiều bộ nhớ hơn",
+        "Pre-LN huấn luyện ổn định ở độ sâu mà không cần làm nóng tốc độ học trong khi post-LN phân kỳ sau khoảng 6 lớp",
+        "Post-LN đã được cấp bằng sáng chế"
+      ],
+      "correct": 2,
+      "explanation": "Pre-LN chuẩn hóa đầu vào của mỗi lớp con, giữ cho các chuẩn gradient được giới hạn khi độ sâu tăng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại hidden=768 với heads=12, kích thước mỗi đầu là bao nhiêu và tại sao điều đó quan trọng?",
+      "options": [
+        "12, vì vậy mỗi đầu có thể chạy trên một GPU nhỏ",
+        "96, được đặt bởi ResNet-50",
+        "768, vì tất cả các đầu chia sẻ phép chiếu",
+        "64, điều này kiểm soát độ phân giải của mỗi bản đồ attention và cho phép mười hai đầu tham gia độc lập song song"
+      ],
+      "correct": 3,
+      "explanation": "head_dim = hidden / heads = 64. Mỗi đầu chiếu token vào q/k/v 64-D riêng và tính toán bản đồ attention của riêng nó."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ mã hóa ViT có cần một mặt nạ attention nguyên nhân không?",
+      "options": [
+        "Chỉ trong quá trình huấn luyện",
+        "Không: bộ mã hóa là hai chiều, mỗi token có thể tham gia vào mọi token khác trong cùng một chuỗi",
+        "Có, giống như bộ giải mã GPT",
+        "Chỉ cho hàng CLS"
+      ],
+      "correct": 1,
+      "explanation": "Các bộ mã hóa hình ảnh là hai chiều. Mặt nạ nguyên nhân xuất hiện sau đó khi một bộ giải mã văn bản tiêu thụ đầu ra cross-attention."
+    },
+    {
+      "stage": "check",
+      "question": "Trạng thái ẩn cuối cùng của token CLS đại diện cho điều gì sau tất cả 12 khối?",
+      "options": [
+        "Một vector tóm tắt đã học của toàn bộ hình ảnh mà các đầu hạ nguồn chiếu vào logits lớp hoặc embedding tương phản",
+        "Chỉ mảnh cuối cùng",
+        "Tiếng ồn ngẫu nhiên",
+        "Một bản sao của embedding đầu vào"
+      ],
+      "correct": 0,
+      "explanation": "Token CLS bắt đầu trống và tích lũy thông tin từ mọi mảnh thông qua self-attention trên tất cả 12 khối."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lớp feed-forward được mở rộng gấp 4 lần kích thước ẩn?",
+      "options": [
+        "Nó giảm một nửa FLOPs",
+        "PyTorch yêu cầu 4x",
+        "Một điểm ngọt thực nghiệm kể từ Transformer gốc; nhỏ hơn thì thiếu khớp, lớn hơn thì thừa khớp với ngân sách dữ liệu cố định",
+        "Nó loại bỏ nhu cầu về attention"
+      ],
+      "correct": 2,
+      "explanation": "Yếu tố 4x đã được giữ nguyên trong các transformer ngôn ngữ và hình ảnh kể từ năm 2017. Năng lực trên mỗi tham số đạt đỉnh ở đây."
+    },
+    {
+      "stage": "post",
+      "question": "Gia đình mở rộng nào giữ nguyên toán học của khối nhưng thêm các token học được được thêm vào trước?",
+      "options": [
+        "Mặt nạ nguyên nhân",
+        "Xoay RoPE",
+        "Token đăng ký (DINOv2): một vài vector học được thêm vào sau CLS để nắm bắt thống kê toàn cầu và làm mượt các bản đồ attention",
+        "Hỗn hợp chuyên gia"
+      ],
+      "correct": 2,
+      "explanation": "Token đăng ký ổn định attention mà không làm thay đổi toán học của khối; chúng là các khe bổ sung trong chuỗi."
+    }
+  ]
+}

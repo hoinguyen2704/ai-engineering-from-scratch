@@ -1,0 +1,78 @@
+{
+  "lesson": "05-eagle3-speculative-decoding",
+  "title": "Giải Mã Dự Đoán EAGLE-3 Trong Sản Xuất",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao giải mã dự đoán lại khai thác một khoảng trống tồn tại trong giải mã thông thường?",
+      "options": [
+        "Giải mã không tận dụng được batching",
+        "Giải mã bị giới hạn bởi bộ nhớ, vì vậy GPU thường ở trạng thái nhàn rỗi chờ đọc HBM của trọng số",
+        "Giải mã bị giới hạn bởi tính toán, vì vậy việc thêm nhiều tính toán là miễn phí",
+        "Giải mã yêu cầu băng thông mạng lớn hơn so với prefill"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tỷ lệ chấp nhận alpha đo lường điều gì?",
+      "options": [
+        "Chi phí độ trễ của mô hình dự thảo",
+        "Tỷ lệ phần trăm các token được đề xuất bởi dự thảo được mô hình mục tiêu chấp nhận",
+        "Tỷ lệ hit của bộ nhớ KV cache",
+        "Tỷ lệ phần trăm bộ nhớ GPU được sử dụng trong quá trình giải mã"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Những thay đổi nào trong EAGLE-3 so với EAGLE-2 đã đẩy alpha lên khoảng 0.6-0.8 trong trò chuyện chung?",
+      "options": [
+        "Đầu dự thảo được đào tạo trên nhiều lớp mục tiêu thay vì chỉ lớp cuối cùng",
+        "Nó sử dụng một mô hình dự thảo kích thước đầy đủ cùng loại",
+        "Nó chạy trên CPU thay vì GPU",
+        "Nó loại bỏ hoàn toàn bước xác minh"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dưới mức alpha nào thì bài học nói rằng giải mã dự đoán trở nên tiêu cực ròng ở độ đồng thời cao trên hầu hết phần cứng 2026?",
+      "options": [
+        "0.85",
+        "0.95",
+        "0.05",
+        "0.55"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số nào bạn nên theo dõi chặt chẽ nhất sau khi bật EAGLE-3, ngay cả khi ITL trung bình giảm?",
+      "options": [
+        "Sử dụng bộ nhớ GPU",
+        "Thời gian khởi động lạnh",
+        "Độ trễ E2E trung bình",
+        "P99 ITL, vì các lượt hai của dự thảo bị từ chối có thể tuần tự hóa dưới batch đầy đủ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao giải mã dự đoán là tùy chọn (không phải mặc định) trong vLLM 2026 theo bài học?",
+      "options": [
+        "Nó không tương thích với PagedAttention",
+        "Nó chỉ hoạt động trên GPU Blackwell",
+        "Nó yêu cầu một giấy phép riêng",
+        "Tỷ lệ chấp nhận phụ thuộc vào khối lượng công việc, và bật nó lên mà không đo lường alpha là một mẫu chống lại sản xuất"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

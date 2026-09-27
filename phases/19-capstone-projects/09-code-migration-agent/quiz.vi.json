@@ -1,0 +1,90 @@
+{
+  "lesson": "09-code-migration-agent",
+  "title": "Capstone 09 — Đại lý di chuyển mã (Nâng cấp ngôn ngữ / thời gian thực cấp độ Repo)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao pipeline kết hợp một nền tảng xác định với một lớp đại lý thay vì chỉ sử dụng một trong hai?",
+      "options": [
+        "Chỉ có đại lý thì nhanh hơn công thức",
+        "OpenRewrite hoặc libcst xử lý 70-80% các sửa đổi cơ học một cách an toàn và rẻ, để lại đại lý cho phần không rõ ràng",
+        "Tính xác định chỉ cần thiết cho hệ thống xây dựng",
+        "Công thức xác định chậm hơn LLM"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tín hiệu nào mà pipeline sử dụng làm sự thật cơ sở cho một cuộc di chuyển thành công?",
+      "options": [
+        "Đại lý tự đánh giá theo một tiêu chí",
+        "Sự chấp thuận của người đánh giá trên PR",
+        "Kích thước khác biệt dưới một giới hạn cứng",
+        "CI xanh trong sandbox mà không có sự suy giảm độ bao phủ vượt quá một ngưỡng nhỏ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Các giới hạn ngân sách nào mà vòng lặp đại lý thực thi cho mỗi repo?",
+      "options": [
+        "30 phút đồng hồ, chi phí 8 đô la, và 20 lượt đại lý",
+        "1 giờ đồng hồ và 100 lượt",
+        "Thời gian và chi phí không giới hạn; chỉ hủy bỏ khi có lỗi",
+        "Không giới hạn lượt, trần 100 đô la"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cổng nào được kích hoạt khi độ bao phủ giảm hơn khoảng 2% sau khi di chuyển?",
+      "options": [
+        "Nền tảng xác định phát lại các công thức của nó",
+        "Repo được xếp vào lớp thất bại độ bao phủ_regression thay vì mở một PR sạch",
+        "Đại lý tự động đẩy một bản sửa lỗi",
+        "Người đánh giá bị bỏ qua"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phân loại thất bại được coi là một sản phẩm giao hàng thay vì một sản phẩm phụ?",
+      "options": [
+        "Nó thay thế bộ kiểm tra",
+        "Nó được yêu cầu bởi bảo vệ nhánh GitHub",
+        "Nó đáp ứng một danh sách kiểm tra tuân thủ",
+        "Nó nhóm các repo thất bại theo lớp để các tác giả công thức trong tương lai có thể nhắm đến các chế độ thất bại hàng đầu"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số công khai nào mà capstone nhắm đến cho việc di chuyển từ Java 8 đến 17?",
+      "options": [
+        "MMLU-Pro",
+        "MigrationBench từ Amazon",
+        "ViDoRe v3",
+        "SWE-bench Pro"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tiêu chí tích hợp đại lý đo lường điều gì về phân phối bản sửa lỗi?",
+      "options": [
+        "Số lượng phụ thuộc đã được cố định",
+        "Số lần đẩy cưỡng bức trên mỗi repo",
+        "Tỷ lệ bản sửa lỗi được xử lý bởi OpenRewrite so với được viết bởi lớp đại lý",
+        "Tốc độ phân tách của tệp nguồn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

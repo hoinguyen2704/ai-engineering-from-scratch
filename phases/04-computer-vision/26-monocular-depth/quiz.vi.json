@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt chính giữa độ sâu tương đối và độ sâu theo số liệu là gì?",
+      "options": [
+        "Độ sâu tương đối chỉ cung cấp khoảng cách có thứ tự mà không có đơn vị thực tế; độ sâu theo số liệu cung cấp khoảng cách tính bằng mét và yêu cầu mô hình đã học được tỷ lệ tuyệt đối từ dữ liệu huấn luyện",
+        "Độ sâu theo số liệu sử dụng đầu ra màu xám; độ sâu tương đối sử dụng màu",
+        "Độ sâu tương đối luôn có độ phân giải thấp hơn",
+        "Không có sự khác biệt nào"
+      ],
+      "correct": 0,
+      "explanation": "Độ sâu tương đối bảo tồn thứ tự và tỷ lệ nhưng không có điểm neo vào các đơn vị thực tế — một dự đoán MiDaS hoặc Depth Anything cần phải căn chỉnh trước khi bạn có thể so sánh nó với một phép đo thực tế tính bằng mét. Các mô hình độ sâu theo số liệu (ZoeDepth, UniDepth, Metric3D) xuất ra khoảng cách đã hiệu chỉnh với chi phí là độ nhạy với các thông số nội tại của camera và phạm vi dữ liệu huấn luyện."
+    },
+    {
+      "stage": "pre",
+      "question": "Depth Anything V3 sử dụng một bộ mã hóa DINOv2 đã đóng băng cộng với một bộ giải mã kiểu DPT. Tại sao lại đóng băng bộ mã hóa?",
+      "options": [
+        "DINOv2 sẽ học các đặc trưng xấu nếu không đóng băng",
+        "Đóng băng là yêu cầu pháp lý",
+        "Tiết kiệm tính toán chỉ trong thời gian huấn luyện",
+        "Các đặc trưng tự giám sát của DINOv2 đã mã hóa cấu trúc cảnh, độ dốc kết cấu và ngữ nghĩa đối tượng tương quan với độ sâu; việc đóng băng chúng cho phép bộ giải mã huấn luyện với một đầu nhỏ trên dữ liệu có giám sát độ sâu hạn chế trong khi vẫn giữ được khả năng tổng quát mạnh mẽ của bộ mã hóa"
+      ],
+      "correct": 3,
+      "explanation": "Các ViT tự giám sát như DINOv2 / DINOv3 đã có các đặc trưng có thể chuyển giao cho các tác vụ dày đặc với việc tinh chỉnh tối thiểu. Một bộ mã hóa đã đóng băng cộng với một bộ giải mã độ sâu nhẹ có nghĩa là bạn huấn luyện một số lượng nhỏ tham số trên dữ liệu độ sâu, và bạn thừa hưởng khả năng tổng quát giữa các miền của DINOv2 (trong nhà, ngoài trời, y tế, vệ tinh) miễn phí. Việc tinh chỉnh bộ xương đôi khi có thể gây hại nếu tập dữ liệu độ sâu hẹp hơn phân phối huấn luyện trước của DINOv2."
+    },
+    {
+      "stage": "post",
+      "question": "Để nâng một pixel (u, v) với độ sâu dự đoán d lên 3D, bạn sử dụng X = (u - cx) * d / fx, Y = (v - cy) * d / fy, Z = d. fx, fy, cx, cy là gì?",
+      "options": [
+        "Trọng số mất mát trong huấn luyện",
+        "Hằng số chuẩn hóa",
+        "Thông số nội tại của camera pinhole — chiều dài tiêu cự và điểm chính tính bằng pixel, từ siêu dữ liệu EXIF hoặc hiệu chỉnh camera",
+        "Trọng số được học bởi bộ giải mã độ sâu"
+      ],
+      "correct": 2,
+      "explanation": "Công thức camera pinhole cần các thông số nội tại của camera. fx, fy là chiều dài tiêu cự tính bằng pixel; cx, cy là điểm chính (thường gần trung tâm hình ảnh). Nếu không có thông số nội tại, bạn chỉ có thể giả định một FOV chung (~60 độ) đủ cho việc hình dung nhưng không đủ cho việc đo lường. Nhiều quy trình năm 2026 ước lượng các thông số nội tại tự động từ nội dung hình ảnh (Trường phối cảnh, UniDepth)."
+    },
+    {
+      "stage": "post",
+      "question": "Khi đánh giá một mô hình độ sâu tương đối (MiDaS, Depth Anything), tại sao bạn lại áp dụng căn chỉnh tỷ lệ và dịch trước khi tính toán AbsRel?",
+      "options": [
+        "Các dự đoán độ sâu tương đối có tỷ lệ và độ dịch tùy ý; việc căn chỉnh chúng với thực tế thông qua việc phù hợp bình phương nhỏ nhất của một * pred + b = target cung cấp một phép đo công bằng về chất lượng thứ tự mà các mô hình tương đối thực sự được huấn luyện để sản xuất",
+        "Để làm tăng điểm số theo số liệu",
+        "Pytorch không thể tính toán AbsRel mà không có căn chỉnh",
+        "Để cho phép suy diễn GPU"
+      ],
+      "correct": 0,
+      "explanation": "Các mô hình kiểu MiDaS sản xuất đầu ra mà chỉ có thứ tự và tỷ lệ là có ý nghĩa. Việc tính toán AbsRel trực tiếp mà không có căn chỉnh đo lường sự không khớp về tỷ lệ, không phải chất lượng thực tế của mô hình. Căn chỉnh bình phương nhỏ nhất phù hợp với một biến đổi tuyến tính tối thiểu hóa sai số bình phương; phần dư sau khi căn chỉnh là điều bạn báo cáo. Mỗi bài báo MiDaS / Depth Anything đều sử dụng giao thức này."
+    },
+    {
+      "stage": "post",
+      "question": "Dự đoán Depth Anything của bạn trên một bàn tiếp tân có mặt kính báo cáo độ sâu có vẻ hợp lý nhưng rõ ràng là sai cho khu vực kính. Tại sao?",
+      "options": [
+        "Độ phân giải hình ảnh của bạn sai",
+        "Mô hình bị lỗi",
+        "Mô hình đã được huấn luyện mà không có dữ liệu kính",
+        "Kính, gương và bề mặt phản chiếu cao làm hỏng các tín hiệu đơn mắt mà mô hình dựa vào; mạng thấy kết cấu / nội dung phía sau kính và báo cáo một độ sâu hợp lý tương thích với điều đó, không phải khoảng cách thực tế của bề mặt kính"
+      ],
+      "correct": 3,
+      "explanation": "Độ sâu đơn mắt dựa vào các độ dốc kết cấu, thứ tự che khuất và tín hiệu phối cảnh. Các bề mặt phản chiếu hoặc trong suốt làm rối loạn tất cả chúng: một chiếc gương cho thấy một cảnh với độ sâu của chính nó; kính cho thấy nội dung phía sau nó. Mô hình điền vào một độ sâu hợp lý và tự tin sai. Đây là một giới hạn cơ bản của độ sâu đơn mắt, không phải là một lỗi. Sửa chữa bằng cách kết hợp với camera stereo, LiDAR hoặc camera phân cực khi các vật liệu như kính quan trọng."
+    }
+  ]
+}

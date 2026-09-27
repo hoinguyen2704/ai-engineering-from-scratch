@@ -1,0 +1,102 @@
+{
+  "lesson": "25-entity-linking",
+  "title": "Liên kết và Giải nghĩa Thực thể",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Liên kết thực thể thêm gì lên trên NER?",
+      "options": [
+        "Độ phân cực cảm xúc",
+        "Thẻ phần của lời nói",
+        "Nó ánh xạ mỗi đề cập được phát hiện đến một mục duy nhất trong cơ sở tri thức (Wikidata, Wikipedia hoặc một KB miền)",
+        "Dịch thuật"
+      ],
+      "correct": 2,
+      "explanation": "EL biến một đề cập thành một id KB chuẩn, phân biệt giữa các thực thể cùng tên."
+    },
+    {
+      "stage": "pre",
+      "question": "Hai nhiệm vụ chính trong liên kết thực thể là gì?",
+      "options": [
+        "Tạo ứng viên (danh sách ngắn các mục KB khả thi) và giải nghĩa (chọn cái đúng dựa trên ngữ cảnh)",
+        "Nhúng và phân cụm",
+        "Gán thẻ POS và lemmatization",
+        "Phân tách và phân tích cú pháp"
+      ],
+      "correct": 0,
+      "explanation": "EL phân tách thành việc đề xuất ứng viên sau đó xếp hạng chúng theo sự phù hợp với ngữ cảnh."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phải báo cáo độ hồi tưởng của đề cập cùng với độ chính xác của giải nghĩa?",
+      "options": [
+        "Giải nghĩa không thể phục hồi từ các ứng viên bị thiếu; quy trình bị giới hạn bởi độ hồi tưởng của việc tạo ứng viên",
+        "Độ hồi tưởng của đề cập là bắt buộc theo GDPR",
+        "Độ hồi tưởng là yêu cầu của spaCy",
+        "Độ hồi tưởng thay thế độ chính xác"
+      ],
+      "correct": 0,
+      "explanation": "Nếu các ứng viên bỏ lỡ thực thể vàng, không có bộ giải nghĩa nào có thể sửa chữa; độ hồi tưởng ảnh hưởng đến chất lượng quy trình."
+    },
+    {
+      "stage": "check",
+      "question": "GENRE thực hiện liên kết thực thể như thế nào?",
+      "options": [
+        "Giải mã tên chuẩn của thực thể theo từng token dưới việc giải mã có giới hạn trên một trie của các id KB hợp lệ",
+        "Bằng cách tính toán TF-IDF",
+        "Bằng BM25",
+        "Bằng PageRank"
+      ],
+      "correct": 0,
+      "explanation": "GENRE tạo ra tên KB chuẩn với việc giải mã có giới hạn để đảm bảo một id hợp lệ."
+    },
+    {
+      "stage": "check",
+      "question": "Xử lý NIL trong liên kết thực thể là gì?",
+      "options": [
+        "Bỏ qua mọi đề cập",
+        "Trả về toàn bộ danh sách ứng viên",
+        "Chuyển đổi thành chữ thường đầu vào",
+        "Dự đoán nhãn 'không có trong KB' khi không có ứng viên nào là một sự khớp thực sự (thực thể mới nổi, người không rõ ràng)"
+      ],
+      "correct": 3,
+      "explanation": "Dự đoán NIL ngăn chặn việc đoán sai các id KB cho các thực thể mà KB không bao phủ."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao thiên lệch về độ phổ biến lại ảnh hưởng đến liên kết thực thể trong các miền chuyên biệt?",
+      "options": [
+        "Các mô hình được đào tạo trên dữ liệu web dự đoán quá mức các thực thể thường xuyên (ví dụ: bóng rổ Jordan hơn nhà nghiên cứu ML Michael I. Jordan)",
+        "Độ phổ biến giúp độ hồi tưởng",
+        "Nó thiên lệch chỉ về các thực thể cũ hơn",
+        "Độ phổ biến loại bỏ NIL"
+      ],
+      "correct": 0,
+      "explanation": "Các ưu tiên về độ phổ biến làm lệch các dự đoán ra khỏi các xung đột tên ít phổ biến, cụ thể cho miền."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình LLM-EL an toàn nào trong năm 2026?",
+      "options": [
+        "Chỉ cần nhắc 'tìm thực thể'",
+        "Bỏ qua việc tạo ứng viên",
+        "Tạo tự do",
+        "Cung cấp danh sách ứng viên và sử dụng đầu ra JSON có giới hạn mà LLM chỉ có thể chọn từ các id KB hợp lệ"
+      ],
+      "correct": 3,
+      "explanation": "Giới hạn LLM vào một danh sách ứng viên hợp lệ ngăn chặn việc tạo ra các id KB giả và giữ cho đầu ra có thể truy vấn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các ranh giới đề cập NER phải chính xác để liên kết thực thể hoạt động?",
+      "options": [
+        "Lỗi ranh giới lan truyền: 'Ngân hàng Mỹ' bị cắt thành 'Ngân hàng' xuất hiện các ứng viên sai và làm giảm độ hồi tưởng EL",
+        "Ranh giới làm hỏng việc tra cứu Wikipedia",
+        "Độ chính xác của ranh giới chỉ ảnh hưởng đến các chỉ số NER, không phải chất lượng ứng viên liên kết thực thể",
+        "Ranh giới thay đổi việc phân tách token"
+      ],
+      "correct": 0,
+      "explanation": "Các đề cập có ranh giới sai lấy được bộ bí danh sai, lan truyền lỗi vào giải nghĩa."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "09-mcp-transports",
+  "title": "MCP Transports: stdio và HTTP Streamable Stateless",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Phương thức HTTP nào mang theo mọi thông điệp Streamable HTTP hiện đại?",
+      "options": [
+        "PATCH",
+        "DELETE",
+        "GET",
+        "POST"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi yêu cầu hoặc thông báo JSON-RPC hiện đại là một POST mới đến một điểm cuối MCP."
+    },
+    {
+      "stage": "check",
+      "question": "Một điểm cuối MCP chỉ hiện đại nên trả về gì cho GET và DELETE?",
+      "options": [
+        "301",
+        "200",
+        "202",
+        "405"
+      ],
+      "correct": 3,
+      "explanation": "GET và DELETE độc lập không phải là một phần của Streamable HTTP 2026-07-28."
+    },
+    {
+      "stage": "check",
+      "question": "Các tiêu đề nào phải khớp với thân trên mỗi yêu cầu hiện đại?",
+      "options": [
+        "Mcp-Session-Id và Last-Event-ID",
+        "ETag và If-None-Match",
+        "MCP-Protocol-Version và Mcp-Method",
+        "Cookie và Host"
+      ],
+      "correct": 2,
+      "explanation": "Mcp-Name cũng được yêu cầu cho tools/call, resources/read, và prompts/get."
+    },
+    {
+      "stage": "check",
+      "question": "Làm thế nào một khách hàng yêu cầu thông báo thay đổi lâu dài?",
+      "options": [
+        "POST subscriptions/listen",
+        "resources/subscribe",
+        "Mcp-Session-Id",
+        "GET /mcp"
+      ],
+      "correct": 0,
+      "explanation": "subscriptions/listen mở luồng phản hồi. Sự xác nhận, thông báo và kết quả cuối cùng mang theo id yêu cầu lắng nghe như siêu dữ liệu đăng ký."
+    },
+    {
+      "stage": "post",
+      "question": "Một luồng SSE theo yêu cầu hiện đại bị ngắt trước phản hồi cuối cùng. Tiếp theo là gì?",
+      "options": [
+        "Xóa phiên",
+        "Sử dụng lại cùng một luồng phản hồi",
+        "Tiếp tục với Last-Event-ID",
+        "Thử lại một cách an toàn với một id JSON-RPC mới"
+      ],
+      "correct": 3,
+      "explanation": "SSE hiện đại không thể tiếp tục. Một lần thử lại an toàn là một yêu cầu mới với một id mới."
+    },
+    {
+      "stage": "post",
+      "question": "Máy chủ nên làm gì với Mcp-Session-Id trên một yêu cầu 2026-07-28?",
+      "options": [
+        "Bỏ qua nó và không phản hồi lại",
+        "Từ chối mọi yêu cầu bao gồm nó",
+        "Sử dụng nó để định tuyến",
+        "Xoay vòng nó"
+      ],
+      "correct": 0,
+      "explanation": "Các phiên giao thức và tiêu đề phiên đã bị loại bỏ khỏi phiên bản hiện đại."
+    }
+  ]
+}

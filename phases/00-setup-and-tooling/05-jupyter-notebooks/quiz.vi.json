@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Jupyter notebook là gì?",
+      "options": [
+        "Một tài liệu tương tác kết hợp các ô mã có thể thực thi với văn bản markdown và đầu ra nội tuyến",
+        "Một trình quản lý gói cho các thư viện Python",
+        "Một hệ thống kiểm soát phiên bản cho các dự án khoa học dữ liệu",
+        "Một trình soạn thảo văn bản để viết các tập lệnh Python"
+      ],
+      "correct": 0,
+      "explanation": "Jupyter notebook (.ipynb) là một môi trường tương tác nơi bạn có thể viết và thực thi mã trong các ô, xem đầu ra nội tuyến và kết hợp mã với các giải thích văn bản định dạng."
+    },
+    {
+      "stage": "pre",
+      "question": "Jupyter kernel làm gì?",
+      "options": [
+        "Chạy mã trong các ô và giữ các biến trong bộ nhớ giữa các lần thực thi",
+        "Kết nối notebook với GitHub để kiểm soát phiên bản",
+        "Quản lý lưu trữ tệp cho notebook",
+        "Định dạng các ô markdown thành HTML"
+      ],
+      "correct": 0,
+      "explanation": "Kernel là một tiến trình Python riêng biệt thực thi mã ô và duy trì trạng thái (các biến, nhập khẩu) trong bộ nhớ. Tất cả các ô trong một notebook chia sẻ cùng một kernel."
+    },
+    {
+      "stage": "post",
+      "question": "Sự khác biệt giữa các lệnh ma thuật %timeit và %%time là gì?",
+      "options": [
+        "Không có sự khác biệt, chúng là bí danh",
+        "%timeit chạy mã nhiều lần và tính trung bình, %%time chạy mã một lần",
+        "%timeit đo thời gian tường, %%time đo thời gian CPU",
+        "%timeit hoạt động trên các dòng đơn, %%time hoạt động trên toàn bộ notebook"
+      ],
+      "correct": 1,
+      "explanation": "%timeit chạy câu lệnh nhiều lần để lấy trung bình thống kê (tốt cho microbenchmarks). %%time chạy ô một lần và báo cáo thời gian tường (tốt cho các lần huấn luyện)."
+    },
+    {
+      "stage": "post",
+      "question": "Nguyên nhân phổ biến nhất khiến một notebook hoạt động trên máy của bạn nhưng thất bại khi ai đó chạy từ đầu đến cuối là gì?",
+      "options": [
+        "Thiếu lệnh ma thuật %matplotlib inline",
+        "Sử dụng quá nhiều ô markdown",
+        "Thực thi ô không theo thứ tự tạo ra các phụ thuộc ẩn về thứ tự thực thi",
+        "Sử dụng phiên bản Python khác"
+      ],
+      "correct": 2,
+      "explanation": "Chạy các ô không theo thứ tự tạo ra các phụ thuộc trạng thái ẩn. Một biến có thể tồn tại vì bạn đã chạy ô 5 trước ô 2. Kernel > Restart & Run All xác minh thực thi tuyến tính."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên chuyển mã từ notebook vào một tập tin .py?",
+      "options": [
+        "Không bao giờ -- notebook luôn tốt hơn cho công việc AI",
+        "Chỉ khi bạn cần chạy trên GPU",
+        "Ngay khi bạn viết hơn 10 dòng mã",
+        "Khi mã là một tiện ích có thể tái sử dụng, quy trình huấn luyện hoặc mã sản xuất"
+      ],
+      "correct": 3,
+      "explanation": "Quy tắc là 'khám phá trong notebook, chuyển giao trong tập tin'. Các tiện ích có thể tái sử dụng, quy trình huấn luyện và bất cứ thứ gì chạy trong sản xuất nên là các tệp .py. Notebooks là để khám phá và tạo mẫu."
+    }
+  ]
+}

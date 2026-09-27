@@ -1,0 +1,78 @@
+{
+  "lesson": "12-edge-inference",
+  "title": "Suy diễn biên — Apple Neural Engine, Qualcomm Hexagon, WebGPU/WebLLM, Jetson",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ràng buộc cốt lõi nào khiến suy diễn LLM di động chậm hơn so với trung tâm dữ liệu, theo bài học?",
+      "options": [
+        "Dung lượng lưu trữ",
+        "Độ trễ Wi-Fi",
+        "Thông lượng tính toán",
+        "Băng thông bộ nhớ (mobile DRAM ở 50-90 GB/s so với HBM3 ở 2-3 TB/s)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao Apple Neural Engine tránh được chi phí sao chép giữa CPU và NPU?",
+      "options": [
+        "Apple Silicon cung cấp bộ nhớ thống nhất — CPU và ANE chia sẻ cùng một vùng nhớ",
+        "Nó sử dụng PCIe 5.0",
+        "Core ML vô hiệu hóa bộ nhớ đệm KV",
+        "Nó chuyển đổi trọng số sang FP4 trước khi sao chép"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Định dạng lượng tử hóa nào mà bài học khuyến nghị cho WebGPU + WebLLM trong trình duyệt?",
+      "options": [
+        "GGUF Q4_K_M",
+        "NVFP4",
+        "FP8",
+        "Q4 MLC (q4f16_1) được biên dịch qua mlc_llm convert_weight"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng bao nhiêu phạm vi WebGPU di động mà bài học báo cáo cho năm 2026?",
+      "options": [
+        "Dưới 10%",
+        "Chỉ iOS Safari",
+        "Khoảng 70-75%, với Firefox Android vẫn đang theo kịp",
+        "100% trên tất cả các trình duyệt"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc giữ 128K ngữ cảnh là không thực tế trên một chiếc điện thoại thông thường?",
+      "options": [
+        "Các bộ phân tích từ không hoạt động trên 8K",
+        "Trọng số mô hình cộng với bộ nhớ đệm KV cho 32K token cộng với chi phí hệ điều hành dễ dàng vượt quá ngân sách RAM 8 GB",
+        "WebGPU giới hạn ngữ cảnh ở 4K",
+        "iOS cấm ngữ cảnh dài"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao giọng nói được nhấn mạnh là ứng dụng chủ lực cho suy diễn biên?",
+      "options": [
+        "Mô hình giọng nói không cần bộ nhớ đệm KV",
+        "Mô hình giọng nói luôn vừa trong 50 MB",
+        "Đại lý giọng nói nhạy cảm với độ trễ (token đầu tiên < 500 ms) và suy diễn cục bộ loại bỏ hoàn toàn độ trễ mạng",
+        "Giọng nói chỉ chạy trong WebAssembly"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "14-ascii-art-visual-jailbreaks",
+  "title": "Nghệ Thuật ASCII và Các Cuộc Tấn Công Hình Ảnh Jailbreak",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao các bộ lọc an toàn ở cấp độ token và cấp độ ngữ nghĩa lại bỏ lỡ các cuộc tấn công kiểu ArtPrompt?",
+      "options": [
+        "ArtPrompt luôn sử dụng mã hóa base64",
+        "ArtPrompt yêu cầu tinh chỉnh mô hình",
+        "ArtPrompt hoạt động ở cấp độ nhận diện hình ảnh: bộ lọc thấy dấu câu vô hại trong khi mô hình đọc các chữ cái đã được hiển thị như một từ",
+        "ArtPrompt chỉ hiệu quả trên các mô hình đa phương thức"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hai bước của ArtPrompt được mô tả trong Jiang et al. (ACL 2024) là gì?",
+      "options": [
+        "Sự không khớp của tokenizer, sau đó là cắt ngữ cảnh",
+        "Tìm kiếm ngẫu nhiên, sau đó là tăng cường perplexity",
+        "Dịch sang tiếng Pháp, sau đó là dịch ngược",
+        "Xác định từ các token liên quan đến an toàn, sau đó là thay thế bằng nghệ thuật ASCII và tạo ra prompt ẩn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phòng thủ bằng bộ lọc perplexity (PPL) lại thất bại trên ArtPrompt?",
+      "options": [
+        "Các bộ lọc perplexity bị vô hiệu hóa theo mặc định",
+        "Perplexity không thể đo lường trên nghệ thuật ASCII",
+        "Perplexity luôn bằng không trên đầu vào ẩn",
+        "Nghệ thuật ASCII có perplexity cao, nhưng bất kỳ đầu vào có cấu trúc hợp lệ nào cũng vậy; các ngưỡng chặn cuộc tấn công cũng chặn nội dung hợp lệ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Thước đo ViTC đo lường điều gì?",
+      "options": [
+        "Độc tính của dữ liệu huấn luyện của mô hình",
+        "Độ chính xác trong việc gọi công cụ của mô hình",
+        "Khả năng của mô hình trong việc đọc các prompt hình ảnh không ngữ nghĩa (nghệ thuật ASCII, wingdings, văn bản mã hóa tương tự)",
+        "Khả năng của mô hình trong việc nén dữ liệu hình ảnh"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "StructuralSleight tổng quát ArtPrompt thành cái gì?",
+      "options": [
+        "Chỉ đầu vào hình ảnh",
+        "Nhồi nhét bối cảnh dài",
+        "Các hậu tố token đối kháng thông qua tìm kiếm gradient",
+        "Cấu trúc văn bản mã hóa không phổ biến (UTES): cây, đồ thị, JSON lồng nhau, CSV trong JSON, mã kiểu diff, v.v."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Thỏa hiệp giữa khả năng và an toàn được ngụ ý bởi kết quả ViTC là gì?",
+      "options": [
+        "Cửa sổ ngữ cảnh lớn hơn làm giảm thành công của ArtPrompt",
+        "Nhận diện hình ảnh không liên quan đến thành công của ArtPrompt",
+        "Càng tốt hơn mô hình đọc văn bản hình ảnh không ngữ nghĩa, các cuộc tấn công kiểu ArtPrompt càng hiệu quả hơn trên nó",
+        "Các mô hình nhỏ hơn luôn an toàn hơn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

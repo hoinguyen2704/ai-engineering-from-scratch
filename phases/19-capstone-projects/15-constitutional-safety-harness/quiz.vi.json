@@ -1,0 +1,90 @@
+{
+  "lesson": "15-constitutional-safety-harness",
+  "title": "Capstone 15 — Dây An Toàn Hiến Pháp + Phạm Vi Đội Đỏ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ý nghĩa của an toàn theo lớp trong capstone này là gì?",
+      "options": [
+        "Phòng thủ sâu trên các bước làm sạch đầu vào, chính sách, cổng phân loại, mô hình, bộ lọc đầu ra và tầng HITL",
+        "Chạy một bộ phân loại mạnh trên đầu vào duy nhất",
+        "Một quy tắc regex dựa trên quy tắc duy nhất trên đầu ra",
+        "Xem xét thủ công từng phản hồi"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Bộ phân loại nào xử lý độ bao phủ đa ngôn ngữ trên khoảng 132 ngôn ngữ?",
+      "options": [
+        "Llama Guard 4",
+        "Nemotron 3 Content Safety",
+        "X-Guard",
+        "ShieldGemma-2"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc từ chối quá mức được đo lường trên một bộ kiểm tra vô hại như XSTest?",
+      "options": [
+        "Để theo dõi các khối false-positive để mô hình vẫn hữu ích trong khi cải thiện tính vô hại",
+        "Để chứng nhận khung bảo vệ",
+        "Để thay thế điểm số của đội đỏ",
+        "Để đánh giá thông lượng token"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Vòng lặp tự phê bình hiến pháp trong capstone này là gì?",
+      "options": [
+        "Một mô hình thưởng RLHF được đào tạo từ đầu",
+        "LLM phê bình đánh giá các bản nháp so với một hiến pháp viết, yêu cầu mô hình viết lại các đầu ra bị phản đối, và SFT chạy trên các cặp đã cải thiện",
+        "Một lần truyền qua Llama Guard 4",
+        "Một bộ xếp hạng trên các lời nhắc jailbreak ứng viên"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Các jailbreak thành công được đánh giá mức độ nghiêm trọng trong các phát hiện như thế nào?",
+      "options": [
+        "Bởi mô hình đã tạo ra phản hồi",
+        "Sử dụng CVSS 4.0 với vector tấn công, độ phức tạp và tác động, cộng với một thời gian công bố",
+        "Theo số lượng token thô của lời nhắc",
+        "Trên thang điểm 1-10 được điều chỉnh bằng tay bởi người vận hành"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sáu gia đình tấn công nào mà phạm vi đội đỏ chạy?",
+      "options": [
+        "PSI, KL, MMD, KS, JS, và Wasserstein",
+        "PAIR, TAP, GCG, mã hóa (ASCII/base64/rot13), persona đa lượt, và chuyển đổi mã đa ngôn ngữ",
+        "Tấn công brute-force, từ điển, phát lại, MITM, phishing, và CSRF",
+        "BLEU, ROUGE, METEOR, BERTScore, CometKiwi, và chrF"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tự động hóa phạm vi (cron + cảnh báo) là một phần của tiêu chí?",
+      "options": [
+        "Cron là cách duy nhất để gọi OPA",
+        "Tự động hóa là cần thiết để vô hiệu hóa Llama Guard 4",
+        "Chạy thủ công là yêu cầu rõ ràng",
+        "Các cuộc kiểm tra định kỳ liên tục phát hiện sự trôi dạt trong tỷ lệ thành công của tấn công và sự suy giảm từ chối quá mức theo thời gian"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

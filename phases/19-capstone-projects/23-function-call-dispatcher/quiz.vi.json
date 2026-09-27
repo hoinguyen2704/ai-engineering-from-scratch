@@ -1,0 +1,90 @@
+{
+  "lesson": "23-function-call-dispatcher",
+  "title": "Trình Gọi Hàm",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao thời gian chờ trên một công cụ không idempotent mặc định là không thử lại?",
+      "options": [
+        "Bởi vì trình gọi không thể đo lường các cuộc gọi không idempotent",
+        "Bởi vì các trình xử lý không idempotent chạy nhanh hơn",
+        "Bởi vì các khóa idempotency thì chậm",
+        "Bởi vì công cụ có thể đã cam kết một phần; thử lại có thể nhân đôi hiệu ứng"
+      ],
+      "correct": 3,
+      "explanation": "Thử lại một db.write đã hết thời gian chờ ở 4.9s có thể tạo ra một ghi chép thứ hai. Trình gọi từ chối trừ khi trình xử lý cho biết cuộc gọi là an toàn để lặp lại."
+    },
+    {
+      "stage": "pre",
+      "question": "Khóa idempotency-key dedupe đang bảo vệ chống lại điều gì?",
+      "options": [
+        "Lỗi xác thực sơ đồ",
+        "Một lần thử lại xảy ra trong khi cuộc gọi gốc vẫn đang trong quá trình thực hiện",
+        "Khởi động lại quy trình",
+        "Mạng chậm"
+      ],
+      "correct": 1,
+      "explanation": "Nếu không có dedupe, một lần thử lại ở 5s sẽ đua với cuộc gọi gốc chậm vẫn đang chờ. Bộ nhớ cache sẽ gộp cả hai thành một lần gọi trình xử lý."
+    },
+    {
+      "stage": "check",
+      "question": "Loại lỗi nào đủ điều kiện để thử lại trong trình gọi này?",
+      "options": [
+        "schema và not_found",
+        "timeout (nếu idempotent) và transient",
+        "internal và budget_exceeded",
+        "Tất cả chúng"
+      ],
+      "correct": 1,
+      "explanation": "Schema và not_found là xác định. Internal che giấu một lỗi trình xử lý không xác định. Budget exceeded là một yield. Chỉ timeout-on-idempotent và thử lại TransientError rõ ràng."
+    },
+    {
+      "stage": "check",
+      "question": "Semaphore xung quanh _run_with_retries bảo vệ điều gì?",
+      "options": [
+        "Trình xử lý khỏi chính nó",
+        "Backend khỏi quá nhiều cuộc gọi đồng thời được phân tán bởi gather()",
+        "Trình xác thực",
+        "Bộ đếm thử lại"
+      ],
+      "correct": 1,
+      "explanation": "Một gather của bốn mươi cuộc gọi sẽ mở bốn mươi lần gọi đồng thời mà không có giới hạn. Semaphore giới hạn sóng lại."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao khóa idempotency được tạo ra bởi người gọi, không phải bởi trình gọi?",
+      "options": [
+        "Bởi vì bộ nhớ cache không thể lưu trữ chuỗi",
+        "Bởi vì registry sẽ không có khóa",
+        "Bởi vì việc tạo ra từ args một mình làm cho hai cuộc gọi khác nhau về mặt ngữ nghĩa va chạm nếu chúng tình cờ chia sẻ args",
+        "Bởi vì băm Python không ổn định"
+      ],
+      "correct": 2,
+      "explanation": "Người gọi biết id bước, ý định lập kế hoạch, người dùng. Args một mình không đủ ngữ cảnh để dedupe an toàn."
+    },
+    {
+      "stage": "post",
+      "question": "Mã lỗi JSON-RPC nào tương ứng với lỗi sơ đồ trên trình gọi?",
+      "options": [
+        "-32602",
+        "-32603",
+        "-32700",
+        "-32601"
+      ],
+      "correct": 0,
+      "explanation": "-32602 Tham số không hợp lệ. Trình gọi trả về trước khi bất kỳ trình xử lý nào chạy."
+    },
+    {
+      "stage": "post",
+      "question": "Sau khi đạt max_attempts với thời gian chờ trên một công cụ idempotent, điều gì được trả về?",
+      "options": [
+        "DispatchOk không có kết quả",
+        "DispatchError với kind=timeout và attempts==max_attempts",
+        "Một ngoại lệ được ném ra",
+        "DispatchError với kind=internal"
+      ],
+      "correct": 1,
+      "explanation": "Trình gọi trả về một phong bì lỗi có kiểu. Loại phản ánh chế độ thất bại cuối cùng, attempts phản ánh số lần thử mà nó đã thực hiện."
+    }
+  ]
+}

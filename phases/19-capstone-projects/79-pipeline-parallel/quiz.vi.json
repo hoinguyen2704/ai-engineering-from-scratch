@@ -1,0 +1,78 @@
+{
+  "lesson": "79-pipeline-parallel",
+  "title": "Phân tích Pipeline Parallel và Bubble",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bubble trong pipeline là gì?",
+      "options": [
+        "Một gói mạng",
+        "Một lỗi trong NCCL",
+        "Thời gian nhàn rỗi ở đầu và cuối pipeline: các giai đoạn không có công việc cho đến khi microbatch đầu tiên đến, và sau khi microbatch cuối cùng rời đi",
+        "Rò rỉ bộ nhớ"
+      ],
+      "correct": 2,
+      "explanation": "Với M microbatches và N giai đoạn, bubble theo giai đoạn là (N-1)/(M+N-1). Chọn M lớn hơn nhiều so với N sẽ làm giảm nó."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ nhớ kích hoạt của GPipe tỷ lệ với M?",
+      "options": [
+        "Giới hạn phần cứng",
+        "Giới hạn biên dịch",
+        "Lỗi",
+        "Tất cả các kích hoạt của M microbatches phải được giữ lại cho đến khi quá trình ngược tương ứng; không có gì được giải phóng cho đến khi quá trình thoát bắt đầu"
+      ],
+      "correct": 3,
+      "explanation": "GPipe lấp đầy pipeline với tất cả các quá trình tiến trước khi bất kỳ quá trình ngược nào. Mỗi microbatch đang bay mang theo các kích hoạt của nó cho đến khi quá trình ngược bắt đầu."
+    },
+    {
+      "stage": "check",
+      "question": "1F1B cải thiện điều gì so với GPipe?",
+      "options": [
+        "Thông lượng cao hơn",
+        "Cùng bubble nhưng bộ nhớ kích hoạt có giới hạn; khi quá trình tiến của mb 0 đến giai đoạn cuối, quá trình ngược bắt đầu và các kích hoạt được giải phóng",
+        "Mô hình nhỏ hơn",
+        "Bubble thấp hơn"
+      ],
+      "correct": 1,
+      "explanation": "Megatron-LM và PipeDream sử dụng 1F1B để giới hạn bộ nhớ kích hoạt theo độ sâu của pipeline, không phải theo số lượng microbatch."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tính toán bằng nhau theo giai đoạn quan trọng hơn số lượng tham số bằng nhau?",
+      "options": [
+        "Căn chỉnh bộ nhớ",
+        "Thẩm mỹ",
+        "Giai đoạn chậm nhất kiểm soát mỗi chu kỳ; các giai đoạn khác nhàn rỗi chờ đợi nó. Các lớp embedding có nhiều tham số nhưng ít tính toán, vì vậy phân chia theo số lượng tham số làm mất cân bằng pipeline",
+        "Dễ dàng lập trình hơn"
+      ],
+      "correct": 2,
+      "explanation": "Megatron-LM hiển thị --num-layers-per-stage dưới dạng danh sách để cho phép số lượng lớp không đều khi chi phí theo lớp khác nhau."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì sẽ xảy ra nếu mỗi giai đoạn gọi send trước recv?",
+      "options": [
+        "Bubble cao hơn",
+        "Chậm",
+        "Deadlock trên đường truyền; cách khắc phục tiêu chuẩn là xen kẽ send trước cho các giai đoạn chẵn và recv trước cho các giai đoạn lẻ",
+        "Rò rỉ bộ nhớ"
+      ],
+      "correct": 2,
+      "explanation": "Các cặp send/recv đồng bộ cần một bên đang nhận khi bên kia gửi. Bài học lên lịch các thứ hạng một cách rõ ràng để mẫu hình có thể nhìn thấy."
+    },
+    {
+      "stage": "post",
+      "question": "Pipeline cộng với ZeRO-1 kết hợp hai lợi ích bộ nhớ nào?",
+      "options": [
+        "Chỉ kích hoạt",
+        "Không có gì",
+        "Phân mảnh tham số theo giai đoạn (mỗi hạng chỉ giữ một giai đoạn của các lớp) cộng với phân mảnh bộ tối ưu theo hạng (mỗi hạng chỉ giữ 1/N trạng thái bộ tối ưu cho giai đoạn của nó)",
+        "Nén và lượng tử hóa"
+      ],
+      "correct": 2,
+      "explanation": "Pipeline phân mảnh các lớp qua các hạng; ZeRO phân mảnh trạng thái bộ tối ưu trong nhóm song song dữ liệu tại mỗi hạng pipeline. Cả hai lợi ích đều cộng dồn."
+    }
+  ]
+}

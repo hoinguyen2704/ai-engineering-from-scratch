@@ -1,0 +1,90 @@
+{
+  "lesson": "37-runtime-feedback-loops",
+  "title": "Vòng Phản Hồi Thời Gian Thực",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Chạy phản hồi buộc tác nhân phải làm gì?",
+      "options": [
+        "Phản ứng với đầu ra tưởng tượng",
+        "Phản ứng với sự thật: các bản ghi stdout/stderr/exit/duration có cấu trúc được ghi lại vào vòng lặp trên mỗi lệnh",
+        "Bỏ qua xác minh",
+        "Sử dụng một mô hình khác"
+      ],
+      "correct": 1,
+      "explanation": "Chạy phản hồi thu hẹp khoảng cách giữa 'bài kiểm tra đã qua' (tưởng tượng) và 'bài kiểm tra thực sự đã chạy và thoát với mã 0' (được ghi lại)."
+    },
+    {
+      "stage": "pre",
+      "question": "Phản hồi khác với telemetry như thế nào?",
+      "options": [
+        "Phản hồi dành cho lượt tiếp theo của lần chạy này; telemetry dành cho các nhà điều hành xem xét các lần chạy qua thời gian (các tệp khác nhau, thời gian lưu trữ khác nhau)",
+        "Chúng là cùng một thứ",
+        "Telemetry là có phí",
+        "Telemetry sử dụng OTel; phản hồi sử dụng GraphQL"
+      ],
+      "correct": 0,
+      "explanation": "Cả hai đều chia sẻ các trường nhưng sống trong các tệp khác nhau với thời gian lưu trữ khác nhau; phản hồi là trong lần chạy, telemetry là giữa các lần chạy."
+    },
+    {
+      "stage": "check",
+      "question": "Trường nào PHẢI xuất hiện trong mỗi bản ghi phản hồi?",
+      "options": [
+        "exit_code (và một exit null phải từ chối tiến lên vòng lặp)",
+        "embedding_vector",
+        "model_id",
+        "prompt_cache_token"
+      ],
+      "correct": 0,
+      "explanation": "exit_code là tín hiệu thành công không mơ hồ; exit null có nghĩa là không có tiến bộ."
+    },
+    {
+      "stage": "check",
+      "question": "Chạy phản hồi cắt ngắn các đầu ra lớn như thế nào?",
+      "options": [
+        "Nén với gzip",
+        "Lấy mẫu ngẫu nhiên",
+        "Chỉ 10 dòng đầu tiên",
+        "Cắt ngắn đầu + đuôi xác định với một dấu hiệu 'cắt ngắn N dòng' để cùng một đầu ra luôn tạo ra cùng một bản ghi"
+      ],
+      "correct": 3,
+      "explanation": "Cắt ngắn xác định giữ cho các bản ghi có thể phát lại trong khi giới hạn chi phí token; đuôi mang theo tóm tắt thất bại."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phải xóa tại thời điểm ghi thay vì thời điểm đọc?",
+      "options": [
+        "Xóa tại thời điểm đọc làm hỏng JSON",
+        "Tệp trên đĩa là những gì kẻ tấn công tiếp cận; xóa chỉ khi đọc để lại bí mật trong các tệp JSONL",
+        "Nó nhanh hơn",
+        "Nén"
+      ],
+      "correct": 1,
+      "explanation": "Xóa các dòng khớp với Bearer, password=, api_key=, AKIA..., xox[baprs]- trước khi thêm; kiểm toán các mẫu hàng quý."
+    },
+    {
+      "stage": "post",
+      "question": "parent_command_id cung cấp cho bảng làm việc điều gì?",
+      "options": [
+        "I/O tệp nhanh hơn",
+        "Giảm bộ nhớ",
+        "Liên kết các lần thử lại với lần thử cha của chúng để người xem và kiểm toán thấy chuỗi thất bại; nếu không, các lần thử lại trông giống như thành công độc lập",
+        "Suy diễn rẻ hơn"
+      ],
+      "correct": 2,
+      "explanation": "Liên kết cha làm cho các chuỗi thử lại có thể nhìn thấy đối với người xem (Bài học 39) và cổng xác minh."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao giới hạn feedback_record.jsonl ở 1 MB với vòng quay?",
+      "options": [
+        "Đĩa quá chậm",
+        "Tác nhân chỉ đọc tệp hiện tại; vòng quay giữ chi phí thời gian chạy được giới hạn trong khi các artefact CI ghi lại toàn bộ tập hợp",
+        "JSON không xử lý được các tệp lớn hơn",
+        "Nhà cung cấp tính phí theo byte"
+      ],
+      "correct": 1,
+      "explanation": "Tệp hiện tại có giới hạn + lịch sử đã quay là cùng một mẫu mà logrotate sử dụng; chi phí dự đoán trong vòng lặp nóng."
+    }
+  ]
+}

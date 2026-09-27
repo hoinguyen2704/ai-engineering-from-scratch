@@ -1,0 +1,78 @@
+{
+  "lesson": "18-mcp-auth-production",
+  "title": "MCP Auth trong Sản Xuất: Đăng Ký Liên Kết với Nhà Cấp Phát và Mã Thông Hành",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một khách hàng MCP phát hiện ra một nhà cấp phát máy chủ ủy quyền khác cho cùng một tài nguyên. Nó nên làm gì với đăng ký và mã thông hành truy cập hiện tại của mình?",
+      "options": [
+        "Tái sử dụng chỉ mã thông hành truy cập sau khi thay đổi đối tượng của nó tại chỗ",
+        "Đăng ký cho nhà cấp phát mới và giữ thông tin xác thực tách biệt theo nhà cấp phát",
+        "Tái sử dụng cả hai vì URL tài nguyên MCP không thay đổi",
+        "Lưu trữ cả hai dưới tên công cụ thay vì nhà cấp phát"
+      ],
+      "correct": 1,
+      "explanation": "Các định danh khách hàng và thông tin xác thực đăng ký thuộc về nhà cấp phát máy chủ ủy quyền đã tạo ra chúng. Việc thay đổi nhà cấp phát yêu cầu đăng ký độc lập, và mỗi mã thông hành truy cập được lưu trữ dưới cả nhà cấp phát đó và đối tượng tài nguyên của nó."
+    },
+    {
+      "stage": "check",
+      "question": "Phương pháp đăng ký nào được ưu tiên bởi hồ sơ ủy quyền MCP 2026-07-28?",
+      "options": [
+        "Đăng ký Khách hàng Động RFC 7591 cho mỗi yêu cầu",
+        "Tài liệu Siêu dữ liệu ID Khách hàng phục vụ từ URL HTTPS của khách hàng",
+        "Một phiên giao thức lưu trữ một định danh khách hàng toàn cầu",
+        "Một bí mật khách hàng chia sẻ nhúng trong mỗi khách hàng máy tính để bàn"
+      ],
+      "correct": 1,
+      "explanation": "CIMD cho phép máy chủ ủy quyền giải quyết siêu dữ liệu khách hàng từ một định danh khách hàng HTTPS. DCR đã bị ngừng sử dụng và chỉ còn lại để tương thích."
+    },
+    {
+      "stage": "check",
+      "question": "Một yêu cầu DCR đã bị ngừng sử dụng mô tả một khách hàng máy tính để bàn vòng lặp. Siêu dữ liệu nào là cần thiết để phân loại nó chính xác?",
+      "options": [
+        "Mcp-Session-Id",
+        "Một URI chuyển hướng wildcard",
+        "application_type được thiết lập thành native",
+        "Một mã thông hành có thể tái sử dụng"
+      ],
+      "correct": 2,
+      "explanation": "Hướng dẫn tương thích hiện tại yêu cầu loại ứng dụng chính xác. Một khách hàng máy tính để bàn vòng lặp là native; các khách hàng web sử dụng các URI chuyển hướng HTTPS."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao khách hàng xác thực giá trị iss của RFC 9207 trước khi đổi mã ủy quyền?",
+      "options": [
+        "Để ngăn chặn việc đổi mã của một nhà cấp phát trung thực tại điểm cuối mã thông hành sai",
+        "Để tránh làm mới bộ nhớ cache JWKS",
+        "Để thay thế PKCE bằng việc phát hiện nhà cấp phát",
+        "Để chọn một công cụ từ server/discover"
+      ],
+      "correct": 0,
+      "explanation": "Kiểm tra nhà cấp phát bảo vệ chống lại sự nhầm lẫn giữa các máy chủ ủy quyền. Nó bổ sung cho PKCE bằng cách xác nhận rằng phản hồi đến từ nhà cấp phát đã được ghi nhận trước khi chuyển hướng."
+    },
+    {
+      "stage": "post",
+      "question": "MCP resource server nên lưu trữ quyền ủy quyền cho giao thức không trạng thái hiện tại ở đâu?",
+      "options": [
+        "Dưới Mcp-Session-Id cho đến khi khách hàng gửi DELETE",
+        "Bên trong kết quả server/discover cho tất cả các cuộc gọi sau này",
+        "Trong kết nối SSE cho đến khi nó kết nối lại",
+        "Không ở đâu cả như một quyết định phiên giao thức; xác thực mã thông hành trên mỗi yêu cầu"
+      ],
+      "correct": 3,
+      "explanation": "MCP 2026-07-28 loại bỏ các phiên giao thức. Mỗi yêu cầu vượt qua ranh giới ủy quyền độc lập, vì vậy danh tính, đối tượng, thời hạn và phạm vi được kiểm tra mỗi lần."
+    },
+    {
+      "stage": "post",
+      "question": "Bằng chứng triển khai nào là mạnh nhất trước khi tin tưởng một máy chủ ủy quyền?",
+      "options": [
+        "Siêu dữ liệu đã phát hiện của máy chủ mục tiêu được kiểm tra chống lại PKCE, nhà cấp phát, đăng ký và yêu cầu ràng buộc tài nguyên",
+        "Một bảng danh mục nhà cung cấp sao chép từ một bài học cũ hơn",
+        "Một trang sản phẩm nói rằng OAuth được hỗ trợ",
+        "Một lần đăng nhập thành công không kiểm tra đối tượng mã thông hành"
+      ],
+      "correct": 0,
+      "explanation": "Các khả năng thay đổi theo triển khai và phiên bản. Tài liệu phát hiện trực tiếp là hợp đồng cụ thể để kiểm tra, tiếp theo là xác thực nhà cấp phát và đối tượng từ đầu đến cuối."
+    }
+  ]
+}

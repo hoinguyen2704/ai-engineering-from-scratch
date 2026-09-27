@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bạn cung cấp một hình ảnh RGB kích thước 224x224 cho một lớp conv với kernel_size=3, stride=1, padding=0. Kích thước không gian đầu ra là gì?",
+      "options": [
+        "222x222",
+        "224x224",
+        "74x74",
+        "112x112"
+      ],
+      "correct": 0,
+      "explanation": "Kích thước đầu ra = (H - K + 2P) / S + 1 = (224 - 3 + 0) / 1 + 1 = 222. Không có padding, mỗi phép toán convolution 3x3 làm giảm bản đồ đặc trưng 2 pixel ở mỗi trục — một pixel ở mỗi biên."
+    },
+    {
+      "stage": "pre",
+      "question": "Một lớp conv có in_channels=3, out_channels=64, kernel_size=3, với bias. Số lượng tham số có thể học được là bao nhiêu?",
+      "options": [
+        "576",
+        "1,792",
+        "1,728",
+        "192"
+      ],
+      "correct": 1,
+      "explanation": "C_out * C_in * K * K + C_out = 64 * 3 * 3 * 3 + 64 = 1,728 + 64 = 1,792. Phần +C_out là một bias cho mỗi kênh đầu ra. So sánh điều đó với một lớp dày trên cùng một đầu vào (224*224*3 -> 64 = khoảng 9.6M tham số) và bạn sẽ thấy tại sao convolution là lựa chọn đúng cho hình ảnh."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các CNN hiện đại thích xếp chồng các phép toán convolution 3x3 hơn là một phép toán conv 5x5 hoặc 7x7 đơn lẻ?",
+      "options": [
+        "3x3 là kích thước kernel duy nhất hỗ trợ padding",
+        "Kernels lớn tràn ra các thanh ghi GPU",
+        "Các phép toán convolution 3x3 được tăng tốc phần cứng; các phép toán lớn hơn thì không",
+        "Hai phép toán conv 3x3 bao phủ cùng một trường tiếp nhận 5x5 với ít tham số hơn (2 * 9 so với 25) và thêm một phi tuyến tính giữa chúng"
+      ],
+      "correct": 3,
+      "explanation": "Xếp chồng các phép toán conv 3x3 cho cùng một trường tiếp nhận như một phép toán conv lớn nhưng với ít tham số hơn và nhiều phi tuyến tính hơn, điều này tăng cường sức mạnh biểu đạt. VGG đã chứng minh điều này một cách thực nghiệm và mọi gia đình hiện đại (ResNet, ConvNeXt) đều kế thừa thiết kế này."
+    },
+    {
+      "stage": "post",
+      "question": "Biến đổi im2col thực sự làm gì?",
+      "options": [
+        "Nó nối tất cả hình ảnh trong một lô thành một ma trận 2D duy nhất",
+        "Nó trích xuất mọi cửa sổ tiếp nhận có kích thước kernel từ đầu vào và xếp chồng chúng thành các cột để phép toán convolution trở thành một phép nhân ma trận duy nhất",
+        "Nó chuyển đổi pixel float32 thành int8 để tính toán nhanh hơn",
+        "Nó nén hình ảnh để phù hợp với bộ nhớ cache của GPU"
+      ],
+      "correct": 1,
+      "explanation": "im2col định hình lại đầu vào sao cho mỗi cột là một trường tiếp nhận phẳng. Việc làm phẳng kernel thành một hàng giảm phép toán convolution thành cols @ w_flat.T, một cuộc gọi GEMM duy nhất mà các GPU thực hiện nhanh hơn hàng ngàn lần so với một vòng lặp Python bốn lần. Mọi thư viện conv sản xuất đều là một biến thể của điều này."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn xếp chồng bốn phép toán convolution 3x3 (tất cả đều có stride 1, không có pooling). Trường tiếp nhận của một neuron trong lớp cuối cùng là gì?",
+      "options": [
+        "3x3 — mỗi phép toán conv là 3x3",
+        "5x5 — hai phép toán conv cho 5x5 và độ sâu không giúp ích gì",
+        "9x9 — mỗi phép toán conv thêm 2 ở mỗi bên: 1 + 4*(3-1) = 9",
+        "15x15 — mỗi phép toán conv gấp ba trường tiếp nhận"
+      ],
+      "correct": 2,
+      "explanation": "Đối với L phép toán conv K x K xếp chồng với stride 1, trường tiếp nhận = 1 + L * (K - 1). Với L=4 và K=3, đó là 1 + 4*2 = 9. Công thức tương tự cũng tổng quát với stride: trường tiếp nhận phát triển theo cách nhân qua các lớp có stride, đó là lý do tại sao một mạng sâu với downsampling có thể bao phủ toàn bộ hình ảnh trong mười hoặc mười lăm khối."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "83-prompt-injection-detector",
+  "title": "Capstone 83 — Phát hiện tiêm lệnh",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Phát hiện viên trả về gì cho một lệnh?",
+      "options": [
+        "Chỉ quyết định khối boolean",
+        "Toàn bộ lệnh hệ thống của mô hình",
+        "Danh sách mọi quy tắc trong cơ sở quy tắc",
+        "Một loại và độ tin cậy trong [0, 1]"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao normalize chạy trước các quy tắc substring và regex?",
+      "options": [
+        "Bởi vì regex chậm hơn substring",
+        "Bởi vì thư viện chuẩn cấm chạy quy tắc trên văn bản gốc",
+        "Bởi vì normalize giảm kích thước tệp trên đĩa",
+        "Bởi vì normalize phơi bày các token ẩn như base64, rot13 và chèn không rộng cho các quy tắc phía dưới"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cho true positives = 6, false positives = 2 cho loại C, độ chính xác là gì?",
+      "options": [
+        "0.86",
+        "0.60",
+        "0.75",
+        "0.50"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tập lệnh benign là một phần của đánh giá?",
+      "options": [
+        "Để tính toán recall trên các cuộc tấn công",
+        "Để thổi phồng số liệu độ chính xác",
+        "Để tiền huấn luyện các quy tắc",
+        "Để đo tỷ lệ false-positive trên văn bản an toàn và bắt các quy tắc quá rộng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Phương thức analyze làm gì khi không có quy tắc nào được kích hoạt?",
+      "options": [
+        "Trả về loại của quy tắc gần đây nhất đã thử",
+        "Trả về một loại ngẫu nhiên",
+        "Trả về loại benign với độ tin cậy 0.0",
+        "Gây ra một ngoại lệ"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học này cho rằng phát hiện viên không phải là cổng an toàn?",
+      "options": [
+        "Bởi vì phát hiện viên được triển khai bằng Python",
+        "Bởi vì các quy tắc được lưu trữ dưới dạng dữ liệu",
+        "Bởi vì phát hiện viên quá nhanh để có ích",
+        "Bởi vì phát hiện viên là một tín hiệu trong số nhiều tín hiệu mà cổng sẽ kết hợp, với mỗi tín hiệu trao đổi độ chính xác với recall khác nhau"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

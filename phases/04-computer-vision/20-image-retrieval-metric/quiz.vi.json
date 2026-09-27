@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đối với một sản phẩm tìm kiếm hình ảnh mà truy vấn là văn bản và các mục trong bộ sưu tập là hình ảnh, bạn sẽ chọn backbone nào trước tiên?",
+      "options": [
+        "Một mô hình CLIP hoặc SigLIP - chúng học một không gian nhúng văn bản-hình ảnh chung nên độ tương đồng cosine giữa truy vấn văn bản và bộ sưu tập hình ảnh là có ý nghĩa ngay từ đầu",
+        "Một mô hình ResNet-50 có giám sát",
+        "Một mô tả ORB được chế tạo thủ công",
+        "Một mô hình DINOv2 tự giám sát"
+      ],
+      "correct": 0,
+      "explanation": "Việc truy xuất với các truy vấn văn bản yêu cầu các nhúng mà văn bản và hình ảnh kết thúc trong cùng một không gian. CLIP/SigLIP đào tạo chính xác điều này với hàm mất mát tương phản trong Bài học 18. Các đặc trưng ImageNet có giám sát chỉ là hình ảnh. DINOv2 mạnh nhưng chỉ là hình ảnh. Các truy vấn văn bản yêu cầu một bộ mã hóa ngôn ngữ-vision."
+    },
+    {
+      "stage": "pre",
+      "question": "'khai thác bán khó' có nghĩa là gì trong đào tạo mất mát triplet?",
+      "options": [
+        "Đối với mỗi anchor, chọn một negative mà xa hơn positive nhưng vẫn trong khoảng cách; các negative dễ không đóng góp gradient và các negative khó nhất có thể làm mất ổn định đào tạo, vì vậy bán khó là điểm ngọt",
+        "Khai thác tiền điện tử cho các ví dụ đào tạo",
+        "Sử dụng chỉ các negative khó nhất có thể",
+        "Chọn các triplet ngẫu nhiên"
+      ],
+      "correct": 0,
+      "explanation": "Gradient mất mát triplet không bằng không chỉ khi d(a, n) < d(a, p) + khoảng cách. Các negative dễ (đã xa) cho gradient bằng không. Các negative khó nhất có thể làm sụp đổ đào tạo. Bán khó - d(a, p) < d(a, n) < d(a, p) + khoảng cách - là nơi mà mất mát có thông tin mà không bị không ổn định. FaceNet đã giới thiệu công thức này vào năm 2015 và nó vẫn là mặc định cho việc tinh chỉnh triplet."
+    },
+    {
+      "stage": "post",
+      "question": "Hệ thống truy xuất của bạn báo cáo recall@10 = 0.95 nhưng recall@1 = 0.42. Bạn nên kết luận gì?",
+      "options": [
+        "Mô hình đang bị overfitting",
+        "Dữ liệu đang rò rỉ từ bộ sưu tập sang truy vấn",
+        "Việc đánh giá bị lỗi",
+        "Không gian nhúng có cấu trúc đúng - các mục liên quan thường nằm trong top 10 - nhưng xếp hạng trong top 10 là ồn ào; một mô hình tái xếp hạng (cross-encoder, người đánh giá giai đoạn hai) hoặc tinh chỉnh học metric lâu hơn sẽ sửa recall@1 mà không làm hỏng recall@10"
+      ],
+      "correct": 3,
+      "explanation": "recall@K so với @1 cho bạn biết thông tin nằm ở đâu. Một recall@10 cao với recall@1 thấp có nghĩa là truy xuất gần đúng nhưng mô hình không tự tin về việc sắp xếp vài mục hàng đầu. Tái xếp hạng - một mô hình riêng biệt đánh giá từng ứng viên top-K so với truy vấn - là cách sửa chữa sản xuất và là những gì các công cụ tìm kiếm như Pinterest và Google Photos sử dụng."
+    },
+    {
+      "stage": "post",
+      "question": "Độ tương đồng cosine trên các nhúng không chuẩn hóa không phải là độ tương đồng cosine - điều gì sai?",
+      "options": [
+        "Phép nhân ma trận bị tràn",
+        "Nó trộn lẫn hướng với độ lớn; cos(a, b) chỉ đúng khi cả hai vector đều được chuẩn hóa L2. Trên các nhúng không chuẩn hóa, các mục có độ lớn lớn chiếm ưu thế bất kể hướng, làm lệch xếp hạng về phía các vector có độ lớn lớn",
+        "PyTorch báo lỗi",
+        "Không có gì, nó ổn"
+      ],
+      "correct": 1,
+      "explanation": "cos(a, b) = (a . b) / (||a|| * ||b||). Bỏ qua việc chuẩn hóa cho bạn sản phẩm nội suy thô, mà xếp hạng theo hướng được trọng số bởi độ lớn. Trên các nhúng thần kinh điển hình, độ lớn thay đổi 2-3 lần giữa các mẫu, và điều đó chiếm ưu thế trong việc xếp hạng. Luôn chuẩn hóa L2 trước khi tính toán cosine hoặc trước khi lập chỉ mục trong FAISS IndexFlatIP."
+    },
+    {
+      "stage": "post",
+      "question": "Giữa truy xuất cấp độ instance (tìm chiếc xe chính xác này) và truy xuất cấp độ danh mục (tìm xe), cái nào yêu cầu tinh chỉnh học metric?",
+      "options": [
+        "Cấp độ instance. Các nhúng DINOv2 và CLIP có sẵn phân biệt tốt giữa các danh mục nhưng không giữa các instance tương tự về mặt hình ảnh của cùng một danh mục. Một tinh chỉnh triplet hoặc tương phản trên các cặp (cùng instance, khác instance) thắt chặt nhúng quanh mỗi instance",
+        "Cả hai đều yêu cầu cùng một lượng tinh chỉnh",
+        "Cấp độ danh mục",
+        "Không cái nào"
+      ],
+      "correct": 0,
+      "explanation": "Truy xuất cấp độ danh mục là những gì các mô hình đã được huấn luyện trước đã làm: mèo tập trung gần mèo, chó gần chó. Cấp độ instance - cùng một chiếc xe, cùng một khuôn mặt, cùng một SKU sản phẩm - cần học metric vì hai instance của cùng một sản phẩm trông rất giống nhau trong không gian nhúng chung. Tinh chỉnh với triplet hoặc InfoNCE trên các cặp được gán nhãn instance thu hẹp khoảng cách trong-instance và tăng khoảng cách giữa các instance."
+    }
+  ]
+}

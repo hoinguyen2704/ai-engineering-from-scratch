@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Thuật ngữ 'tối ưu hóa' có nghĩa là gì trong bối cảnh đào tạo một mạng nơ-ron?",
+      "options": [
+        "Tìm các trọng số của mô hình để giảm thiểu hàm mất mát",
+        "Làm cho mã chạy nhanh hơn",
+        "Giảm số lượng tham số trong mô hình",
+        "Chọn phần cứng tốt nhất cho việc đào tạo"
+      ],
+      "correct": 0,
+      "explanation": "Đào tạo một mạng nơ-ron chính là tối ưu hóa. Hàm mất mát đo lường mức độ sai lệch của mô hình, và tối ưu hóa tìm các giá trị trọng số làm cho nó nhỏ nhất có thể."
+    },
+    {
+      "stage": "pre",
+      "question": "Điều gì xảy ra nếu tốc độ học quá lớn trong quá trình giảm gradient?",
+      "options": [
+        "Đào tạo hội tụ nhanh hơn đến cực tiểu toàn cục",
+        "Bộ tối ưu hóa vượt quá cực tiểu và hàm mất mát phân kỳ (nảy hoặc tăng)",
+        "Mô hình tự động giảm tốc độ học",
+        "Các gradient trở thành không"
+      ],
+      "correct": 1,
+      "explanation": "Một tốc độ học quá lớn khiến mỗi bước vượt qua thung lũng, có thể nảy giữa các bức tường hoặc hoàn toàn phân kỳ. Hàm mất mát tăng lên thay vì giảm xuống."
+    },
+    {
+      "stage": "post",
+      "question": "Adam khác gì so với giảm gradient thông thường?",
+      "options": [
+        "Adam tính toán chính xác đạo hàm bậc hai trong khi GD sử dụng đạo hàm bậc nhất",
+        "Adam sử dụng tốc độ học cố định trong khi GD sử dụng tốc độ thích ứng",
+        "Adam xử lý toàn bộ tập dữ liệu mỗi bước trong khi GD sử dụng mini-batch",
+        "Adam theo dõi trung bình chạy của các gradient và gradient bình phương để cung cấp cho mỗi trọng số tốc độ học thích ứng riêng"
+      ],
+      "correct": 3,
+      "explanation": "Adam duy trì ước lượng bậc nhất (hướng gradient) và bậc hai (độ lớn gradient) cho từng trọng số. Chia cho sqrt(bậc hai) cung cấp các bước nhỏ cho các trọng số có gradient lớn và các bước lớn cho các trọng số có gradient nhỏ."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tiếng ồn trong mini-batch SGD được coi là có lợi thay vì chỉ là một phiền toái?",
+      "options": [
+        "Tiếng ồn làm cho hàm mất mát lồi",
+        "Tiếng ồn giúp bộ tối ưu hóa thoát khỏi các cực tiểu cục bộ nông và điểm yên ngựa mà một bộ tối ưu hóa không có tiếng ồn sẽ bị kẹt",
+        "Tiếng ồn không có lợi; nó luôn làm chậm sự hội tụ",
+        "Tiếng ồn giảm mức sử dụng bộ nhớ trong quá trình đào tạo"
+      ],
+      "correct": 1,
+      "explanation": "Tiếng ồn ngẫu nhiên từ các mini-batch cung cấp các biến động ngẫu nhiên có thể đẩy bộ tối ưu hóa ra khỏi các cực tiểu cục bộ nông và điểm yên ngựa, dẫn đến khả năng tổng quát tốt hơn."
+    },
+    {
+      "stage": "post",
+      "question": "Lịch trình tốc độ học cosine annealing làm gì?",
+      "options": [
+        "Tăng tốc độ học trong suốt quá trình đào tạo theo một đường cong cosine",
+        "Bắt đầu với tốc độ học cao và giảm dần theo một đường cong cosine, với tùy chọn khởi động",
+        "Luân phiên tốc độ học giữa hai giá trị cố định",
+        "Đặt tốc độ học bằng cosine của số epoch hiện tại"
+      ],
+      "correct": 1,
+      "explanation": "Cosine annealing giảm dần tốc độ học từ lr_max đến lr_min theo một đường cong half-cosine. Điều này cung cấp các bước lớn ở giai đoạn đầu để tiến bộ nhanh và các bước nhỏ ở giai đoạn sau để hội tụ chính xác."
+    }
+  ]
+}

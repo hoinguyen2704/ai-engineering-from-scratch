@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao việc huấn luyện GAN sử dụng hàm mất mát generator không bão hòa -log(D(G(z))) thay vì log(1 - D(G(z)))?",
+      "options": [
+        "Chúng khác nhau về mặt toán học và tạo ra trạng thái cân bằng tốt hơn",
+        "Điều này được yêu cầu bởi PyTorch",
+        "Nó tăng tốc độ của bộ phân biệt",
+        "Sớm trong quá trình huấn luyện D(G(z)) gần bằng không, vì vậy log(1 - D(G(z))) có độ dốc biến mất; -log(D(G(z))) có độ dốc lớn ở đó nên G nhận được tín hiệu hữu ích"
+      ],
+      "correct": 3,
+      "explanation": "Hai hàm mất mát chia sẻ cùng hướng độ dốc nhưng có độ lớn rất khác nhau khi D(G(z)) nhỏ. log(1 - D(G(z))) đạt đến độ dốc bằng không ở đó. Dạng không bão hòa vẫn giữ được thông tin trên toàn bộ phạm vi. Goodfellow đã lưu ý về sự điều chỉnh này trong bài báo gốc và mọi GAN hiện đại đều sử dụng nó."
+    },
+    {
+      "stage": "pre",
+      "question": "Các quy tắc của DCGAN nói rằng nên sử dụng các phép tích chập có bước thay vì pooling. Tại sao?",
+      "options": [
+        "Pooling là không thể học được và loại bỏ thông tin mà generator có thể cần; các phép tích chập có bước cho phép mạng học cách giảm mẫu của riêng nó, điều này thực nghiệm tạo ra hình ảnh được tạo ra sắc nét hơn",
+        "Pooling không tương thích với batch norm",
+        "Pooling chậm hơn trên GPU",
+        "Pooling làm đứt mạch độ dốc"
+      ],
+      "correct": 0,
+      "explanation": "Max-pool là một phương pháp giảm mẫu được chọn thủ công loại bỏ mọi thứ ngoại trừ giá trị lớn nhất. Trong một cài đặt sinh, mô hình được hưởng lợi từ một phương pháp giảm mẫu được học có thể bảo tồn thông tin qua bước. Các phép tích chập có bước trong D và các phép tích chập chuyển vị có bước trong G là sự thay đổi kiến trúc đã làm cho DCGAN có thể huấn luyện được."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn huấn luyện một GAN và nhận thấy G tạo ra các mẫu gần như giống hệt nhau bất kể tiếng ồn đầu vào. Sự cố nào đang xảy ra?",
+      "options": [
+        "Dao động",
+        "Độ dốc biến mất",
+        "Sụp đổ chế độ — G đã tìm thấy một vùng hẹp của phân phối dữ liệu mà liên tục đánh lừa D và không có động lực để khám phá; các cách khắc phục bao gồm chuẩn hóa phổ, phân biệt minibatch, hoặc một lô lớn hơn",
+        "Tập dữ liệu quá nhỏ"
+      ],
+      "correct": 2,
+      "explanation": "Sụp đổ chế độ là sự cố đặc trưng của GAN, nơi các mẫu thiếu sự đa dạng. Chẩn đoán là rõ ràng: tiếng ồn vào, hình ảnh giống nhau ra. Các cách khắc phục đều nhắm đến khả năng của bộ phân biệt trong việc trừng phạt sự thiếu đa dạng, bằng cách làm cho D trở nên biểu cảm hơn (chuẩn hóa phổ, phân biệt minibatch) hoặc bằng cách cho G ít không gian hơn để sụp đổ (lô lớn hơn, nhãn điều kiện)."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các script huấn luyện DCGAN sử dụng Adam với betas=(0.5, 0.999) thay vì mặc định (0.9, 0.999)?",
+      "options": [
+        "Đó là một lỗi đánh máy được lan truyền qua các hướng dẫn",
+        "Một beta1 thấp hơn giảm động lượng; trong một trò chơi đối kháng, động lượng nặng giữ mỗi bộ tối ưu trong hướng sai quá lâu khi hành vi của mạng khác thay đổi, điều này gây ra sự không ổn định",
+        "Mặc định bị hỏng",
+        "Adam chỉ được hỗ trợ với beta1=0.5 trên CUDA"
+      ],
+      "correct": 1,
+      "explanation": "Mặc định beta1=0.9 của Adam trung bình các độ dốc qua khoảng 10 bước. Trong một mục tiêu tĩnh, điều này là hữu ích. Trong một trò chơi đối kháng nơi cảnh quan mất mát thay đổi sau mỗi cập nhật D và G, việc trung bình đó làm chậm phản ứng của bộ tối ưu và gây ra dao động. Radford và cộng sự đã tìm thấy beta1=0.5 ổn định hơn nhiều, và giờ đây nó là mặc định của GAN."
+    },
+    {
+      "stage": "post",
+      "question": "Một đồng nghiệp báo cáo một GAN với mất mát D gần bằng không và mất mát G tăng lên trong quá trình huấn luyện. Điều gì đang xảy ra và bạn khắc phục nó như thế nào?",
+      "options": [
+        "Generator đang đúng cách quá khớp",
+        "Không có gì — đây là trạng thái cân bằng",
+        "Bộ phân biệt đã trở nên quá mạnh và làm cho độ dốc của G bằng không; các cách khắc phục bao gồm một D nhỏ hơn, chuẩn hóa phổ, làm mịn nhãn trên các nhãn thực (0.9 thay vì 1.0), hoặc chuyển sang WGAN-GP",
+        "Cả hai mạng đều đang cải thiện đúng cách"
+      ],
+      "correct": 2,
+      "explanation": "Mất mát gần bằng không của D có nghĩa là D hoàn hảo trên cả thực và giả. Tại thời điểm đó, độ dốc BCE đến G biến mất: G thấy tín hiệu gần bằng không bất kể nó xuất ra cái gì. Cách khắc phục là làm yếu D hoặc sử dụng một hàm mất mát không bão hòa. Chuẩn hóa phổ (giới hạn hằng số Lipschitz của D) và WGAN-GP (sử dụng khoảng cách Earth-Mover thay vì BCE) là hai cách cứu trợ tiêu chuẩn."
+    }
+  ]
+}

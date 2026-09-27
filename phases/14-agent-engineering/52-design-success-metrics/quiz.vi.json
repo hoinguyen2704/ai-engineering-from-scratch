@@ -1,0 +1,78 @@
+{
+  "lesson": "52-design-success-metrics",
+  "title": "Thiết kế các chỉ số thành công",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Thứ tự đo lường chính xác là gì?",
+      "options": [
+        "Dữ liệu, mô hình, đặc trưng",
+        "Chỉ số, câu hỏi, mục tiêu",
+        "Bảng điều khiển, chỉ số, mục tiêu",
+        "Mục tiêu, câu hỏi, chỉ số"
+      ],
+      "correct": 3,
+      "explanation": "Các mục tiêu xác định nhu cầu thông tin, các câu hỏi tinh chỉnh chúng, và các chỉ số hiện thực hóa các câu trả lời."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần xác định ngưỡng trước khi xem xét kết quả?",
+      "options": [
+        "Để tránh các câu hỏi",
+        "Để giảm lưu trữ",
+        "Để ngăn chặn việc di chuyển quy tắc quyết định nhằm bảo vệ việc xây dựng",
+        "Để đảm bảo đạt yêu cầu"
+      ],
+      "correct": 2,
+      "explanation": "Các ngưỡng đã cam kết trước giảm thiểu việc biện minh sau kết quả."
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số guardrail bảo vệ điều gì?",
+      "options": [
+        "Một ràng buộc cố định hoặc tổn hại không thể chấp nhận",
+        "Chỉ tốc độ",
+        "Một tên phát hành",
+        "Một phong cách trực quan"
+      ],
+      "correct": 0,
+      "explanation": "Các guardrail đảm bảo rằng sự cải tiến không vi phạm an toàn hoặc chính sách."
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số phản biện là gì?",
+      "options": [
+        "Một ý kiến không được đo lường",
+        "Một phép đo bắt được chi phí hoặc tổn hại chuyển sang nơi khác",
+        "Một bản sao thứ hai của chỉ số kết quả",
+        "Một điểm số mô hình"
+      ],
+      "correct": 1,
+      "explanation": "Các lợi ích địa phương có thể tạo ra gánh nặng hạ nguồn mà chỉ số phản biện phơi bày."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao một chỉ số phải nêu rõ nguồn gốc và khoảng thời gian của nó?",
+      "options": [
+        "Để xây dựng thương hiệu",
+        "Để thay thế một ngưỡng",
+        "Để tránh người dùng",
+        "Để đảm bảo khả năng tái tạo và diễn giải"
+      ],
+      "correct": 3,
+      "explanation": "Một con số không có nguồn gốc và thời gian hoặc ranh giới mẫu không thể hỗ trợ một quyết định đáng tin cậy."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào việc phát lại ngoại tuyến là không đủ?",
+      "options": [
+        "Khi quyết định phụ thuộc vào hành vi thực tế của người dùng hoặc tác động của quy trình làm việc",
+        "Khi các bài kiểm tra nhanh",
+        "Không bao giờ",
+        "Luôn luôn"
+      ],
+      "correct": 0,
+      "explanation": "Việc phát lại có thể lặp lại nhưng không thể tái tạo hoàn toàn niềm tin, sự phối hợp và hành vi trực tiếp."
+    }
+  ]
+}

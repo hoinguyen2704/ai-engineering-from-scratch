@@ -1,0 +1,78 @@
+{
+  "lesson": "27-skill-evals-packaging-and-portability",
+  "title": "Đánh giá Kỹ năng, Đóng gói và Tính di động",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tập đánh giá nào tốt nhất để phát hiện xem mô tả kỹ năng có kích hoạt quá mức trong mô hình bài học hay không?",
+      "options": [
+        "Các lời nhắc tích cực rõ ràng cộng với các lời nhắc gần nghĩa mà lẽ ra phải giữ ở trạng thái tiêu cực",
+        "Chỉ một lần trình diễn thành công từ đầu đến cuối",
+        "Một danh sách các định dạng tệp được hỗ trợ",
+        "Chỉ các lời nhắc sao chép từ tên kỹ năng"
+      ],
+      "correct": 0,
+      "explanation": "Các tích cực dễ dàng đo lường xem nhiệm vụ dự kiến có thể kích hoạt hay không. Các tiêu cực gần đúng đo lường xem các nhiệm vụ liền kề có kích hoạt sai hay không, điều này cần thiết để tính toán các tích cực giả và độ chính xác."
+    },
+    {
+      "stage": "check",
+      "question": "Một bài kiểm tra kích hoạt có 8 tích cực đúng và 2 tích cực giả. Độ chính xác của nó là gì?",
+      "options": [
+        "0.8 độ hồi tưởng, nhưng độ chính xác không thể được tính toán",
+        "0.8",
+        "0.2",
+        "1.0"
+      ],
+      "correct": 1,
+      "explanation": "Độ chính xác là tích cực đúng chia cho tất cả các tích cực dự đoán: 8 / (8 + 2) = 0.8. Độ hồi tưởng cần số lượng tiêu cực giả, mà kịch bản này không cung cấp."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao so sánh các tài liệu cơ sở và tài liệu có kỹ năng bằng cách sử dụng cùng một khẳng định?",
+      "options": [
+        "Để đảm bảo kỹ năng hoạt động trên mọi máy chủ",
+        "Để loại bỏ nhu cầu về các bài kiểm tra kích hoạt",
+        "Để cho phép kỹ năng sửa đổi kết quả mong đợi trong quá trình đánh giá",
+        "Để đo lường xem kỹ năng có cải thiện đầu ra nhiệm vụ thay vì chỉ kích hoạt hay không"
+      ],
+      "correct": 3,
+      "explanation": "Kích hoạt không phải là kết quả. Một hợp đồng tài liệu chung kiểm tra xem việc tải kỹ năng có thay đổi các tiêu đề, bằng chứng, sơ đồ hoặc nội dung bị cấm cần thiết hay không, trong khi vẫn giữ cho phép đo lường có thể so sánh với cơ sở."
+    },
+    {
+      "stage": "check",
+      "question": "Một máy chủ tải SKILL.md nhưng bỏ qua `references/` và `scripts/` trong quá trình cài đặt. Một ma trận tính di động nên phân loại một gói yêu cầu cả hai như thế nào?",
+      "options": [
+        "Bản địa, vì phần đầu đã được tải",
+        "Cần bộ chuyển đổi, với tệp bạn đồng hành và khả năng kịch bản bị thiếu được liệt kê",
+        "Không được hỗ trợ, ngay cả khi một bộ chuyển đổi có thể bảo tồn các tệp",
+        "Đảm bảo tính di động sau khi đổi tên thư mục"
+      ],
+      "correct": 1,
+      "explanation": "Máy chủ hiểu tệp cốt lõi, vì vậy nó không hoàn toàn không được hỗ trợ. Nó vẫn không thể đáp ứng các yêu cầu đã khai báo của gói một cách bản địa, và ma trận nên nêu rõ công việc bộ chuyển đổi chính xác thay vì làm phẳng tính di động thành có hoặc không."
+    },
+    {
+      "stage": "post",
+      "question": "Tỷ lệ chạy lại thêm gì ngoài một bài đánh giá kích hoạt thành công?",
+      "options": [
+        "Một sự thay thế cho lint gói cấu trúc",
+        "Quyền cho kỹ năng thực thi các kịch bản được đóng gói",
+        "Bằng chứng về tính nhất quán qua nhiều lần thực thi của mỗi trường hợp",
+        "Một lệnh gọi máy chủ toàn cầu"
+      ],
+      "correct": 2,
+      "explanation": "Một lần chạy đơn lẻ có thể ẩn đi tính không xác định. Tỷ lệ chạy lại theo trường hợp tiết lộ kích hoạt không ổn định hoặc sản xuất tài liệu, trong khi lint cấu trúc, quyền thực thi và bộ chuyển đổi máy chủ vẫn là những mối quan tâm riêng biệt."
+    },
+    {
+      "stage": "post",
+      "question": "Cổng phát hành nào là hoàn chỉnh nhất cho một gói Kỹ năng Đại lý?",
+      "options": [
+        "Gói có nhiều tệp tham chiếu và một mô tả dài",
+        "Kỹ năng hoạt động trên máy của tác giả mà không cần cơ sở",
+        "SKILL.md tồn tại và một lời nhắc tích cực kích hoạt nó",
+        "Tất cả sáu lớp đều vượt qua, các giá trị chế độ ghi lại cục bộ có các bản tóm tắt nguồn tương ứng, và một chứng thực đáng tin cậy ngoài gói liên kết với gốc bằng chứng hoàn chỉnh"
+      ],
+      "correct": 3,
+      "explanation": "Sáu lớp là cấu trúc gói; định tuyến kích hoạt với độ chính xác, độ hồi tưởng và độ ổn định chạy lại; hành vi hướng dẫn và tài liệu; độ chính xác của kịch bản; an toàn và quyền hạn; và đóng gói cộng với tính di động, bao gồm một cài đặt sạch đã được xác minh bằng bản khai. Mỗi lớp phải vượt qua. Các bản tóm tắt cục bộ liên kết với nguồn phát hiện sự không khớp nhưng có thể được tính toán lại với các thiết bị được gán nhãn lại, vì vậy sự sẵn sàng sản xuất cũng yêu cầu một chứng thực bên ngoài mà SHA-256 đáng tin cậy chính xác liên kết với gốc bằng chứng hoàn chỉnh."
+    }
+  ]
+}

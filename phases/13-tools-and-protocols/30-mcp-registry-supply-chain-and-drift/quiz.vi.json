@@ -1,0 +1,78 @@
+{
+  "lesson": "30-mcp-registry-supply-chain-and-drift",
+  "title": "Chuỗi cung ứng MCP Registry: Nhập học, Trôi dạt và Khôi phục",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Việc công bố thành công trong một MCP Registry thiết lập điều gì cho một cổng sản xuất?",
+      "options": [
+        "Bản ghi đã vượt qua các kiểm soát công bố Registry, trong khi việc nhập học tại thời gian chạy cục bộ vẫn cần thiết",
+        "Điểm cuối trực tiếp hoàn toàn khớp với gói đã công bố",
+        "Phiên bản mới nhất nên ngay lập tức thay thế mọi tuyến đường cũ hơn",
+        "Máy chủ an toàn cho mọi nguyên tắc"
+      ],
+      "correct": 0,
+      "explanation": "Công bố Registry thiết lập các sự thật về công bố. Kiểm tra đối tượng, thời gian chạy, ủy quyền và phê duyệt cục bộ vẫn tách biệt."
+    },
+    {
+      "stage": "check",
+      "question": "So sánh không gian tên nào từ chối com.exampleevil/tool khi không gian tên đã được xác minh là com.example?",
+      "options": [
+        "Kiểm tra xem toàn bộ tên có bắt đầu bằng com.example hay không",
+        "Tìm kiếm chuỗi con example",
+        "Chia tại dấu gạch chéo và so sánh đoạn không gian tên chính xác",
+        "Tin tưởng vào không gian tên được viết trong server.json"
+      ],
+      "correct": 2,
+      "explanation": "So sánh đoạn chính xác bảo tồn ranh giới không gian tên và sử dụng quyền hạn do một người xác minh đáng tin cậy cung cấp."
+    },
+    {
+      "stage": "check",
+      "question": "Một máy chủ trực tiếp thêm một công cụ mới trong khi bản ghi Registry và tọa độ gói của nó vẫn không thay đổi. Bằng chứng nào phát hiện điều này?",
+      "options": [
+        "Một bản tóm tắt mô tả đã được chuẩn hóa mới so với pin bộ công cụ đã được chấp nhận",
+        "Dấu thời gian công bố Registry",
+        "Phương pháp xác thực không gian tên",
+        "Chuỗi phiên bản ngữ nghĩa một mình"
+      ],
+      "correct": 0,
+      "explanation": "Pin mô tả trực tiếp phát hiện sự trôi dạt hành vi mà siêu dữ liệu công bố và tọa độ gói không thể hiển thị."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì nên xảy ra khi một phiên bản Registry đã được chấp nhận thay đổi từ hoạt động sang không còn được khuyến nghị?",
+      "options": [
+        "Cách ly nó khỏi định tuyến mới và giữ lại bằng chứng nhập học lịch sử",
+        "Viết lại bản ghi đã công bố trở lại trạng thái hoạt động",
+        "Xóa tất cả bằng chứng để khách hàng không thể phát hiện ra nó",
+        "Bỏ qua trạng thái vì quyền sở hữu gói đã được xác minh"
+      ],
+      "correct": 0,
+      "explanation": "Trạng thái là đầu vào hoạt động. Cách ly ngăn chặn việc sử dụng mới trong khi bằng chứng được giữ lại hỗ trợ kiểm toán và phân tích khôi phục."
+    },
+    {
+      "stage": "post",
+      "question": "Mục tiêu nào đủ điều kiện cho một khôi phục tự động?",
+      "options": [
+        "Bất kỳ phiên bản nào có tên sắp xếp trước ứng viên",
+        "Một pin đã được chấp nhận trước đó đang hoạt động theo chính sách, khỏe mạnh và không bị cách ly",
+        "Phiên bản được đánh dấu là mới nhất, ngay cả khi nó chưa bao giờ được xem xét",
+        "Một phiên bản Registry đã bị xóa với tên gói quen thuộc"
+      ],
+      "correct": 1,
+      "explanation": "Khôi phục phục hồi một tuyến đường có thể chấp nhận được đã biết. Nó không bỏ qua trạng thái hiện tại, sức khỏe hoặc kiểm tra cách ly."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các đầu sổ nhập học nên được neo trong một miền tin cậy riêng biệt?",
+      "options": [
+        "Nó làm cho các bản tóm tắt đối tượng trở nên không cần thiết",
+        "Nó cho phép các nhà phát hành thiết lập trạng thái được quản lý bởi Registry",
+        "Nó chuyển đổi các khoảng phiên bản có thể thay đổi thành các pin chính xác",
+        "Một chuỗi băm cục bộ phát hiện các chỉnh sửa, trong khi một neo riêng biệt làm cho việc viết lại cục bộ hoàn chỉnh có thể phát hiện"
+      ],
+      "correct": 3,
+      "explanation": "Một kẻ tấn công có thể viết lại toàn bộ sổ địa phương có thể tính toán lại chuỗi của nó. Một neo bên ngoài đã ký hoặc chỉ ghi một lần phơi bày việc viết lại đó."
+    }
+  ]
+}

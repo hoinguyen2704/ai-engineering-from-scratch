@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trong mô hình ViT-MLP-LLM VLM, thành phần nào thường được huấn luyện trong khi các thành phần khác được giữ nguyên trong quá trình căn chỉnh?",
+      "options": [
+        "Tất cả các thành phần luôn được huấn luyện cùng nhau",
+        "Bộ mã hóa hình ảnh",
+        "LLM",
+        "Bộ chiếu (MLP 2-4 lớp giữa ViT và LLM) — nó ánh xạ các token hình ảnh vào không gian nhúng của LLM và mang tín hiệu căn chỉnh đa phương thức chủ yếu"
+      ],
+      "correct": 3,
+      "explanation": "Công thức VLM tiêu chuẩn huấn luyện bộ chiếu trước với ViT và LLM được giữ nguyên (giai đoạn căn chỉnh), sau đó tùy chọn mở khóa mọi thứ cho việc huấn luyện trước và tinh chỉnh hướng dẫn. Bộ chiếu nhỏ (từ hàng chục đến hàng trăm triệu tham số) và chịu trách nhiệm chính cho cầu nối giữa các phương thức. Tinh chỉnh trong sản xuất thường chỉ huấn luyện bộ chiếu + LoRA trên Attention — rẻ và hiệu quả."
+    },
+    {
+      "stage": "pre",
+      "question": "DeepStack (được sử dụng trong Qwen3-VL) làm gì?",
+      "options": [
+        "Gấp đôi độ sâu của LLM",
+        "Chỉ sử dụng các đặc trưng của lớp ViT sâu nhất",
+        "Xếp chồng các đặc trưng từ nhiều độ sâu ViT trước khi chiếu, vì vậy LLM thấy cả ngữ nghĩa cấp cao (các lớp sâu) và chi tiết không gian tinh vi (các lớp nông)",
+        "Là một sơ đồ định lượng cụ thể"
+      ],
+      "correct": 2,
+      "explanation": "Các VLM thông thường chỉ chiếu các đặc trưng của lớp cuối cùng của ViT. DeepStack lấy mẫu từ nhiều độ sâu, nối lại và chiếu. Các lớp sâu cung cấp ngữ nghĩa ('đây là một biểu đồ'); các lớp nông cung cấp vị trí và kết cấu ('thanh ở x=120 có màu đỏ'). Sự kết hợp này thu hẹp khoảng cách định vị trong các nhiệm vụ yêu cầu định vị tinh vi, như hành động của tác nhân GUI hoặc chú thích dày đặc."
+    },
+    {
+      "stage": "post",
+      "question": "Một VLM trong sản xuất cho thấy độ tin cậy cao về văn bản nhưng văn bản được tạo ra mô tả các đối tượng không có trong hình ảnh. Chỉ số nào ghi lại sự thất bại này?",
+      "options": [
+        "Độ trễ tạo token",
+        "Độ chính xác trên MMMU",
+        "Tỷ lệ lỗi đa phương thức (CMER) — tỷ lệ phần trăm đầu ra mà độ tin cậy văn bản cao nhưng độ tương đồng cosine giữa hình ảnh và văn bản (thông qua một bộ kiểm tra thuộc họ CLIP) thấp; ~12% là mức điển hình trên dữ liệu web không được chỉnh sửa",
+        "Độ phức tạp"
+      ],
+      "correct": 2,
+      "explanation": "CMER là một KPI căn chỉnh trong sản xuất. Nó ghi lại mẫu ảo tưởng VLM cổ điển: mô hình chắc chắn về văn bản của nó, nhưng văn bản không được gắn kết với hình ảnh. Theo dõi CMER theo từng điểm cuối và loại lời nhắc; coi việc tăng CMER là tín hiệu cho thấy mô hình đang trôi ra khỏi phân phối hoặc gặp phải một loại lời nhắc mà nó không thể xử lý. Skywork.ai đã giảm ảo tưởng khoảng 35% bằng cách làm cho CMER trở thành một KPI hàng đầu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các VLM hiện đại sử dụng SigLIP hoặc bộ mã hóa hình ảnh tùy chỉnh thay vì một ResNet ImageNet có giám sát làm xương sống?",
+      "options": [
+        "SigLIP có nhiều tham số hơn",
+        "ResNet không thể tạo ra token",
+        "SigLIP nhanh hơn",
+        "Các bộ mã hóa kiểu CLIP/SigLIP được huấn luyện đồng thời với văn bản, vì vậy không gian đầu ra của chúng đã gần như được căn chỉnh với ngôn ngữ; bộ chiếu sau đó phải làm ít công việc hơn và mô hình lý luận tốt hơn về các khái niệm hình ảnh-văn bản"
+      ],
+      "correct": 3,
+      "explanation": "Huấn luyện trước ngôn ngữ-hình ảnh định hình bộ mã hóa để sống trong một không gian tương thích với văn bản. Một ResNet ImageNet có giám sát đã được huấn luyện mà không có bất kỳ tín hiệu văn bản nào, vì vậy việc cầu nối đến một LLM yêu cầu các bộ chiếu lớn hơn nhiều và nhiều dữ liệu hơn. Các bộ mã hóa CLIP/SigLIP/DINOv3 tạo ra các đặc trưng mà một LLM có thể tiêu thụ với một vài lớp tuyến tính. Hầu hết mọi VLM SOTA đều sử dụng bộ mã hóa thuộc họ CLIP hoặc SigLIP vì lý do này."
+    },
+    {
+      "stage": "post",
+      "question": "Qwen3-VL-235B-A22B đạt điểm cao nhất trên OSWorld. OSWorld là gì, và điều này có ý nghĩa gì?",
+      "options": [
+        "Một chuẩn đánh giá tác nhân nơi mô hình vận hành các GUI máy tính để bàn — xác định các nút, đọc trạng thái UI, phát hành hành động; điểm số cao nhất của Qwen3-VL ngụ ý rằng các VLM hiện nay là các tác nhân hình ảnh khả thi cho tự động hóa GUI",
+        "Một chuẩn đánh giá ước lượng tư thế",
+        "Một chuẩn đánh giá tổng hợp",
+        "Một chuẩn đánh giá QA video"
+      ],
+      "correct": 0,
+      "explanation": "OSWorld kiểm tra xem một mô hình có thể tự động vận hành một môi trường máy tính để bàn thông qua các ảnh chụp màn hình hay không. Điểm số toàn cầu cao nhất của Qwen3-VL cho thấy mô hình 'tác nhân hình ảnh' — VLM đọc màn hình, quyết định hành động, gọi công cụ chuột/bàn phím — đã vượt qua lãnh thổ thực tiễn. Đây là những gì các bản demo AI PC năm 2026 chạy; nó cũng là một con đường trực tiếp vào QA tự động, RPA và các sản phẩm truy cập."
+    }
+  ]
+}

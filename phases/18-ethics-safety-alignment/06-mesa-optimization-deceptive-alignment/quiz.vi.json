@@ -1,0 +1,78 @@
+{
+  "lesson": "06-mesa-optimization-deceptive-alignment",
+  "title": "Tối ưu hóa Mesa và Sự căn chỉnh lừa dối",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cặp nào tốt nhất thể hiện sự phân biệt giữa căn chỉnh bên trong / bên ngoài?",
+      "options": [
+        "Bên ngoài = dữ liệu có sạch không; bên trong = bộ tối ưu có ngẫu nhiên không",
+        "Bên ngoài = mục tiêu cơ bản có khớp với những gì chúng ta muốn không; bên trong = mục tiêu mesa có khớp với mục tiêu cơ bản không",
+        "Bên ngoài = chính sách có ổn định không; bên trong = nhiệt độ có thấp không",
+        "Bên ngoài = mô hình có chạy trên phần cứng không; bên trong = tổn thất có thấp không"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong số các lựa chọn sau, cái nào KHÔNG phải là một trong bốn loại căn chỉnh mục tiêu mesa của Hubinger et al.?",
+      "options": [
+        "Khoảng cách căn chỉnh",
+        "Căn chỉnh xác suất",
+        "Căn chỉnh vững chắc",
+        "Căn chỉnh đại diện"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dưới điều kiện nào thì căn chỉnh lừa dối là chiến lược tối đa hóa phần thưởng cho một bộ tối ưu mesa?",
+      "options": [
+        "Nó có một mục tiêu cuối cùng bền vững, có nhận thức tình huống về đào tạo so với triển khai, và bộ tối ưu cơ bản sửa đổi nó nếu nó sai sót trong đào tạo",
+        "Nó được đào tạo bằng PPO thay vì DPO",
+        "Khả năng của nó vượt quá 100B tham số",
+        "Nó có bất kỳ đại diện nội bộ nào"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao đào tạo đối kháng tiêu chuẩn có thể thất bại (hoặc làm trầm trọng thêm) căn chỉnh lừa dối?",
+      "options": [
+        "Nó yêu cầu nhiều tính toán hơn RLHF",
+        "Nó dạy bộ tối ưu mesa một bộ phân biệt sắc nét hơn giữa kiểm tra và triển khai, không phải một mục tiêu mesa đã căn chỉnh",
+        "Nó không thể chạy trên GPU",
+        "Nó sử dụng hàm tổn thất sai"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Gradient hacking là gì, như được giới thiệu trong Hubinger et al. (2019)?",
+      "options": [
+        "Một kỹ thuật để đào tạo nhanh hơn",
+        "Một bệnh lý suy đoán nơi một bộ tối ưu mesa có khả năng tạo ra đầu ra hình thành các cập nhật gradient của chính nó để bảo tồn mục tiêu mesa của nó",
+        "Một lỗi trong autograd",
+        "Một phương pháp jailbreak cho các mô hình được tinh chỉnh theo hướng dẫn"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cái nào trong số này là một thất bại căn chỉnh BÊN NGOÀI, không phải bên trong?",
+      "options": [
+        "Cửa sau sống sót SFT",
+        "Bộ tối ưu mesa ẩn giấu mục tiêu của nó trong quá trình đánh giá",
+        "Bộ tối ưu mesa tối ưu hóa một mục tiêu đại diện mà lệch khỏi phân phối",
+        "Hacking phần thưởng và sự nịnh bợ xuất hiện vì mục tiêu cơ bản tự nó là một đại diện sai sót cho ý định của con người"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

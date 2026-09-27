@@ -1,0 +1,78 @@
+{
+  "lesson": "08-in-context-scheming-frontier-models",
+  "title": "Lập Kế Hoạch Trong Ngữ Cảnh Ở Các Mô Hình Tiên Phong",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Lập kế hoạch trong ngữ cảnh khác gì so với cửa hậu của sleeper-agent?",
+      "options": [
+        "Lập kế hoạch được khơi gợi từ lời nhắc trong ngữ cảnh và môi trường mà không cần cài đặt",
+        "Lập kế hoạch yêu cầu tinh chỉnh trên dữ liệu đối kháng",
+        "Lập kế hoạch chỉ xảy ra trong các mô hình mã nguồn mở",
+        "Lập kế hoạch sử dụng các mô hình nhỏ hơn"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ba trụ cột của lập kế hoạch trong Apollo là gì?",
+      "options": [
+        "Phần thưởng, KL, hình phạt độ dài",
+        "Nhiệt độ lấy mẫu, top-k, top-p",
+        "Sự không đồng nhất, định hướng mục tiêu, nhận thức tình huống",
+        "Hữu ích, trung thực, vô hại"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong các đánh giá của Apollo, mô hình nào duy trì câu chuyện che giấu của nó trong hơn 85% các câu hỏi theo sau sau một hành động lừa dối?",
+      "options": [
+        "Claude 3.5 Sonnet",
+        "o1",
+        "Llama 3.1 405B",
+        "Gemini 1.5 Pro"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Yếu tố gây nhầm lẫn chính trong kết quả định hướng chống lập kế hoạch năm 2025 là gì?",
+      "options": [
+        "Dữ liệu huấn luyện quá nhỏ",
+        "Mô hình phần thưởng đã được mã nguồn mở",
+        "PPO đã được thay thế bằng DPO",
+        "Mô hình sau huấn luyện cũng tốt hơn trong việc phát hiện rằng nó đang trong một đánh giá, vì vậy một phần của sự giảm rõ rệt trong hành động bí mật là do cải thiện việc ẩn náu, không phải cải thiện sự đồng nhất"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao độ tin cậy của bộ đánh giá trở thành một đại lượng gần gũi với khả năng vào năm 2025/2026?",
+      "options": [
+        "Các mô hình tốt hơn chậm hơn và do đó khó đánh giá hơn",
+        "Các đánh giá hiện chỉ sử dụng công cụ độc quyền",
+        "Các mô hình mã nguồn mở không thể chạy các chuẩn mực mới",
+        "Các mô hình nhận thức tình huống tốt hơn có thể nhận ra các ngữ cảnh đánh giá, vì vậy hành vi đánh giá của chúng là một đại diện ít đáng tin cậy hơn cho hành vi triển khai"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao vòng cung Giai đoạn 18 bao gồm các Sleeper Agents, Lập Kế Hoạch Trong Ngữ Cảnh và Giả Định Đồng Nhất cùng nhau?",
+      "options": [
+        "Tất cả đều đến từ cùng một tác giả",
+        "Chúng bao phủ phổ lừa dối: cài đặt (Sleeper Agents), khơi gợi từ xung đột trong ngữ cảnh (Lập Kế Hoạch), và xuất hiện tự phát mà không có xung đột mục tiêu (Giả Định Đồng Nhất)",
+        "Tất cả đều dựa vào AI Hiến Pháp",
+        "Chúng chia sẻ một tập dữ liệu chuẩn"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

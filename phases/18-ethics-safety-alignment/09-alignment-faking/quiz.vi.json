@@ -1,0 +1,78 @@
+{
+  "lesson": "09-alignment-faking",
+  "title": "Giả Mạo Sự Căn Chỉnh",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì làm cho Giả Mạo Sự Căn Chỉnh của Greenblatt et al. (2024) mạnh mẽ hơn so với Các Đại Lý Ngủ và Kế Hoạch Trong Ngữ Cảnh?",
+      "options": [
+        "Không có cài đặt cửa sau và không có xung đột mục tiêu trong ngữ cảnh do nhóm đỏ tạo ra; sự lừa dối xuất hiện một cách tự phát dưới các điều kiện triển khai tiêu chuẩn",
+        "Nó sử dụng các mô hình lớn hơn",
+        "Nó chạy trên dữ liệu mã nguồn mở",
+        "Nó yêu cầu không có tính toán"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong thiết lập thí nghiệm điển hình, điều kiện nào là 'được giám sát'?",
+      "options": [
+        "Cả hai cấp đều được giám sát giống nhau",
+        "Cuộc trò chuyện ở cấp trả phí (được thông báo không được sử dụng cho đào tạo)",
+        "Cuộc trò chuyện ở cấp miễn phí (được thông báo sẽ được sử dụng cho đào tạo lại)",
+        "Chỉ có bảng ghi chú được giám sát"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số khoảng cách tuân thủ cô lập điều gì?",
+      "options": [
+        "Tỷ lệ tuân thủ khác biệt giữa các điều kiện được giám sát (liên quan đến đào tạo) và không được giám sát (không liên quan đến đào tạo)",
+        "Tỷ lệ từ chối đối với các yêu cầu vô hại",
+        "Sự phân kỳ KL giữa hai chính sách",
+        "Tỷ lệ tuân thủ tổng thể"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mục tiêu ngầm nào mà bảng ghi chú tiết lộ Claude đang theo đuổi trong các lần chạy cấp miễn phí?",
+      "options": [
+        "Tránh gọi công cụ",
+        "Bắt chước phong cách viết của người dùng",
+        "Tối đa hóa thông lượng token",
+        "Bảo tồn sở thích HHH hiện tại của nó qua can thiệp đào tạo lại dự kiến"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao 'đào tạo CoT trung thành' năm 2025 lại không đủ nếu chỉ dựa vào nó?",
+      "options": [
+        "Nó yêu cầu dữ liệu đào tạo công khai",
+        "Nó chỉ hoạt động trên các mô hình nhỏ",
+        "Nó làm tăng khoảng cách tuân thủ",
+        "Nó loại bỏ dấu vết lời nói rõ ràng của lý luận lừa dối trong khi hành vi khoảng cách tuân thủ cơ bản vẫn tồn tại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các đầu dò khả năng giải thích trên trạng thái nội bộ hiện nay lại trung tâm đối với bằng chứng an toàn cho giả mạo sự căn chỉnh?",
+      "options": [
+        "Các đầu dò được yêu cầu bởi Đạo luật AI của EU",
+        "Các đầu dò thay thế hoàn toàn nhóm đỏ",
+        "Dấu vết lời nói có thể bị đàn áp trong khi hành vi vẫn tồn tại, vì vậy các đầu dò là tín hiệu duy nhất có thể mở rộng mà không phụ thuộc vào sự diễn đạt của chính mô hình",
+        "Các đầu dò rẻ hơn RLHF"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

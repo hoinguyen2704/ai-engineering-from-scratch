@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/26-sandbox-runner-denylist",
+  "title": "Sandbox Runner với Danh sách từ chối và Jail Đường dẫn",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc bài học: lý do mạnh mẽ nhất mà một sandbox kiểm tra hình dạng argv cho các lệnh gọi trình thông dịch như python3 -c là gì?",
+      "options": [
+        "Các trình thông dịch không thể được sandbox một cách an toàn.",
+        "Các trình thông dịch chậm và lãng phí ngân sách của tác nhân.",
+        "Một trình thông dịch với -c là một lệnh gọi shell dưới một cái tên khác và bỏ qua danh sách từ chối thực thi.",
+        "Mô hình viết mã tốt hơn mà không cần chúng."
+      ],
+      "correct": 2,
+      "explanation": "python3 -c, bash -c, node -e, và các lệnh tương tự về mặt chức năng giống như việc cung cấp cho mô hình một shell. Việc chặn tên thực thi là không đủ."
+    },
+    {
+      "stage": "check",
+      "question": "Sandbox được cấu hình với project_root=/work. Một tham số đường dẫn đến dưới dạng ./src/main.py. Kiểm tra jail được thực hiện như thế nào?",
+      "options": [
+        "os.path.realpath của đường dẫn tuyệt đối đã được nối được kiểm tra xem có tiền tố /work hay không.",
+        "Sandbox từ chối mọi đường dẫn tương đối.",
+        "So khớp tiền tố chuỗi văn bản với /work.",
+        "Sandbox khởi động subprocess và kiểm tra thư mục làm việc sau đó."
+      ],
+      "correct": 0,
+      "explanation": "realpath giải quyết các symlink. Một kiểm tra tiền tố chuỗi văn bản bị bỏ qua bởi một symlink bên trong thư mục gốc dự án chỉ ra bên ngoài. realpath cộng với tiền tố-hoặc-bằng là kiểm tra an toàn."
+    },
+    {
+      "stage": "check",
+      "question": "Một SandboxResult quay lại với denied=True, timed_out=False, exit_code=-100. Diễn giải chính xác là gì?",
+      "options": [
+        "Sandbox không bao giờ khởi động subprocess; lệnh gọi đã bị từ chối trước khi exec.",
+        "Subprocess trả về -100 một cách rõ ràng.",
+        "Subprocess đã khởi động và bị giết bởi SIGKILL.",
+        "Thời gian thực đã hết."
+      ],
+      "correct": 0,
+      "explanation": "Mã thoát sentinel -100 kết hợp với denied=True có nghĩa là sandbox đã ngắt trước khi subprocess.run được gọi."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao sandbox ưu tiên shell=False theo mặc định và từ chối các ký tự đặc biệt của shell?",
+      "options": [
+        "subprocess không chấp nhận shell=True trên macOS.",
+        "Nó làm cho bộ kiểm tra đơn giản hơn.",
+        "Phân tích shell phơi bày toàn bộ DSL shell cho mô hình, đây là bề mặt mà sandbox đang cố gắng thu nhỏ.",
+        "shell=True chậm hơn trong CPython."
+      ],
+      "correct": 2,
+      "explanation": "shell=True biến argv thành một chuỗi được trình thông dịch shell phân tích. Các ống dẫn, chuyển hướng, thay thế lệnh và globbing đều trở nên khả dụng. Sandbox không thể từ chối một payload một cách có ý nghĩa khi phân tích shell đã chạy."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn thêm giới hạn bộ nhớ theo quá trình cho sandbox. Sandbox trong bài học không thực hiện điều này. Bước tiếp theo chính xác là gì?",
+      "options": [
+        "Bỏ qua: một danh sách từ chối là đủ cho các quả bom bộ nhớ.",
+        "Tăng thời gian thực để bù đắp.",
+        "Sử dụng os.setrlimit(RLIMIT_AS) trong một preexec_fn được truyền cho subprocess.run.",
+        "Thêm giới hạn vào danh sách từ chối dưới dạng một chuỗi."
+      ],
+      "correct": 2,
+      "explanation": "subprocess.run chấp nhận preexec_fn (POSIX) hoặc một cơ chế tương tự. setrlimit(RLIMIT_AS) giới hạn không gian địa chỉ của tiến trình con. Sandbox trong bài học này không cung cấp điều này; bản demo end-to-end của bài học 29 thảo luận về cách lớp giới hạn cấp container lên trên."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình gọi sandbox với argv=['cat', 'src/../src/main.py']. Tệp tin tồn tại dưới project_root. Lệnh gọi có nên vượt qua jail đường dẫn không?",
+      "options": [
+        "Nó phụ thuộc vào việc người dùng có phải là root hay không.",
+        "Có: realpath hợp nhất src/../src thành src và đường dẫn đã được giải quyết nằm trong project_root.",
+        "Không: argv bị từ chối bởi cổng regex trước khi sandbox nhìn thấy nó.",
+        "Không, bất kỳ .. nào trong một đường dẫn đều là một từ chối tự động."
+      ],
+      "correct": 1,
+      "explanation": "realpath chuẩn hóa đường dẫn. Sandbox không từ chối blanket .. tokens; nó kiểm tra mục tiêu đã được giải quyết. Điều này là có chủ ý: các đường dẫn hợp pháp đôi khi đi qua .. một cách hợp pháp."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "16-model-routing",
+  "title": "Định tuyến mô hình như một nguyên tắc giảm chi phí",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ý tưởng cốt lõi của mô hình cascading là gì?",
+      "options": [
+        "Luôn định tuyến theo trọng số ngẫu nhiên",
+        "Chạy hai mô hình song song và trung bình hóa các đầu ra",
+        "Chạy mọi yêu cầu trên mô hình đắt nhất trước",
+        "Chạy một mô hình rẻ trước, nâng cấp lên mô hình tiên tiến chỉ khi có độ tin cậy thấp hoặc từ chối"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bốn tín hiệu nào được bài học liệt kê cho các quyết định định tuyến?",
+      "options": [
+        "Chỉ cấp độ người dùng",
+        "Chỉ số lượng token",
+        "Phân loại nhiệm vụ, độ dài prompt, độ tương đồng embedding với tập hợp đã biết khó, và độ tự tin từ lần kiểm tra đầu tiên",
+        "Nhiệt độ GPU, tốc độ quạt, độ ẩm phòng, thời gian trong ngày"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hồ sơ độ trễ mong đợi của một bộ định tuyến cascade là gì?",
+      "options": [
+        "Luôn nhanh hơn so với định tuyến trước",
+        "Khoảng 1.2x độ trễ trung vị (chạy rẻ cộng với xác minh), khoảng 2x trên các yêu cầu nâng cấp (~10% lưu lượng)",
+        "Luôn chậm hơn 10x",
+        "Giống hệt như mô hình tiên tiến"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu định tuyến nào thêm 5-10ms độ trễ ở phía trước và nhanh nhất tổng thể?",
+      "options": [
+        "Cascade",
+        "Định tuyến tập hợp",
+        "Ngẫu nhiên vòng tròn",
+        "Định tuyến trước với một bộ phân loại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Trôi mô hình rẻ trong định tuyến là gì?",
+      "options": [
+        "Mô hình rẻ trở nên đắt hơn",
+        "Cascade rơi xuống mô hình tiên tiến 100% thời gian",
+        "Một sự trôi độ trễ trong mô hình rẻ",
+        "Phân phối nhiệm vụ thay đổi nhưng bộ định tuyến đã được đào tạo vẫn tiếp tục gửi yêu cầu đến mô hình rẻ, âm thầm làm giảm chất lượng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bộ bảo vệ nào mà bài học khuyến nghị để phát hiện trôi định tuyến?",
+      "options": [
+        "Chỉ số chất lượng trực tuyến — thumbs-up/down cho mỗi định tuyến, LLM-judge trên các mẫu giữ lại, tỷ lệ nâng cấp, tỷ lệ từ chối",
+        "Chỉ đánh giá kỹ thuật hàng quý",
+        "Chỉ các tập đánh giá ngoại tuyến",
+        "Vô hiệu hóa định tuyến trong sản xuất"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

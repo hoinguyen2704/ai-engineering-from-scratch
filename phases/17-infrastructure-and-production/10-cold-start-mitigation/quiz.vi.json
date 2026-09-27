@@ -1,0 +1,78 @@
+{
+  "lesson": "10-cold-start-mitigation",
+  "title": "Giảm thiểu Khởi động Lạnh cho LLM Không Máy Chủ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Thời gian khởi động lạnh thường mất bao lâu cho một mô hình 70B trên một nút mới mà không có biện pháp giảm thiểu?",
+      "options": [
+        "3-8 phút",
+        "Hơn 1 giờ",
+        "Dưới 10 giây",
+        "30-60 giây"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tính năng nào của AWS mà bài học khuyên dùng để tiền nạp hình ảnh container nhằm làm cho bước 2 kéo hình ảnh biến mất?",
+      "options": [
+        "Kiến trúc dual-volume Bottlerocket được tham chiếu từ EC2NodeClass",
+        "Đặt chỗ đội tàu Spot",
+        "Chỉ ảnh chụp EBS volume",
+        "Định nghĩa tác vụ ECS"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tính năng nào của Modal cung cấp điều gần nhất với \"khởi động GPU ấm trong vài giây\" bằng cách giải mã trạng thái sau khi tải trực tiếp vào HBM?",
+      "options": [
+        "Ảnh chụp bộ nhớ GPU (checkpoint)",
+        "Tải NVMe theo tầng vào DRAM",
+        "Chạy:ai Model Streamer",
+        "Di chuyển trực tiếp"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao di chuyển trực tiếp lại chuyển đổi các token đầu vào thay vì KV cache giữa các nút?",
+      "options": [
+        "KV cache được mã hóa và không thể di chuyển",
+        "Di chuyển trực tiếp là yêu cầu của GDPR",
+        "Các token đầu vào có entropy lớn hơn",
+        "Tính toán lại KV trên đích rẻ hơn so với việc chuyển GB KV cache qua mạng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Lớp không máy chủ nào đổi chi phí GPU trực tiếp để có độ sẵn sàng dự đoán bằng cách giữ ít nhất một bản sao sống?",
+      "options": [
+        "Tải theo tầng",
+        "Di chuyển trực tiếp",
+        "Bể ấm với min_workers >= 1",
+        "Tiền nạp Bottlerocket"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học nói rằng giảm thiểu khởi động lạnh phải được xếp chồng lên nhau qua các lớp thay vì chọn như một công cụ đơn lẻ?",
+      "options": [
+        "Modal sở hữu toàn bộ ngăn xếp",
+        "Tất cả năm lớp được gộp lại trong vLLM",
+        "Đó là yêu cầu quy định",
+        "Không có lớp đơn lẻ nào loại bỏ mọi bước (cung cấp nút, kéo hình ảnh, tải trọng số, khởi tạo động cơ); xếp chồng các lớp nén mỗi bước"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

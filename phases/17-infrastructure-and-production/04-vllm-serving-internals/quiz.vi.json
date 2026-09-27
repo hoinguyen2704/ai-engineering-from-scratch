@@ -1,0 +1,78 @@
+{
+  "lesson": "04-vllm-serving-internals",
+  "title": "Nội Tại Của Engine Serving — PagedAttention, Continuous Batching, Chunked Prefill",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Vấn đề chính của batching tĩnh cổ điển với các yêu cầu có độ dài hỗn hợp là gì?",
+      "options": [
+        "Nó chỉ hoạt động với FP4",
+        "Nó hoàn toàn không thể sử dụng GPU",
+        "Việc padding đến prompt dài nhất và output dài nhất lãng phí bộ nhớ và làm chậm toàn bộ batch trên chuỗi chậm nhất",
+        "Nó yêu cầu NVLink giữa mỗi GPU"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "PagedAttention giảm phân mảnh KV cache từ 60-80% xuống dưới 4% như thế nào?",
+      "options": [
+        "Bằng cách vô hiệu hóa hoàn toàn KV cache",
+        "Bằng cách giữ toàn bộ prompt trong RAM CPU",
+        "Bằng cách nén trọng số xuống INT4",
+        "Bằng cách phân bổ KV cache trong các khối kích thước cố định (mặc định 16 token) được tham chiếu thông qua bảng khối theo chuỗi"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Định lý nào xác định batching liên tục trong bộ lập lịch V1 của vLLM?",
+      "options": [
+        "Mỗi yêu cầu có một luồng GPU riêng biệt",
+        "Bộ lập lịch chờ 10 ms để lấp đầy một batch trước khi chạy",
+        "Bộ lập lịch chạy một lần cho mỗi yêu cầu và batch không bao giờ thay đổi",
+        "Bộ lập lịch chạy một lần cho mỗi vòng lặp giải mã, cho phép các chuỗi đã hoàn thành ra ngoài và các chuỗi đang chờ vào trong"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số độ trễ nào mà chunked prefill chủ yếu bảo vệ dưới tải hỗn hợp?",
+      "options": [
+        "Thông lượng trung bình",
+        "Thời gian khởi động lạnh",
+        "RTT mạng",
+        "Độ trễ giữa các token P99 (ITL)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Trong vLLM v0.18.0, biến thể giải mã suy đoán nào vẫn tương thích với --enable-chunked-prefill?",
+      "options": [
+        "Không có giải mã suy đoán nào tương thích",
+        "Giải mã suy đoán GPU N-gram trong bộ lập lịch V1",
+        "Giải mã suy đoán mô hình dự thảo",
+        "Chỉ EAGLE-1"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao chunked prefill không tăng thông lượng trung bình một cách độc lập?",
+      "options": [
+        "Nó nén trọng số một cách mạnh mẽ hơn",
+        "Nó chỉ giảm độ rung thời gian giải mã; lợi ích về thông lượng trong thực tế đến từ việc giữ cho các chuỗi giải mã sống động trong suốt thời gian prefill dài, không phải từ việc thay đổi công việc đã thực hiện",
+        "Nó chạy trên một GPU khác với giải mã",
+        "Nó sử dụng giải mã suy đoán bên trong"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "18-multilingual-nlp",
+  "title": "NLP Đa Ngôn Ngữ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Zero-shot cross-lingual transfer có nghĩa là gì?",
+      "options": [
+        "Dịch mà không cần mô hình dịch",
+        "Phân tách từ với zero merges",
+        "Tinh chỉnh một mô hình đa ngôn ngữ trên một ngôn ngữ nguồn và đánh giá trên một ngôn ngữ khác mà không có nhãn ngôn ngữ đích",
+        "Đào tạo với zero ví dụ"
+      ],
+      "correct": 2,
+      "explanation": "Chuyển giao zero-shot: đào tạo trên ngôn ngữ nguồn, chạy trên ngôn ngữ đích mà không có giám sát ngôn ngữ đích."
+    },
+    {
+      "stage": "pre",
+      "question": "Gia đình mô hình nào được phát hành như là tiêu chuẩn cho 100 ngôn ngữ cross-lingual baseline?",
+      "options": [
+        "GPT-2",
+        "GloVe",
+        "DistilBERT",
+        "XLM-R (ví dụ: XLM-RoBERTa-base, 270M)"
+      ],
+      "correct": 3,
+      "explanation": "XLM-R là baseline được tiền huấn luyện cho 100 ngôn ngữ chuẩn mực cho phân loại cross-lingual."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tiếng Anh làm nguồn không phải lúc nào cũng mang lại chuyển giao tốt nhất cho ngôn ngữ không phải tiếng Anh?",
+      "options": [
+        "Tiếng Anh có quá ít dữ liệu",
+        "Sự tương đồng ngôn ngữ (typology, script, morphology) dự đoán chất lượng chuyển giao; một nguồn tài nguyên cao gần gũi có thể vượt trội hơn tiếng Anh",
+        "Tiếng Anh sử dụng BPE",
+        "Tiếng Anh quá ngắn"
+      ],
+      "correct": 1,
+      "explanation": "Các nguồn có liên quan về mặt typological (ví dụ: Hindi cho các mục tiêu Indic) thường vượt trội hơn tiếng Anh như một nguồn tinh chỉnh."
+    },
+    {
+      "stage": "check",
+      "question": "Thuế 'fertility' cho các ngôn ngữ tài nguyên thấp là gì?",
+      "options": [
+        "Các mô hình nhỏ hơn đào tạo chậm hơn",
+        "Các tokenizer không thể xử lý Unicode",
+        "BPE từ chối đào tạo",
+        "Văn bản tài nguyên thấp phân tách thành nhiều subwords hơn mỗi từ so với tiếng Anh, tiêu tốn cửa sổ ngữ cảnh, độ trễ và dung lượng"
+      ],
+      "correct": 3,
+      "explanation": "Các ngôn ngữ dài đuôi phân tách với độ 'fertility' cao hơn nhiều, làm tiêu tốn ngữ cảnh và hiệu quả đào tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần đánh giá theo ngôn ngữ, không phải độ chính xác tổng hợp?",
+      "options": [
+        "Tổng hợp chạy nhanh hơn",
+        "Tổng hợp chỉ hoạt động trên phân loại",
+        "Tổng hợp bỏ qua phân tách từ",
+        "Các số tổng hợp che giấu các ngôn ngữ dài đuôi nơi một mô hình đa ngôn ngữ có thể kém hơn nhiều so với giá trị trung bình của nó"
+      ],
+      "correct": 3,
+      "explanation": "Độ chính xác tổng hợp che giấu hiệu suất kém trên các ngôn ngữ tài nguyên thấp; điểm số theo ngôn ngữ phơi bày điều đó."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tốc độ học fine-tuning lại quan trọng khi điều chỉnh một mô hình đa ngôn ngữ với dữ liệu few-shot?",
+      "options": [
+        "Tốc độ học cao có thể làm sụp đổ sự căn chỉnh đa ngôn ngữ và hiệu quả giảm mô hình chỉ còn tiếng Anh",
+        "Tốc độ học thấp lãng phí GPU",
+        "Nó thay đổi từ vựng",
+        "Yêu cầu bởi các tokenizer"
+      ],
+      "correct": 0,
+      "explanation": "Tốc độ học quá mức làm lệch đại diện chung; tốc độ học bảo thủ (~2e-5) giữ nguyên cấu trúc cross-lingual."
+    },
+    {
+      "stage": "post",
+      "question": "Giải pháp nào trực tiếp giải quyết độ 'fertility' của tokenizer cho các script dài đuôi?",
+      "options": [
+        "Bỏ qua stopwords",
+        "Sử dụng byte-fallback (SentencePiece byte_fallback=True) hoặc một tokenizer với phạm vi script rộng hơn (ví dụ: XLM-V)",
+        "Nhiều epoch đào tạo hơn",
+        "Giảm kích thước batch"
+      ],
+      "correct": 1,
+      "explanation": "Byte fallback và các tokenizer với từ vựng rộng hơn giảm độ 'fertility' và OOV cho các script tài nguyên thấp."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào một mô hình đơn ngôn ngữ từ đầu đáng thử hơn là một mô hình đa ngôn ngữ?",
+      "options": [
+        "Chỉ cho dịch thuật",
+        "Bất cứ khi nào tokenizer là BPE",
+        "Luôn luôn cho tiếng Anh",
+        "Khi ngôn ngữ đích có đủ dữ liệu để đào tạo một mô hình đơn ngôn ngữ vượt trội hơn baseline đa ngôn ngữ; kiểm tra trước khi giả định"
+      ],
+      "correct": 3,
+      "explanation": "Đôi khi đào tạo đơn ngôn ngữ vượt trội hơn đa ngôn ngữ cho các mục tiêu tài nguyên cao; so sánh thực nghiệm quyết định."
+    }
+  ]
+}

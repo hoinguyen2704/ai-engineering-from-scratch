@@ -1,0 +1,78 @@
+{
+  "lesson": "48-distributed-fsdp-ddp",
+  "title": "Phân phối Dữ liệu Song song và FSDP từ đầu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hai phép toán tập thể nào là cốt lõi của một lớp DDP từ đầu?",
+      "options": [
+        "chỉ reduce_scatter",
+        "barrier và barrier",
+        "send và recv",
+        "broadcast tại khởi tạo để mỗi rank bắt đầu từ cùng một tham số, và all_reduce sau khi backward để mỗi rank kết thúc với gradient trung bình"
+      ],
+      "correct": 3,
+      "explanation": "Broadcast tại khởi tạo giữ cho các rank đồng bộ tại bước không. All-reduce sau khi backward giữ cho chúng đồng bộ tại mọi bước tiếp theo."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bài học này hoạt động trên CPU mà không cần CUDA?",
+      "options": [
+        "Nó sử dụng tensor mô phỏng",
+        "Nó hoàn toàn không sử dụng torch.distributed",
+        "torch.distributed cung cấp một backend gloo chạy các phép toán tập thể qua các socket thông thường, vì vậy các worker torch.multiprocessing trên CPU tạo thành một nhóm tiến trình thực sự; chỉ có thẻ thiết bị thay đổi trên một hộp GPU",
+        "Nó chỉ là một stub"
+      ],
+      "correct": 2,
+      "explanation": "Gloo là backend tập thể cho CPU. Các điểm gọi tương tự hoạt động trên nccl trên GPU; bề mặt API là giống nhau."
+    },
+    {
+      "stage": "check",
+      "question": "Bài kiểm tra manual_all_reduce_matches_single_process chứng minh điều gì?",
+      "options": [
+        "Rằng CUDA là không cần thiết",
+        "Rằng bộ tối ưu hội tụ",
+        "Không có gì",
+        "Rằng việc cộng các gradient theo rank và chia cho world_size phục hồi gradient mà một tiến trình đơn lẻ sẽ tính toán trên đầu vào đã nối, trong phạm vi tiếng ồn số thực"
+      ],
+      "correct": 3,
+      "explanation": "Giảm trung bình entropy chéo trên toàn bộ lô bằng với trung bình của các trung bình theo rank. Cộng và chia là phép toán đúng; bài kiểm tra làm cho điều đó trở nên rõ ràng."
+    },
+    {
+      "stage": "check",
+      "question": "Bản phác thảo FSDP trong bài học này làm gì cho mỗi tham số trong mỗi lần truyền tiến?",
+      "options": [
+        "Tính toán một hash",
+        "Khởi tạo lại tham số",
+        "Không có gì",
+        "Đệm tham số phẳng thành bội số của world_size, cắt, all_gathers các lát trên mỗi rank, bỏ đệm và xác minh rằng việc tái tạo khớp với bản gốc"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi rank sở hữu 1/world_size của mỗi tham số. Việc gather tái xây dựng tensor đầy đủ để tính toán; FSDP sản xuất chồng chéo việc gather với công việc của lớp trước đó."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao gloo all_gather được kích thước thành các mảnh có kích thước bằng nhau bằng world_size ngay cả khi chiều dài tham số không chia hết cho world_size?",
+      "options": [
+        "Nó tăng tốc mạng",
+        "Lựa chọn ngẫu nhiên",
+        "Đó là một lỗi",
+        "All_gather của Gloo yêu cầu kích thước tensor đầu ra bằng nhau cho mỗi rank, vì vậy tham số phẳng được đệm bên phải thành bội số của world_size trước khi cắt và đệm bị bỏ sau khi gather"
+      ],
+      "correct": 3,
+      "explanation": "Gloo (và nccl) all_gather mong đợi các đầu ra cùng kích thước. Đệm là cách sửa chữa rẻ nhất; bản phác thảo cắt tỉa kết quả về chiều dài gốc."
+    },
+    {
+      "stage": "post",
+      "question": "Đọc đầu ra demo, param_sum_spread gần bằng không trên các rank cho bạn biết điều gì?",
+      "options": [
+        "Không có gì có ý nghĩa",
+        "Rằng mỗi rank đã kết thúc chạy với cùng một giá trị tham số, điều này có nghĩa là broadcast tại khởi tạo và all-reduce sau mỗi lần backward đều hoạt động; nếu một trong hai bị hỏng, sự phân tán sẽ tăng lên qua các bước",
+        "Rằng tổn thất là thấp",
+        "Rằng mạng là nhanh"
+      ],
+      "correct": 1,
+      "explanation": "Bất biến của DDP là sự đồng nhất tham số giữa các rank. Sự phân tán là kiểm toán; demo khẳng định rằng nó giữ dưới 1e-3."
+    }
+  ]
+}

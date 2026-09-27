@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khóa API được sử dụng để làm gì khi gọi dịch vụ LLM?",
+      "options": [
+        "Mã hóa dữ liệu gửi đến máy chủ",
+        "Xác thực danh tính của bạn và ủy quyền cho các yêu cầu",
+        "Nén các yêu cầu để giảm băng thông",
+        "Chọn ngôn ngữ lập trình mà máy chủ sử dụng"
+      ],
+      "correct": 1,
+      "explanation": "Khóa API là một chuỗi duy nhất xác định tài khoản của bạn, ủy quyền cho các yêu cầu của bạn và cho phép nhà cung cấp theo dõi việc sử dụng và thanh toán."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao khóa API không bao giờ nên được mã hóa cứng trực tiếp trong mã nguồn?",
+      "options": [
+        "Python không thể đọc các chuỗi ký tự dài hơn 50 ký tự",
+        "Các nhà cung cấp API chặn các khóa xuất hiện trong các tệp nguồn",
+        "Khóa mã hóa cứng làm cho mã chạy chậm hơn",
+        "Chúng có thể bị cam kết ngẫu nhiên vào git và bị lộ công khai"
+      ],
+      "correct": 3,
+      "explanation": "Các khóa mã hóa cứng trong mã nguồn có nguy cơ bị cam kết vào kiểm soát phiên bản và đẩy lên các kho công khai, nơi chúng có thể bị thu thập và lạm dụng bởi người khác."
+    },
+    {
+      "stage": "post",
+      "question": "Cách lưu trữ khóa API cho phát triển cục bộ được khuyến nghị là gì?",
+      "options": [
+        "Trong tệp .env được liệt kê trong .gitignore",
+        "Trong README.md để dễ dàng truy cập",
+        "Trong một biến Python ở đầu kịch bản của bạn",
+        "Trong requirements.txt cùng với các phiên bản gói"
+      ],
+      "correct": 0,
+      "explanation": "Tệp .env lưu trữ các khóa dưới dạng biến môi trường và nên được thêm vào .gitignore để không bao giờ bị cam kết vào kiểm soát phiên bản. Các SDK tự động đọc các khóa từ biến môi trường."
+    },
+    {
+      "stage": "post",
+      "question": "Trong cuộc gọi API HTTP thô đến Anthropic, tiêu đề nào mang khóa API?",
+      "options": [
+        "Authorization: Bearer sk-ant-...",
+        "Content-Type: application/json",
+        "anthropic-version: 2023-06-01",
+        "x-api-key: sk-ant-..."
+      ],
+      "correct": 3,
+      "explanation": "API của Anthropic sử dụng tiêu đề 'x-api-key' để xác thực, không phải mẫu 'Authorization: Bearer' phổ biến hơn. Điều này là đặc trưng cho thiết kế API của họ."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì xảy ra khi bạn vượt quá giới hạn tỷ lệ của API?",
+      "options": [
+        "Yêu cầu của bạn được xếp hàng và xử lý sau tự động",
+        "Máy chủ trả về lỗi (thường là HTTP 429) và bạn phải chờ trước khi thử lại",
+        "Khóa API của bạn bị thu hồi vĩnh viễn",
+        "API âm thầm bỏ qua yêu cầu của bạn mà không có phản hồi"
+      ],
+      "correct": 1,
+      "explanation": "Giới hạn tỷ lệ trả về HTTP 429 (Quá nhiều yêu cầu). Bạn cần chờ và thử lại, thường là với phương pháp lùi lại theo cấp số nhân. Giới hạn tỷ lệ ngăn chặn lạm dụng và đảm bảo sử dụng công bằng."
+    }
+  ]
+}

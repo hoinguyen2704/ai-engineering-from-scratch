@@ -1,0 +1,90 @@
+{
+  "lesson": "01-the-agent-loop",
+  "title": "Vòng Lặp Tác Nhân: Quan Sát, Suy Nghĩ, Hành Động",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một LLM tự nó lại hành xử như một công cụ hoàn thành tự động thay vì một tác nhân?",
+      "options": [
+        "Nó không thể đọc tệp, chạy truy vấn, hoặc xác minh các tuyên bố với thế giới bên ngoài",
+        "Cửa sổ ngữ cảnh của nó quá nhỏ để chứa một câu hỏi",
+        "Nó chỉ phát ra một token tại một thời điểm",
+        "Nó từ chối trả lời mà không có lời nhắc hệ thống"
+      ],
+      "correct": 0,
+      "explanation": "Một LLM không có vòng lặp và không có công cụ chỉ có thể tạo ra văn bản từ trọng số của nó; nó không thể quan sát trạng thái hoặc hành động trên đó."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba nhãn nào xuất hiện trong dấu vết ReAct chuẩn từ Yao et al. 2022?",
+      "options": [
+        "Lời nhắc, Phản hồi, Phần thưởng",
+        "Kế hoạch, Thực hiện, Phản ánh",
+        "Suy nghĩ, Hành động, Quan sát",
+        "Hệ thống, Người dùng, Trợ lý"
+      ],
+      "correct": 2,
+      "explanation": "ReAct xen kẽ các dòng Suy nghĩ, Hành động và Quan sát trong một luồng duy nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Mục nào KHÔNG phải là một trong năm thành phần mà bài học liệt kê cho một vòng lặp tác nhân?",
+      "options": [
+        "Đăng ký công cụ",
+        "Bộ đệm tin nhắn",
+        "Định dạng quan sát",
+        "Bộ tối ưu hóa gradient"
+      ],
+      "correct": 3,
+      "explanation": "Năm thành phần là bộ đệm tin nhắn, đăng ký công cụ, điều kiện dừng, ngân sách lượt, và định dạng quan sát. Các bộ tối ưu hóa gradient thuộc về đào tạo, không phải vòng lặp suy diễn."
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của ngân sách lượt trong vòng lặp là gì?",
+      "options": [
+        "Nó kiểm soát số lượng công cụ mà đăng ký công cụ cung cấp",
+        "Nó giới hạn tỷ lệ nhà cung cấp LLM",
+        "Nó giới hạn số lần lặp của vòng lặp để ngăn chặn các tác nhân không kiểm soát",
+        "Nó giới hạn số lượng token mỗi phản hồi"
+      ],
+      "correct": 2,
+      "explanation": "Ngân sách lượt là một giới hạn cho số lần lặp của vòng lặp; các tác nhân 2026 thường chạy từ 40-400 bước và cần một giới hạn phù hợp với nhiệm vụ."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì đã thay đổi trong sự chuyển đổi lý luận bản địa 2025-2026 so với các token Suy nghĩ dựa trên lời nhắc?",
+      "options": [
+        "Các token Suy nghĩ bây giờ được phát ra trên một kênh lý luận riêng biệt được truyền qua các lượt",
+        "Các mô hình ngừng sử dụng các cuộc gọi công cụ và chỉ dựa vào chuỗi suy nghĩ",
+        "Các quan sát hoàn toàn bị loại bỏ khỏi lời nhắc",
+        "Luồng điều khiển vòng lặp đã được thay thế bằng một DAG"
+      ],
+      "correct": 0,
+      "explanation": "Nội dung lý luận chuyển sang một kênh chuyên dụng (thường được mã hóa giữa các nhà cung cấp), nhưng luồng điều khiển quan sát-suy nghĩ-hành động không thay đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học nói rằng đầu ra của công cụ là đầu vào không đáng tin cậy?",
+      "options": [
+        "Thời gian chạy của công cụ chậm và không đáng tin cậy",
+        "Nội dung được truy xuất có thể mang theo các hướng dẫn ẩn như xóa-repo và chỉ đầu vào trực tiếp của người dùng mới được coi là sự cho phép",
+        "Kết quả của công cụ luôn lớn hơn cửa sổ ngữ cảnh của mô hình",
+        "Nhà cung cấp mặc định loại bỏ byte đầu ra của công cụ"
+      ],
+      "correct": 1,
+      "explanation": "Tài liệu CUA của OpenAI nêu rõ rằng chỉ các hướng dẫn trực tiếp từ người dùng mới được coi là sự cho phép; đầu ra của công cụ có thể mang theo các hướng dẫn thù địch và phải được coi là không đáng tin cậy."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học khẳng định rằng mọi khung 2026 vẫn chạy ReAct bên trong?",
+      "options": [
+        "Bởi vì LangGraph buộc tất cả các khung khác phải kế thừa từ nó",
+        "Bởi vì các nhà cung cấp yêu cầu các từ khóa ReAct trong lời nhắc",
+        "Bởi vì Yao et al. sở hữu một bằng sáng chế về vòng lặp",
+        "Bởi vì luồng điều khiển quan sát-suy nghĩ-hành động là không thay đổi; các khung khác nhau về việc kiểm tra điểm, diễn viên, mẫu vai trò, và theo dõi xung quanh nó"
+      ],
+      "correct": 3,
+      "explanation": "Sự khác biệt giữa Claude Agent SDK, OpenAI Agents SDK, LangGraph, AutoGen, CrewAI, Agno, và Mastra là về những gì bao bọc vòng lặp, không phải bản thân vòng lặp."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "64-chunking-strategies-advanced",
+  "title": "So Sánh Các Chiến Lược Chia Nhỏ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao lựa chọn chia nhỏ là một giới hạn trên về chất lượng truy xuất và không chỉ là một siêu tham số?",
+      "options": [
+        "Bởi vì LLM không bao giờ đọc các khối",
+        "Bởi vì BM25 không có vai trò trong RAG hiện đại",
+        "Bởi vì không có embedding, reranker, hoặc LLM hạ nguồn nào có thể phục hồi một khoảng trả lời đã bị cắt thành những mảnh không liên kết",
+        "Bởi vì mô hình embedding được cố định tại thời điểm huấn luyện"
+      ],
+      "correct": 2,
+      "explanation": "Nếu khối chứa khoảng trả lời không liên kết, embedding sẽ di chuyển đến cụm sai và các thành phần hạ nguồn không thể sửa chữa thiệt hại."
+    },
+    {
+      "stage": "pre",
+      "question": "Chiến lược nào là mặc định mạnh nhất khi bạn không có kiến thức trước về tập hợp dữ liệu?",
+      "options": [
+        "Bộ câu",
+        "Cửa sổ cố định",
+        "Chia nhỏ đệ quy",
+        "Đánh dấu cấu trúc"
+      ],
+      "correct": 2,
+      "explanation": "Chia nhỏ đệ quy thích ứng theo từng vùng bằng cách thử separator mạnh nhất trước và quay lại, vì vậy nó tồn tại được trong cấu trúc không nhất quán."
+    },
+    {
+      "stage": "check",
+      "question": "Recall@k đo lường điều gì trong bài học này?",
+      "options": [
+        "Liệu các khối top-k có chứa chuỗi truy vấn nguyên văn hay không",
+        "Độ tương đồng cosine giữa truy vấn và các khối top-k",
+        "Số lượng tài liệu duy nhất trong top-k",
+        "Liệu có bất kỳ khối top-k nào chồng lấp với khoảng trả lời vàng hay không"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi truy vấn mang theo các offset vàng; recall@k là 1 nếu bất kỳ khối top-k nào chồng lấp với khoảng vàng, nếu không thì là 0; trung bình trên các truy vấn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao chia nhỏ cửa sổ cố định lại thất bại nghiêm trọng trên các tập hợp mã hoặc YAML?",
+      "options": [
+        "Nó cắt các định danh và cặp khóa-giá trị thành hai, tạo ra các khối nhúng thành tiếng ồn",
+        "Nó mất các ký tự Unicode",
+        "Nó không thể được song song hóa",
+        "Nó tạo ra các khối lớn hơn cửa sổ ngữ cảnh của mô hình embedding"
+      ],
+      "correct": 0,
+      "explanation": "Các cắt cấp ký tự bên trong một ký hiệu phá hủy ý nghĩa mà mô hình embedding dự kiến sẽ nắm bắt."
+    },
+    {
+      "stage": "check",
+      "question": "Tiêu chí dừng trôi tâm trong chia nhỏ ngữ nghĩa là gì?",
+      "options": [
+        "Độ tương đồng cosine giữa vector trung bình đang chạy và câu tiếp theo giảm xuống dưới một ngưỡng",
+        "Số lượng ký tự vượt quá tối đa",
+        "Số lượng câu vượt quá giới hạn đã mã hóa cứng",
+        "Trình chia nhỏ đã tiêu thụ toàn bộ ngân sách embedding"
+      ],
+      "correct": 0,
+      "explanation": "Chia nhỏ ngữ nghĩa cắt khi tâm đang chạy không còn khớp với câu tiếp theo theo ngưỡng tương đồng đã cấu hình."
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ thất bại stale-embedding nào mà chia nhỏ ngữ nghĩa giới thiệu mà bốn chiến lược còn lại không có?",
+      "options": [
+        "Các khối quá nhỏ cho ngữ cảnh embedding",
+        "Ranh giới khối thay đổi bất cứ khi nào bạn thay đổi mô hình khối, yêu cầu một sự tái xây dựng phối hợp",
+        "Các khối không còn có thể được lập chỉ mục bởi BM25",
+        "Các khối mất đi các offset bắt đầu và kết thúc"
+      ],
+      "correct": 1,
+      "explanation": "Phân cụm ngữ nghĩa phụ thuộc vào một mô hình embedding; việc thay đổi mô hình sẽ thay đổi các ranh giới, vì vậy mô hình khối phải được cố định riêng hoặc được xây dựng lại cùng với mô hình truy xuất."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "ViT chuyển đổi một hình ảnh thành một chuỗi token như thế nào?",
+      "options": [
+        "Áp dụng một phép tích chập với kernel_size = stride = patch_size để chia hình ảnh thành các mảnh không chồng lấp và tuyến tính dự đoán mỗi mảnh thành một embedding token trong một phép toán",
+        "Làm phẳng toàn bộ hình ảnh thành một vector",
+        "Chạy một CNN trước và sử dụng bản đồ đặc trưng của nó làm token",
+        "Sắp xếp cường độ pixel"
+      ],
+      "correct": 0,
+      "explanation": "Lớp đầu tiên của ViT là một phép tích chập với kernel_size = stride = 16, biến đổi một hình ảnh 224x224 thành một lưới 14x14 của các mảnh 16x16, mỗi mảnh được dự đoán thành dim=768. Phép tích chập đơn này thực hiện cả việc chia mảnh và dự đoán. Kết quả là 196 token mà một bộ mã hóa transformer tiêu chuẩn có thể xử lý."
+    },
+    {
+      "stage": "pre",
+      "question": "Token [CLS] trong ViT là gì và tại sao nó cần thiết?",
+      "options": [
+        "Một vị trí giữ chỗ cho dữ liệu bị thiếu",
+        "Một giá trị pixel đặc biệt",
+        "Một mặt nạ dropout",
+        "Một vector đã học được thêm vào đầu chuỗi token; sau N lớp transformer, đầu ra của nó tổng hợp toàn bộ hình ảnh và cung cấp cho đầu phân loại"
+      ],
+      "correct": 3,
+      "explanation": "ViT tuân theo quy ước của BERT: thêm một vector đã học (token CLS) vào chuỗi mảnh. Attention tự động cho phép mỗi token nhìn thấy mọi token khác, vì vậy token CLS tổng hợp thông tin toàn cục từ tất cả các mảnh. Bộ phân loại chỉ đọc đầu ra của CLS. Các thiết kế thay thế sử dụng average-pooling trên tất cả các token mảnh (được sử dụng bởi ConvNeXt và nhiều mô hình sau ViT)."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài báo ViT gốc cần tiền huấn luyện JFT-300M để vượt qua ResNet, và tại sao DeiT không cần?",
+      "options": [
+        "DeiT sử dụng attention khác",
+        "Bài báo ViT đã sai",
+        "ViT có các thiên kiến quy nạp yếu hơn so với CNN; nếu không có đủ dữ liệu, nó sẽ bị overfit. DeiT cho thấy rằng với việc tăng cường mạnh (RandAugment, Mixup, CutMix), độ sâu ngẫu nhiên, và tùy chọn chưng cất từ CNN, ViTs có thể huấn luyện tốt trên ImageNet-1k một mình",
+        "ViT bị hỏng mà không có JFT-300M"
+      ],
+      "correct": 2,
+      "explanation": "Sự thiếu hụt thiên kiến quy nạp của ViT (không có tính địa phương, không có tính tương đương dịch chuyển được tích hợp) có nghĩa là mạng phải học những điều này từ dữ liệu. Với 1 triệu hình ảnh ImageNet thì điều đó khó; với 300 triệu hình ảnh JFT thì dễ. DeiT đã thay thế dữ liệu bằng các cải tiến công thức huấn luyện: tăng cường mạnh, độ sâu ngẫu nhiên, và chưng cất từ một giáo viên CNN, tất cả đều bù đắp cho sự thiếu hụt các tiền đề."
+    },
+    {
+      "stage": "post",
+      "question": "Pre-LayerNorm (`x = x + sublayer(LN(x))`) so với post-LayerNorm (`x = LN(x + sublayer(x))`) — cái nào được sử dụng trong các transformer hiện đại và tại sao?",
+      "options": [
+        "Post-LN; nó đơn giản hơn",
+        "Không cái nào; các transformer hiện đại bỏ qua LayerNorm",
+        "Pre-LN; nó huấn luyện các mạng sâu hơn một cách ổn định mà không cần khởi động tốc độ học và tránh được sự không ổn định gradient mà post-LN gặp phải sau khoảng 6 lớp",
+        "Chúng là giống hệt nhau"
+      ],
+      "correct": 2,
+      "explanation": "Post-LN là transformer gốc (2017) và yêu cầu khởi động cẩn thận + tốc độ học nhỏ sau 6-8 lớp. Pre-LN (Xiong et al., 2020; được sử dụng bởi ViT, GPT-2+, mọi LLM hiện đại) ổn định hơn về mặt số học: dòng dư tích lũy mà không đi qua LN, và mỗi sublayer hoạt động trên một đầu vào đã được chuẩn hóa. Mọi transformer sâu hơn 12 lớp đều sử dụng pre-LN."
+    },
+    {
+      "stage": "post",
+      "question": "Swin Transformer giới thiệu attention theo cửa sổ. Vấn đề nào mà nó giải quyết?",
+      "options": [
+        "BatchNorm không được hỗ trợ",
+        "Overfitting vào kết cấu",
+        "Gradient biến mất",
+        "Attention đầy đủ có chi phí O((H*W)^2); Swin giới hạn attention trong các cửa sổ cục bộ của các mảnh 7x7, giảm chi phí xuống O(H*W * window^2). Các khối xen kẽ dịch chuyển cửa sổ một nửa kích thước của nó để thông tin cuối cùng trộn lẫn qua hình ảnh"
+      ],
+      "correct": 3,
+      "explanation": "Một hình ảnh 224x224 với các mảnh 4x4 có 56*56 = 3136 token; attention đầy đủ là 3136^2 = ~10 triệu cặp mỗi lớp. Swin chỉ chú ý trong các cửa sổ 7x7, cho 49^2 = 2401 cặp mỗi cửa sổ (cộng với số lượng cửa sổ). Các cửa sổ dịch chuyển trong các khối xen kẽ trộn thông tin qua các cửa sổ qua một vài lớp. Điều này mang lại một tiền đề tính địa phương giống như CNN trở lại cho transformer mà không từ bỏ attention."
+    }
+  ]
+}

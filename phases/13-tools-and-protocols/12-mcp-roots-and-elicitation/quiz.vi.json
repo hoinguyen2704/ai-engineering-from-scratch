@@ -1,0 +1,78 @@
+{
+  "lesson": "12-mcp-roots-and-elicitation",
+  "title": "Phạm vi rõ ràng và Khai thác không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "MCP Roots cung cấp đảm bảo bảo mật gì?",
+      "options": [
+        "Hướng dẫn không gian làm việc thông tin, không phải ủy quyền hoặc cách ly",
+        "Cách ly hệ điều hành cho mỗi quy trình máy chủ",
+        "Chứng minh rằng người gọi sở hữu mọi tệp dưới gốc",
+        "Tự động ngăn chặn các liên kết biểu tượng thoát"
+      ],
+      "correct": 0,
+      "explanation": "Roots là thông tin và sẽ bị ngừng sử dụng vào ngày 28-07-2026. Các máy chủ vẫn cần ủy quyền, chứa đựng và cách ly."
+    },
+    {
+      "stage": "check",
+      "question": "Thay thế hiện đại rõ ràng nhất khi phạm vi không gian làm việc thay đổi theo từng cuộc gọi công cụ là gì?",
+      "options": [
+        "Một giá trị ẩn được lưu trữ dưới một phiên vận chuyển",
+        "Một yêu cầu roots/list được gửi sau khi biến đổi",
+        "Tên clientInfo tự báo cáo",
+        "Một tham số URI không gian làm việc rõ ràng mà máy chủ ủy quyền"
+      ],
+      "correct": 3,
+      "explanation": "Một tay cầm rõ ràng là có thể nhìn thấy và phát lại, nhưng máy chủ vẫn phải ủy quyền cho nguyên tắc đã xác thực."
+    },
+    {
+      "stage": "check",
+      "question": "Khai thác chế độ biểu mẫu được cung cấp như thế nào dưới MCP 2026-07-28?",
+      "options": [
+        "Dưới dạng chuyển hướng HTTP từ server/discover",
+        "Thông qua thông báo/roots/list_changed",
+        "Dưới dạng yêu cầu đảo ngược qua một luồng Mcp-Session-Id",
+        "Bên trong inputRequests trên một kết quả input_required"
+      ],
+      "correct": 3,
+      "explanation": "MRTR nhúng khai thác/create trong inputRequests, sau đó client thử lại thao tác gốc với inputResponses. Elicitation {} và elicitation.form hỗ trợ chế độ biểu mẫu; hỗ trợ chỉ URL trả về -32021 với data.requiredCapabilities.elicitation.form."
+    },
+    {
+      "stage": "check",
+      "question": "Giá trị nào không bao giờ được thu thập thông qua khai thác chế độ biểu mẫu?",
+      "options": [
+        "Một xác nhận hành động phá hủy boolean",
+        "Một id ghi chú được chọn từ một enum",
+        "Một mã thông báo truy cập API",
+        "Một sở thích hiển thị không nhạy cảm"
+      ],
+      "correct": 2,
+      "explanation": "Các bí mật và thông tin xác thực không được truyền qua client MCP. Sử dụng một luồng chế độ URL được ràng buộc cẩn thận cho các tương tác bên ngoài nhạy cảm."
+    },
+    {
+      "stage": "post",
+      "question": "Một người dùng từ chối một khai thác xóa. Kết quả an toàn là gì?",
+      "options": [
+        "Xóa vì mô hình đã chọn ghi chú",
+        "Xem nội dung thiếu như sự đồng ý ngầm",
+        "Trả về một kết quả từ chối không lỗi hoàn chỉnh và bảo tồn ghi chú",
+        "Lặp lại cùng một cuộc đối thoại cho đến khi người dùng chấp nhận"
+      ],
+      "correct": 2,
+      "explanation": "Từ chối là từ chối rõ ràng. Nó không được chuyển đổi thành sự đồng ý, nhắc nhở lỗi, hoặc biến đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Thiết kế nào ràng buộc an toàn một xác nhận phá hủy với những gì người dùng đã thấy?",
+      "options": [
+        "Mã hóa Base64 id ghi chú đã chọn mà không có chữ ký",
+        "Ký tên nguyên tắc, tóm tắt đối số gốc, id ứng viên, giai đoạn và thời hạn, sau đó kiểm tra lại mục tiêu trực tiếp",
+        "Sử dụng clientInfo như danh tính người dùng có thẩm quyền",
+        "Tin tưởng bất kỳ id ghi chú nào được trả về với hành động chấp nhận"
+      ],
+      "correct": 1,
+      "explanation": "Trạng thái được bảo vệ tính toàn vẹn ngăn chặn việc giả mạo. Một yêu cầu nonce một lần nguyên tử chia sẻ ngăn chặn việc phát lại, trong khi các kiểm tra trực tiếp cuối cùng giải quyết các cuộc đua trước khi biến đổi."
+    }
+  ]
+}

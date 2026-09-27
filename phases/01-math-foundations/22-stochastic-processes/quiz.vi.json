@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tính chất Markov là gì?",
+      "options": [
+        "Tất cả các trạng thái đều có khả năng như nhau ở mỗi bước",
+        "Trạng thái tiếp theo chỉ phụ thuộc vào trạng thái hiện tại, không phụ thuộc vào lịch sử của các trạng thái trước đó",
+        "Quá trình luôn trở về trạng thái ban đầu",
+        "Quá trình phải có một số lượng trạng thái hữu hạn"
+      ],
+      "correct": 1,
+      "explanation": "Tính chất Markov (không có trí nhớ) có nghĩa là P(X_{t+1} = j | X_t = i, X_{t-1}, ...) = P(X_{t+1} = j | X_t = i). Tương lai chỉ phụ thuộc vào vị trí hiện tại của bạn, không phải cách bạn đến đó. Điều này cho phép đại diện gọn gàng thông qua ma trận chuyển tiếp."
+    },
+    {
+      "stage": "pre",
+      "question": "Trong một cuộc đi bộ ngẫu nhiên 1D, khoảng cách kỳ vọng từ gốc thay đổi như thế nào với số bước n?",
+      "options": [
+        "Theo logarithm: tỷ lệ với log(n)",
+        "Theo căn bậc hai: tỷ lệ với sqrt(n)",
+        "Nó giữ nguyên không thay đổi bất kể n",
+        "Theo tỷ lệ tuyến tính: tỷ lệ với n"
+      ],
+      "correct": 1,
+      "explanation": "Mỗi bước là +/-1 với xác suất bằng nhau. Phương sai sau n bước là n, vì vậy độ lệch chuẩn (khoảng cách điển hình từ gốc) là sqrt(n). Sau 10.000 bước, khoảng cách kỳ vọng là khoảng 100, không phải 10.000."
+    },
+    {
+      "stage": "post",
+      "question": "Phân phối tĩnh của một chuỗi Markov là gì?",
+      "options": [
+        "Phân phối đồng nhất trên tất cả các trạng thái",
+        "Phân phối ban đầu của các trạng thái",
+        "Phân phối của các trạng thái sau đúng một lần chuyển tiếp",
+        "Phân phối không thay đổi dưới ma trận chuyển tiếp: pi * P = pi"
+      ],
+      "correct": 3,
+      "explanation": "Phân phối tĩnh pi thỏa mãn pi * P = pi — việc áp dụng ma trận chuyển tiếp không làm thay đổi nó. Nó đại diện cho tỷ lệ thời gian dài hạn dành cho mỗi trạng thái. Đối với một chuỗi không thể giảm, không định kỳ, bất kỳ phân phối ban đầu nào cũng hội tụ về pi."
+    },
+    {
+      "stage": "post",
+      "question": "Trong động lực Langevin x_{t+1} = x_t - dt * grad(U) + sqrt(2*T*dt) * z, điều gì xảy ra khi nhiệt độ T tiến gần đến 0?",
+      "options": [
+        "Quá trình phân kỳ đến vô cực",
+        "Quá trình trở thành một cuộc đi bộ ngẫu nhiên thuần túy",
+        "Quá trình trở thành giảm dần gradient thuần túy (tối ưu hóa xác định)",
+        "Quá trình đóng băng ở vị trí ban đầu"
+      ],
+      "correct": 2,
+      "explanation": "Tại T = 0, thành phần nhiễu sqrt(2*T*dt)*z biến mất, để lại x_{t+1} = x_t - dt * grad(U), đây là giảm dần gradient tiêu chuẩn. Tại T cao, nhiễu chiếm ưu thế và quá trình gần như là một cuộc đi bộ ngẫu nhiên. T trung gian cân bằng giữa khám phá và khai thác."
+    },
+    {
+      "stage": "post",
+      "question": "Trong một mô hình khuếch tán, quá trình tiến hành làm gì với một mẫu dữ liệu qua T bước?",
+      "options": [
+        "Nó làm sắc nét hình ảnh bằng cách loại bỏ nhiễu ở mỗi bước",
+        "Nó từ từ thêm nhiễu Gaussian cho đến khi mẫu trở thành nhiễu thuần túy, theo một chuỗi Markov",
+        "Nó nén hình ảnh xuống độ phân giải thấp hơn",
+        "Nó áp dụng các biến đổi đã học để tạo ra dữ liệu mới"
+      ],
+      "correct": 1,
+      "explanation": "Quá trình tiến hành là một chuỗi Markov: x_t = sqrt(alpha_t) * x_{t-1} + sqrt(1 - alpha_t) * noise. Sau T bước, x_T xấp xỉ N(0, I) — nhiễu Gaussian thuần túy. Quá trình đảo ngược (được học bởi một mạng nơ-ron) sau đó loại bỏ nhiễu từng bước để tạo ra dữ liệu mới."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ý tưởng kiến trúc duy nhất nào mà AlexNet (2012) giới thiệu đã làm cho việc huấn luyện các CNN sâu trở nên thực tiễn trên GPU?",
+      "options": [
+        "Kết nối dư",
+        "Tích chập tách biệt theo chiều sâu",
+        "Thay thế tanh bằng ReLU, không bị bão hòa và tăng tốc độ hội tụ khoảng 6 lần",
+        "Chuẩn hóa theo lô"
+      ],
+      "correct": 2,
+      "explanation": "Tăng tốc độ huấn luyện lớn nhất của AlexNet đến từ ReLU. Tanh bị bão hòa với các đầu vào dương hoặc âm lớn, điều này làm hỏng gradient và giới hạn độ sâu mà bạn có thể huấn luyện. ReLU là hàm tuyến tính từng phần, không bị bão hòa với các đầu vào dương, và là thay đổi duy nhất đã đưa việc huấn luyện từ tuần xuống còn ngày. Dropout và song song GPU cũng quan trọng, nhưng ReLU là yếu tố mở khóa độ sâu."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao VGG lại ưa chuộng các chồng tích chập 3x3 hơn là một kernel lớn hơn?",
+      "options": [
+        "Hai tích chập 3x3 bao phủ cùng một trường tiếp nhận 5x5 với ít tham số hơn (18C^2 so với 25C^2) và một ReLU bổ sung giữa chúng",
+        "Tích chập 3x3 là bất biến theo phép quay; 5x5 thì không",
+        "Các kernel nhỏ hơn chạy nhanh hơn trên CPU",
+        "Các kernel lớn hơn không thể được huấn luyện với SGD"
+      ],
+      "correct": 0,
+      "explanation": "Hai tích chập 3x3 chồng lên nhau nhìn thấy cùng một vùng 5x5 như một tích chập 5x5, nhưng sử dụng ít tham số hơn (2 * 3 * 3 * C^2 = 18C^2 so với 25C^2) và bao gồm một phi tuyến bổ sung. ReLU bổ sung đó tăng cường sức mạnh biểu đạt. VGG đã biến quan sát này thành một kiến trúc hoàn chỉnh với đúng một loại khối được lặp lại."
+    },
+    {
+      "stage": "post",
+      "question": "ResNet đã giới thiệu các kết nối dư dưới dạng y = F(x) + x. Vấn đề nào mà điều này giải quyết?",
+      "options": [
+        "Sự biến mất của các kích hoạt trong các lớp có ReLU",
+        "Tiêu thụ bộ nhớ trong quá trình lan truyền ngược",
+        "Vấn đề suy giảm — sau khoảng 20 lớp tích chập thông thường, tổn thất huấn luyện bắt đầu xấu đi vì bộ tối ưu gặp khó khăn trong việc học một ánh xạ đồng nhất qua nhiều lớp phi tuyến",
+        "Quá khớp trong đầu phân loại"
+      ],
+      "correct": 2,
+      "explanation": "Trước ResNet, tổn thất huấn luyện bắt đầu tăng lên sau khoảng 20 lớp mặc dù mạng có nhiều khả năng hơn — vấn đề suy giảm. Một khối dư có thể dễ dàng đại diện cho đồng nhất bằng cách làm cho F bằng không, cung cấp cho bộ tối ưu một mặc định an toàn. Với lối thoát đó, mỗi khối bổ sung có thể làm cho mạng tốt hơn một chút, đó là cách mà các mạng 100+ lớp trở nên có thể huấn luyện."
+    },
+    {
+      "stage": "post",
+      "question": "Trong một ResNet BasicBlock với in_channels=64, out_channels=128, stride=2, vai trò của nhánh shortcut là gì?",
+      "options": [
+        "Nó là một chỗ giữ chỗ sẽ bị loại bỏ trong thời gian suy diễn",
+        "Nó là một max-pool làm giảm một nửa kích thước không gian",
+        "Nó luôn là đồng nhất; nhánh chính xử lý sự thay đổi hình dạng",
+        "Nó là một tích chập 1x1 với stride 2 khớp với số kênh đầu ra và kích thước không gian của nhánh chính để hai cái có thể được cộng lại"
+      ],
+      "correct": 3,
+      "explanation": "Khi một khối thay đổi số lượng kênh hoặc bước không gian, đường đi đồng nhất không thể được cộng trực tiếp vào nhánh chính vì hình dạng khác nhau. Nhánh shortcut trở thành một tích chập 1x1 với stride=2 và số kênh đầu ra C_out, có thể theo sau bởi chuẩn hóa theo lô. Đường đi đồng nhất chỉ được sử dụng khi in_c == out_c và stride == 1."
+    },
+    {
+      "stage": "post",
+      "question": "ResNet-18 có khoảng 11.7 triệu tham số và ngang bằng hoặc vượt qua VGG-16 (138 triệu tham số) trên ImageNet. Điều này ngụ ý điều gì về VGG?",
+      "options": [
+        "Các kernel của VGG quá nhỏ để học các đặc trưng tốt",
+        "VGG được huấn luyện với một bộ tối ưu kém hơn",
+        "Hầu hết các tham số của VGG bị lãng phí trong đầu fully connected và độ sâu dư thừa sau điểm mà các kết nối dư cho phép mỗi lớp đóng góp",
+        "Độ chính xác của VGG trên ImageNet đã được đo lường không chính xác"
+      ],
+      "correct": 2,
+      "explanation": "Số lượng tham số của VGG-16 bị chi phối bởi bộ phân loại fully connected khổng lồ của nó (ba lớp dày trên 25088 kích hoạt), và ngăn xếp sâu thông thường của nó không thể thêm các lớp hiệu quả như một ngăn xếp dư. ResNet-18 thay thế đầu FC bằng một lớp trung bình toàn cầu cộng với một lớp tuyến tính và sử dụng các khối dư, điều này cùng nhau cung cấp hiệu quả tham số khoảng 12 lần với độ chính xác tương tự."
+    }
+  ]
+}

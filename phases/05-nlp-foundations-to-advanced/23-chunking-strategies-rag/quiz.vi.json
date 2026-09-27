@@ -1,0 +1,102 @@
+{
+  "lesson": "23-chunking-strategies-rag",
+  "title": "Chiến lược Chunking cho RAG",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao chiến lược chunking lại quan trọng như mô hình embedding trong RAG?",
+      "options": [
+        "Chunking làm giảm kích thước mô hình",
+        "Các chunk nhỏ hơn huấn luyện nhanh hơn",
+        "Chunking là yêu cầu của FAISS",
+        "Ranh giới chunk xác định liệu câu trả lời có thể truy xuất được hay không; các chunk kém làm thất bại bất kỳ embedding nào"
+      ],
+      "correct": 3,
+      "explanation": "Nghiên cứu của Vectara năm 2025 cho thấy chất lượng chunking tương đương hoặc vượt qua tác động của mô hình embedding đến chất lượng truy xuất."
+    },
+    {
+      "stage": "pre",
+      "question": "LangChain's RecursiveCharacterTextSplitter thử cái gì theo thứ tự?",
+      "options": [
+        "Thử chia theo ngắt đoạn, sau đó là ngắt dòng, sau đó là ranh giới câu, sau đó là khoảng trắng",
+        "Chia theo ID token",
+        "Chia chỉ theo khoảng trắng",
+        "Luôn chia theo ký tự N"
+      ],
+      "correct": 0,
+      "explanation": "Chia đệ quy quay lại qua đoạn -> ngắt dòng -> câu -> khoảng trắng để bảo tồn cấu trúc."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao mẫu tài liệu cha cải thiện chất lượng câu trả lời?",
+      "options": [
+        "Nó loại bỏ các embedding",
+        "Các chunk con cung cấp truy xuất chính xác; trả về khối cha lớn hơn bảo tồn ngữ cảnh xung quanh mà người đọc cần",
+        "Nó tránh việc token hóa",
+        "Nó sử dụng ít chu kỳ GPU hơn"
+      ],
+      "correct": 1,
+      "explanation": "Truy xuất bằng các chunk con nhỏ để chính xác, sau đó mở rộng đến cha để có ngữ cảnh."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì mà 'truy xuất ngữ cảnh' của Anthropic thêm vào mỗi chunk trước khi lập chỉ mục?",
+      "options": [
+        "Một tóm tắt 50-100 từ do LLM tạo ra đặt chunk trong ngữ cảnh tổng thể của tài liệu",
+        "Tiếng ồn ngẫu nhiên",
+        "Một thẻ POS",
+        "Một mã ngôn ngữ"
+      ],
+      "correct": 0,
+      "explanation": "Truy xuất ngữ cảnh thêm một tóm tắt do LLM viết vào mỗi chunk; ~35-50% tăng hồi tưởng."
+    },
+    {
+      "stage": "check",
+      "question": "Phát hiện nào năm 2026 mâu thuẫn với tri thức thông thường về sự chồng chéo của chunk?",
+      "options": [
+        "Sự chồng chéo nên là 50%",
+        "Sự chồng chéo là cần thiết cho BM25",
+        "Sự chồng chéo chỉ cải thiện truy xuất ngữ cảnh",
+        "Các tiêu chuẩn thực nghiệm năm 2026 cho thấy sự chồng chéo thường không mang lại lợi ích đo lường nào trong khi làm tăng chi phí chỉ mục"
+      ],
+      "correct": 3,
+      "explanation": "Các nghiên cứu mới hơn (SPLADE+Mistral trên NQ) cho thấy sự chồng chéo của chunk hiếm khi giúp và làm phình to kích thước chỉ mục."
+    },
+    {
+      "stage": "post",
+      "question": "Kích thước chunk nào mà tiêu chuẩn năm 2026 của NVIDIA liên kết với các truy vấn factoid?",
+      "options": [
+        "Khoảng 256-512 token",
+        "2048-4096 token",
+        "8192 token",
+        "64 token"
+      ],
+      "correct": 0,
+      "explanation": "Các truy vấn factoid hưởng lợi từ các chunk nhỏ hơn (256-512 token) tập trung tín hiệu câu trả lời."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao ngưỡng min-token lại quan trọng khi sử dụng chunking ngữ nghĩa?",
+      "options": [
+        "Nếu không có ngưỡng, chunking ngữ nghĩa có thể tạo ra các đoạn nhỏ 40 token làm tổn hại đến việc truy xuất",
+        "Yêu cầu bởi BERT",
+        "Ngưỡng ngăn chặn sự chồng chéo",
+        "Ngưỡng tăng tốc độ suy diễn"
+      ],
+      "correct": 0,
+      "explanation": "Các chunker ngữ nghĩa có thể phân đoạn quá mức; việc thực thi kích thước tối thiểu ngăn chặn các đoạn tín hiệu thấp."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì mà 'chunking muộn' làm khác với chunking truyền thống?",
+      "options": [
+        "Chunk sau khi truy xuất",
+        "Nhúng toàn bộ tài liệu ở cấp độ token trước, sau đó gộp các embedding token thành các vector chunk để bảo tồn ngữ cảnh xuyên chunk",
+        "Bỏ qua hoàn toàn việc chunking",
+        "Sử dụng BM25 thay thế"
+      ],
+      "correct": 1,
+      "explanation": "Chunking muộn nhúng trước và gộp sau, bảo tồn các tương tác ngữ cảnh qua các ranh giới chunk."
+    }
+  ]
+}

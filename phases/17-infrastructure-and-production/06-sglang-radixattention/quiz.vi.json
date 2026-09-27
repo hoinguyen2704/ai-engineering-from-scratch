@@ -1,0 +1,78 @@
+{
+  "lesson": "06-sglang-radixattention",
+  "title": "Phục vụ Prefix-Cache — RadixAttention và Tái sử dụng KV",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cấu trúc dữ liệu cốt lõi nào hỗ trợ tái sử dụng KV cache của SGLang?",
+      "options": [
+        "Một cây radix nơi mỗi nút sở hữu một khoảng token và các khối KV của nó",
+        "Một danh sách bỏ qua được khóa theo id yêu cầu",
+        "Một bảng băm được khóa theo toàn bộ prompt",
+        "Một cây B của các điểm số attention"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lập lịch FCFS là sai cho lưu lượng nặng về prefix trên SGLang?",
+      "options": [
+        "FCFS là chính sách được khuyến nghị của SGLang",
+        "FCFS có thể xóa một nhánh prefix nóng trước khi yêu cầu dài prefix tiếp theo đến, phá vỡ tái sử dụng cây radix",
+        "FCFS chỉ hoạt động trên GPU AMD",
+        "FCFS không tương thích với PagedAttention"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Granularity xóa nào mà bộ lập lịch nhận thức cache của SGLang sử dụng để phù hợp với hình dạng radix?",
+      "options": [
+        "Chỉ theo yêu cầu",
+        "Xóa ngẫu nhiên",
+        "Các token đơn lẻ",
+        "Toàn bộ nhánh, bắt đầu từ các lá đã sử dụng ngắn nhất"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cần phải làm gì để giữ cho prefix chia sẻ của cây radix có thể khám phá được?",
+      "options": [
+        "Luôn sử dụng batching tĩnh",
+        "Sắp xếp lại thứ tự mẫu prompt để nội dung không thay đổi (hệ thống, công cụ, sơ đồ) luôn đứng đầu",
+        "Giảm núm điều chỉnh sử dụng bộ nhớ GPU",
+        "Vô hiệu hóa batching liên tục"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu khối lượng công việc nào mà bài học KHÔNG mong đợi RadixAttention sẽ thắng?",
+      "options": [
+        "Các tác nhân với các sơ đồ công cụ chia sẻ",
+        "Tạo ra một lần với các prompt duy nhất và không có prompt hệ thống chia sẻ",
+        "RAG với một phần mở đầu truy xuất chia sẻ",
+        "Các khối lượng công việc giọng nói với các phần mở đầu lặp lại"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Triển khai ProjectDiscovery đã chuyển từ tỷ lệ hit cache prefix 7% lên 74% bằng cách nào?",
+      "options": [
+        "Tăng số lượng GPU từ 8 lên 16",
+        "Vô hiệu hóa batching liên tục",
+        "Di chuyển nội dung động ra khỏi prefix có thể cache",
+        "Chuyển từ vLLM sang SGLang mà không thay đổi prompt nào"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

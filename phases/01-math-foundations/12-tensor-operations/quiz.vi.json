@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hình dạng của một tensor mô tả điều gì?",
+      "options": [
+        "Một tuple liệt kê kích thước theo từng trục",
+        "Địa chỉ bộ nhớ của tensor",
+        "Tổng số phần tử trong tensor",
+        "Kiểu dữ liệu của các phần tử tensor"
+      ],
+      "correct": 0,
+      "explanation": "Hình dạng là một tuple liệt kê kích thước theo từng trục. Ví dụ, một tensor có hình dạng (2, 3, 4) có 2 phần tử theo trục 0, 3 theo trục 1 và 4 theo trục 2."
+    },
+    {
+      "stage": "pre",
+      "question": "Trong PyTorch, một tensor lô hình ảnh sử dụng bố cục nào theo mặc định?",
+      "options": [
+        "CHWN (kênh, chiều cao, chiều rộng, lô)",
+        "NHWC (lô, chiều cao, chiều rộng, kênh)",
+        "WHCN (chiều rộng, chiều cao, kênh, lô)",
+        "NCHW (lô, kênh, chiều cao, chiều rộng)"
+      ],
+      "correct": 3,
+      "explanation": "PyTorch mặc định sử dụng bố cục NCHW (kênh trước). TensorFlow mặc định sử dụng NHWC (kênh sau). Bố cục không khớp có thể gây ra lỗi im lặng hoặc vấn đề về hiệu suất."
+    },
+    {
+      "stage": "post",
+      "question": "Hình dạng kết quả khi phát sóng các tensor có hình dạng (8, 1, 6, 1) và (7, 1, 5) là gì?",
+      "options": [
+        "(8, 7, 6, 5)",
+        "(8, 1, 6, 5)",
+        "(8, 7, 6, 1)",
+        "Phát sóng thất bại — các hình dạng không tương thích"
+      ],
+      "correct": 0,
+      "explanation": "Căn chỉnh các hình dạng từ bên phải: (8,1,6,1) và (1,7,1,5). Các chiều tương thích khi bằng nhau hoặc một chiều là 1. Kết quả lấy giá trị lớn nhất theo từng trục: (8, 7, 6, 5)."
+    },
+    {
+      "stage": "post",
+      "question": "Trong biểu thức einsum 'bhtd,bhsd->bhts', điều gì xảy ra với chỉ số 'd'?",
+      "options": [
+        "Nó được chuyển vị giữa hai tensor đầu vào",
+        "Nó được tổng hợp (hợp đồng) vì nó xuất hiện trong cả hai đầu vào nhưng không có trong đầu ra",
+        "Nó được phát sóng qua cả hai tensor",
+        "Nó được giữ lại trong đầu ra như một trục mới"
+      ],
+      "correct": 1,
+      "explanation": "Trong einsum, bất kỳ chỉ số nào xuất hiện trong các đầu vào nhưng không có trong đầu ra sẽ được tổng hợp. Chỉ số 'd' xuất hiện trong cả 'bhtd' và 'bhsd' nhưng không có trong đầu ra 'bhts', vì vậy nó được hợp đồng (nhân và tổng)."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao gọi .view() lại thất bại trên một tensor đã chuyển vị trong PyTorch?",
+      "options": [
+        "Tensor không liên tục trong bộ nhớ sau khi chuyển vị, và view yêu cầu dữ liệu liên tục",
+        "Các tensor đã chuyển vị có kiểu dữ liệu khác nhau",
+        "Chuyển vị thay đổi tổng số phần tử",
+        "View chỉ hoạt động trên các tensor 2D"
+      ],
+      "correct": 0,
+      "explanation": "Chuyển vị hoán đổi các bước mà không di chuyển dữ liệu, làm cho tensor không liên tục. Phép toán .view() yêu cầu bố cục bộ nhớ liên tục. Sử dụng .reshape() hoặc gọi .contiguous() trước."
+    }
+  ]
+}

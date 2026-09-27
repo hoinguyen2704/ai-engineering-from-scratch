@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cosine similarity đo lường điều gì giữa hai vector?",
+      "options": [
+        "Góc giữa chúng, bỏ qua độ lớn của chúng",
+        "Khoảng cách Euclidean giữa chúng",
+        "Sự khác biệt tối đa trong bất kỳ chiều nào",
+        "Tổng các tích từng phần của chúng"
+      ],
+      "correct": 0,
+      "explanation": "Cosine similarity đo lường cosin của góc giữa hai vector, được chuẩn hóa theo độ lớn của chúng. Nó dao động từ -1 (đối diện) đến +1 (cùng hướng) và bỏ qua độ dài vector, đó là lý do nó chiếm ưu thế trong NLP nơi độ dài tài liệu là tiếng ồn."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao khoảng cách L1 được gọi là 'khoảng cách Manhattan'?",
+      "options": [
+        "Nó chỉ hoạt động trong đúng hai chiều",
+        "Nó tính toán sự khác biệt tối đa trên tất cả các chiều",
+        "Nó được phát minh ở Manhattan",
+        "Nó đo khoảng cách dọc theo một lưới, như thể đi bộ trên các khối phố"
+      ],
+      "correct": 3,
+      "explanation": "Khoảng cách L1 tổng hợp các sự khác biệt tuyệt đối dọc theo mỗi trục, tương ứng với con đường ngắn nhất trên một lưới nơi bạn chỉ có thể di chuyển dọc theo các trục (không có đường chéo) — giống như đi bộ trên một lưới phố thành phố."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao regularization L1 (Lasso) tạo ra trọng số thưa trong khi regularization L2 (Ridge) thì không?",
+      "options": [
+        "L1 sử dụng một hằng số hình phạt lớn hơn L2",
+        "Ràng buộc hình thoi L1 có các góc trên các trục nơi trọng số bằng không; các đường đồng mức mất mát có khả năng chạm vào các góc",
+        "Regularization L2 chỉ áp dụng cho các hạng mục bias",
+        "Regularization L1 cắt trọng số dưới một ngưỡng thành không"
+      ],
+      "correct": 1,
+      "explanation": "Khu vực ràng buộc L1 có hình dạng hình thoi với các góc được căn chỉnh với các trục. Các elip đường đồng mức của hàm mất mát có khả năng chạm vào hình thoi ở một góc, nơi một hoặc nhiều trọng số bằng không. Ràng buộc L2 là một hình tròn không có góc, vì vậy điểm chạm có tất cả trọng số không bằng không."
+    },
+    {
+      "stage": "post",
+      "question": "Khoảng cách Wasserstein có lợi thế gì so với KL divergence khi so sánh các phân phối xác suất?",
+      "options": [
+        "Khoảng cách Wasserstein luôn nhỏ hơn KL divergence",
+        "Khoảng cách Wasserstein cung cấp gradient có ý nghĩa ngay cả khi các phân phối không chồng chéo, trong khi KL thì tiến đến vô cực",
+        "Khoảng cách Wasserstein là đối xứng nhưng KL thì không",
+        "Cả B và C đều đúng"
+      ],
+      "correct": 3,
+      "explanation": "Khoảng cách Wasserstein là một metric thực sự (đối xứng, thỏa mãn bất đẳng thức tam giác) và cung cấp gradient ngay cả cho các phân phối không chồng chéo. KL divergence là không đối xứng và tiến đến vô cực khi các phân phối không chồng chéo, đó là lý do tại sao WGANs thay thế GANs dựa trên KL."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn sẽ sử dụng khoảng cách Mahalanobis thay vì khoảng cách Euclidean?",
+      "options": [
+        "Khi các đặc trưng có quy mô khác nhau và có tương quan với nhau",
+        "Khi bạn cần một phép tính nhanh hơn L2",
+        "Khi các đặc trưng đều nhị phân (0 hoặc 1)",
+        "Khi bạn đang so sánh chuỗi thay vì vector"
+      ],
+      "correct": 0,
+      "explanation": "Khoảng cách Mahalanobis tính đến cấu trúc hiệp phương sai của dữ liệu, làm mất tương quan và chuẩn hóa các đặc trưng trước khi tính khoảng cách L2. Nó xử lý đúng các đặc trưng có quy mô khác nhau và có tương quan, trong khi khoảng cách Euclidean coi tất cả các chiều là như nhau."
+    }
+  ]
+}

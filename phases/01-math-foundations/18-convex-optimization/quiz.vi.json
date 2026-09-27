@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tính chất xác định của một hàm lồi là gì?",
+      "options": [
+        "Nó có chính xác một điểm quan trọng",
+        "Đoạn thẳng giữa bất kỳ hai điểm nào trên đồ thị của nó nằm trên hoặc trên đồ thị",
+        "Đạo hàm của nó luôn dương",
+        "Nó chỉ có thể được định nghĩa trên các số thực dương"
+      ],
+      "correct": 1,
+      "explanation": "Một hàm được gọi là lồi nếu cho bất kỳ hai điểm x, y và bất kỳ t nào trong [0,1]: f(tx + (1-t)y) <= t*f(x) + (1-t)*f(y). Về mặt hình học, dây cung giữa bất kỳ hai điểm nào trên đồ thị không bao giờ thấp hơn đồ thị."
+    },
+    {
+      "stage": "pre",
+      "question": "Vấn đề ML nào trong số này có bề mặt mất mát lồi?",
+      "options": [
+        "Đào tạo một mạng nơ-ron 3 lớp với các kích hoạt ReLU",
+        "Phân tích ma trận cho gợi ý",
+        "Phân cụm k-means",
+        "Hồi quy logistic với mất mát cross-entropy"
+      ],
+      "correct": 3,
+      "explanation": "Hồi quy logistic có một mất mát lồi (log-loss là lồi theo trọng số). Mạng nơ-ron, k-means và phân tích ma trận đều không lồi. Đối với các vấn đề lồi, bất kỳ điểm cực tiểu cục bộ nào cũng là điểm cực tiểu toàn cục."
+    },
+    {
+      "stage": "post",
+      "question": "Phương pháp Newton hội tụ đến cực tiểu của f(x) = 5x^2 + 3x + 1 trong bao nhiêu bước?",
+      "options": [
+        "Khoảng 100 bước",
+        "1 bước (nó chính xác cho các hàm bậc hai)",
+        "Khoảng 10 bước",
+        "Nó phụ thuộc vào tốc độ học"
+      ],
+      "correct": 1,
+      "explanation": "Phương pháp Newton phù hợp với một xấp xỉ bậc hai cục bộ và nhảy đến cực tiểu của nó. Đối với một hàm bậc hai thực sự, xấp xỉ là chính xác, vì vậy phương pháp Newton hội tụ trong một bước duy nhất bất kể điểm bắt đầu."
+    },
+    {
+      "stage": "post",
+      "question": "Trong các điều kiện KKT, 'tính lỏng lẻo bổ sung' (lambda_i * g_i(x) = 0) có nghĩa là gì?",
+      "options": [
+        "Tất cả các ràng buộc phải hoạt động tại điểm tối ưu",
+        "Hoặc một ràng buộc đang hoạt động (g_i = 0) hoặc bội số của nó bằng không (lambda_i = 0) — một ràng buộc không hoạt động không có tác động",
+        "Các đạo hàm của tất cả các ràng buộc phải vuông góc",
+        "Lagrangian luôn bằng không tại điểm tối ưu"
+      ],
+      "correct": 1,
+      "explanation": "Tính lỏng lẻo bổ sung có nghĩa là mỗi ràng buộc hoặc là ràng buộc (g_i = 0, nằm trên biên) hoặc không liên quan (lambda_i = 0, không ảnh hưởng đến giải pháp). Trong SVM, đây là lý do tại sao chỉ các vector hỗ trợ (các ràng buộc hoạt động với lambda_i > 0) xác định biên quyết định."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao SGD tìm ra các giải pháp tốt trong các bề mặt mạng nơ-ron không lồi mặc dù không có đảm bảo về tính lồi?",
+      "options": [
+        "SGD luôn tìm thấy cực tiểu toàn cục",
+        "Hàm mất mát không liên quan đến hiệu suất của mô hình",
+        "Trong không gian chiều cao, hầu hết các điểm quan trọng là điểm yên ngựa (không phải cực tiểu cục bộ xấu), và tiếng ồn của SGD giúp thoát khỏi chúng",
+        "Mạng nơ-ron thực sự là lồi trong không gian chiều cao"
+      ],
+      "correct": 2,
+      "explanation": "Trong không gian tham số có chiều cao, các điểm quan trọng ngẫu nhiên chủ yếu là điểm yên ngựa. Một vài cực tiểu cục bộ tồn tại có xu hướng có giá trị mất mát gần với cực tiểu toàn cục. Tiếng ồn ngẫu nhiên của SGD giúp thoát khỏi các điểm yên ngựa, và việc quá tham số hóa làm mịn bề mặt."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao việc có các phân chia train, validation và test riêng biệt trong machine learning lại quan trọng?",
+      "options": [
+        "Để đảm bảo mỗi phân chia sử dụng một định dạng tệp khác nhau",
+        "Để làm cho tập dữ liệu nhỏ hơn để việc huấn luyện nhanh hơn",
+        "Để phân phối dữ liệu trên nhiều GPU",
+        "Để đánh giá hiệu suất mô hình trên dữ liệu chưa thấy và ngăn ngừa overfitting"
+      ],
+      "correct": 3,
+      "explanation": "Tập huấn luyện dạy cho mô hình, tập validation điều chỉnh hyperparameters trong quá trình huấn luyện, và tập test cung cấp một đánh giá cuối cùng không thiên lệch trên dữ liệu mà mô hình chưa bao giờ thấy."
+    },
+    {
+      "stage": "pre",
+      "question": "Hugging Face Hub chủ yếu được sử dụng cho mục đích gì trong quy trình AI/ML?",
+      "options": [
+        "Quản lý môi trường ảo Python",
+        "Kiểm soát phiên bản mã nguồn như GitHub",
+        "Chạy các công việc huấn luyện GPU trên đám mây",
+        "Lưu trữ và chia sẻ tập dữ liệu, mô hình và các artefact ML"
+      ],
+      "correct": 3,
+      "explanation": "Hugging Face Hub là một nền tảng để lưu trữ và chia sẻ các mô hình đã được huấn luyện trước, tập dữ liệu và các demo ML. Thư viện 'datasets' cung cấp một cách chuẩn để tải dữ liệu từ đó."
+    },
+    {
+      "stage": "post",
+      "question": "Định dạng Parquet có lợi thế gì so với CSV trong việc lưu trữ tập dữ liệu ML?",
+      "options": [
+        "Parquet hỗ trợ nhiều loại dữ liệu hơn CSV",
+        "Tệp Parquet có thể đọc được bởi con người trong bất kỳ trình soạn thảo văn bản nào",
+        "Parquet sử dụng lưu trữ theo cột để có kích thước tệp nhỏ hơn và tốc độ đọc nhanh hơn",
+        "Tệp Parquet có thể được chỉnh sửa trong các ứng dụng bảng tính"
+      ],
+      "correct": 2,
+      "explanation": "Parquet là một định dạng nhị phân theo cột nén tốt hơn CSV và cho phép đọc theo cột nhanh chóng. Đây là định dạng lưu trữ được ưa chuộng cho các tập dữ liệu ML."
+    },
+    {
+      "stage": "post",
+      "question": "'streaming=True' có tác dụng gì khi tải một tập dữ liệu với thư viện datasets của Hugging Face?",
+      "options": [
+        "Chuyển đổi tập dữ liệu thành định dạng video streaming",
+        "Kích hoạt cập nhật thời gian thực khi dữ liệu mới được thêm vào Hub",
+        "Tải dữ liệu theo hàng mà không cần tải toàn bộ tập dữ liệu xuống đĩa",
+        "Tải tập dữ liệu nhanh hơn bằng cách sử dụng các kết nối song song"
+      ],
+      "correct": 2,
+      "explanation": "Chế độ streaming tạo ra một IterableDataset mà lấy hàng theo yêu cầu. Việc sử dụng bộ nhớ giữ nguyên bất kể kích thước tập dữ liệu, điều này rất quan trọng cho các tập dữ liệu quá lớn không thể chứa trên đĩa."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên sử dụng DVC (Data Version Control) thay vì chỉ sử dụng .gitignore cho các tệp lớn?",
+      "options": [
+        "Khi bạn cần tái tạo các thí nghiệm chính xác trên nhiều máy với dữ liệu đã phiên bản",
+        "Khi bạn chỉ có các tệp CSV trong dự án của mình",
+        "Khi tập dữ liệu của bạn nhỏ hơn 1 MB",
+        "Khi bạn đang làm việc một mình trên một dự án cá nhân"
+      ],
+      "correct": 0,
+      "explanation": "DVC theo dõi các phiên bản dữ liệu với các tệp con trỏ nhỏ trong git trong khi lưu trữ dữ liệu thực tế trong lưu trữ từ xa (S3, GCS). Nó đảm bảo rằng bất kỳ ai cũng có thể tái tạo thí nghiệm chính xác của bạn với cùng một dữ liệu."
+    }
+  ]
+}

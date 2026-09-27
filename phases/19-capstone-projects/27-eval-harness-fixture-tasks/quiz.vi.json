@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/27-eval-harness-fixture-tasks",
+  "title": "Đánh giá Harness với các tác vụ Fixture",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc bài học: thuộc tính nào mà một trình xác minh đánh giá tác nhân tốt cần có trên tất cả các thuộc tính khác?",
+      "options": [
+        "Tính xác định giữa các lần chạy.",
+        "Tốc độ trong khoảng mili giây.",
+        "Một lời giải thích bằng ngôn ngữ tự nhiên về phán quyết.",
+        "Sự bao phủ của mọi dòng mã trong mã ứng viên."
+      ],
+      "correct": 0,
+      "explanation": "Tính xác định là điều làm cho một sự hồi quy có thể phát hiện được. Một trình xác minh không xác định biến mọi kết quả đỏ thành một cú lật đồng xu."
+    },
+    {
+      "stage": "check",
+      "question": "Một ứng viên đạt 3 lần vượt qua trong 5 mẫu trên một tác vụ duy nhất. Giá trị nào mà công thức pass@5 của bài học trả về (làm tròn đến hai chữ số thập phân)?",
+      "options": [
+        "0.75",
+        "1.00",
+        "0.99",
+        "0.60"
+      ],
+      "correct": 2,
+      "explanation": "pass@k = 1 - (1 - p)^k = 1 - (1 - 0.6)^5 = 1 - 0.4^5 = 1 - 0.01024 = 0.98976, làm tròn thành 0.99. Tỷ lệ thô trên mỗi mẫu (0.6) là giá trị mà tùy chọn (a) nêu, nhưng công thức khuếch đại nó qua k mẫu."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học bao gồm cả pass@1 và pass@k trong báo cáo?",
+      "options": [
+        "pass@1 là phiên bản được hỗ trợ bởi sổ đăng ký xác minh; pass@k được dành cho các trình xác minh trong tương lai.",
+        "pass@k có thể che giấu một mô hình chỉ đúng một lần trong nhiều mẫu, vì vậy pass@1 neo kết quả vào chất lượng lần thử đầu tiên.",
+        "pass@1 là giá trị mà người dùng thấy trong bảng điều khiển; pass@k là để gỡ lỗi nội bộ.",
+        "pass@k và pass@1 là giống hệt nhau về mặt toán học cho k > 1."
+      ],
+      "correct": 1,
+      "explanation": "pass@k làm cho các mô hình mà chỉ có câu trả lời một lần trong nhiều lần thử trông mạnh mẽ; pass@1 là mức sàn cho lần thử đầu tiên. Báo cáo cả hai ngăn chặn việc tuyên bố quá mức."
+    },
+    {
+      "stage": "check",
+      "question": "Harness gọi _prepare_scratch trước mỗi mẫu. Tại sao điều đó quan trọng cho pass@k > 1?",
+      "options": [
+        "Nó đảm bảo mỗi mẫu bắt đầu từ thiết lập có lỗi, không phải từ đầu ra của mẫu trước đó.",
+        "Nó tránh các điều kiện đua trên các thư mục tạm thời chia sẻ.",
+        "Nó chỉ liên quan đến các trình xác minh shell.",
+        "Nó hoàn toàn là một tối ưu hóa hiệu suất."
+      ],
+      "correct": 0,
+      "explanation": "Nếu không có một scratch mới, mẫu N+1 bắt đầu từ đầu ra của mẫu N. Harness sẽ đo 'dọn dẹp lần thử thứ hai' thay vì thành công lần thử đầu tiên."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn thêm một trình xác minh mới 'pytest_passes' chạy pytest trong thư mục scratch. Bạn nên dựa vào trình xác minh nào hiện có?",
+      "options": [
+        "Không thể diễn đạt pytest như một trình xác minh.",
+        "shell_exit_zero, vì pytest báo hiệu vượt qua qua mã thoát 0.",
+        "file_equals, vì pytest ghi một tệp kết quả.",
+        "regex_match, vì đầu ra của pytest chứa từ 'passed'."
+      ],
+      "correct": 1,
+      "explanation": "pytest thoát 0 khi vượt qua và không phải 0 khi thất bại. shell_exit_zero là nguyên tắc đúng. Việc kết nối sản xuất dẫn cuộc gọi qua sandbox từ bài học 26."
+    },
+    {
+      "stage": "post",
+      "question": "Một người đánh giá hỏi: 'đây có phải là sự hồi quy trong mô hình hay trong harness?' Tác phẩm nào trả lời câu hỏi đó?",
+      "options": [
+        "Kết quả mẫu theo tác vụ, theo mẫu SampleResult cộng với thông điệp chi tiết của trình xác minh.",
+        "Các tệp JSON fixture.",
+        "Biên bản chuỗi suy nghĩ của tác nhân.",
+        "Mã nguồn sổ đăng ký trình xác minh."
+      ],
+      "correct": 0,
+      "explanation": "Độ trễ theo mẫu, chi tiết trình xác minh và vượt qua/thất bại cho phép bạn phân loại: cùng một fixture, phán quyết khác nhau, vì vậy mô hình đã thay đổi; cùng một phán quyết nhưng độ trễ khác nhau, vì vậy điều gì đó khác đã thay đổi."
+    }
+  ]
+}

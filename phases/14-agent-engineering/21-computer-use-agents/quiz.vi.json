@@ -1,0 +1,90 @@
+{
+  "lesson": "21-computer-use-agents",
+  "title": "Sử Dụng Máy Tính: Claude, OpenAI CUA, Gemini",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Claude computer sử dụng đầu vào nào và phát ra đầu ra gì?",
+      "options": [
+        "Ảnh chụp màn hình (dựa trên thị giác), lệnh bàn phím/chuột ra",
+        "Cây truy cập vào, lệnh bàn phím/chuột ra",
+        "DOM XML vào, JavaScript ra",
+        "JSON vào, SQL ra"
+      ],
+      "correct": 0,
+      "explanation": "Claude đọc pixel và phát ra hành động bàn phím/chuột; không sử dụng API truy cập của hệ điều hành."
+    },
+    {
+      "stage": "pre",
+      "question": "Tính năng an toàn đặc trưng của Gemini 2.5 Computer Use là gì?",
+      "options": [
+        "Dịch vụ an toàn từng bước đánh giá mỗi hành động trước khi thực hiện và từ chối những hành động không an toàn",
+        "Chế độ chỉ đọc theo mặc định",
+        "Quy tắc WAF mã cứng",
+        "CAPTCHA bắt buộc"
+      ],
+      "correct": 0,
+      "explanation": "Gemini 2.5 Computer Use cung cấp một bộ phân loại an toàn từng bước như một tính năng xác định."
+    },
+    {
+      "stage": "check",
+      "question": "Bài học xác định đầu vào nào là không đáng tin cậy trên cả ba mô hình?",
+      "options": [
+        "Không có gì; mọi thứ đều đáng tin cậy",
+        "Chỉ phản hồi HTTPS",
+        "Ảnh chụp màn hình, văn bản DOM, đầu ra công cụ, nội dung PDF, bất kỳ thứ gì được truy xuất",
+        "Chỉ nội dung PDF"
+      ],
+      "correct": 2,
+      "explanation": "Chỉ có hướng dẫn trực tiếp từ người dùng mới được tính là sự cho phép; mọi thứ khác đều không đáng tin cậy."
+    },
+    {
+      "stage": "check",
+      "question": "Những số liệu OSWorld / WebArena nào mà bài học trích dẫn cho OpenAI CUA khi ra mắt?",
+      "options": [
+        "Số liệu không được báo cáo",
+        "OSWorld 99%, WebArena 99%",
+        "OSWorld 0%, WebArena 0%",
+        "OSWorld 38.1%, WebArena 58.1%, WebVoyager 87%"
+      ],
+      "correct": 3,
+      "explanation": "Đó là những số liệu ra mắt được trích dẫn."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu phòng thủ nào KHÔNG có trong danh sách hội tụ năm 2026?",
+      "options": [
+        "Danh sách cho phép/danh sách chặn các mục tiêu điều hướng",
+        "Bộ phân loại an toàn từng bước",
+        "Con người trong vòng lặp cho các hành động nhạy cảm",
+        "Tự động nhấp qua các hộp thoại để tiết kiệm thời gian"
+      ],
+      "correct": 3,
+      "explanation": "Tự động nhấp vào các hộp thoại là trái ngược với an toàn; bài học khuyến nghị xác nhận rõ ràng."
+    },
+    {
+      "stage": "post",
+      "question": "Cuộc tấn công chính mà bài học nhấn mạnh chống lại các tác nhân sử dụng máy tính là gì?",
+      "options": [
+        "Mất mạng",
+        "Độ trễ cập nhật hệ điều hành",
+        "Kết xuất chậm",
+        "Một trang độc hại hoặc PDF nhúng hướng dẫn trong nội dung được truy xuất mà mô hình coi là ý định của người dùng"
+      ],
+      "correct": 3,
+      "explanation": "Tin tưởng vào ảnh chụp màn hình hoặc văn bản DOM như một sự cho phép là thất bại điển hình của việc tiêm lệnh gián tiếp."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào xác nhận của con người trong vòng lặp được khuyến nghị cụ thể?",
+      "options": [
+        "Không bao giờ",
+        "Trong các hành động nhạy cảm như đăng nhập, mua hàng, xóa tệp",
+        "Chỉ khi mô hình yêu cầu",
+        "Trong điều hướng chỉ đọc"
+      ],
+      "correct": 1,
+      "explanation": "Các hành động nhạy cảm (tiền, lộ dữ liệu, đăng nhập mới) yêu cầu xác nhận rõ ràng từ con người."
+    }
+  ]
+}

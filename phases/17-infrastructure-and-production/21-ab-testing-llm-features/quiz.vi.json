@@ -1,0 +1,78 @@
+{
+  "lesson": "21-ab-testing-llm-features",
+  "title": "Kiểm Tra A/B Các Tính Năng LLM — GrowthBook, Statsig, và Vấn Đề Vibes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt chính xác giữa evals và A/B tests trong bài học là gì?",
+      "options": [
+        "Chỉ cần A/B tests",
+        "Evals trả lời \"mô hình có thể làm việc không?\" trên một tập hợp được gán nhãn; A/B tests trả lời \"người dùng có quan tâm không?\" với lưu lượng ngẫu nhiên trực tiếp",
+        "Evals là hướng tới người dùng; A/B tests là ngoại tuyến",
+        "Chúng có thể thay thế cho nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "CUPED làm gì cho một thí nghiệm?",
+      "options": [
+        "Vô hiệu hóa việc điều chỉnh so sánh nhiều lần",
+        "Loại bỏ biến thiên trước kỳ trước khi so sánh kỳ sau, thường giảm biến thiên 30-70% và tăng kích thước mẫu hiệu quả",
+        "Tăng kích thước mẫu bằng cách thuê thêm người dùng",
+        "Thay thế hoàn toàn việc kiểm tra tuần tự"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bạn cần điều chỉnh so sánh nhiều lần (Bonferroni hoặc Benjamini-Hochberg) khi chạy nhiều A/B?",
+      "options": [
+        "Chúng tăng tốc độ thí nghiệm",
+        "Chúng chỉ cần thiết cho các bài kiểm tra tuần tự",
+        "Chúng được yêu cầu bởi GDPR",
+        "Chạy 20 bài kiểm tra với độ tin cậy 95% sẽ tạo ra một kết quả dương giả do ngẫu nhiên; các điều chỉnh kiểm soát lỗi gia đình hoặc tỷ lệ phát hiện giả"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "SRM (mismatch tỷ lệ mẫu) phát hiện điều gì?",
+      "options": [
+        "Hiệu suất tokenizer chậm",
+        "Rò rỉ PII",
+        "Một lỗi hash phân công tạo ra một phân chia được giao mà khác với dự định (ví dụ: 47/53 khi nhắm đến 50/50)",
+        "Rò rỉ bộ nhớ trong nền tảng thí nghiệm"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao sự không xác định của LLM yêu cầu đệm kích thước mẫu?",
+      "options": [
+        "Sự không xác định giảm số mẫu cần thiết",
+        "Nó vi phạm giả định IID; kích thước mẫu hiệu quả giảm, vì vậy nhân kích thước cần thiết khoảng 1.3-1.5x như một biên an toàn",
+        "Nó không liên quan đến các phép tính công suất",
+        "Nó chỉ quan trọng ngoại tuyến"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài học này so sánh Statsig và GrowthBook như thế nào?",
+      "options": [
+        "GrowthBook là mã nguồn đóng",
+        "Các tập hợp tính năng giống hệt nhau",
+        "Statsig chỉ là bản địa kho",
+        "Statsig là SaaS tất cả trong một (mua lại bởi OpenAI tháng 9 năm 2025, 1.1 tỷ đô la); GrowthBook là mã nguồn mở MIT, bản địa kho, với các engine Bayesian/Frequentist/Sequential và CUPED/SRM/BH"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

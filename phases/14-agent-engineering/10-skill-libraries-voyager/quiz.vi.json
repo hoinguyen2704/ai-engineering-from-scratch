@@ -1,0 +1,90 @@
+{
+  "lesson": "10-skill-libraries-voyager",
+  "title": "Thư viện Kỹ năng và Học tập Suốt đời (Voyager)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Voyager coi không gian hành động là gì?",
+      "options": [
+        "Lệnh Minecraft nguyên thủy",
+        "Giá trị Q trong học tăng cường",
+        "Chỉ các lời nhắc văn bản",
+        "Mã thực thi (các hàm JavaScript) được lưu trữ, truy xuất và kết hợp"
+      ],
+      "correct": 3,
+      "explanation": "Đóng góp của Voyager là biến mã thành hành động: kỹ năng là các chương trình, không phải lệnh thô."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba thành phần nào định nghĩa một tác nhân Voyager?",
+      "options": [
+        "Người truy xuất, người tạo, người xếp hạng",
+        "Bộ mã hóa, bộ giải mã, đầu giá trị",
+        "Chương trình tự động, thư viện kỹ năng, lời nhắc lặp lại",
+        "Người lập kế hoạch, người thực thi, người đánh giá"
+      ],
+      "correct": 2,
+      "explanation": "Voyager cấu trúc tác nhân xung quanh chương trình, thư viện kỹ năng và lời nhắc lặp lại."
+    },
+    {
+      "stage": "check",
+      "question": "Ba tín hiệu nào có thể trả về từ một nỗ lực thực thi kỹ năng?",
+      "options": [
+        "Thành công, lỗi (với dấu vết ngăn xếp), thất bại tự xác minh",
+        "Đạt, không đạt, thử lại",
+        "Nhịp tim, xác nhận, không xác nhận",
+        "Xanh, vàng, đỏ"
+      ],
+      "correct": 0,
+      "explanation": "Cơ chế lời nhắc lặp lại của Voyager được điều khiển bởi ba tín hiệu này được gập lại vào phiên bản tiếp theo."
+    },
+    {
+      "stage": "check",
+      "question": "Chương trình tự động chọn nhiệm vụ tiếp theo như thế nào?",
+      "options": [
+        "Ngẫu nhiên đồng đều trong không gian hành động",
+        "Chỉ trên khả năng hiện tại, dựa trên trạng thái môi trường và kho kỹ năng (điểm ngọt của khám phá)",
+        "Luôn là nhiệm vụ khó nhất có sẵn",
+        "Chỉ danh sách do người dùng cung cấp"
+      ],
+      "correct": 1,
+      "explanation": "Người đề xuất nhắm đến các nhiệm vụ chỉ trên khả năng hiện tại để tiến bộ được ổn định."
+    },
+    {
+      "stage": "check",
+      "question": "Sản phẩm nào năm 2026 là sự phù hợp rõ ràng nhất của bài học với kỹ năng Voyager?",
+      "options": [
+        "Kỹ năng SDK Agent Claude: mã có tên, có thể truy xuất cộng với hướng dẫn được tải theo yêu cầu",
+        "Các lớp AWS Lambda",
+        "Chỉ số Pinecone",
+        "Tinh chỉnh OpenAI"
+      ],
+      "correct": 0,
+      "explanation": "Kỹ năng SDK Agent phù hợp với mẫu mã có tên - có thể truy xuất - có thể kết hợp của Voyager."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học khuyến nghị dedup khi ghi cho thư viện kỹ năng?",
+      "options": [
+        "Nếu không có dedup, cùng một kỹ năng sẽ được thêm nhiều lần với mô tả hơi khác nhau; truy xuất nên trả về một phiên bản chuẩn duy nhất",
+        "Các nhà cung cấp từ chối các bản sao",
+        "Git chặn các bản sao",
+        "Ổ đĩa rất đắt"
+      ],
+      "correct": 0,
+      "explanation": "Các mô tả gần giống nhau sẽ gộp lại thành một kỹ năng chuẩn duy nhất để việc truy xuất được sạch sẽ."
+    },
+    {
+      "stage": "post",
+      "question": "Vấn đề nào mà sự trôi dạt kỹ năng kết hợp mô tả?",
+      "options": [
+        "Một kỹ năng ngừng biên dịch sau khi nâng cấp Python",
+        "Một kỹ năng cha âm thầm nhận phiên bản con đã được tinh chỉnh mà nó chưa bao giờ được thử nghiệm; sửa bằng cách cố định phiên bản kỹ năng",
+        "Các kỹ năng bị mã hóa trong lưu trữ",
+        "Truy xuất không trả về gì"
+      ],
+      "correct": 1,
+      "explanation": "Nếu không có việc cố định phiên bản, một sự tinh chỉnh cho một con sẽ âm thầm thay đổi hành vi của cha."
+    }
+  ]
+}

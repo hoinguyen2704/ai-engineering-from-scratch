@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Giao thức Máy chủ Ngôn ngữ (LSP) là gì?",
+      "options": [
+        "Một giao thức để chuyển file giữa các trình soạn thảo",
+        "Một định dạng nén cho các file mã nguồn",
+        "Một giao thức mạng cho lập trình cặp từ xa",
+        "Một tiêu chuẩn để các trình soạn thảo nhận thông tin kiểu, hoàn thành và chẩn đoán từ một máy chủ ngôn ngữ cụ thể"
+      ],
+      "correct": 3,
+      "explanation": "LSP là một giao thức tiêu chuẩn hóa cho phép các trình soạn thảo giao tiếp với các máy chủ ngôn ngữ để có các tính năng như tự động hoàn thành, kiểm tra kiểu và chẩn đoán lỗi, bất kể trình soạn thảo nào được sử dụng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao format-on-save lại hữu ích cho các dự án nhóm?",
+      "options": [
+        "Nó đảm bảo phong cách mã nhất quán giữa tất cả các người đóng góp mà không cần định dạng thủ công",
+        "Nó nén mã để các thao tác git nhanh hơn",
+        "Nó giảm kích thước file bằng cách loại bỏ khoảng trắng",
+        "Nó phát hiện lỗi thời gian chạy trước khi mã được thực thi"
+      ],
+      "correct": 0,
+      "explanation": "Format-on-save chạy một trình định dạng (như Black hoặc Ruff) mỗi khi bạn lưu, đảm bảo tất cả mã tuân theo cùng một quy tắc phong cách bất kể ai đã viết nó."
+    },
+    {
+      "stage": "post",
+      "question": "Tiện ích mở rộng nào của VS Code cho phép chỉnh sửa mã trên máy GPU từ xa như thể nó là máy cục bộ?",
+      "options": [
+        "Pylance",
+        "Debugpy",
+        "GitLens",
+        "Remote SSH"
+      ],
+      "correct": 3,
+      "explanation": "Remote SSH cài đặt một máy chủ VS Code nhẹ trên máy từ xa và truyền phát giao diện người dùng đến trình soạn thảo cục bộ của bạn, cho phép bạn chỉnh sửa file, chạy terminal và gỡ lỗi từ xa."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao nên bật 'notebook.output.scrolling' trong cài đặt VS Code cho công việc AI?",
+      "options": [
+        "Nó cho phép hoạt ảnh cuộn mượt mà trong trình soạn thảo",
+        "Nó cho phép cuộn giữa các ô notebook bằng bánh xe chuột",
+        "Nó cho phép cuộn ngang cho các dataframe rộng",
+        "Nó ngăn đầu ra của vòng lặp huấn luyện (nghìn dòng) không làm bùng nổ bảng đầu ra"
+      ],
+      "correct": 3,
+      "explanation": "Các vòng lặp huấn luyện có thể in ra hàng nghìn dòng đầu ra. Nếu không có cuộn đầu ra, bảng đầu ra của notebook sẽ phát triển không giới hạn, khiến notebook trở nên không sử dụng được."
+    },
+    {
+      "stage": "post",
+      "question": "Việc thiết lập 'python.analysis.typeCheckingMode' thành 'basic' trong VS Code đạt được điều gì?",
+      "options": [
+        "Nó cho phép tô sáng cú pháp cho các file Python",
+        "Nó định dạng mã Python theo tiêu chuẩn PEP 8",
+        "Nó cho phép các tính năng ngôn ngữ Python 3.12",
+        "Nó phát hiện các loại đối số sai và sự không khớp hình dạng tensor trước khi chạy mã"
+      ],
+      "correct": 3,
+      "explanation": "Kiểm tra kiểu cơ bản với Pylance đánh dấu các sự không khớp kiểu, loại đối số sai và tham số API không chính xác tại thời điểm chỉnh sửa, phát hiện lỗi trước khi bạn chạy một script huấn luyện có thể tốn kém."
+    }
+  ]
+}

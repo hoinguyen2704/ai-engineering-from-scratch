@@ -1,0 +1,78 @@
+{
+  "lesson": "24-chaos-engineering-llm",
+  "title": "Kỹ Thuật Chaos cho Sản Xuất LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Năm điều kiện tiên quyết nào mà bài học yêu cầu trước khi thực hiện chaos trong sản xuất?",
+      "options": [
+        "Kênh Slack, bộ nhãn dán, linh vật, hashtag, bài viết trên blog",
+        "Chỉ cơ sở dữ liệu vector",
+        "SLI/SLO, khả năng quan sát, tự động quay lại, sách hướng dẫn có cấu trúc, trực ca",
+        "Ba mô hình biên giới"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bốn mặt phẳng nào mà kiến trúc chaos có, cộng với vòng phản hồi?",
+      "options": [
+        "Frontend, backend, di động, web",
+        "Nhập, biến đổi, lưu trữ, phục vụ",
+        "Đào tạo, đánh giá, triển khai, lưu trữ",
+        "Kiểm soát, mục tiêu, an toàn, khả năng quan sát — với phản hồi vào điều chỉnh SLO"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Rào chắn cảnh báo tỷ lệ tiêu thụ (burn-rate alert) làm gì trong các thí nghiệm chaos?",
+      "options": [
+        "Tạm dừng thí nghiệm khi tỷ lệ tiêu thụ ngân sách lỗi hàng ngày vượt quá khoảng 2 lần dự kiến",
+        "Tự động nâng cấp thí nghiệm lên sản xuất",
+        "Vô hiệu hóa khả năng quan sát",
+        "Tăng tốc thí nghiệm"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Thí nghiệm chaos nào cụ thể cho LLM được liệt kê trong bài học?",
+      "options": [
+        "Giảm tốc độ quạt ngẫu nhiên",
+        "Khởi động lại toàn bộ trung tâm dữ liệu",
+        "Cơn bão xóa KV buộc sự bão hòa ngân sách khối vLLM",
+        "Ngắt tất cả DNS"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tần suất nào mà bài học khuyến nghị cho các bài tập chaos?",
+      "options": [
+        "Chỉ hàng năm",
+        "Ngừng hoạt động sản xuất hàng ngày",
+        "Không bao giờ",
+        "Hàng tuần canary nhỏ, hàng tháng ngày chơi với báo cáo sau, hàng quý kiểm toán khả năng phục hồi giữa các đội"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ thất bại cụ thể cho LLM nào mà thí nghiệm prompt bị sai phát hiện?",
+      "options": [
+        "Tokenizer bị kẹt làm khóa một worker trên các đầu vào như unicode lồng nhau sâu hoặc điểm mã UTF-8 lớn",
+        "GPU undervolt",
+        "Mất gói mạng",
+        "Cạnh tranh I/O đĩa"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

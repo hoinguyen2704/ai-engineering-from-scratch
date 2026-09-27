@@ -1,0 +1,78 @@
+{
+  "lesson": "65-hybrid-retrieval-bm25-dense",
+  "title": "Truy xuất hỗn hợp với BM25 và nhúng dày đặc",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một điểm cuối RAG trong sản xuất cần cả truy xuất từ vựng và truy xuất ngữ nghĩa cùng một lúc?",
+      "options": [
+        "Tìm kiếm từ vựng là yêu cầu theo luật để tuân thủ",
+        "Truy xuất ngữ nghĩa luôn chính xác hơn",
+        "Nó giảm một nửa kích thước chỉ mục",
+        "Phân phối truy vấn pha trộn giữa truy vấn định danh và truy vấn diễn đạt lại; một phương thức thất bại trên mỗi loại"
+      ],
+      "correct": 3,
+      "explanation": "BM25 chiếm ưu thế trên các ký hiệu nguyên văn; dày đặc chiếm ưu thế trên các diễn đạt lại. Một điểm cuối thực tế nhận cả hai loại từ cùng một người dùng."
+    },
+    {
+      "stage": "pre",
+      "question": "Tham số b của BM25 ở mức mặc định 0.75 là gì?",
+      "options": [
+        "Số lượng trường trong tài liệu",
+        "Một số mũ thời gian truy vấn trên độ tương đồng cosine",
+        "Một hệ số nhân trên thuật ngữ IDF",
+        "Một núm điều chỉnh chuẩn hóa độ dài: tài liệu dài hơn bị phạt nhưng không theo cách tuyến tính"
+      ],
+      "correct": 3,
+      "explanation": "b nội suy giữa không chuẩn hóa độ dài (0) và chuẩn hóa hoàn toàn (1); 0.75 là khuyến nghị đã được công bố."
+    },
+    {
+      "stage": "check",
+      "question": "Reciprocal Rank Fusion tính toán gì cho mỗi ứng viên?",
+      "options": [
+        "Trung bình của các điểm số BM25 và dày đặc sau khi chuẩn hóa min-max",
+        "Tổng của 1 / (k + hạng) trên mỗi danh sách xếp hạng chứa ứng viên",
+        "Tích của các độ tương đồng cosine giữa các phương thức",
+        "Hạng trung vị giữa các phương thức"
+      ],
+      "correct": 1,
+      "explanation": "RRF cộng dồn các đóng góp 1 / (k + hạng) cho mỗi danh sách xếp hạng; k = 60 là mặc định đã được công bố."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc hợp nhất dựa trên hạng được ưa chuộng hơn so với nội suy tuyến tính giữa BM25 và điểm số cosine?",
+      "options": [
+        "Điểm số cosine không bị giới hạn",
+        "Điểm số BM25 không bị giới hạn và phụ thuộc vào tập hợp; cosine bị giới hạn trong khoảng -1 đến 1; các thang điểm không thể so sánh giữa các tập hợp",
+        "Điểm số BM25 không thể được sắp xếp",
+        "Nội suy tuyến tính yêu cầu hỗ trợ GPU"
+      ],
+      "correct": 1,
+      "explanation": "Nội suy điểm số phá vỡ mọi lần lập chỉ mục lại vì các phân phối điểm số thay đổi; các hạng có thể so sánh giữa các phương thức theo cấu trúc."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra với RRF khi bạn làm cho hằng số k rất nhỏ?",
+      "options": [
+        "Hợp nhất trở thành tương đương với tổng điểm số tuyến tính",
+        "Đóng góp top-1 chiếm ưu thế trong hợp nhất; các hạng sâu gần như không đóng góp gì",
+        "Các thuật ngữ ngoài tập hợp nhận được điểm số dương",
+        "Hợp nhất bỏ qua phương thức thứ hai"
+      ],
+      "correct": 1,
+      "explanation": "k nhỏ tập trung vào đóng góp hạng-1; k lớn làm phẳng đường cong đóng góp và cho phép các ứng viên sâu bỏ phiếu."
+    },
+    {
+      "stage": "post",
+      "question": "Chế độ thất bại nào mà việc trọng số trường thông qua việc lặp lại token tránh được cụ thể?",
+      "options": [
+        "Thêm một bước tổng hợp điểm số thứ hai tại thời gian truy vấn; toán học vẫn giữ nguyên và logic kết hợp điểm số theo trường không cần thiết",
+        "Nhúng ngoài từ vựng",
+        "BM25 IDF sụp đổ về không",
+        "Độ tương đồng cosine trở nên âm"
+      ],
+      "correct": 0,
+      "explanation": "Lặp lại các token tại thời gian lập chỉ mục nhân tần suất thuật ngữ, cho phép toán học tính điểm BM25 giữ nguyên một tổng thay vì một kết hợp điểm số theo trường riêng biệt."
+    }
+  ]
+}

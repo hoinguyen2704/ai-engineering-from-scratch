@@ -1,0 +1,78 @@
+{
+  "lesson": "14-prompt-semantic-caching",
+  "title": "Kinh Tế Lưu Trữ Đầu Vào và Lưu Trữ Ngữ Nghĩa",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt giữa lưu trữ ngữ nghĩa L1 và lưu trữ đầu vào/prefix L2 là gì?",
+      "options": [
+        "L2 lưu trữ embedding; L1 lưu trữ KV Attention",
+        "L1 là phía nhà cung cấp và L2 là phía khách hàng",
+        "L1 và L2 là giống nhau",
+        "L1 bỏ qua hoàn toàn LLM trên các hit tương đồng embedding; L2 tái sử dụng KV Attention tại nhà cung cấp cho các prefix lặp lại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cơ chế nào của Anthropic đánh dấu các khối là có thể lưu trữ cho lưu trữ đầu vào L2?",
+      "options": [
+        "Thuộc tính cache_control rõ ràng trên các khối yêu cầu",
+        "Hậu tố tên tệp trong các định nghĩa công cụ",
+        "Một ngưỡng độ dài prompt ngầm định",
+        "Một điểm cuối /caches riêng biệt"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cách mà mẫu chống song song làm tăng hóa đơn là gì?",
+      "options": [
+        "Yêu cầu song song bỏ qua việc gộp",
+        "Song song kích hoạt một khoản phí bảo vệ theo yêu cầu",
+        "Tất cả yêu cầu song song tự động chia sẻ một mục lưu trữ",
+        "N yêu cầu song song với cùng một prefix đến trước khi ghi vào bộ nhớ cache đầu tiên hoàn tất, vì vậy mỗi yêu cầu phải trả thêm phí ghi và không nhận được giảm giá"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu nội dung động trong các prefix có thể lưu trữ là gì?",
+      "options": [
+        "Bao gồm nội dung thay đổi mỗi yêu cầu (thời gian hiện tại đến từng phút, ID yêu cầu, thứ tự ví dụ ngẫu nhiên) bên trong prefix có thể lưu trữ, làm giảm tỷ lệ hit",
+        "Sử dụng prompt hệ thống quá ngắn",
+        "Luôn phát trực tiếp phản hồi",
+        "Đưa các sơ đồ công cụ vào prefix"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Làm thế nào để gộp + đầu vào đã lưu trữ có thể giảm chi phí qua đêm?",
+      "options": [
+        "Gộp không tương thích với việc lưu trữ",
+        "Lưu trữ vô hiệu hóa khả năng đủ điều kiện gộp",
+        "Gộp chỉ tiết kiệm chi phí đầu ra",
+        "API gộp giảm 50%; đầu vào đã lưu trữ thêm khoảng 10x; kết hợp lại, các pipeline qua đêm giảm xuống khoảng 10% chi phí không lưu trữ đồng bộ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài học nói gì về các tuyên bố \"độ chính xác 95%\" của bộ nhớ ngữ nghĩa?",
+      "options": [
+        "95% có nghĩa là bạn nên mong đợi 95% hit từ bộ nhớ",
+        "95% là tỷ lệ hit bộ nhớ mặc định của OpenAI",
+        "95% là một mức độ hit được tài liệu hóa bởi nhà cung cấp",
+        "95% đề cập đến độ chính xác của sự khớp, không phải tỷ lệ hit; tỷ lệ hit sản xuất được báo cáo dao động từ khoảng 10% (trò chuyện mở) lên đến khoảng 70% (FAQ có cấu trúc)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

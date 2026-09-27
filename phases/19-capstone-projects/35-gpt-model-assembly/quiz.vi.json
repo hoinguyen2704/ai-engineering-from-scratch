@@ -1,0 +1,78 @@
+{
+  "lesson": "35-gpt-model-assembly",
+  "title": "Lắp Ráp Mô Hình GPT",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cấu hình GPT-2 nhỏ tham chiếu mà bài học này tái tạo là gì?",
+      "options": [
+        "vocab 30000, context 512, d_model 512, 6 heads, 6 layers",
+        "vocab 50257, context 1024, d_model 768, 12 heads, 12 layers, parameters gần 124 triệu",
+        "vocab 50000, context 4096, d_model 4096, 32 heads, 32 layers",
+        "vocab 100000, context 2048, d_model 1024, 16 heads, 24 layers"
+      ],
+      "correct": 1,
+      "explanation": "GPT-2 nhỏ là cấu hình 124M tham số; việc khớp nó xác nhận rằng việc kết nối là chính xác."
+    },
+    {
+      "stage": "check",
+      "question": "Khái niệm weight tying trong lắp ráp mô hình có nghĩa là gì?",
+      "options": [
+        "Embedding token và đầu LM chia sẻ chính xác cùng một tensor tham số; bộ tối ưu cập nhật một ma trận phục vụ cho cả tra cứu và chiếu đầu ra",
+        "Hai tensor khác nhau có cùng hình dạng được sao chép mỗi bước",
+        "Một hạng mục bias được chia sẻ giữa các lớp",
+        "Một ràng buộc trên các đầu attention"
+      ],
+      "correct": 0,
+      "explanation": "Thiết lập lm_head.weight = tok_embed.weight chia sẻ bộ nhớ; sao chép thì không. Tiết kiệm vocab nhân với tham số d_model."
+    },
+    {
+      "stage": "check",
+      "question": "Quá trình sinh tạo làm thế nào để trượt cửa sổ ngữ cảnh của nó?",
+      "options": [
+        "Mỗi bước lấy các token context_length cuối cùng của chuỗi đang chạy (prompt cộng với các token đã sinh) và đưa chúng vào mô hình",
+        "Cắt ngắn xuống một nửa ngữ cảnh mỗi bước",
+        "Đệm đến ngữ cảnh tối đa bằng các số không",
+        "Bắt đầu lại từ prompt mỗi bước"
+      ],
+      "correct": 0,
+      "explanation": "Cửa sổ trượt loại bỏ các token cũ nhất khi chuỗi đang chạy tràn ra ngoài chiều dài ngữ cảnh."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao khởi tạo chiếu đầu ra attention và MLP tuyến tính thứ hai với std nhỏ hơn phần còn lại?",
+      "options": [
+        "Tập dữ liệu yêu cầu điều đó",
+        "Sampling top-k cần trọng số nhỏ hơn",
+        "Cả hai đều trực tiếp vào một phép cộng dư. Tỉ lệ std của chúng bằng 1 trên căn bậc hai của 2 nhân với num_layers giữ cho dòng dư trong quy mô qua mười hai lớp",
+        "Nó tiết kiệm bộ nhớ"
+      ],
+      "correct": 2,
+      "explanation": "Nếu không có tỉ lệ, dòng dư sẽ tăng theo độ sâu và đẩy LayerNorm cuối cùng vào một chế độ nóng."
+    },
+    {
+      "stage": "post",
+      "question": "Nhiệt độ có tác dụng gì trong thời gian sampling?",
+      "options": [
+        "Chọn tốc độ học của bộ tối ưu",
+        "Chia logits trước softmax. T nhỏ hơn 1 làm sắc nét phân phối về phía greedy, T bằng 1 giữ phân phối mô hình tự nhiên, T lớn hơn 1 làm phẳng",
+        "Tỉ lệ các embedding",
+        "Thêm dropout vào đầu"
+      ],
+      "correct": 1,
+      "explanation": "Nhiệt độ là núm điều chỉnh đơn giản nhất; kết hợp với top-k, nó kiểm soát mức độ khám phá của quá trình sinh."
+    },
+    {
+      "stage": "post",
+      "question": "Lọc top-k có tác dụng gì trước khi sampling?",
+      "options": [
+        "Chọn k logits thấp nhất",
+        "Giữ lại k logits có giá trị cao nhất, che giấu phần còn lại thành âm vô cùng, sau đó softmax trên những người sống sót để sampling multinomial chỉ thấy k token hàng đầu",
+        "Loại bỏ tất cả logits dưới không",
+        "Giới hạn logits ở k"
+      ],
+      "correct": 1,
+      "explanation": "Top-k cắt ngắn đuôi dài trước softmax; top_k=1 là greedy, k lớn hơn giữ lại nhiều sự đa dạng hơn."
+    }
+  ]
+}

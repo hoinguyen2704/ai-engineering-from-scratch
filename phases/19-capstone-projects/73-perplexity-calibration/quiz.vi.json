@@ -1,0 +1,78 @@
+{
+  "lesson": "73-perplexity-calibration",
+  "title": "Độ phức tạp và Hiệu chuẩn",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Độ phức tạp 1.0 ngụ ý điều gì về một mô hình ngôn ngữ trên tập dữ liệu kiểm tra?",
+      "options": [
+        "Mô hình bị hỏng",
+        "Mô hình gán xác suất 1 cho mọi token thực tế; đây là một mô hình hoàn hảo",
+        "Mô hình đồng nhất trên từ vựng",
+        "Tập dữ liệu là rỗng"
+      ],
+      "correct": 1,
+      "explanation": "Độ phức tạp bằng exp(avg negative log-likelihood). Khi mỗi token nhận xác suất 1, NLL bằng 0, và exp(0) bằng 1."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ điều khiển yêu cầu xác suất log không âm từ bộ chuyển đổi?",
+      "options": [
+        "Numpy bị lỗi với các giá trị âm",
+        "Các cạnh của bin trong ECE giả định tính dương",
+        "Độ phức tạp không xác định cho các giá trị âm",
+        "Xác suất log âm là không âm theo định nghĩa; nhận giá trị âm có nghĩa là bộ chuyển đổi gửi log p, không phải -log p"
+      ],
+      "correct": 3,
+      "explanation": "-log p của một xác suất là không âm. Một giá trị âm là vi phạm hợp đồng sẽ âm thầm cho độ phức tạp < 1, điều này là không thể."
+    },
+    {
+      "stage": "check",
+      "question": "Lỗi hiệu chuẩn kỳ vọng đo lường điều gì?",
+      "options": [
+        "Khoảng cách trung bình giữa độ tin cậy cấp bin và độ chính xác cấp bin, được trọng số theo kích thước bin",
+        "Entropy chéo của các dự đoán",
+        "Khoảng cách tuyệt đối trung bình giữa nhãn dự đoán và nhãn thực",
+        "Phương sai của đầu ra softmax"
+      ],
+      "correct": 0,
+      "explanation": "ECE phân loại các dự đoán theo độ tin cậy, đo khoảng cách giữa độ tin cậy trung bình và độ chính xác trung bình theo từng bin, được trọng số theo kích thước bin."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc triển khai cũng trả về populated_bins bên cạnh giá trị ECE?",
+      "options": [
+        "Nó là mẫu số của điểm Brier",
+        "Nó cần thiết cho numpy",
+        "Nó báo hiệu khi quá ít bin được lấp đầy để số đơn lẻ có thể đáng tin cậy",
+        "Nó cần thiết cho các biểu đồ độ tin cậy"
+      ],
+      "correct": 2,
+      "explanation": "Với ít bin được lấp đầy, ECE bị chi phối bởi tiếng ồn. Báo cáo số lượng đã lấp đầy cho phép người thực hiện từ chối công bố một số đơn lẻ gây hiểu lầm."
+    },
+    {
+      "stage": "check",
+      "question": "Điểm Brier ghi lại điều gì mà ECE không có?",
+      "options": [
+        "Nó không cần nhãn thực tế",
+        "Nó nhanh hơn để tính toán",
+        "Nó chỉ hoạt động trên các kết quả nhị phân",
+        "Nó phạt sự hiệu chuẩn sai địa phương trực tiếp, vì nó là sai số bình phương theo từng dự đoán"
+      ],
+      "correct": 3,
+      "explanation": "ECE chỉ nhìn vào các trung bình theo từng bin. Brier bình phương sai số theo từng dự đoán, vì vậy nó bắt được trường hợp mà các bin hủy nhau về mặt trung bình nhưng lại bị hiệu chuẩn sai từng cách."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao hiệu chuẩn là báo cáo theo mô hình thay vì là một chỉ số theo tác vụ?",
+      "options": [
+        "Hiệu chuẩn quá chậm để tính toán theo tác vụ",
+        "Các tác vụ không có xác suất",
+        "ECE yêu cầu người thực hiện biết kiến trúc mô hình",
+        "Các tác vụ đơn lẻ có quá ít dự đoán để ước lượng thống kê bin; báo cáo tổng hợp trên toàn bộ đánh giá"
+      ],
+      "correct": 3,
+      "explanation": "Hiệu chuẩn theo tác vụ bị chi phối bởi tiếng ồn. Người thực hiện tổng hợp các cặp độ tin cậy/đúng đắn trên tất cả các tác vụ trước khi tính toán ECE, Brier và biểu đồ độ tin cậy."
+    }
+  ]
+}

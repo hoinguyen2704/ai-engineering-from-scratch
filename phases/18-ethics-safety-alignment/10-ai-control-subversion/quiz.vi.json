@@ -1,0 +1,78 @@
+{
+  "lesson": "10-ai-control-subversion",
+  "title": "Kiểm Soát AI - An Toàn Mặc Dù Bị Phá Hoại",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt giữa căn chỉnh và kiểm soát AI được thể hiện tốt nhất như thế nào?",
+      "options": [
+        "Chúng là đồng nghĩa",
+        "Kiểm soát liên quan đến phần cứng; căn chỉnh liên quan đến phần mềm",
+        "Căn chỉnh hỏi liệu U có đáng tin cậy không; kiểm soát hỏi liệu chúng ta có thể sử dụng U một cách an toàn mà không cần tin tưởng nó không",
+        "Kiểm soát thay thế hàm mất mát trong khi căn chỉnh thay đổi bộ tối ưu hóa"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình mối đe dọa Kiểm Soát AI giả định điều gì?",
+      "options": [
+        "U là không đáng tin cậy mạnh, T là đáng tin cậy yếu, H là lao động con người đáng tin cậy có giới hạn",
+        "Chỉ có U tồn tại",
+        "U và T đều là đối kháng",
+        "Cả ba nguồn lực (U, T, H) đều được tin cậy"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Rủi ro chính trong Giám Sát Không Đáng Tin mà Chỉnh Sửa Đáng Tin tránh được là gì?",
+      "options": [
+        "T không thể chỉnh sửa văn bản",
+        "Cạnh tranh phần cứng",
+        "Hai phiên bản của U có thể thông đồng hoặc chia sẻ thông tin trước đó, vì vậy giao thức phải tiêu tốn ngân sách cho khả năng chống thông đồng",
+        "Con người không thể bị kiểm toán"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Trong nhiệm vụ backdoor mã của Greenblatt et al. (ICML 2024), Chỉnh Sửa Đáng Tin đạt được gì so với Giám Sát Không Đáng Tin?",
+      "options": [
+        "Nó chỉ thắng ở ngân sách con người bằng không",
+        "Chúng hoàn toàn tương đương",
+        "Nó tệ hơn một cách nghiêm trọng",
+        "Nó vượt trội một cách nghiêm ngặt: tính hữu ích cao hơn ở mọi mức độ an toàn"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Trong số các giới hạn cơ bản của kiểm soát trong bài học, giới hạn nào KHÔNG phải là một trong ba giới hạn đó?",
+      "options": [
+        "Kiểm soát tạo ra các mô hình đã căn chỉnh như một sản phẩm phụ",
+        "Các mô hình yếu đáng tin cậy cuối cùng sẽ tụt lại phía sau U",
+        "Kiểm soát có thể thất bại ở các mức độ khả năng cao hơn nếu U có thể thao túng T hoặc lý luận về phân phối kiểm toán của H",
+        "Con người không thể mở rộng"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Một Trường Hợp An Toàn Kiểm Soát lập luận điều gì?",
+      "options": [
+        "Rằng U là đáng tin cậy",
+        "Rằng T có khả năng hơn U",
+        "Rằng dưới các giả định tồi tệ nhất về U, giao thức triển khai giới hạn xác suất của một kết quả không chấp nhận được",
+        "Rằng mô hình đã vượt qua bài kiểm tra jailbreak thủ công"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "08-production-rag-chatbot",
+  "title": "Capstone 08 — Chatbot RAG Sản Xuất cho Một Ngành Được Quản Lý",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao việc lưu trữ prompt lại quan trọng đến vậy trong một chatbot RAG thuộc lĩnh vực được quản lý?",
+      "options": [
+        "Nó loại bỏ các ảo tưởng",
+        "Với tỷ lệ trúng 60-80%, nó giảm chi phí mỗi truy vấn từ 3-5 lần bằng cách giảm giá trị các token tiền tố ổn định",
+        "Nó loại bỏ nhu cầu về một cơ sở dữ liệu vector",
+        "Nó cải thiện khả năng nhớ trong giai đoạn xếp hạng lại"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Cái gì được đưa vào tiêu đề cache so với phần đuôi không được lưu trữ của mỗi yêu cầu?",
+      "options": [
+        "Đệm văn bản ngẫu nhiên để đạt kích thước cache",
+        "Chỉ các tài liệu đã được truy xuất",
+        "Câu hỏi của người dùng trước, prompt của hệ thống sau",
+        "Prompt của hệ thống và các chính sách tĩnh trong tiêu đề cache, ngữ cảnh được xếp hạng lại như một phần mở rộng cache, câu hỏi của người dùng như phần đuôi không được lưu trữ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Lớp truy xuất tôn trọng các thẻ quyền tài phán như GDPR hoặc HIPAA như thế nào?",
+      "options": [
+        "Nó viết lại câu hỏi của người dùng theo từng khu vực",
+        "Nó chặn phản hồi chỉ sau khi tạo ra",
+        "Nó chạy một chỉ mục riêng cho từng quốc gia",
+        "Các bộ lọc vai trò và quyền tài phán áp dụng trước khi hợp nhất tìm kiếm lai để các phần ngoài phạm vi của người dùng không bao giờ được xếp hạng lại"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Kết hợp các rào cản theo lớp nào mà đầu ra giai đoạn tổng hợp đi qua?",
+      "options": [
+        "Chỉ một regex PII đầu ra",
+        "Chỉ Llama Guard 4 trên đầu vào",
+        "Llama Guard 4, chính sách rào cản NeMo, và làm sạch PII của Presidio, cộng với việc thực thi trích dẫn",
+        "Một kiểm tra độ trung thành của LLM-judge duy nhất"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bảng điều khiển drift cảnh báo về điều gì?",
+      "options": [
+        "Một sự thay đổi trong nhà cung cấp LLM cơ bản",
+        "Độ trễ trên 200ms",
+        "Một sự giảm chất lượng truy xuất, ví dụ như giảm 5% tuần qua tuần trong nDCG hoặc điểm trích dẫn",
+        "Bất kỳ tài liệu mới nào được thêm vào chỉ mục"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Kích thước của bộ vàng được sử dụng để kiểm soát tiêu chí độ chính xác của sản phẩm là bao nhiêu?",
+      "options": [
+        "200 cặp câu hỏi/trả lời được gán nhãn bởi chuyên gia với các trích dẫn",
+        "5 truy vấn demo",
+        "2000 câu hỏi tổng hợp",
+        "20 câu hỏi"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Các điểm số RAGAS nào được theo dõi trực tuyến theo từng lượt?",
+      "options": [
+        "BLEU, ROUGE, và METEOR",
+        "Số lượng token và chi phí đô la",
+        "Độ trung thành, sự liên quan của câu trả lời, và độ chính xác ngữ cảnh",
+        "Thông lượng, sử dụng GPU, và độ sâu hàng đợi"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "80-checkpoint-sharded-resume",
+  "title": "Điểm Kiểm Tra Phân Mảnh và Khôi Phục Nguyên Tử",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao mẫu điểm kiểm tra gather-then-write là sai khi mở rộng quy mô?",
+      "options": [
+        "Tất cả trạng thái đi qua rank 0; băng thông ghi là liên kết chậm nhất, không phải tổng hợp, vì vậy việc ghi quy mô TB mất hàng giờ",
+        "Nó cần phần cứng đặc biệt",
+        "Nó sử dụng quá nhiều CPU",
+        "Nó trông xấu"
+      ],
+      "correct": 0,
+      "explanation": "Ghi phân mảnh mở rộng theo kích thước cụm: 64 rank ghi song song hoàn thành trong 1/64 thời gian của một rank ghi trạng thái đã thu thập."
+    },
+    {
+      "stage": "pre",
+      "question": "Manifest ghi lại điều gì mà các tệp shard không thể?",
+      "options": [
+        "world_size, phiên bản schema, sha256 theo từng shard, và quyền sở hữu shard; cung cấp cho loader một hợp đồng để xác thực trước khi chạm vào trạng thái",
+        "Tên máy chủ",
+        "Số ngẫu nhiên",
+        "Tên hệ thống tệp"
+      ],
+      "correct": 0,
+      "explanation": "Nếu không có manifest, loader phải đoán shard nào thuộc về rank nào và tin tưởng rằng số lượng tệp là đúng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao ghi vào <name>.tmp và đổi tên thay vì ghi trực tiếp?",
+      "options": [
+        "Yêu cầu bởi torch",
+        "Nhanh hơn",
+        "Tiết kiệm bộ nhớ",
+        "Đổi tên POSIX trong một hệ thống tệp là nguyên tử: một sự cố giữa chừng ghi để lại tệp trước đó không bị ảnh hưởng. Ghi trực tiếp có thể để lại các điểm kiểm tra chưa hoàn thành làm hỏng lần khôi phục tiếp theo"
+      ],
+      "correct": 3,
+      "explanation": "Nếu không có ghi nguyên tử, một lần lưu phần và một manifest cập nhật chỉ vào nó sẽ làm hỏng trạng thái trong lần tải tiếp theo."
+    },
+    {
+      "stage": "check",
+      "question": "sha256 theo từng shard bảo vệ chống lại điều gì?",
+      "options": [
+        "Chậm lại",
+        "Tấn công mạng",
+        "Ghi phần hoặc ghi hỏng; xác minh băm khi tải phát hiện các shard bị cắt trước khi chúng chạm vào trạng thái mô hình",
+        "Rò rỉ bộ nhớ"
+      ],
+      "correct": 2,
+      "explanation": "Nếu không có xác minh sha256, một shard bị cắt sẽ tải một cách im lặng và làm hỏng bộ tối ưu, xuất hiện sau đó dưới dạng mất mát NaN."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao đường dẫn tải từ chối sự không khớp world_size một cách ồn ào?",
+      "options": [
+        "Khôi phục một bố cục shard 4-rank trên 8 rank sẽ im lặng phân bổ sai các shard; từ chối ồn ào buộc người vận hành phải sử dụng đường dẫn cân bằng lại cross-world-size",
+        "Phần cứng cần điều đó",
+        "Dễ dàng lập trình hơn",
+        "Thẩm mỹ"
+      ],
+      "correct": 0,
+      "explanation": "Cân bằng lại cross-world-size là một hoạt động riêng biệt; việc nối các shard có kích thước sai một cách im lặng sẽ làm hỏng trạng thái."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao sản xuất lại xoay vòng các điểm kiểm tra (giữ lại K cái cuối)?",
+      "options": [
+        "Nén",
+        "Thẩm mỹ",
+        "Nó không",
+        "Nếu không có xoay vòng, đĩa sẽ đầy giữa chừng chạy và điểm kiểm tra tiếp theo sẽ thất bại; xoay vòng xóa cái cũ nhất trước khi ghi cái mới, giới hạn việc sử dụng đĩa"
+      ],
+      "correct": 3,
+      "explanation": "Các lần chạy thực tế giữ lại 3-5 điểm kiểm tra gần đây; cái cũ nhất sẽ bị xóa trước mỗi lần lưu mới để ngân sách đĩa được cố định."
+    }
+  ]
+}

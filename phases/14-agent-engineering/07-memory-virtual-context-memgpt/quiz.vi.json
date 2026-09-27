@@ -1,0 +1,90 @@
+{
+  "lesson": "07-memory-virtual-context-memgpt",
+  "title": "Bộ Nhớ Agent — Ngữ Cảnh Ảo và Phân Trang Bộ Nhớ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "MemGPT dựa trên phép ẩn dụ hệ điều hành nào?",
+      "options": [
+        "Bộ nhớ ảo: ngữ cảnh chính như RAM, lưu trữ bên ngoài như đĩa, công cụ bộ nhớ như phân trang vào và ra",
+        "Quá trình và luồng",
+        "Ổ cắm mạng",
+        "Mô tả tệp"
+      ],
+      "correct": 0,
+      "explanation": "MemGPT ánh xạ prompt vào RAM, lưu trữ bên ngoài vào đĩa, và công cụ bộ nhớ vào các chuyển giao kiểu lỗi phân trang."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao cửa sổ ngữ cảnh lớn hơn không hoàn toàn giải quyết được bộ nhớ?",
+      "options": [
+        "Mô hình từ chối đầu vào dài",
+        "Ngữ cảnh dài không tốn kém gì",
+        "Tràn, pha loãng sự chú ý, và thiếu tính bền vững giữa các phiên vẫn gây ra vấn đề ngay cả với cửa sổ 128k",
+        "Các nhà cung cấp giới hạn chúng ở 4k token"
+      ],
+      "correct": 2,
+      "explanation": "Mem0 đo lường các chuẩn 128k-window vẫn thiếu thông tin mà một agent 4k với bộ nhớ bên ngoài nắm bắt được; tràn, pha loãng, và tính bền vững vẫn tồn tại."
+    },
+    {
+      "stage": "check",
+      "question": "Cái nào trong số này KHÔNG phải là một trong những công cụ bộ nhớ chính của MemGPT?",
+      "options": [
+        "archival_memory_search",
+        "core_memory_append",
+        "conversation_search",
+        "gradient_memory_update"
+      ],
+      "correct": 3,
+      "explanation": "Không có công cụ bộ nhớ gradient; bề mặt là các thao tác core/archival/conversation."
+    },
+    {
+      "stage": "check",
+      "question": "Mẫu ngắt trong MemGPT làm gì?",
+      "options": [
+        "Nó dừng toàn bộ quá trình agent khi có lỗi",
+        "Giữa cuộc trò chuyện, agent gọi một công cụ bộ nhớ, runtime thực thi nó, và kết quả được ghép vào lượt tiếp theo",
+        "Nó hoàn toàn bỏ qua cửa sổ ngữ cảnh",
+        "Nó kích hoạt một lần huấn luyện lại mô hình"
+      ],
+      "correct": 1,
+      "explanation": "Bộ nhớ như một ngắt: gọi công cụ bộ nhớ, runtime lấy dữ liệu, kết quả trả về như một quan sát mới trong lượt tiếp theo (giống như một lệnh đọc Unix())."
+    },
+    {
+      "stage": "check",
+      "question": "Hệ thống sản xuất nào mà MemGPT đã phát triển thành vào năm 2024?",
+      "options": [
+        "Pinecone",
+        "Mem0",
+        "Zep",
+        "Letta"
+      ],
+      "correct": 3,
+      "explanation": "MemGPT trở thành Letta vào tháng 9 năm 2024; kho nghiên cứu cpacker/MemGPT vẫn tồn tại như nguồn gốc."
+    },
+    {
+      "stage": "post",
+      "question": "Nhiễm độc bộ nhớ trong ngữ cảnh này là gì?",
+      "options": [
+        "Đọc từ đĩa khi RAM có sẵn",
+        "Sự trôi dạt phiên bản mô hình nhúng",
+        "Một lỗi làm hỏng chỉ số vector",
+        "Nội dung của kẻ tấn công được lưu trữ như một ghi chú bộ nhớ và được tái hấp thụ trong các lần gọi lại sau"
+      ],
+      "correct": 3,
+      "explanation": "Bộ nhớ bên ngoài là văn bản được truy xuất; nếu nội dung có thể tiếp cận bởi kẻ tấn công rơi vào một ghi chú bộ nhớ, agent sẽ tái hấp thụ nó trong phiên tiếp theo."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học nói rằng các hệ thống bộ nhớ sản xuất là các biến thể của MemGPT?",
+      "options": [
+        "Letta, Mem0, các luồng Trợ lý, và Claude Agent SDK đều chạy theo mẫu bộ nhớ phân trang hai tầng (hoặc nhiều hơn); sự khác biệt là hình dạng hoạt động",
+        "Chúng chia sẻ trọng số",
+        "Chúng sử dụng cùng một cơ sở dữ liệu vector",
+        "MemGPT sở hữu nhãn hiệu"
+      ],
+      "correct": 0,
+      "explanation": "Chọn theo hình dạng hoạt động, không theo mẫu; tất cả đều chia sẻ khung phân trang vào/ra của MemGPT."
+    }
+  ]
+}

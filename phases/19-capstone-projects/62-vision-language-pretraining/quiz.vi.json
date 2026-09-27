@@ -1,0 +1,78 @@
+{
+  "lesson": "62-vision-language-pretraining",
+  "title": "Tiền huấn luyện Vision-Language",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Hai khả năng khác biệt nào được kết hợp từ InfoNCE và LM loss vào một mô hình?",
+      "options": [
+        "Xếp hạng (tìm hình ảnh đúng cho một chú thích) và tạo ra (viết một chú thích cho một hình ảnh)",
+        "Nén và giải nén",
+        "Tốc độ và độ chính xác",
+        "Phân đoạn và giải phân đoạn"
+      ],
+      "correct": 0,
+      "explanation": "InfoNCE xử lý xếp hạng; LM loss xử lý tạo ra. CoCa, BLIP, và các mô hình tương tự kết hợp cả hai trong một lần huấn luyện."
+    },
+    {
+      "stage": "pre",
+      "question": "Trong InfoNCE cho một lô N cặp, có bao nhiêu cặp dương và cặp âm được hình thành?",
+      "options": [
+        "N cặp dương trên đường chéo của ma trận tương đồng và N*(N-1) cặp âm ngoài đường chéo",
+        "N cặp dương và N cặp âm",
+        "1 cặp dương và N cặp âm",
+        "N^2 cặp dương"
+      ],
+      "correct": 0,
+      "explanation": "N cặp khớp nằm trên đường chéo; mọi thứ ngoài đường chéo đều là âm."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao nhiệt độ tương phản thường là một tham số được học?",
+      "options": [
+        "Nó tránh việc sử dụng Adam",
+        "PyTorch yêu cầu điều đó",
+        "Tau được học nhanh hơn trên GPU",
+        "Tuning thủ công rất mong manh; cho phép tau học cho phép mô hình tìm ra độ nhọn softmax đúng khi quy mô embedding phát triển trong quá trình huấn luyện"
+      ],
+      "correct": 3,
+      "explanation": "CLIP đã giới thiệu log-tau được học để softmax tương phản giữ trong chế độ hữu ích khi các chuẩn embedding tăng lên."
+    },
+    {
+      "stage": "check",
+      "question": "Các mô-đun con nào nhận gradient từ LM loss nhưng không từ loss tương phản?",
+      "options": [
+        "Máy chiếu MLP",
+        "Bộ mã hóa hình ảnh",
+        "Bộ mã hóa phía văn bản",
+        "Bộ giải mã cross-attention"
+      ],
+      "correct": 3,
+      "explanation": "Loss tương phản không chạm vào bộ giải mã; LM loss không chạm vào bộ mã hóa mean-pool phía văn bản."
+    },
+    {
+      "stage": "check",
+      "question": "ignore_index=PAD_ID đạt được điều gì trong cross-entropy LM?",
+      "options": [
+        "Tăng tốc độ loss",
+        "Mã hóa các token pad",
+        "Che giấu các vị trí padding khỏi loss để mô hình không bị phạt khi dự đoán các token sau khi chú thích kết thúc",
+        "Sắp xếp lại các token"
+      ],
+      "correct": 2,
+      "explanation": "Các vị trí padding không mang tín hiệu; việc bỏ qua chúng ngăn loss học cách dự đoán pad."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao một demo 50 bước trên dữ liệu tổng hợp là đủ để gọi bài học hoàn thành?",
+      "options": [
+        "Mô hình đạt trạng thái nghệ thuật tại 50 bước",
+        "50 bước là tối đa được hỗ trợ",
+        "Demo chứng minh rằng hệ thống gradient hoạt động từ đầu đến cuối; hình dạng huấn luyện sản xuất là giống nhau nhưng chạy hàng triệu bước trên dữ liệu thực",
+        "Dữ liệu thực sẽ thay đổi kiến trúc"
+      ],
+      "correct": 2,
+      "explanation": "Các động lực được chứng minh (cả hai loss đều giảm, không có NaN, tau ổn định) là những động lực giống như một lần chạy một tỷ hình ảnh sẽ cho thấy; chỉ được mở rộng lên."
+    }
+  ]
+}

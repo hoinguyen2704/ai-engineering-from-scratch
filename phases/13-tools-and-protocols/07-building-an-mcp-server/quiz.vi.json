@@ -1,0 +1,78 @@
+{
+  "lesson": "07-building-an-mcp-server",
+  "title": "Xây dựng một máy chủ MCP: Python và TypeScript không trạng thái",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Máy chủ MCP hiện đại đọc khả năng của khách hàng từ đâu?",
+      "options": [
+        "Từ Mcp-Session-Id",
+        "Từ cuộc gọi khởi tạo đầu tiên",
+        "Từ mỗi yêu cầu hiện tại",
+        "Từ môi trường quy trình"
+      ],
+      "correct": 2,
+      "explanation": "MCP 2026-07-28 mang theo khả năng của khách hàng trong params._meta của mỗi yêu cầu."
+    },
+    {
+      "stage": "check",
+      "question": "Phương thức nào mà một máy chủ hiện đại phải triển khai?",
+      "options": [
+        "initialize",
+        "server/discover",
+        "resources/subscribe",
+        "shutdown"
+      ],
+      "correct": 1,
+      "explanation": "server/discover là bắt buộc trên các máy chủ hiện đại, mặc dù khách hàng có thể gọi một phương thức khác trước."
+    },
+    {
+      "stage": "check",
+      "question": "Các trường kết quả thành công nào là bắt buộc trên tools/list?",
+      "options": [
+        "protocolVersion và tools",
+        "resultType, ttlMs, cacheScope, tools",
+        "initialized và tools",
+        "sessionId và tools"
+      ],
+      "correct": 1,
+      "explanation": "Kết quả danh sách hiện đại được kiểu hóa và có thể lưu cache."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một máy chủ nên sắp xếp công cụ một cách xác định?",
+      "options": [
+        "Để ổn định cache và ngữ cảnh mô hình",
+        "Để tạo một phiên",
+        "Để thương lượng giao thức",
+        "Để thay thế ủy quyền"
+      ],
+      "correct": 0,
+      "explanation": "Sắp xếp ổn định giúp các đăng ký tương đương tạo ra các phản hồi tương đương."
+    },
+    {
+      "stage": "post",
+      "question": "Một cuộc gọi công cụ hợp lệ chạy nhưng hoạt động miền thất bại. Hình dạng nào phù hợp?",
+      "options": [
+        "notifications/initialized",
+        "HTTP DELETE",
+        "Một kết quả công cụ hoàn chỉnh với isError true",
+        "Một yêu cầu máy chủ mới"
+      ],
+      "correct": 2,
+      "explanation": "Các lỗi cấp công cụ vẫn hiển thị cho mô hình thông qua nội dung và isError."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì nên kết thúc tuổi thọ vận chuyển của một máy chủ stdio?",
+      "options": [
+        "EOF trên stdin",
+        "Một yêu cầu GET",
+        "Một RPC tắt máy bắt buộc",
+        "Hết hạn Mcp-Session-Id"
+      ],
+      "correct": 0,
+      "explanation": "EOF là tín hiệu tắt máy stdio di động. Nó không đóng một phiên giao thức hiện đại."
+    }
+  ]
+}

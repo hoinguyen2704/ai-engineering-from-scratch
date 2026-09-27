@@ -1,0 +1,78 @@
+{
+  "lesson": "52-experiment-runner",
+  "title": "Trình Chạy Thí Nghiệm",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao trình chạy lại tạo ra một tiến trình con thay vì nhập kịch bản thí nghiệm trong tiến trình?",
+      "options": [
+        "Bởi vì tiến trình con nhanh hơn so với việc nhập",
+        "Bởi vì một tiến trình riêng biệt cung cấp cho trình chạy một tay cầm để kết thúc khi hết thời gian hoặc giới hạn bộ nhớ và cách ly các sự cố khỏi bộ điều phối",
+        "Bởi vì Python không cho phép nhập lồng nhau",
+        "Bởi vì định dạng số liệu yêu cầu điều đó"
+      ],
+      "correct": 1,
+      "explanation": "Một tiến trình riêng biệt là cách đơn giản nhất để cách ly mà ngôn ngữ cung cấp. Cha mẹ giữ một tay cầm để kết thúc và một không gian địa chỉ độc lập, vì vậy một thí nghiệm gặp sự cố không thể kéo theo bộ điều phối."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao giới hạn bộ nhớ được mô tả là mềm?",
+      "options": [
+        "Bởi vì nó chỉ áp dụng cho heap, không phải stack",
+        "Bởi vì bộ quét có khoảng thời gian không bằng không, vì vậy một tiến trình có thể vượt quá giới hạn giữa các lần quét và trình chạy chỉ hành động dựa trên quan sát tiếp theo",
+        "Bởi vì hệ điều hành luôn ghi đè nó",
+        "Bởi vì numpy bỏ qua giới hạn"
+      ],
+      "correct": 1,
+      "explanation": "Giới hạn được thực thi bằng cách quét, không phải bằng một giới hạn trong kernel. Khoảng thời gian của bộ quét là độ phân giải của giới hạn, và các đỉnh ngắn có thể tạm thời vượt quá giới hạn trước khi quan sát tiếp theo."
+    },
+    {
+      "stage": "check",
+      "question": "Nhãn đầu cuối nào mà trình chạy trả về khi stdout có số liệu nhưng mã thoát không bằng không?",
+      "options": [
+        "hết thời gian",
+        "sự cố",
+        "ok",
+        "hết bộ nhớ"
+      ],
+      "correct": 1,
+      "explanation": "Đầu cuối là ok chỉ khi mã thoát bằng không và số liệu đã được phân tích. Một mã thoát không bằng không là sự cố ngay cả khi một số số liệu đã được ghi lại trước khi xảy ra lỗi."
+    },
+    {
+      "stage": "check",
+      "question": "Trình chạy xác định blob số liệu cuối cùng bên trong stdout như thế nào?",
+      "options": [
+        "Nó quét stderr để tìm json",
+        "Nó mong đợi chính xác một dòng đầu ra",
+        "Nó đọc dòng json cuối cùng mà các khóa bao phủ các metric_keys yêu cầu; các dòng bao phủ trước đó trở thành số liệu trung gian",
+        "Nó đọc dòng json đầu tiên"
+      ],
+      "correct": 2,
+      "explanation": "Số liệu cuối cùng là dòng cuối cùng được phân tích dưới dạng json và bao gồm mọi khóa yêu cầu. Các dòng bao phủ trước đó được giữ lại như là số liệu trung gian cho các đường cong học tập."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao trợ lý ablation lại quét một núm một lần thay vì một toàn bộ tổ hợp?",
+      "options": [
+        "Bởi vì một núm một lần tạo ra một trục sạch mà người đánh giá có thể vẽ, trong khi toàn bộ tổ hợp phát triển theo cấp số nhân và gây nhầm lẫn trong việc diễn giải",
+        "Bởi vì hạt giống chỉ thay đổi theo một núm",
+        "Bởi vì trình chạy không thể khởi động nhiều hơn một tiến trình con",
+        "Bởi vì numpy không hỗ trợ tích sản Cartesian"
+      ],
+      "correct": 0,
+      "explanation": "Quét một núm giữ cho kết quả có thể diễn giải. Chi phí của toàn bộ tổ hợp tăng theo cấp số nhân với số lượng núm và bảng kết quả rất khó đọc."
+    },
+    {
+      "stage": "check",
+      "question": "Sự đảm bảo nào mà việc chuyển tiếp spec.seed vào config['__seed'] mang lại cho người đánh giá?",
+      "options": [
+        "Giảm tiêu thụ bộ nhớ",
+        "Thời gian thực thi nhanh hơn",
+        "Một bài kiểm tra ý nghĩa miễn phí",
+        "Tính xác định, vì vậy một lần chạy lại với cùng một hạt giống sẽ tạo ra các số liệu giống hệt nhau và người đánh giá có thể phát hiện những thay đổi thực sự từ tiếng ồn ngẫu nhiên"
+      ],
+      "correct": 3,
+      "explanation": "Hạt giống gắn kết việc khởi tạo ngẫu nhiên trong thí nghiệm. Hai lần chạy với cùng một hạt giống tạo ra các số liệu giống hệt nhau, điều này cho phép người đánh giá phân biệt một sự suy giảm thực sự từ một lần rút thăm khác."
+    }
+  ]
+}

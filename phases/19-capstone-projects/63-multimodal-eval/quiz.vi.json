@@ -1,0 +1,78 @@
+{
+  "lesson": "63-multimodal-eval",
+  "title": "Đánh giá Đa phương thức",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao chỉ số mất mát trong quá trình huấn luyện không đủ để đánh giá chất lượng của một mô hình đa phương thức?",
+      "options": [
+        "Mất mát là một chuỗi",
+        "Giá trị mất mát là ngẫu nhiên",
+        "Mất mát trong quá trình huấn luyện đo lường sự phù hợp trên phân phối huấn luyện; các bề mặt đánh giá (truy xuất, VQA, chú thích) đo lường xem mô hình có tổng quát được cho các tác vụ chưa thấy hay không",
+        "Mất mát khó tính toán"
+      ],
+      "correct": 2,
+      "explanation": "Việc tối thiểu hóa mất mát là cần thiết nhưng không đủ. Các chỉ số giữ lại trên ba bề mặt tác vụ đo lường những gì mô hình thực sự có thể làm."
+    },
+    {
+      "stage": "pre",
+      "question": "R@5 đo lường điều gì trong một bài đánh giá truy xuất với 100 mẫu?",
+      "options": [
+        "Tỷ lệ truy vấn mà kết quả đúng nằm trong 5 ứng viên được truy xuất hàng đầu trong số 100",
+        "Độ chính xác năm phần trăm",
+        "Năm truy vấn mỗi giây",
+        "Chú thích thứ năm luôn đúng"
+      ],
+      "correct": 0,
+      "explanation": "R@K = tỷ lệ truy vấn có mục tiêu trong số K ứng viên được xếp hạng hàng đầu. Cao hơn thì tốt hơn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao BLEU-4 lấy trung bình hình học của độ chính xác từ 1- đến 4-gram thay vì trung bình số học?",
+      "options": [
+        "Trung bình hình học lớn hơn",
+        "PyTorch chỉ hỗ trợ trung bình hình học",
+        "Số học chậm hơn",
+        "Trung bình hình học bằng không nếu bất kỳ độ chính xác n-gram nào bằng không, đây là thuộc tính khớp chặt chẽ mà BLEU muốn; làm mịn xử lý trường hợp bằng không"
+      ],
+      "correct": 3,
+      "explanation": "Trung bình hình học đảm bảo rằng TẤT CẢ các bậc n-gram đều đóng góp; độ chính xác 4-gram bằng không làm giảm điểm trước khi làm mịn."
+    },
+    {
+      "stage": "check",
+      "question": "Hình phạt độ ngắn trong BLEU-4 bảo vệ chống lại điều gì?",
+      "options": [
+        "Rò rỉ bộ nhớ",
+        "Chú thích dài bị phạt",
+        "Chú thích ngắn lợi dụng độ chính xác cao bằng cách chỉ phát ra các token tần suất cao an toàn; BP < 1 khi độ dài tạo ra < độ dài tham chiếu",
+        "Lỗi bộ phân tách"
+      ],
+      "correct": 2,
+      "explanation": "Nếu không có BP, một chú thích một từ khớp với một từ tham chiếu sẽ ghi điểm 1.0. BP thu nhỏ điểm cho các thế hệ quá ngắn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao BLEU đa tham chiếu thường ghi điểm cao hơn BLEU đơn tham chiếu trên cùng một thế hệ?",
+      "options": [
+        "Mỗi n-gram trong thế hệ có thể khớp với bất kỳ tham chiếu nào, vì vậy số lượng bị cắt là cao hơn khi có nhiều tham chiếu hơn",
+        "BLEU đơn tham chiếu bị hỏng",
+        "Tham chiếu tốn thêm bộ nhớ",
+        "Toán học là khác nhau"
+      ],
+      "correct": 0,
+      "explanation": "Nhiều tham chiếu cung cấp cho n-gram nhiều cơ hội để được khớp; số lượng bị cắt tăng lên và độ chính xác tăng."
+    },
+    {
+      "stage": "post",
+      "question": "Bề mặt đánh giá nào không sử dụng nhúng mô hình và chỉ so khớp theo cấp độ id?",
+      "options": [
+        "Độ tương đồng cosine",
+        "BLEU-4",
+        "VQA khớp chính xác: một id câu trả lời dự đoán được so sánh trực tiếp với một id tham chiếu mà không có bước nhúng nào",
+        "Truy xuất"
+      ],
+      "correct": 2,
+      "explanation": "Khớp chính xác VQA là một so sánh số nguyên sau khi mô hình phát ra token câu trả lời của nó; không có toán học nhúng hoặc tương đồng nào liên quan."
+    }
+  ]
+}

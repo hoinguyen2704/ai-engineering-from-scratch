@@ -1,0 +1,78 @@
+{
+  "lesson": "11-multi-region-kv-locality",
+  "title": "Phục vụ LLM Đa Khu Vực và Tính Địa Phương của Bộ Nhớ KV",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao cân bằng tải round-robin lại gây hại cho việc suy diễn LLM đã được lưu trữ?",
+      "options": [
+        "Round-robin phá vỡ TLS",
+        "Round-robin chỉ hợp lệ cho các cơ sở dữ liệu có trạng thái",
+        "Round-robin yêu cầu phiên kết dính",
+        "Một yêu cầu không đến được nút giữ tiền tố của nó phải trả toàn bộ chi phí prefill thay vì một lần truy cập bộ nhớ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hai đầu vào nào mà bộ định tuyến nhận thức bộ nhớ tiêu thụ?",
+      "options": [
+        "Chỉ user_id và tenant_id",
+        "Các bộ đếm round-robin và khóa TLS",
+        "Các sự kiện KV-cache từ các bản sao và một băm tiền tố trên yêu cầu đến",
+        "Xáo trộn ngẫu nhiên và kích thước yêu cầu"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng cách TTFT giữa một lần truy cập bộ nhớ và một lần prefill lạnh trên một prompt 2K-token cho Llama 3.3 70B FP8 là khoảng bao nhiêu?",
+      "options": [
+        "Khoảng 1000x",
+        "Khoảng 10x (~80 ms so với ~800 ms)",
+        "Khoảng 1.1x",
+        "Giống hệt nhau"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao định tuyến giữa các khu vực không luôn vượt trội hơn định tuyến khu vực cho các lần truy cập bộ nhớ?",
+      "options": [
+        "Định tuyến nhận thức bộ nhớ là không thể giữa các khu vực",
+        "Định tuyến giữa các khu vực bị cấm bởi tất cả các nhà cung cấp dịch vụ lớn",
+        "Nghiên cứu GORGO phát hiện ra rằng các lần truy cập bộ nhớ không giúp giảm độ trễ",
+        "Chi phí prefill tiết kiệm có thể bị mạng RTT làm cho nhỏ bé, ví dụ: 440 ms vòng đi vòng lại có thể làm cho tiết kiệm prefill 800 đến 80 ms trở nên nhỏ bé"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài học trích dẫn điều gì là nguyên nhân gây ra thất bại LLM DR 32%?",
+      "options": [
+        "Các bản sao lưu bao gồm trọng số nhưng thiếu tệp tokenizer hoặc cấu hình lượng tử hóa",
+        "Sự cạn kiệt hạn ngạch khu vực",
+        "Các bộ cân bằng tải được cấu hình sai",
+        "Các bản sao lưu không được mã hóa"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài học nói gì về các dịch vụ suy diễn giữa các khu vực thương mại như Bedrock CRI?",
+      "options": [
+        "Chúng tối ưu hóa tính khả dụng, không phải TTFT, và coi suy diễn là không minh bạch — bạn vẫn cần một bộ định tuyến nhận thức bộ nhớ ở lớp ứng dụng",
+        "Chúng bị cấm theo GDPR",
+        "Chúng nhận thức bộ nhớ KV và thay thế định tuyến ở lớp ứng dụng",
+        "Chúng chỉ hoạt động ở us-east-1"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

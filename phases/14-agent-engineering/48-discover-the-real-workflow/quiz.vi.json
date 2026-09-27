@@ -1,0 +1,78 @@
+{
+  "lesson": "48-discover-the-real-workflow",
+  "title": "Khám Phá Quy Trình Thực Tế",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bắt đầu với hành vi hiện tại thay vì các tính năng được yêu cầu?",
+      "options": [
+        "Quy trình thực tế tiết lộ các giải pháp thay thế, chuyển giao, trạng thái và ràng buộc",
+        "Các tính năng không bao giờ hữu ích",
+        "Nó đảm bảo sẵn sàng sản xuất",
+        "Nó tránh xa người dùng"
+      ],
+      "correct": 0,
+      "explanation": "Yêu cầu phát sinh từ cách công việc thực sự diễn ra, không chỉ từ những gì mọi người yêu cầu."
+    },
+    {
+      "stage": "check",
+      "question": "Bằng chứng trực tiếp nào là mạnh nhất?",
+      "options": [
+        "Một người dùng nói về những gì thường xảy ra",
+        "Một lộ trình",
+        "Một dấu vết hệ thống của hành động",
+        "Một dự đoán của nhóm"
+      ],
+      "correct": 2,
+      "explanation": "Một dấu vết quan sát hành vi trực tiếp thay vì báo cáo hoặc suy luận."
+    },
+    {
+      "stage": "check",
+      "question": "Bốn bề mặt quy trình nào cần được chú ý đặc biệt?",
+      "options": [
+        "Nhánh, cam kết, thẻ, phát hành",
+        "Sự ma sát, trạng thái ẩn, quyền lực và ngoại lệ",
+        "Màu sắc, phông chữ, bố cục, hoạt hình",
+        "Mô hình, token, nhiệt độ, prompt"
+      ],
+      "correct": 1,
+      "explanation": "Những bề mặt này thường chứa vấn đề và rủi ro thực sự."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần bảo tồn các biến thể quy trình?",
+      "options": [
+        "Một giá trị trung bình có thể không mô tả ai và xóa bỏ sự khác biệt hợp lệ về vai trò hoặc rủi ro",
+        "Các biến thể dễ lập trình hơn",
+        "Tất cả người dùng đều giống nhau",
+        "Nó loại bỏ nhu cầu bằng chứng"
+      ],
+      "correct": 0,
+      "explanation": "Sự khác biệt có thể mã hóa vai trò, chính sách, chuyên môn hoặc trạng thái di sản."
+    },
+    {
+      "stage": "post",
+      "question": "Tỷ lệ bằng chứng trực tiếp truyền đạt điều gì?",
+      "options": [
+        "Chi phí triển khai",
+        "Độ chính xác của mô hình",
+        "Độ hoàn thiện của tính năng",
+        "Bao nhiêu phần của quy trình được dựa trên quan sát thay vì báo cáo hoặc suy luận"
+      ],
+      "correct": 3,
+      "explanation": "Nó giữ cho sức mạnh của bằng chứng luôn rõ ràng."
+    },
+    {
+      "stage": "post",
+      "question": "Bước quy trình ẩn là gì?",
+      "options": [
+        "Một API công khai",
+        "Một bài kiểm tra đơn vị",
+        "Một chuyển tiếp CSS",
+        "Công việc được thực hiện trong bộ nhớ, trò chuyện hoặc ghi chú cá nhân bên ngoài quy trình chính thức"
+      ],
+      "correct": 3,
+      "explanation": "Trạng thái ẩn thường giải thích tại sao quy trình nhìn thấy được không đầy đủ."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao Mask R-CNN thay thế RoIPool bằng RoIAlign?",
+      "options": [
+        "RoIPool làm tròn tọa độ hộp thành số nguyên ở nhiều bước, làm sai lệch bản đồ đặc trưng từ các pixel đầu vào lên đến một pixel của bản đồ đặc trưng; RoIAlign sử dụng lấy mẫu bilinear mà không làm tròn, bảo tồn vị trí",
+        "RoIPool gặp vấn đề bản quyền",
+        "RoIPool chỉ hoạt động trên CPU",
+        "RoIAlign nhanh hơn trên GPU"
+      ],
+      "correct": 0,
+      "explanation": "Việc làm tròn của RoIPool gây ra sai lệch lên đến kích thước bước (ví dụ: 32 pixel trên bản đồ đặc trưng stride-32). RoIAlign lấy mẫu tại tọa độ float chính xác thông qua nội suy bilinear. Sự thay đổi này đã nâng cao AP của mặt nạ lên 3-4 điểm trên COCO trong bài báo gốc và hiện đã trở thành tiêu chuẩn trong mọi bộ phát hiện quan tâm đến vị trí."
+    },
+    {
+      "stage": "pre",
+      "question": "Đầu ra mặt nạ của Mask R-CNN cung cấp một mặt nạ 28x28 cho mỗi lớp cho mỗi đề xuất. Tại sao lại theo lớp?",
+      "options": [
+        "Bài báo yêu cầu điều đó",
+        "Mặt nạ nhị phân tràn trong một kênh duy nhất",
+        "Tách biệt dự đoán mặt nạ khỏi phân loại: đầu ra mặt nạ chỉ cần học hình dạng cho mỗi lớp riêng biệt, vì vậy quyết định của bộ phân loại không ảnh hưởng đến mặt nạ nào được sản xuất, chỉ ảnh hưởng đến kênh nào được đọc trong quá trình suy diễn",
+        "Bởi vì mặt nạ nhị phân cần các kênh theo lớp cho backprop"
+      ],
+      "correct": 2,
+      "explanation": "Việc sản xuất một mặt nạ cho mỗi lớp cho mỗi đề xuất tách biệt việc học hình dạng mặt nạ khỏi phân loại. Trong quá trình suy diễn, bạn chỉ đọc kênh phù hợp với lớp dự đoán. Sự tách biệt đa nhiệm này quan trọng vì hình dạng mặt nạ và xác suất lớp là các mục tiêu khác nhau được đào tạo với các gradient khác nhau."
+    },
+    {
+      "stage": "post",
+      "question": "Từ điển dự đoán Mask R-CNN của torchvision có `labels` bắt đầu từ 1, không phải 0. Tại sao?",
+      "options": [
+        "torchvision sử dụng chỉ số bắt đầu từ 1 trong toàn bộ",
+        "Lớp 0 được dành cho nền; các lớp người dùng luôn bắt đầu từ 1 để đầu ra bộ phân loại có thể coi nền như một lớp thực sự với các logits và gradient riêng",
+        "Dữ liệu huấn luyện xác định điều đó",
+        "Lỗi kế thừa"
+      ],
+      "correct": 1,
+      "explanation": "Hầu hết các bộ phát hiện coi nền là lớp 0 và các lớp foreground rõ ràng là 1..C. Softmax trên (C+1) lớp cho phép mạng học cách dự đoán chủ động 'không có đối tượng ở đây' thay vì chỉ có độ tin cậy thấp trên tất cả các lớp. Một tập dữ liệu với 4 lớp thực sự cần num_classes = 5 khi thay thế bộ dự đoán."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn tinh chỉnh Mask R-CNN trên một tập dữ liệu 500 hình ảnh và mAP xác thực đạt đỉnh trong khi mất mát huấn luyện vẫn giảm. Điều đầu tiên cần thử là gì?",
+      "options": [
+        "Thêm nhiều epoch hơn",
+        "Sử dụng tốc độ học cao hơn",
+        "Chuyển sang phân đoạn U-Net",
+        "Đóng băng backbone và FPN để mô hình chỉ tinh chỉnh RPN và các đầu ra; 500 hình ảnh là quá ít để cập nhật 23M tham số backbone mà không bị overfitting"
+      ],
+      "correct": 3,
+      "explanation": "Trên các tập dữ liệu nhỏ, bạn không có đủ tín hiệu để tinh chỉnh mọi tham số. Đóng băng backbone đã được huấn luyện trước và FPN (các đặc trưng ImageNet + COCO) và chỉ đào tạo đầu ra RPN và hai đầu ra phân loại/mặt nạ là công thức tiêu chuẩn và thường khắc phục được tình trạng đạt đỉnh này trong một lần huấn luyện."
+    },
+    {
+      "stage": "post",
+      "question": "FPN bên trong Mask R-CNN có bốn cấp độ (P2, P3, P4, P5) với các bước 4, 8, 16, 32. Tại sao không chỉ sử dụng một cấp độ?",
+      "options": [
+        "Để giảm số lượng tham số",
+        "Bốn cấp độ là tùy ý",
+        "Các đối tượng trong hình ảnh tự nhiên trải dài qua nhiều kích thước; việc định tuyến mỗi đề xuất đến cấp độ FPN phù hợp với kích thước của nó cung cấp cho đầu ra một bản đồ đặc trưng với trường tiếp nhận đúng cho đối tượng đó, điều này tốt hơn nhiều so với việc luôn sử dụng một kích thước",
+        "Để sử dụng nhiều bộ nhớ GPU hơn"
+      ],
+      "correct": 2,
+      "explanation": "Một đối tượng nhỏ trên bản đồ đặc trưng stride-32 chiếm một ô duy nhất, mà gần như không có thông tin không gian. FPN định tuyến các đối tượng nhỏ đến các cấp độ cao hơn, độ phân giải thấp (P2) và các đối tượng lớn đến các cấp độ thấp hơn, độ phân giải sâu (P5), phù hợp trường tiếp nhận với kích thước đối tượng. Đây là lý do tại sao mọi bộ phát hiện hiện đại đều có một kim tự tháp."
+    }
+  ]
+}

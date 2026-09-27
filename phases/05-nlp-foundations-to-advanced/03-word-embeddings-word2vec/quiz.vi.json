@@ -1,0 +1,102 @@
+{
+  "lesson": "03-word-embeddings-word2vec",
+  "title": "Nhúng Từ — Word2Vec Từ Đầu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Giả thuyết phân phối là gì?",
+      "options": [
+        "Tất cả các từ có thể được nhúng trong 300 chiều",
+        "Các từ thường gặp mang nhiều ý nghĩa nhất",
+        "Bạn sẽ biết một từ qua những từ nó đi kèm",
+        "Các từ được phân phối đồng đều trong các tài liệu"
+      ],
+      "correct": 2,
+      "explanation": "Giả thuyết phân phối của Firth (1957): các ngữ cảnh tương tự ngụ ý ý nghĩa tương tự."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao softmax thông thường trên từ vựng lại không thực tế trong Word2Vec?",
+      "options": [
+        "Softmax không thể mô hình hóa xác suất",
+        "Softmax không có gradient",
+        "Tính toán softmax trên hơn 100k từ vựng là quá tốn kém cho mỗi bước huấn luyện",
+        "Nó gây ra gradient biến mất"
+      ],
+      "correct": 2,
+      "explanation": "Softmax toàn bộ từ vựng quá tốn kém; sampling âm tính tái cấu trúc nó thành phân loại nhị phân."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt giữa skip-gram và CBOW là gì?",
+      "options": [
+        "Skip-gram dự đoán các từ ngữ cảnh từ trung tâm; CBOW dự đoán trung tâm từ ngữ cảnh",
+        "Skip-gram dự đoán từ trung tâm từ ngữ cảnh; CBOW làm ngược lại",
+        "Skip-gram huấn luyện một mạng sâu; CBOW thì nông",
+        "Skip-gram sử dụng bigram; CBOW sử dụng unigram"
+      ],
+      "correct": 0,
+      "explanation": "Skip-gram: trung tâm -> ngữ cảnh. CBOW: ngữ cảnh -> trung tâm."
+    },
+    {
+      "stage": "check",
+      "question": "Trong sampling âm tính, mục tiêu cho cặp tích cực (trung tâm, ngữ cảnh) là gì?",
+      "options": [
+        "Giảm thiểu tích vô hướng của chúng",
+        "Buộc chúng phải vuông góc",
+        "Tối đa hóa sigmoid(W[trung tâm] dot W'[ngữ cảnh]) để nó gần 1",
+        "Giảm tương quan các vector"
+      ],
+      "correct": 2,
+      "explanation": "Các cặp tích cực huấn luyện sigmoid gần 1; các âm tính được lấy mẫu huấn luyện sigmoid gần 0."
+    },
+    {
+      "stage": "check",
+      "question": "Sau khi huấn luyện Word2Vec, ma trận trọng số nào trở thành nhúng từ?",
+      "options": [
+        "Một phép chiếu riêng biệt sau huấn luyện",
+        "Cả hai, nhân với nhau",
+        "Ma trận W' từ ẩn đến đầu ra",
+        "Ma trận W từ đầu vào đến ẩn (bảng từ trung tâm)"
+      ],
+      "correct": 3,
+      "explanation": "Bảng từ trung tâm W là đầu ra nhúng tiêu chuẩn; W' thường bị loại bỏ hoặc trung bình vào."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao Word2Vec không hoạt động với đa nghĩa (ví dụ: 'bank')?",
+      "options": [
+        "Sampling âm tính loại bỏ các nghĩa hiếm",
+        "Nó bỏ qua các từ hiếm",
+        "Kích thước cửa sổ quá nhỏ",
+        "Nó gán một vector tĩnh cho mỗi từ, vì vậy 'bờ sông' và 'ngân hàng tài chính' chia sẻ cùng một vector"
+      ],
+      "correct": 3,
+      "explanation": "Nhúng tĩnh không thể phân biệt các nghĩa; nhúng ngữ cảnh (ELMo/BERT) khắc phục điều này."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn vẫn sẽ chọn Word2Vec thay vì một transformer vào năm 2026?",
+      "options": [
+        "Khi chất lượng đối thoại quan trọng",
+        "Khi bạn cần phân biệt ngữ cảnh",
+        "Lấy lại theo miền nhẹ, trên thiết bị, nơi một lần tra cứu duy nhất là ngân sách độ trễ",
+        "Khi đầu vào rất dài"
+      ],
+      "correct": 2,
+      "explanation": "Word2Vec thắng trong các ngân sách độ trễ nhỏ, suy diễn trên thiết bị, hoặc huấn luyện nhanh theo miền cụ thể."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì cho phép phép ẩn dụ nổi tiếng 'king - man + woman ~ queen'?",
+      "options": [
+        "Skip-gram huấn luyện trên từ vựng hoàng gia",
+        "Số học vector nắm bắt các hướng tuyến tính như 'hoàng gia' chuyển giao qua các giới tính",
+        "Mô hình mã hóa hoàng gia như một bit cờ",
+        "Độ tương đồng cosine không thay đổi theo giới tính"
+      ],
+      "correct": 1,
+      "explanation": "Các hướng trong không gian nhúng mã hóa các đặc điểm quan hệ, vì vậy việc cộng/trừ di chuyển một cách có hệ thống."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "67-query-rewriting-hyde",
+  "title": "Tái viết truy vấn: HyDE, Truy vấn Đa và Phân tích",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cơ chế cốt lõi của HyDE (Embedding Tài liệu Giả định) là gì?",
+      "options": [
+        "Nhúng truy vấn người dùng thông qua một mô hình lớn hơn",
+        "Băm truy vấn và tìm kiếm trong bộ nhớ đệm",
+        "Chạy truy vấn qua nhiều bộ thu hồi và chọn cái tốt nhất",
+        "Tạo một câu trả lời giả bằng LLM, nhúng tài liệu giả định đó và truy hồi theo vector của nó thay vì vector truy vấn"
+      ],
+      "correct": 3,
+      "explanation": "HyDE viết một đoạn văn hình dạng tài liệu bằng giọng nói của tập hợp và truy hồi trên embedding đó; vector truy vấn được thay thế."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao tài liệu giả định do LLM tạo ra trong HyDE lại có thể sai sự thật?",
+      "options": [
+        "Bộ tái xếp hạng sửa chữa các lỗi thực tế",
+        "Cuộc gọi LLM sẽ bị hoàn tác khi sai",
+        "Bộ thu hồi quan tâm đến phân phối token, không phải tính chính xác thực tế; vector của giả định nằm gần đoạn văn thực",
+        "Người dùng không bao giờ thấy tài liệu giả định"
+      ],
+      "correct": 2,
+      "explanation": "Truy hồi là sự tương đồng trong không gian embedding; nếu từ vựng của giả định khớp với tập hợp, vector sẽ nằm trong khu vực đúng."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt giữa mở rộng truy vấn đa và phân tích truy vấn là gì?",
+      "options": [
+        "Mở rộng đa truy vấn tạo ra N cách diễn đạt của cùng một câu hỏi; phân tích tạo ra các câu hỏi con mà cùng nhau bao phủ một câu hỏi đa chủ đề",
+        "Phân tích chạy cục bộ; mở rộng đa truy vấn yêu cầu một mô hình từ xa",
+        "Chúng là giống hệt nhau",
+        "Mở rộng đa truy vấn sử dụng cosine; phân tích sử dụng BM25"
+      ],
+      "correct": 0,
+      "explanation": "Các cách diễn đạt bảo tồn ý định; các câu hỏi con chia một truy vấn đa chủ đề thành các phần có thể trả lời độc lập."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào phân tích truy vấn lại phân tách quá mức và gây hại cho việc truy hồi?",
+      "options": [
+        "Khi BM25 bị vô hiệu hóa",
+        "Khi tập hợp quá nhỏ",
+        "Khi truy vấn là nguyên tử (đơn chủ đề), bộ phân tích tạo ra các câu hỏi con giả và các truy hồi đều trả về cùng một tài liệu với thứ hạng giảm",
+        "Khi truy vấn quá dài cho LLM"
+      ],
+      "correct": 2,
+      "explanation": "Phân tích một truy vấn nguyên tử chia nó thành các câu hỏi con giả; các truy hồi của chúng làm loãng việc gộp lại khiến tài liệu đúng có thứ hạng thấp hơn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao ba chiến lược tái viết lại kết hợp với RRF thay vì nội suy điểm số?",
+      "options": [
+        "Nội suy điểm số yêu cầu hiệu chỉnh theo từng tập hợp; RRF kết hợp các đóng góp dựa trên thứ hạng mà không cần hiệu chỉnh, điều này là cần thiết khi gộp N truy hồi từ các tái viết khác nhau",
+        "Nội suy điểm số không thể xử lý hơn hai danh sách",
+        "RRF chạy trên GPU và nội suy điểm số thì không",
+        "RRF là phép toán duy nhất được Python hỗ trợ"
+      ],
+      "correct": 0,
+      "explanation": "Lập luận giống như bài học 65; gộp dựa trên thứ hạng không cần điều chỉnh alpha theo từng tập hợp và giữ ổn định trên các đầu ra của bộ tái viết."
+    },
+    {
+      "stage": "post",
+      "question": "Mức độ trễ tối thiểu khi chạy cả ba bộ tái viết song song là gì?",
+      "options": [
+        "Ba cuộc gọi LLM theo chuỗi",
+        "Truy hồi đơn chậm nhất",
+        "Một cuộc gọi LLM (các bộ tái viết và truy hồi chạy song song; cuộc gọi LLM là mức tối thiểu)",
+        "Không có, vì các bộ tái viết lưu trữ mọi thứ"
+      ],
+      "correct": 2,
+      "explanation": "Cả ba bộ tái viết đều phân tán đến một cuộc gọi mô hình; nếu chúng chạy song song, mức tối thiểu là độ trễ của một cuộc gọi mô hình, sau đó các truy hồi chạy song song."
+    }
+  ]
+}

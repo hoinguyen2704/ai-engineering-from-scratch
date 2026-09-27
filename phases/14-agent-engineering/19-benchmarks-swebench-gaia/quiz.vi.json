@@ -1,0 +1,90 @@
+{
+  "lesson": "19-benchmarks-swebench-gaia",
+  "title": "Các tiêu chuẩn: SWE-bench, GAIA, AgentBench",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Người đánh giá của SWE-bench kiểm tra điều gì trên một bản vá ứng viên?",
+      "options": [
+        "Độ dài bản vá dưới 200 dòng",
+        "Các bài kiểm tra trước đây thất bại giờ đây thành công (FAIL_TO_PASS) và các bài kiểm tra trước đây thành công vẫn thành công (PASS_TO_PASS)",
+        "Điểm BLEU so với bản sửa chữa tham chiếu",
+        "Bản vá vượt qua một thẩm phán LLM riêng biệt"
+      ],
+      "correct": 1,
+      "explanation": "Các rào cản kiểm tra chuyển tiếp: các bài kiểm tra phát hiện lỗi phải thay đổi trong khi các bài kiểm tra hồi quy phải giữ nguyên."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao tồn tại SWE-bench Verified?",
+      "options": [
+        "Nó bao gồm nhiều ngôn ngữ hơn",
+        "Nó chạy nhanh hơn",
+        "Tập hợp 500 tác vụ do con người chọn lọc của OpenAI loại bỏ các vấn đề mơ hồ và các bài kiểm tra không đáng tin cậy",
+        "Nó sử dụng định dạng bản vá khác"
+      ],
+      "correct": 2,
+      "explanation": "Verified là tập hợp sạch hơn cho báo cáo đáng tin cậy."
+    },
+    {
+      "stage": "check",
+      "question": "SWE-bench+ đã phát hiện điều gì về các bản vá thành công?",
+      "options": [
+        "32.67% văn bản giải pháp bị rò rỉ trong vấn đề và 31.08% có độ bao phủ bài kiểm tra nghi ngờ yếu",
+        "Các bản vá luôn vượt quá 1000 dòng",
+        "Không có sự ô nhiễm",
+        "Tất cả các bản vá đều được ghi nhớ"
+      ],
+      "correct": 0,
+      "explanation": "SWE-bench+ đã đánh dấu sự rò rỉ giải pháp và độ bao phủ yếu trên một tỷ lệ lớn các bản vá thành công."
+    },
+    {
+      "stage": "check",
+      "question": "Triết lý thiết kế của GAIA là gì?",
+      "options": [
+        "Khó cho con người, dễ cho AI",
+        "Tiêu chuẩn thuần túy của việc truy xuất vector",
+        "Chỉ các câu hỏi một lượt",
+        "Về mặt khái niệm đơn giản cho con người (khoảng 92%) nhưng khó cho AI (GPT-4 sớm với các plugin: khoảng 15%)"
+      ],
+      "correct": 3,
+      "explanation": "GAIA cố ý dễ cho con người, khó cho AI, kiểm tra lý luận + công cụ + phương thức."
+    },
+    {
+      "stage": "check",
+      "question": "Danh mục môi trường nào KHÔNG phải là một trong những danh mục của AgentBench?",
+      "options": [
+        "Trò chơi (Alfworld, LTP)",
+        "Web (WebShop, Mind2Web)",
+        "Gradient (RL, IRL)",
+        "Mã (Bash, DB, KG)"
+      ],
+      "correct": 2,
+      "explanation": "AgentBench bao gồm mã, trò chơi, web và tạo ra mở. Không có danh mục gradient."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học xác định cách báo cáo số liệu SWE-bench sai là gì?",
+      "options": [
+        "Báo cáo phân tích theo repo",
+        "Báo cáo một số tổng hợp mà không đề cập đến ngữ cảnh Verified hoặc SWE-bench+",
+        "Báo cáo số bước",
+        "Báo cáo thời gian thực"
+      ],
+      "correct": 1,
+      "explanation": "Sự cố định vào một số duy nhất che giấu sự ô nhiễm và chi phí; luôn báo cáo Verified và ngữ cảnh theo phân phối."
+    },
+    {
+      "stage": "post",
+      "question": "Các tiêu chuẩn này KHÔNG đo lường chiều nào?",
+      "options": [
+        "Chuyển tiếp bài kiểm tra",
+        "Số bước",
+        "Thành công theo tác vụ",
+        "Chi phí hoạt động thực tế (tokens, thời gian thực), an toàn đối kháng, và miền của bạn"
+      ],
+      "correct": 3,
+      "explanation": "Các tiêu chuẩn tổng hợp; chúng không nắm bắt chi phí, độ bền đối kháng, hoặc miền của bạn."
+    }
+  ]
+}

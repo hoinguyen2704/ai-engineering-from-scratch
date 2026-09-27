@@ -1,0 +1,78 @@
+{
+  "lesson": "46-gradient-accumulation",
+  "title": "Tích lũy Đạo hàm",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Định danh batch hiệu quả mà tích lũy đạo hàm biểu thị là gì?",
+      "options": [
+        "effective_batch = micro_batch / accum_steps",
+        "effective_batch = world_size only",
+        "effective_batch = micro_batch + accum_steps",
+        "effective_batch = micro_batch * accum_steps"
+      ],
+      "correct": 3,
+      "explanation": "Micro batch là những gì vừa đủ trong bộ nhớ; các bước tích lũy là số lần truyền tiến + truyền lùi tích lũy gradient vào cùng một bộ đệm trước khi thực hiện một bước tối ưu hóa."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao phải chia mất mát cho accum_steps trước khi truyền lùi trên mỗi micro batch?",
+      "options": [
+        "Nó làm cho đường cong mất mát đẹp hơn",
+        "Nó tránh NaNs",
+        "Nó chỉ cần thiết cho độ chính xác hỗn hợp",
+        "PyTorch mặc định cộng dồn gradient vào param.grad, vì vậy nếu không có phép chia, gradient tích lũy sẽ lớn hơn N lần và bước tối ưu hóa sẽ quá mạnh mẽ N lần"
+      ],
+      "correct": 3,
+      "explanation": "Bộ đệm tích lũy là một tổng. Việc điều chỉnh theo từng micro-batch bằng 1/N đưa tổng đó trở lại cùng một quy mô mà một bước truyền lùi đầy đủ sẽ tạo ra."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bước tối ưu hóa chạy bên trong vòng lặp tích lũy?",
+      "options": [
+        "Không bao giờ; bộ tối ưu hóa bị thay thế",
+        "Hai lần mỗi cửa sổ để đảm bảo an toàn",
+        "Sau mỗi micro batch",
+        "Chỉ sau micro batch cuối cùng trong cửa sổ tích lũy"
+      ],
+      "correct": 3,
+      "explanation": "Bước giữa quá trình tích lũy làm ô nhiễm mọi tham số mà phần còn lại của quá trình phụ thuộc vào. Bước tối ưu hóa được thực hiện một lần cho mỗi batch hiệu quả."
+    },
+    {
+      "stage": "check",
+      "question": "Ngữ cảnh no_sync bao bọc cái gì trong một lần chạy multi-GPU thực tế?",
+      "options": [
+        "Trình tải dữ liệu",
+        "Các micro batch không cuối cùng, vì vậy gradient all-reduce chỉ được thực hiện sau lần truyền lùi cuối cùng thay vì N lần",
+        "Bước tối ưu hóa",
+        "Lần truyền tiến"
+      ],
+      "correct": 1,
+      "explanation": "no_sync của DDP bỏ qua việc tập hợp gradient. Bao bọc tất cả trừ micro batch cuối cùng biến N tập hợp cho mỗi bước hiệu quả thành một."
+    },
+    {
+      "stage": "check",
+      "question": "Hàm equivalence_check trong main.py khẳng định điều gì?",
+      "options": [
+        "Rằng mất mát hội tụ",
+        "Rằng gradient bằng không",
+        "Rằng một lần truyền lùi đầy đủ và một lần truyền lùi chia nhỏ với mất mát / N tạo ra cùng một bộ đệm gradient và cùng một tham số sau bước cho đến một độ dung sai nhỏ",
+        "Rằng thông lượng là không đổi"
+      ],
+      "correct": 2,
+      "explanation": "Giới hạn khẳng định là max-abs-diff dưới 1e-4. Nếu không có việc điều chỉnh mất mát, độ khác biệt sẽ tăng lên; với việc điều chỉnh, nó nằm ở mức tiếng ồn số thực."
+    },
+    {
+      "stage": "post",
+      "question": "Đọc thông lượng so với đường cong batch hiệu quả, cái gì giữ nguyên và cái gì thay đổi?",
+      "options": [
+        "Thông lượng tăng lên vì mô hình trở nên nhanh hơn",
+        "Cả hai chỉ số đều thay đổi tuyến tính với accum",
+        "Số mẫu mỗi giây bão hòa gần giới hạn phần cứng trong khi thời gian tường mỗi bước tối ưu hóa thay đổi tuyến tính với accum_steps; số bước tối ưu hóa mỗi giây là cái giảm",
+        "Số mẫu mỗi giây giảm với batch hiệu quả lớn hơn"
+      ],
+      "correct": 2,
+      "explanation": "Mỗi micro batch có cùng chi phí cho truyền tiến + truyền lùi. Tích lũy mang lại sự làm mịn thống kê cho mỗi bước tối ưu hóa, không phải thông lượng thô; đường cong là một kiểm tra thực tế hữu ích chống lại truyền thuyết."
+    }
+  ]
+}

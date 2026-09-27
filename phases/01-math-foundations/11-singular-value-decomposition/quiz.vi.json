@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Lợi thế của SVD so với phân tích trị riêng là gì?",
+      "options": [
+        "SVD luôn nhanh hơn để tính toán",
+        "SVD tạo ra các ma trận đầu ra nhỏ hơn",
+        "SVD hoạt động trên bất kỳ ma trận nào với bất kỳ hình dạng nào, trong khi phân tích trị riêng yêu cầu các ma trận vuông với đầy đủ tập hợp trị riêng",
+        "SVD không yêu cầu tính toán số"
+      ],
+      "correct": 2,
+      "explanation": "Phân tích trị riêng chỉ hoạt động trên các ma trận vuông có n trị riêng độc lập tuyến tính. SVD phân tích bất kỳ ma trận m x n nào thành U * Sigma * V^T mà không có bất kỳ hạn chế nào về hình dạng hoặc hạng."
+    },
+    {
+      "stage": "pre",
+      "question": "Khái niệm 'xấp xỉ hạng thấp' có nghĩa là gì?",
+      "options": [
+        "Chuyển đổi một ma trận thành kiểu dữ liệu có độ chính xác thấp hơn",
+        "Loại bỏ các hàng có giá trị thấp từ một ma trận",
+        "Sắp xếp các hàng của một ma trận theo độ lớn của chúng",
+        "Xấp xỉ một ma trận bằng cách chỉ giữ lại các thành phần quan trọng nhất của nó, tạo ra một ma trận đơn giản hơn với ít hướng độc lập hơn"
+      ],
+      "correct": 3,
+      "explanation": "Một xấp xỉ hạng-k chỉ giữ lại k giá trị riêng hàng đầu và các vector của chúng, loại bỏ phần còn lại. Định lý Eckart-Young chứng minh đây là xấp xỉ TỐT NHẤT có thể của hạng đó."
+    },
+    {
+      "stage": "post",
+      "question": "Trong SVD A = U * Sigma * V^T, mỗi yếu tố đại diện cho phép toán hình học nào?",
+      "options": [
+        "Cả ba yếu tố đều thực hiện cùng một phép toán: xoay",
+        "U nén, Sigma mở rộng, V^T chuẩn hóa",
+        "V^T xoay trong không gian đầu vào, Sigma tỷ lệ theo các trục chính, U xoay vào không gian đầu ra",
+        "U tỷ lệ, Sigma xoay, V^T dịch chuyển"
+      ],
+      "correct": 2,
+      "explanation": "SVD cho thấy mỗi ma trận thực hiện: (1) V^T xoay các đầu vào để căn chỉnh với các hướng chính, (2) Sigma kéo dài/nén theo mỗi trục, (3) U xoay kết quả vào không gian đầu ra. Xoay, tỷ lệ, xoay."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao sklearn triển khai PCA sử dụng SVD thay vì phân tích trị riêng của ma trận hiệp phương sai?",
+      "options": [
+        "SVD tạo ra các kết quả khác nhau chính xác hơn cho ML",
+        "SVD dễ dàng song song hóa trên GPU",
+        "SVD hoạt động trực tiếp trên ma trận dữ liệu mà không cần tạo ra ma trận hiệp phương sai, tránh việc bình phương số điều kiện và cải thiện độ ổn định số",
+        "SVD không yêu cầu trung tâm hóa dữ liệu"
+      ],
+      "correct": 2,
+      "explanation": "Việc tạo A^T*A bình phương các giá trị riêng (và số điều kiện). Nếu A có các giá trị riêng [1000, 0.001], A^T*A có các trị riêng [10^6, 10^-6] -- mất 6 chữ số độ chính xác. SVD tránh điều này bằng cách làm việc trực tiếp trên A."
+    },
+    {
+      "stage": "post",
+      "question": "SVD cắt ngắn giúp các hệ thống gợi ý dự đoán các đánh giá thiếu như thế nào?",
+      "options": [
+        "Nó huấn luyện một mạng nơ-ron trên các đánh giá đã quan sát",
+        "Nó phân tích ma trận đánh giá thành các hồ sơ người dùng và phim tiềm ẩn; tích vô hướng của một hồ sơ người dùng với một hồ sơ phim dự đoán đánh giá thiếu",
+        "Nó điền các mục thiếu bằng đánh giá trung bình",
+        "Nó nhóm các người dùng tương tự lại với nhau và sao chép các đánh giá của họ"
+      ],
+      "correct": 1,
+      "explanation": "SVD phân tích ma trận đánh giá thành các hồ sơ người dùng (U), tầm quan trọng của yếu tố tiềm ẩn (Sigma), và các hồ sơ phim (V^T). Việc tái cấu trúc hạng thấp điền vào các mục thiếu dựa trên các yếu tố tiềm ẩn (thể loại, thời kỳ, phong cách) giải thích sở thích của người dùng."
+    }
+  ]
+}

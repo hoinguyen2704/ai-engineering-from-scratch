@@ -1,0 +1,90 @@
+{
+  "lesson": "02-rag-over-codebase",
+  "title": "Capstone 02 — RAG over Codebase (Tìm kiếm ngữ nghĩa giữa các kho mã)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao tìm kiếm cosine đơn giản trên các đoạn mã thô không đủ cho việc truy xuất mã giữa các kho?",
+      "options": [
+        "Chỉ mục vector không thể lưu trữ tải trọng lớn hơn 1KB",
+        "Độ tương đồng cosine không xác định trên các embedding mã",
+        "Các mô hình embedding không xem mã như là các token",
+        "Nó làm hỏng kết quả trên mã được tạo ra, sự trùng lặp trong monorepo, và các ký hiệu hiếm khi được nhập"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Chunking nhận thức AST có nghĩa là gì trong quy trình nạp dữ liệu?",
+      "options": [
+        "Chia mã thành các cửa sổ cố định 256 token",
+        "Nén các đoạn mã bằng gzip trước khi lưu trữ",
+        "Cắt tại các ranh giới node tree-sitter như khoảng cách của hàm và lớp",
+        "Bỏ qua các chú thích và khoảng trắng trước khi embedding"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ba phương thức có thể truy xuất nào mà mỗi đoạn mã nhận được trong quy trình này?",
+      "options": [
+        "Văn bản thô, gzip, và hash",
+        "ID token, cây cú pháp, và đồ thị gọi",
+        "AST, IR, và bytecode",
+        "Embedding dày đặc, các thuật ngữ BM25, và một tóm tắt bằng ngôn ngữ tự nhiên"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Vai trò của cross-encoder reranker sau bước truy xuất hỗn hợp là gì?",
+      "options": [
+        "Nó chấm điểm từng cặp truy vấn-ứng viên cùng nhau để có độ chính xác cao hơn so với chỉ cosine",
+        "Nó viết lại các đoạn mã để loại bỏ mã được tạo ra",
+        "Nó tái embedding truy vấn trong một mô hình khác",
+        "Nó nén các đoạn mã trước khi gửi đến bộ tổng hợp"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bộ tổng hợp từ chối các câu trả lời không có (repo/path:start-end) anchors?",
+      "options": [
+        "Độ trung thành của trích dẫn kiểm soát câu trả lời để người dùng có thể xác minh từng tuyên bố",
+        "Anchors là yêu cầu của sơ đồ cơ sở dữ liệu vector",
+        "Anchors giảm chi phí token trong cuộc gọi tổng hợp",
+        "Anchors cần thiết cho việc tái xếp hạng BM25 ở hạ nguồn"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Re-index gia tăng yêu cầu gì để giữ dưới 60 giây cho một đợt đẩy 50 tệp?",
+      "options": [
+        "Bỏ hoàn toàn đồ thị ký hiệu",
+        "Vứt bỏ chỉ mục BM25 và xây dựng lại từ đầu",
+        "Tái embedding toàn bộ tập hợp 2M-LOC trên mỗi lần commit",
+        "Tái embedding chỉ các đoạn mã có văn bản thay đổi và tính toán lại các cạnh ký hiệu bị ảnh hưởng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số nào đo lường xem các tuyên bố được truy xuất có thể xác minh trong nguồn không?",
+      "options": [
+        "Độ trung thành của trích dẫn",
+        "Độ trễ truy vấn p95",
+        "nDCG@10",
+        "MRR@10"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "36-scope-contracts",
+  "title": "Hợp Đồng Phạm Vi và Ranh Giới Nhiệm Vụ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao sự gia tăng phạm vi được gọi là chế độ thất bại ít được giám sát nhất?",
+      "options": [
+        "Nó quá hiếm để giám sát",
+        "Các bài kiểm tra tự động phát hiện nó",
+        "Nó làm hỏng tác nhân một cách ồn ào",
+        "Mỗi lần chạm đều có lý do hợp lý vào thời điểm đó; cùng nhau chúng tạo thành một thay đổi khác so với những gì đã được xem xét"
+      ],
+      "correct": 3,
+      "explanation": "Các tác nhân kể lại từng bước với thiện chí; tổng thể im lặng là sự gia tăng."
+    },
+    {
+      "stage": "pre",
+      "question": "Trường hợp nào trong hợp đồng mà bài học gọi là một nửa hợp đồng?",
+      "options": [
+        "approvals_required",
+        "forbidden_files (không gian tiêu cực)",
+        "goal",
+        "task_id"
+      ],
+      "correct": 1,
+      "explanation": "Một hợp đồng không có forbidden_files là không hoàn chỉnh; không gian tiêu cực là một nửa hợp đồng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lại gán allowed/forbidden cho globs thay vì đường dẫn thô?",
+      "options": [
+        "Globs mã hóa tốt hơn",
+        "Globs nhanh hơn",
+        "Đường dẫn thô không thể tuần tự hóa JSON",
+        "Các kho thực tế di chuyển tệp; globs sống sót qua các lần tái cấu trúc giữa các phiên"
+      ],
+      "correct": 3,
+      "explanation": "Globs (app/**/*.py) giữ cho hợp đồng hợp lệ qua các lần tái cấu trúc."
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình 'ngân sách vi phạm' làm gì?",
+      "options": [
+        "Tính phí theo mỗi vi phạm",
+        "Cho phép những sai sót nhỏ trong phạm vi như cảnh báo trong một ngân sách; chỉ có sự vượt quá mới kích hoạt từ chối hợp nhất — sự khác biệt giữa một cổng mà gửi đi và một cổng bị vô hiệu hóa",
+        "Giới hạn các cuộc gọi mô hình",
+        "Đặt ngân sách hàng tháng cho tác nhân"
+      ],
+      "correct": 1,
+      "explanation": "agent-guardrails sử dụng violationBudget để cổng có thể sử dụng trong quy trình hàng ngày."
+    },
+    {
+      "stage": "check",
+      "question": "Người thực hành specsmaxxing đã báo cáo điều gì?",
+      "options": [
+        "Độ trễ giảm 90%",
+        "Chi phí tăng 5 lần",
+        "Tỷ lệ rabbit-hole giảm từ 52% xuống 21% trong ba tuần mà không thay đổi tác nhân; hợp đồng đã làm việc, không phải mô hình",
+        "Các bài kiểm tra chậm lại"
+      ],
+      "correct": 2,
+      "explanation": "Hợp đồng phạm vi trong YAML trước khi gọi tác nhân đã giảm một nửa tỷ lệ rabbit-hole mà không thay đổi mô hình."
+    },
+    {
+      "stage": "post",
+      "question": "Ý nghĩa hợp nhất nhiều hợp đồng (quyền tối thiểu) là gì?",
+      "options": [
+        "Hợp đồng cuối cùng thắng",
+        "Giao nhau của allowed_files; hợp nhất forbidden_files; thời gian tối thiểu; tích lũy phê duyệt; từ chối tất cả; hợp nhất None hoãn lại phía bên kia",
+        "Phá vỡ tie ngẫu nhiên",
+        "Hợp đồng đầu tiên thắng"
+      ],
+      "correct": 1,
+      "explanation": "Hợp nhất quyền tối thiểu: giao nhau trên cho phép, hợp nhất trên cấm, thời gian hạn chế nhất, tích lũy phê duyệt."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao ngân sách thời gian và mạng cũng thuộc về hợp đồng?",
+      "options": [
+        "Các nhà cung cấp yêu cầu chúng",
+        "Đồng hồ tường và truy cập máy chủ bên ngoài là các chiều phạm vi; chỉ có globs tệp là cần thiết nhưng không đủ",
+        "Chúng làm cho JSON nhỏ hơn",
+        "Chúng được yêu cầu bởi Apache 2.0"
+      ],
+      "correct": 1,
+      "explanation": "time_budget_minutes và network_egress allowlists là các chiều phạm vi trên globs tệp."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao OCR sử dụng CTC loss thay vì cross-entropy thông thường?",
+      "options": [
+        "CTC là yêu cầu của PyTorch",
+        "OCR ánh xạ một chuỗi đặc trưng có độ dài cố định sang một chuỗi ký tự có độ dài biến đổi mà không cần căn chỉnh theo từng bước thời gian; CTC loss tổng quát hóa trên tất cả các căn chỉnh mà giảm xuống mục tiêu sau khi loại bỏ các ký tự lặp lại và khoảng trắng, vì vậy bạn có thể huấn luyện mà không cần nhãn thời gian ở cấp ký tự",
+        "Cross-entropy tràn cho các chuỗi dài",
+        "CTC nhanh hơn"
+      ],
+      "correct": 1,
+      "explanation": "Nhận diện tạo ra một phân phối cho mỗi bước thời gian, nhưng văn bản mục tiêu không có căn chỉnh theo từng bước. CTC xử lý điều đó bằng cách tổng hợp qua mọi căn chỉnh mà giảm xuống mục tiêu thông qua thao tác gộp-lặp-và-loại-bỏ-khoảng-trắng. Đây là lý do tại sao CRNNs có thể được huấn luyện chỉ với các cặp (hình ảnh, văn bản) mà không cần biết mỗi ký tự bắt đầu và kết thúc ở đâu trong hình ảnh."
+    },
+    {
+      "stage": "pre",
+      "question": "Trong giải mã CTC, token khoảng trắng có tác dụng gì?",
+      "options": [
+        "Chỉ ra kết thúc chuỗi",
+        "Đệm chuỗi đến một độ dài cố định",
+        "Che khuất các vùng ồn ào",
+        "Tách các ký tự giống nhau liền kề để các đầu ra như 'hello' với một chữ L đôi có thể được mô hình phát ra 'h e l _ l o' — nếu không có khoảng trắng, 'l l' sẽ gộp lại thành một 'l'"
+      ],
+      "correct": 3,
+      "explanation": "Khoảng trắng là cơ chế cho phép CTC mã hóa các ký tự đôi. 'll' cần một khoảng trắng giữa hai chữ l để bước 'gộp lặp' giữ chúng khác biệt: 'l _ l' sống sót sau khi gộp, 'l l' thì không. Nếu không có khoảng trắng, CTC không thể đại diện cho bất kỳ từ nào chứa các ký tự giống nhau liền kề."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao giải mã CTC tham lam đôi khi tốt hơn tìm kiếm beam trên các tập dữ liệu đơn giản?",
+      "options": [
+        "Tham lam dễ triển khai hơn",
+        "Tìm kiếm beam yêu cầu một mô hình ngôn ngữ",
+        "Tham lam luôn tốt hơn",
+        "Khi mô hình tự tin ở mỗi bước (chữ viết sạch, phông chữ in), argmax của tham lam thường là người chiến thắng beam; tìm kiếm beam thêm độ trễ mà không có lợi về độ chính xác. Trên các đầu vào ồn ào hoặc mơ hồ, tìm kiếm beam giúp"
+      ],
+      "correct": 3,
+      "explanation": "Tìm kiếm beam chỉ thắng khi argmax theo từng bước không đáng tin cậy — các ký tự mơ hồ, các chữ cái chồng chéo, quét bị suy giảm. Đối với văn bản in sạch, mô hình tự tin ở mỗi bước và tham lam nằm trong 1% CER của beam. Luôn kiểm tra cả hai; sự đánh đổi về độ trễ là có thật."
+    },
+    {
+      "stage": "post",
+      "question": "Donut bỏ qua việc phát hiện văn bản rõ ràng và nhận diện ký tự. Làm thế nào?",
+      "options": [
+        "Nó là một bộ mã hóa ViT + bộ giải mã văn bản được huấn luyện để sản xuất chuỗi đầu ra cuối cùng (thường là JSON) trực tiếp từ hình ảnh; mô hình học cả định vị và nhận diện một cách ngầm định thông qua mục tiêu huấn luyện",
+        "Nó tiền xử lý hình ảnh bằng một bộ phát hiện văn bản CNN",
+        "Nó bị giới hạn ở các loại tài liệu có bố cục cố định",
+        "Nó sử dụng một động cơ OCR bên ngoài bên trong"
+      ],
+      "correct": 0,
+      "explanation": "Donut là một mô hình end-to-end: bộ mã hóa ViT nhìn thấy toàn bộ tài liệu, bộ giải mã transformer phát ra văn bản mục tiêu hoặc JSON một cách tự động. Không có quy trình của bộ phát hiện + bộ nhận diện + mô-đun bố cục. Điều này bỏ qua sự tích lũy lỗi qua các giai đoạn nhưng yêu cầu các tập huấn luyện có nhãn lớn cho các loại tài liệu cụ thể mà bạn quan tâm."
+    },
+    {
+      "stage": "post",
+      "question": "Để trích xuất `invoice_total` từ biên lai, phương pháp nào thường tốt nhất vào năm 2026?",
+      "options": [
+        "Chỉ có OCR cổ điển là đủ tin cậy",
+        "Một CNN riêng cho mỗi trường",
+        "Donut tinh chỉnh hoặc một VLM trên một tập hợp nhỏ có nhãn của các biên lai mục tiêu; cả hai đều xử lý bố cục và trích xuất ngữ nghĩa trong một mô hình và tổng quát tốt hơn qua các biến thể biên lai so với các phương pháp dựa trên quy trình",
+        "Một regex được chế tạo thủ công trên đầu ra của Tesseract"
+      ],
+      "correct": 2,
+      "explanation": "Trích xuất trường có cấu trúc từng là lĩnh vực của LayoutLM + các quy tắc. Các mô hình end-to-end (Donut, Qwen-VL-OCR) đã vượt qua con đường đó: chúng chấp nhận một hình ảnh và sản xuất JSON trực tiếp. Đối với một tập hợp nhỏ các biên lai có nhãn (100-1000), tinh chỉnh Donut đạt F1 cao hơn bất kỳ quy trình nào của OCR + quy tắc."
+    }
+  ]
+}

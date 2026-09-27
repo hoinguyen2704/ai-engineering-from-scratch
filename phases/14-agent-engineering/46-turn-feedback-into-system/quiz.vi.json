@@ -1,0 +1,78 @@
+{
+  "lesson": "46-turn-feedback-into-system",
+  "title": "Biến Phản Hồi Thành Một Hệ Thống",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự điều chỉnh của tác nhân lặp lại tiết lộ điều gì?",
+      "options": [
+        "Một sự kiểm soát thiếu hoặc yếu trong hệ thống công việc",
+        "Một lý do để bỏ qua các bài kiểm tra",
+        "Một nhu cầu về lịch sử trò chuyện nhiều hơn",
+        "Chỉ là một mô hình yếu"
+      ],
+      "correct": 0,
+      "explanation": "Các điều chỉnh là những quan sát về các bài kiểm tra thiếu, ranh giới, ví dụ, công cụ hoặc quyết định."
+    },
+    {
+      "stage": "check",
+      "question": "Sự điều chỉnh hồi quy nên trở nên bền vững ở đâu?",
+      "options": [
+        "Một lời nhắc dài hơn",
+        "Một bài kiểm tra hoặc đánh giá",
+        "Một mô hình mới",
+        "Một ghi chú cuộc họp"
+      ],
+      "correct": 1,
+      "explanation": "Bằng chứng có thể thực thi ngăn chặn kết quả sai lầm tương tự quay trở lại một cách im lặng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần tìm nguyên nhân gốc rễ trước khi viết quy tắc?",
+      "options": [
+        "Nó loại bỏ nhu cầu về bằng chứng",
+        "Các quy tắc cần trích dẫn",
+        "Nó tránh mọi phức tạp",
+        "Các triệu chứng có thể phát sinh từ các kiểm soát thiếu khác nhau"
+      ],
+      "correct": 3,
+      "explanation": "Một quy tắc chỉ dựa vào triệu chứng sẽ thất bại khi cùng một nguyên nhân xuất hiện dưới một hình thức khác."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào một sự điều chỉnh tạm thời biện minh cho một kiểm soát vĩnh viễn?",
+      "options": [
+        "Luôn luôn",
+        "Không bao giờ",
+        "Khi sự tái diễn hoặc hậu quả biện minh cho sự phức tạp lâu dài",
+        "Chỉ sau khi phát hành"
+      ],
+      "correct": 2,
+      "explanation": "Cái răng nên bảo tồn phán đoán có ý nghĩa mà không tích lũy mọi sở thích."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần dấu vân tay cho các kiểm soát được thăng chức?",
+      "options": [
+        "Để che giấu quyền sở hữu",
+        "Cho thiết kế trực quan",
+        "Để thay thế việc xác minh",
+        "Để hợp nhất các bài học lặp lại mà không mất đi các nguyên nhân riêng biệt"
+      ],
+      "correct": 3,
+      "explanation": "Danh tính ổn định ngăn chặn cùng một kiểm soát được thêm vào nhiều lần."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao mỗi kiểm soát cần một kiểm tra nghỉ hưu?",
+      "options": [
+        "Các kiểm soát có thể trở nên lỗi thời, mâu thuẫn hoặc bị thay thế",
+        "Các tác nhân không thích hướng dẫn",
+        "Các bài kiểm tra không thể tồn tại lâu dài",
+        "Tất cả các quy tắc hết hạn hàng ngày"
+      ],
+      "correct": 0,
+      "explanation": "Hệ thống công việc nên giữ ở mức tối thiểu và hiện tại, không chỉ đơn thuần tích lũy chính sách."
+    }
+  ]
+}

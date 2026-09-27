@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/25-verification-gates-observation-budget",
+  "title": "Cổng Xác Minh và Ngân Sách Quan Sát",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc bài học: lý do mạnh mẽ nhất mà một harness cần một chuỗi cổng xác định thay vì một mô hình làm thẩm phán là gì?",
+      "options": [
+        "Các mô hình quá chậm để hoạt động như những thẩm phán trong sản xuất.",
+        "Chuỗi cổng cho phép mô hình tự viết chính sách của nó.",
+        "Một mô hình làm thẩm phán luôn tạo ra các quyết định cho phép ảo.",
+        "Tính xác định làm cho lý do từ chối có thể kiểm toán và chuỗi có thể phát lại."
+      ],
+      "correct": 3,
+      "explanation": "Các dấu vết kiểm toán và khả năng tái tạo là những lợi ích thực tiễn. Một mô hình thẩm phán cũng có thể được kết nối, nhưng cổng cấu trúc cần phải xác định để quyết định có thể được tái tạo và xem xét."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học chạy WhitelistGate trước BudgetGate trong chuỗi?",
+      "options": [
+        "BudgetGate không thể chạy cho đến khi ít nhất một công cụ được gọi.",
+        "Các từ chối trong Whitelist rẻ hơn, vì vậy việc ngắt mạch chúng tránh được tổng sổ sách tốn kém.",
+        "Whitelist phải luôn là cổng cuối cùng theo quy ước.",
+        "Thứ tự không quan trọng vì GateChain ngẫu nhiên hóa thứ tự đánh giá."
+      ],
+      "correct": 1,
+      "explanation": "Các từ chối rẻ chạy trước. WhitelistGate là tìm kiếm băm O(1). BudgetGate phải tổng hợp sổ sách. Việc ngắt mạch trên whitelist tránh được công việc đó khi cuộc gọi là bất hợp pháp về mặt cấu trúc."
+    },
+    {
+      "stage": "check",
+      "question": "Một ObservationLedger đã ghi lại một quan sát 60-token từ read_file. Harness sau đó từ chối một cuộc gọi tiếp theo. Ledger ghi lại điều gì về sự từ chối?",
+      "options": [
+        "Không có gì. Ledger chỉ ghi lại các quan sát thành công.",
+        "Sự từ chối được thêm vào như một Quan Sát tổng hợp với tên của người từ chối.",
+        "Một hàng Quan Sát 0-token được gán từ chối.",
+        "Một hàng Quan Sát -token đại diện cho chi phí từ chối."
+      ],
+      "correct": 0,
+      "explanation": "Ledger ghi lại các quan sát mà mô hình đã thấy. Một sự từ chối tạo ra một GateDecision, không phải một Quan Sát. Các từ chối được tính sống bên cạnh ledger, không bên trong nó."
+    },
+    {
+      "stage": "check",
+      "question": "RecencyGate.window được đặt thành 3. latest_turn của ledger là 5. Một ToolCall mới đến ở lượt 10. Điều gì xảy ra?",
+      "options": [
+        "Cổng từ chối: khoảng cách 5 vượt quá cửa sổ 3.",
+        "Cổng cho phép: cuộc gọi ở lượt mới nhất.",
+        "Cổng cho phép: cửa sổ áp dụng cho kích thước ledger, không phải khoảng cách lượt.",
+        "Cổng phát sinh một ngoại lệ vì ledger đã lỗi thời."
+      ],
+      "correct": 0,
+      "explanation": "RecencyGate so sánh (call.turn - ledger.latest_turn) với cửa sổ. 10 - 5 = 5, lớn hơn 3, vì vậy cổng từ chối."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn thêm một giới hạn đầu ra theo cuộc gọi (không quan sát nào có thể vượt quá 8000 token). Cổng này hợp lý thuộc về đâu trong chuỗi?",
+      "options": [
+        "Nó không thể là một cổng vì kích thước chỉ được biết sau khi công cụ chạy.",
+        "Trước WhitelistGate, vì kích thước là thuộc tính rẻ nhất để kiểm tra.",
+        "Bên trong BudgetGate để các giới hạn kết hợp.",
+        "Sau BudgetGate, vì ngân sách tích lũy luôn chi phối."
+      ],
+      "correct": 0,
+      "explanation": "Kích thước đầu ra không được biết tại thời điểm đánh giá cổng. Harness áp dụng giới hạn sau khi công cụ chạy, bằng cách cắt ngắn quan sát trước khi mô hình nhìn thấy nó. Các cổng đánh giá đầu vào, không phải đầu ra."
+    },
+    {
+      "stage": "post",
+      "question": "Một người đánh giá yêu cầu bạn chứng minh rằng tác nhân không bao giờ thực hiện một cuộc gọi công cụ bị từ chối trong suốt một phiên. Bạn chỉ họ đến tài liệu nào?",
+      "options": [
+        "Ảnh chụp nhanh của ObservationLedger, chỉ chứa các quan sát thành công.",
+        "Đầu ra pytest, ghi lại việc kiểm tra thành công/thất bại.",
+        "Biên bản trò chuyện của mô hình, chứa báo cáo tự thân của nó.",
+        "Danh sách các bản ghi ChainOutcome, chứa mọi quyết định theo cuộc gọi với lý do từ chối."
+      ],
+      "correct": 3,
+      "explanation": "Các bản ghi ChainOutcome mang theo các quyết định theo cuộc gọi và lý do từ chối. Ledger và biên bản có thể hỗ trợ tuyên bố, nhưng tài liệu có thể kiểm toán là các quyết định chuỗi."
+    }
+  ]
+}

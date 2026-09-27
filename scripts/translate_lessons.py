@@ -253,7 +253,9 @@ def targets():
     yield from lesson_docs()
 
 
-def out_path(doc, lang):
+def out_path(doc, lang, in_place=False):
+    if in_place:
+        return doc.parent / f"{lang}.md"
     rel = doc.relative_to(ROOT).parent / f"{lang}.md"
     return OUT_ROOT / lang / rel
 
@@ -279,6 +281,7 @@ def main():
     ap.add_argument("--provider", default=os.environ.get("TRANSLATE_PROVIDER", "nllb"))
     ap.add_argument("--phase", help="limit to one phase dir name")
     ap.add_argument("--only", help="limit to one lesson path (phases/.../lesson)")
+    ap.add_argument("--in-place", action="store_true", help="write translated doc to phases/.../docs/<lang>.md directly")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -301,7 +304,7 @@ def main():
 
         src = doc.read_text(encoding="utf-8")
         h = source_hash(src)
-        dst = out_path(doc, args.lang)
+        dst = out_path(doc, args.lang, in_place=args.in_place)
         # key is the lesson path; the cache file is already per-language
         if cache.get(rel) == h and dst.is_file():
             skipped += 1

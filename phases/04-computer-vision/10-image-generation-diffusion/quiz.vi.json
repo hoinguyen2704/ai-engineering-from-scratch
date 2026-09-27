@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao việc huấn luyện khuếch tán có thể chọn bất kỳ bước thời gian t nào trực tiếp thay vì mô phỏng chuỗi Markov tiến từng bước một?",
+      "options": [
+        "Đó là một xấp xỉ bỏ qua các bước trung gian",
+        "Điều này là cần thiết bởi autograd của PyTorch",
+        "Bởi vì sự kết hợp của nhiều phép cộng Gaussian vẫn cho ra một Gaussian, tạo ra một q(x_t|x_0) dạng đóng là N(sqrt(alpha_bar_t) x_0, (1 - alpha_bar_t) I) mà bạn có thể lấy mẫu trong một bước",
+        "Bởi vì x_t độc lập với x_0"
+      ],
+      "correct": 2,
+      "explanation": "Các phép cộng Gaussian lặp lại đóng lại về mặt phân tích. Tích lũy alpha_bar_t mã hóa 'bao nhiêu tín hiệu còn lại sau t bước', và bạn có thể lấy mẫu x_t trực tiếp mà không cần chạy chuỗi. Đây là lý do tại sao việc huấn luyện khuếch tán là O(1) cho mỗi bước thay vì O(T)."
+    },
+    {
+      "stage": "pre",
+      "question": "Mạng nơ-ron của DDPM thực sự dự đoán điều gì?",
+      "options": [
+        "Hình ảnh tiếp theo x_{t-1} trực tiếp",
+        "Nhãn lớp của đầu vào",
+        "Nhiễu epsilon đã được thêm vào ở bước t, từ đó mà trung bình của x_{t-1} được suy ra một cách phân tích",
+        "Tỷ lệ tín hiệu trên nhiễu"
+      ],
+      "correct": 2,
+      "explanation": "DDPM tham số hóa mô hình để dự đoán epsilon. Với dự đoán nhiễu và lịch trình nhiễu, trung bình và phương sai Gaussian của x_{t-1} là dạng đóng. Dự đoán epsilon thay vì x_0 hoặc x_{t-1} đơn giản hóa tổn thất thành một MSE đơn giản và cung cấp gradient tốt hơn về mặt số học."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao DDIM đạt được chất lượng mẫu tương tự như DDPM với ~20 lần bước ít hơn?",
+      "options": [
+        "DDIM tạo ra hình ảnh nhỏ hơn",
+        "DDIM tái cấu trúc việc lấy mẫu thành một ODE xác định mà quỹ đạo của nó có thể được phân đoạn với ít bước hơn nhiều trong khi đạt gần như cùng một điểm cuối; không cần huấn luyện lại",
+        "DDIM sử dụng kiến trúc mô hình nhanh hơn",
+        "DDIM thay đổi mục tiêu huấn luyện"
+      ],
+      "correct": 1,
+      "explanation": "Quan sát chính của DDIM là quá trình ngược, khi được tái tham số hóa một cách xác định, trở thành một ODE mà một vài bước có thể xấp xỉ tốt. Mô hình (trọng số và tổn thất) không thay đổi từ DDPM; chỉ có bộ lấy mẫu là khác. Một điểm kiểm tra DDPM có thể được sử dụng với DDIM, DPM-Solver hoặc bộ lấy mẫu Euler một cách thay thế."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn vẽ `alpha_bar_t` cho một lịch trình beta tuyến tính với T=1000 và thấy nó giảm xuống gần bằng không vào t=600. Tại sao điều này lại quan trọng?",
+      "options": [
+        "Điều này không quan trọng",
+        "alpha_bar_t phải bằng không ở cuối",
+        "PyTorch yêu cầu một lịch trình tuyến tính",
+        "40% bước thời gian cuối cùng thêm gần như không có tín hiệu; việc huấn luyện những bước thời gian đó dạy mạng cách loại bỏ nhiễu đã gần như là N(0, I), điều này lãng phí khả năng. Các lịch trình cosine hoặc sigmoid khắc phục điều này bằng cách phân bố việc tiêm nhiễu đều hơn"
+      ],
+      "correct": 3,
+      "explanation": "Các lịch trình beta tuyến tính kết thúc quá sớm quá trình khuếch tán. Đến t=600, tín hiệu đã bị phá hủy; việc huấn luyện và lấy mẫu qua t=600-1000 không thêm gì. Các lịch trình cosine (Nichol & Dhariwal) giữ tín hiệu lâu hơn, đó là lý do tại sao các mô hình hiện đại sử dụng chúng, đặc biệt là ở độ phân giải thấp hơn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao điều kiện thời gian được thêm vào U-Net thông qua một nhúng sinusoide thay vì một bước thời gian one-hot?",
+      "options": [
+        "One-hot sẽ vi phạm quy tắc chuỗi",
+        "Các vector one-hot quá lớn",
+        "Một nhúng sinusoide là mượt mà theo t, cho phép mạng nội suy giữa các bước thời gian mà nó chưa thấy chính xác và mã hóa thông tin quy mô mà kiến trúc có thể sử dụng một cách cộng dồn ở nhiều độ sâu",
+        "Sinusoide là cần thiết bởi BatchNorm"
+      ],
+      "correct": 2,
+      "explanation": "Các nhúng sinusoide cung cấp cho mạng một đại diện liên tục của t ở nhiều tần số. Bất kỳ bước thời gian nào cũng là một điểm duy nhất trong không gian nhúng đó, và các bước thời gian gần nhau là các nhúng gần nhau. Điều đó cho phép mô hình tổng quát trên tất cả các giá trị T với ít tham số hơn nhiều so với một nhúng học được cho từng bước thời gian. Ý tưởng tương tự như mã hóa vị trí của transformer."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "02-inference-platform-economics",
+  "title": "Kinh tế Nền tảng Suy diễn — Fireworks, Together, Baseten, Modal, Replicate, Anyscale",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba phân khúc thị trường nào được bài học sử dụng để tổ chức các nhà cung cấp suy diễn năm 2026?",
+      "options": [
+        "Đơn thuê, đa thuê, tại chỗ",
+        "Miễn phí, trả phí, doanh nghiệp",
+        "Mã nguồn mở, thương mại, lai",
+        "Silicon tùy chỉnh, nền tảng GPU, thị trường API-first"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng mức sử dụng GPU duy trì nào thì tính phí theo phút (Baseten, Modal) bắt đầu vượt qua tính phí theo token (Fireworks, Together)?",
+      "options": [
+        "5%",
+        "90%",
+        "60%",
+        "30%"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nền tảng nào được mô tả là serverless gốc Python với tính phí theo giây và khởi động lạnh từ 2-4 giây sau khi làm nóng trước?",
+      "options": [
+        "Anyscale",
+        "Baseten",
+        "Fireworks",
+        "Modal"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Điểm khác biệt nổi bật về giá LoRA của Fireworks là gì?",
+      "options": [
+        "Yêu cầu LoRA cần một hợp đồng GPU riêng biệt",
+        "Các yêu cầu phục vụ LoRA được tính phí theo tỷ lệ token của mô hình cơ bản",
+        "Các yêu cầu phục vụ LoRA có chi phí cao hơn mô hình cơ bản",
+        "LoRA hoàn toàn không được hỗ trợ"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Nền tảng nào phù hợp với khách hàng chăm sóc sức khỏe có quy định cần tư thế SOC 2 Type II, sẵn sàng HIPAA và GPU chuyên dụng?",
+      "options": [
+        "Together",
+        "Anyscale",
+        "Baseten",
+        "Replicate"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học lập luận rằng các tuyên bố về động cơ tùy chỉnh chủ yếu là bóng mờ tiếp thị ở cấp nền tảng?",
+      "options": [
+        "Động cơ tùy chỉnh không bao giờ vượt trội hơn vLLM",
+        "Giá theo token là điểm khác biệt thực sự duy nhất",
+        "vLLM và SGLang đại diện cho khoảng 80% suy diễn mã nguồn mở sản xuất, vì vậy sự khác biệt nền tảng đến nhiều hơn từ DX, phân bổ và SLA hơn là động cơ",
+        "Tất cả các động cơ tùy chỉnh đều là nhánh của TensorRT-LLM"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "17-personal-ai-tutor",
+  "title": "Capstone 17 — Gia Sư AI Cá Nhân (Thích Ứng, Đa Phương Thức, Có Bộ Nhớ)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Chính sách gia sư Socratic làm gì khi một người học yêu cầu câu trả lời ngay lập tức?",
+      "options": [
+        "Chuyển sang một nút khái niệm khác",
+        "Ghi lại yêu cầu và im lặng",
+        "Đặt một câu hỏi dẫn dắt giúp người học tiến tới câu trả lời",
+        "Cung cấp câu trả lời ngay lập tức và tiếp tục"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Cấu trúc nào mà đồ thị chương trình giảng dạy mã hóa?",
+      "options": [
+        "Chỉ nút được học gần đây nhất",
+        "Một sự xáo trộn ngẫu nhiên của các chủ đề",
+        "Một đồ thị có hướng của các khái niệm với các cạnh tiên quyết, gắn liền với nội dung OER",
+        "Một danh sách phẳng của các khái niệm không liên quan"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình người học cập nhật điều gì sau mỗi tương tác?",
+      "options": [
+        "Sơ đồ đồ thị chương trình giảng dạy",
+        "Trọng số của LLM cơ bản",
+        "Xác suất thành thạo theo khái niệm thông qua theo dõi kiến thức Bayesian hoặc một biến thể tương tự",
+        "Chính sách giữ lại COPPA"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bộ nhớ được chia như thế nào giữa các kho lưu trữ hồi ức và ngữ nghĩa?",
+      "options": [
+        "Hồi ức dành cho phụ huynh; ngữ nghĩa dành cho người học",
+        "Hồi ức giữ mọi tương tác; ngữ nghĩa giữ các sai lầm và sở thích đã được nén từ hồi ức",
+        "Hồi ức giữ các embedding; ngữ nghĩa giữ âm thanh thô",
+        "Chúng là bản sao của cùng một dữ liệu"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ràng buộc nào định hình việc giữ lại bộ nhớ cho người học K-12?",
+      "options": [
+        "Giữ lại nhận thức COPPA với tự động xóa sau một khoảng thời gian xác định và quyền truy cập của phụ huynh",
+        "Giữ lại dựa trên độ dài ngữ cảnh của mô hình",
+        "Giữ lại vĩnh viễn mà không xóa",
+        "Chỉ GDPR"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Cấu trúc của nghiên cứu hiệu quả được sử dụng để kiểm soát sản phẩm là gì?",
+      "options": [
+        "Một phiên một giờ với một người học",
+        "Khảo sát ẩn danh trên internet",
+        "Một bài kiểm tra AB kéo dài 30 giây",
+        "Kiểm tra trước và kiểm tra sau trong hai tuần với 10 người học, so sánh với một nhóm đối chứng không thích ứng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Những con đường đầu vào đa phương thức nào mà gia sư cung cấp cho người học?",
+      "options": [
+        "Chỉ ảnh thông qua một mô hình OCR tùy chỉnh",
+        "Văn bản gõ, giọng nói qua LiveKit + Whisper, và toán học ảnh qua dots.ocr hoặc PaliGemma 2",
+        "Chỉ văn bản",
+        "Chỉ giọng nói mà không có văn bản hoặc ảnh"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

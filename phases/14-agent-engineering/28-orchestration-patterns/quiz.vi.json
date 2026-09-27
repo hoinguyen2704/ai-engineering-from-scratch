@@ -1,0 +1,90 @@
+{
+  "lesson": "28-orchestration-patterns",
+  "title": "Các Mô Hình Điều Phối: Giám Sát, Bầy, Phân Cấp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bốn mô hình điều phối nào được liệt kê trong bài học?",
+      "options": [
+        "Đẩy, kéo, lô, luồng",
+        "Giám sát-công nhân, bầy/peer-to-peer, phân cấp, tranh luận",
+        "Tuần tự, song song, phân tán, liên bang",
+        "Kế hoạch, hành động, phản ánh, tinh chỉnh"
+      ],
+      "correct": 1,
+      "explanation": "Giám sát-công nhân, bầy, phân cấp, và tranh luận xuất hiện trong 2026 khung."
+    },
+    {
+      "stage": "pre",
+      "question": "Khuyến nghị của LangChain 2026 về giám sát là gì?",
+      "options": [
+        "Luôn sử dụng create_supervisor",
+        "Tránh hoàn toàn giám sát",
+        "Ưu tiên gọi công cụ trực tiếp hơn create_supervisor để kiểm soát kỹ lưỡng hơn về ngữ cảnh",
+        "Chạy giám sát trên GPU"
+      ],
+      "correct": 2,
+      "explanation": "Giám sát dựa trên gọi công cụ cho bạn kiểm soát chính xác những gì mỗi chuyên gia thấy."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì phân biệt bầy với topologie giám sát-công nhân?",
+      "options": [
+        "Bầy chỉ chạy trên cron",
+        "Bầy không có bộ định tuyến trung tâm; các tác nhân chuyển giao trực tiếp qua một bề mặt công cụ chung",
+        "Bầy sử dụng GPU",
+        "Bầy là đơn tác nhân"
+      ],
+      "correct": 1,
+      "explanation": "Bầy là peer-to-peer; giám sát tập trung hóa định tuyến thông qua một LLM."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào việc điều phối phân cấp là hợp lý?",
+      "options": [
+        "Không bao giờ; đó là một mẫu chống",
+        "Chỉ với GPU",
+        "Khi ngân sách ngữ cảnh của một giám sát đơn không thể chứa mô tả của tất cả các chuyên gia",
+        "Luôn luôn; nó mở rộng miễn phí"
+      ],
+      "correct": 2,
+      "explanation": "Các giám sát lồng ghép dành cho các quần thể chuyên gia lớn vượt quá ngân sách của một giám sát."
+    },
+    {
+      "stage": "check",
+      "question": "Thứ tự quyết định được Anthropic hỗ trợ là gì?",
+      "options": [
+        "Bắt đầu với một tác nhân đơn cộng với các mẫu quy trình; thêm topologie chỉ khi cần; giám sát trước bầy trước phân cấp; tranh luận khi độ chính xác vượt chi phí",
+        "Bắt đầu với tranh luận",
+        "Luôn bắt đầu với đa tác nhân phân cấp",
+        "Bắt đầu với bầy và thu hẹp về đơn"
+      ],
+      "correct": 0,
+      "explanation": "Hướng dẫn của Anthropic là xây dựng hệ thống phù hợp với nhu cầu của bạn, không phải hệ thống tinh vi nhất."
+    },
+    {
+      "stage": "post",
+      "question": "Cấu trúc phân cấp giả trong bài học này là gì?",
+      "options": [
+        "Ba lớp giám sát vì 'doanh nghiệp' khi chỉ có hai đội thực sự; sáp nhập lại",
+        "Một bộ điều phối viết bằng TypeScript",
+        "YAML bị gán nhãn sai",
+        "Một thiết bị thử nghiệm"
+      ],
+      "correct": 0,
+      "explanation": "Các lớp không tương ứng với các đội thực sự làm tăng độ phức tạp hoạt động mà không có lợi ích."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn giảm thiểu việc chuyển giao nhảy (A -> B -> A -> B) trong một bầy như thế nào?",
+      "options": [
+        "Ghim nhiệt độ về 0",
+        "Giảm giới hạn tỷ lệ",
+        "Thêm bộ đếm nhảy và từ chối sau N lần chuyển giao",
+        "Vô hiệu hóa theo dõi"
+      ],
+      "correct": 2,
+      "explanation": "Bộ đếm nhảy giới hạn các chu kỳ bầy trước khi chúng lặp vô hạn."
+    }
+  ]
+}

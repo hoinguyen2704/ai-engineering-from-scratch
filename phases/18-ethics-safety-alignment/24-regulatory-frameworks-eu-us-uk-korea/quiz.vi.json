@@ -1,0 +1,78 @@
+{
+  "lesson": "24-regulatory-frameworks-eu-us-uk-korea",
+  "title": "Khung pháp lý - EU, Mỹ, Vương quốc Anh, Hàn Quốc",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khi nào Luật AI của EU có hiệu lực, và danh mục nào được áp dụng trước tiên?",
+      "options": [
+        "Tháng 8 năm 2025; tất cả các danh mục được áp dụng cùng một lúc",
+        "Tháng 1 năm 2024; các hệ thống rủi ro cao được áp dụng vào ngày đó",
+        "Tháng 8 năm 2024; các thực hành bị cấm và kiến thức về AI được áp dụng từ ngày 2 tháng 2 năm 2025",
+        "Tháng 8 năm 2026; chỉ có GPAI được áp dụng vào ngày có hiệu lực"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hình phạt tiền tối đa theo Luật AI của EU có hiệu lực từ ngày 2 tháng 8 năm 2026 là bao nhiêu?",
+      "options": [
+        "Lên đến 5 triệu EUR hoặc 1% doanh thu toàn cầu",
+        "Lên đến 1 triệu EUR hoặc 0.1% doanh thu toàn cầu",
+        "Lên đến 15 triệu EUR hoặc 3% doanh thu toàn cầu",
+        "Không giới hạn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Ba chương nào cấu thành nên Bộ quy tắc thực hành GPAI (10 tháng 7 năm 2025)?",
+      "options": [
+        "Năng lực, Kiểm soát, Tuân thủ",
+        "Minh bạch, Bản quyền, An toàn và Bảo mật",
+        "Quyền riêng tư, Thiên lệch, Đánh dấu",
+        "Đào tạo, Suy diễn, Triển khai"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Việc tái thương hiệu AISI của Vương quốc Anh thành 'Viện An ninh AI' vào tháng 2 năm 2025 có ý nghĩa gì?",
+      "options": [
+        "Phạm vi hẹp hơn tập trung vào an ninh năng lực tiên tiến, loại bỏ thiên lệch thuật toán và các khung tự do ngôn luận",
+        "Đóng cửa đánh giá biên giới của Vương quốc Anh",
+        "Sát nhập với Văn phòng AI của EU",
+        "Mở rộng vào thiên lệch thuật toán"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Việc tái thương hiệu CAISI của Mỹ (tháng 6 năm 2025) có ý nghĩa gì trong định hướng chính sách?",
+      "options": [
+        "Phát hành mã nguồn mở bắt buộc cho các mô hình tiên tiến",
+        "Sát nhập với FDA",
+        "Một sự chuyển hướng về 'các chính sách AI thúc đẩy tăng trưởng', nhấn mạnh vào tiêu chuẩn và hỗ trợ đổi mới và giảm nhấn mạnh vào đánh giá trước khi triển khai",
+        "Đánh giá an toàn trước khi triển khai nghiêm ngặt hơn"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Nghĩa vụ chính trong Luật Khung AI của Hàn Quốc (có hiệu lực từ tháng 1 năm 2026) là gì?",
+      "options": [
+        "Áp dụng giống hệt Luật AI của EU",
+        "Cấm hoàn toàn các nhà cung cấp AI nước ngoài",
+        "Yêu cầu mở trọng số cho tất cả các mô hình sinh tạo",
+        "Điều 12 thành lập một AISI dưới MSIT và yêu cầu đại diện địa phương, đánh giá rủi ro và các biện pháp an toàn cho AI có tác động cao và sinh tạo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

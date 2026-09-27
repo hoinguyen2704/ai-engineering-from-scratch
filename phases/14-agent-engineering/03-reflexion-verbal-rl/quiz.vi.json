@@ -1,0 +1,90 @@
+{
+  "lesson": "03-reflexion-verbal-rl",
+  "title": "Phản ánh: Học Tăng cường Ngôn ngữ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Phản ánh thay thế điều gì trong học tăng cường tiêu chuẩn?",
+      "options": [
+        "Ký ức theo tập với ký ức tham số",
+        "Cập nhật gradient bằng phản ánh ngôn ngữ tự nhiên được lưu trữ giữa các thử nghiệm",
+        "Mạng chính sách bằng tìm kiếm ngẫu nhiên",
+        "Hình thành phần thưởng bằng phần thưởng không đổi"
+      ],
+      "correct": 1,
+      "explanation": "Phản ánh sử dụng phản ánh ngôn ngữ tự nhiên trong ký ức theo tập thay vì cập nhật trọng số."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba thành phần nào định nghĩa một hệ thống Phản ánh?",
+      "options": [
+        "Người lập kế hoạch, Người làm việc, Người giải quyết",
+        "Người chọn, Người mở rộng, Người hồi tiếp",
+        "Người tạo, Người phê bình, Người tối ưu hóa",
+        "Diễn viên, Người đánh giá, Người tự phản ánh"
+      ],
+      "correct": 3,
+      "explanation": "Phản ánh phân tách tác nhân thành một Diễn viên chạy các quỹ đạo, một Người đánh giá chấm điểm chúng, và một Người tự phản ánh viết bài học."
+    },
+    {
+      "stage": "check",
+      "question": "Loại người đánh giá nào sử dụng tín hiệu nhị phân bên ngoài như kiểm tra đơn vị hoặc câu trả lời đúng đã biết?",
+      "options": [
+        "Heuristic",
+        "Scalar",
+        "Tự đánh giá",
+        "Dựa trên phiếu bầu"
+      ],
+      "correct": 1,
+      "explanation": "Người đánh giá Scalar đọc tín hiệu đỗ/trượt từ sự thật cơ sở (thành công ALFWorld, kiểm tra HumanEval)."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tự đánh giá là một tín hiệu yếu hơn phản hồi scalar?",
+      "options": [
+        "Mô hình tự đánh giá không có cơ sở bên ngoài nên có thể xác nhận câu trả lời của chính nó",
+        "Nó chậm hơn để tính toán",
+        "Nó luôn yêu cầu một mô hình lớn hơn",
+        "Nó không thể chạy trên công cụ"
+      ],
+      "correct": 0,
+      "explanation": "Tự đánh giá thiếu kiểm tra bên ngoài, vì vậy một ảo giác tự tin có thể đạt điểm cao; kết hợp nó với xác minh dựa trên công cụ."
+    },
+    {
+      "stage": "check",
+      "question": "Trường hợp nào mà bài học liệt kê là nơi mà Phản ánh KHÔNG giúp?",
+      "options": [
+        "Một sự cố tạm thời bên ngoài như mạng bị ngắt",
+        "Câu hỏi đa bước HotpotQA",
+        "Tạo mã nơi các bài kiểm tra có thể chấm điểm",
+        "Nhiệm vụ điều hướng ALFWorld"
+      ],
+      "correct": 0,
+      "explanation": "Phản ánh về một sự cố tạm thời bên ngoài tạo ra một phản ánh không giúp ích cho các lần chạy trong tương lai."
+    },
+    {
+      "stage": "post",
+      "question": "Rối loạn bộ nhớ trong mẫu Phản ánh là gì?",
+      "options": [
+        "Mất phản ánh khi quá trình khởi động lại",
+        "Lời nhắc phản ánh vượt quá cửa sổ ngữ cảnh",
+        "Phản ánh bị mã hóa bởi nhà cung cấp",
+        "Bộ đệm theo tập đầy các phản ánh lỗi thời hoặc sai và làm chậm hoặc thiên lệch các thử nghiệm trong tương lai"
+      ],
+      "correct": 3,
+      "explanation": "Các phản ánh lỗi thời hoặc sai tích lũy làm giảm hành vi; giảm thiểu bằng cách nén hoặc TTL."
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu sản xuất nào là sự phù hợp rõ ràng nhất của bài học với Phản ánh?",
+      "options": [
+        "Các bài học CLAUDE.md của Claude Code được thêm vào các phiên tương lai",
+        "Lưu trữ lời nhắc của Anthropic",
+        "Luồng áp dụng chỉnh sửa của Cursor",
+        "API theo lô của OpenAI"
+      ],
+      "correct": 0,
+      "explanation": "Các bài học CLAUDE.md, quy tắc làm việc chuyên nghiệp, và tính toán thời gian ngủ của Letta đều ngoại hóa bộ đệm phản ánh theo tập."
+    }
+  ]
+}

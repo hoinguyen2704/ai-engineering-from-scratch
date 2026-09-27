@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ma trận kề A[i][j] = 1 đại diện cho điều gì?",
+      "options": [
+        "Đỉnh i có bậc j",
+        "Đỉnh i và đỉnh j có cùng nhãn",
+        "Đường đi ngắn nhất từ i đến j có độ dài 1",
+        "Có một cạnh từ đỉnh i đến đỉnh j"
+      ],
+      "correct": 3,
+      "explanation": "Ma trận kề là đại diện cốt lõi của một đồ thị. A[i][j] = 1 có nghĩa là có một cạnh kết nối đỉnh i với đỉnh j. Đối với các đồ thị không hướng, ma trận là đối xứng (A[i][j] = A[j][i])."
+    },
+    {
+      "stage": "pre",
+      "question": "Cấu trúc dữ liệu nào mà BFS sử dụng và nó tìm kiếm điều gì?",
+      "options": [
+        "Ngăn xếp; tìm các thành phần liên thông",
+        "Hàng đợi; tìm đường đi ngắn nhất trong các đồ thị không trọng số",
+        "Hàng đợi ưu tiên; tìm cây bao trùm nhỏ nhất",
+        "Bảng băm; tìm các đỉnh trùng lặp"
+      ],
+      "correct": 1,
+      "explanation": "BFS sử dụng một hàng đợi (FIFO) để khám phá tất cả các hàng xóm ở khoảng cách k trước khi chuyển sang khoảng cách k+1. Điều này đảm bảo rằng lần đầu tiên một đỉnh được phát hiện, nó là thông qua một đường đi ngắn nhất từ nguồn."
+    },
+    {
+      "stage": "post",
+      "question": "Laplacian đồ thị L = D - A của một đồ thị liên thông có bao nhiêu giá trị riêng bằng 0?",
+      "options": [
+        "Không",
+        "Bằng số đỉnh",
+        "Bằng số cạnh",
+        "Chính xác một"
+      ],
+      "correct": 3,
+      "explanation": "Số lượng giá trị riêng bằng 0 của Laplacian bằng số lượng thành phần liên thông. Một đồ thị liên thông có chính xác một thành phần liên thông, vì vậy có chính xác một giá trị riêng bằng 0. Một đồ thị với k mảnh không liên thông có k giá trị riêng bằng 0."
+    },
+    {
+      "stage": "post",
+      "question": "Trong việc truyền tin GNN, h_v^(k+1) = sigma(W * mean({h_u^(k) : u in neighbors(v)})) tính toán điều gì?",
+      "options": [
+        "Điểm PageRank của đỉnh v",
+        "Đường đi ngắn nhất từ v đến tất cả các đỉnh khác",
+        "Một vector đặc trưng mới cho đỉnh v bằng cách tổng hợp các đặc trưng của hàng xóm, biến đổi với các trọng số đã học và áp dụng một hàm không tuyến tính",
+        "Bậc của đỉnh v tại lớp k+1"
+      ],
+      "correct": 2,
+      "explanation": "Mỗi đỉnh thu thập các đặc trưng từ các hàng xóm của nó (tổng hợp trung bình), nhân với ma trận trọng số đã học W, và áp dụng một hàm kích hoạt sigma. Sau k vòng, mỗi đỉnh có thông tin từ khu vực lân cận k-hop của nó."
+    },
+    {
+      "stage": "post",
+      "question": "Phân cụm phổ sử dụng vector Fiedler (vector riêng của giá trị riêng nhỏ thứ hai của L) như thế nào?",
+      "options": [
+        "Các đỉnh có các giá trị lớn nhất trong vector Fiedler tạo thành một cụm",
+        "Vector Fiedler được sử dụng làm trọng số cạnh",
+        "Các đỉnh có giá trị vector Fiedler dương vào một nhóm, các đỉnh có giá trị âm vào nhóm khác",
+        "Vector Fiedler xác định số lượng cụm"
+      ],
+      "correct": 2,
+      "explanation": "Vector Fiedler mã hóa hàm không tầm thường mượt mà nhất trên đồ thị. Các đỉnh trong cùng một cụm liên kết chặt chẽ nhận được các giá trị tương tự, trong khi các đỉnh bị tách biệt bởi một nút thắt nhận được các giá trị có dấu trái ngược. Sự phân chia dấu phân chia đồ thị thành hai cụm."
+    }
+  ]
+}

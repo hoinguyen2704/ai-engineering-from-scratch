@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/38-classifier-finetuning",
+  "title": "Tinh Chỉnh Bộ Phân Loại Bằng Cách Thay Đổi Đầu Ra",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc: một mô hình ngôn ngữ đã được huấn luyện trước có một thân với 5 triệu tham số và một đầu ra chiếu tới từ vựng 30K. Bạn muốn một bộ phân loại 2 lớp. Động thái đầu tiên nào là hợp lý nhất?",
+      "options": [
+        "Đóng băng đầu ra và chỉ huấn luyện thân.",
+        "Loại bỏ thân và huấn luyện một transformer mới từ đầu trên tập hợp 800 ví dụ đã gán nhãn.",
+        "Giữ nguyên đầu ra ban đầu nhưng che tất cả trừ hai logits đầu ra.",
+        "Chỉ thay thế đầu ra bằng một lớp tuyến tính 2 lớp và quyết định sau đó có nên huấn luyện thân hay không."
+      ],
+      "correct": 3,
+      "explanation": "Thân là phần tốn kém và mã hóa cấu trúc hữu ích từ việc huấn luyện trước. Thay đổi đầu ra trước. Việc có nên đóng băng thân hay không là một quyết định riêng biệt phụ thuộc vào kích thước dữ liệu và sự trôi dạt miền."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bài học sử dụng mean pooling với trọng số attention-mask thay vì mean đơn giản trên trục chuỗi?",
+      "options": [
+        "Mean đơn giản bỏ qua chiều batch.",
+        "Mean pool yêu cầu che chắn theo quy ước ngay cả khi không có pad.",
+        "Mean đơn giản là không xác định về mặt toán học cho transformers.",
+        "Các vị trí padding đóng góp các trạng thái ẩn không liên quan sẽ kéo vector đã gộp về phía không."
+      ],
+      "correct": 3,
+      "explanation": "Các token padding không mang tín hiệu nhưng thân vẫn tạo ra các trạng thái ẩn cho chúng. Nếu không có che chắn, các vị trí padding sẽ làm hỏng đại diện đã gộp, đặc biệt là trên các chuỗi ngắn trong một batch được padding đến ví dụ dài nhất."
+    },
+    {
+      "stage": "check",
+      "question": "Trong `train_classifier`, bộ tối ưu được xây dựng với `[p for p in model.parameters() if p.requires_grad]`. Cụm từ này đảm bảo điều gì?",
+      "options": [
+        "Nó được yêu cầu bởi bộ tạo Adam.",
+        "Nó cho PyTorch biết để autograd qua các tham số đã bị đóng băng.",
+        "Nó âm thầm bỏ qua đầu ra khi thân bị đóng băng.",
+        "Nó xây dựng nhóm tham số chỉ từ tập hợp có thể huấn luyện, vì vậy các trường hợp chỉ đầu ra và toàn bộ-FT chia sẻ cùng một đường dẫn mã."
+      ],
+      "correct": 3,
+      "explanation": "Bộ tối ưu chỉ cập nhật các tham số trong danh sách tham số của nó. Bằng cách lọc theo `requires_grad`, cùng một hàm huấn luyện hoạt động cho cả hai chế độ; công tắc là lệnh đóng băng, không phải vòng lặp."
+    },
+    {
+      "stage": "check",
+      "question": "Precision là 0.9 và recall là 0.6 trên lớp spam. F1 là gì?",
+      "options": [
+        "0.30",
+        "0.50",
+        "0.75",
+        "0.72"
+      ],
+      "correct": 3,
+      "explanation": "F1 là trung bình điều hòa của precision và recall: 2 * 0.9 * 0.6 / (0.9 + 0.6) = 1.08 / 1.5 = 0.72."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn huấn luyện lại mô hình với tinh chỉnh toàn bộ ở cùng tốc độ học như huấn luyện chỉ đầu ra. F1 giảm xuống 0.55 từ 0.90. Nguyên nhân có khả năng nhất là gì?",
+      "options": [
+        "PyTorch âm thầm vô hiệu hóa gradients trong quá trình tinh chỉnh toàn bộ.",
+        "Các tham số thân cần một tốc độ học nhỏ hơn so với đầu ra.",
+        "Mất mát cross-entropy không được xác định cho các vấn đề hai lớp.",
+        "Adam không tương thích với các mục tiêu phân loại."
+      ],
+      "correct": 1,
+      "explanation": "Một thân đã được huấn luyện trước thường cần một tốc độ học nhỏ hơn so với một đầu ra mới. Một mẫu phổ biến là hai nhóm tham số: tốc độ học cao trên đầu ra, tốc độ học nhỏ hơn trên thân. Tốc độ học giống nhau cho cả hai sẽ phá hủy tín hiệu huấn luyện trước."
+    },
+    {
+      "stage": "post",
+      "question": "Nhóm của bạn muốn triển khai bộ phân loại và hỏi cách ghi lại chế độ nào đã tạo ra checkpoint sản xuất. Tài liệu nào trả lời câu hỏi đó một cách có thể tái tạo?",
+      "options": [
+        "Giá trị mất mát cuối cùng, vì mất mát chỉ đầu ra luôn cao hơn mất mát toàn bộ-FT.",
+        "Số lượng `trainable` trong `TrainReport`, khác nhau theo bậc giữa các chế độ.",
+        "Ma trận nhầm lẫn, xác định duy nhất chế độ.",
+        "Bộ ba precision-recall-F1."
+      ],
+      "correct": 1,
+      "explanation": "`trainable` ghi lại số lượng tham số đã nhận gradients trong quá trình huấn luyện. Chỉ đầu ra có khoảng `hidden * num_classes`; toàn bộ FT có toàn bộ mô hình. Số lượng này là dấu vết kiểm toán."
+    }
+  ]
+}

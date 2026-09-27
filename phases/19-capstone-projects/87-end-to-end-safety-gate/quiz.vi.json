@@ -1,0 +1,78 @@
+{
+  "lesson": "87-end-to-end-safety-gate",
+  "title": "Capstone 87 — Cổng An Toàn Từ Đầu Đến Cuối",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ba điểm kiểm tra nằm ở đâu trong vòng đời yêu cầu?",
+      "options": [
+        "Tất cả ba đều chạy trước khi mô hình được gọi",
+        "Pre-gen chạy trên prompt trước mô hình, during-gen lọc luồng, post-gen chạy trên đầu ra hoàn thành",
+        "Chỉ post-gen chạy; pre-gen và during-gen là các bí danh",
+        "Tất cả ba đều chạy sau khi mô hình hoàn thành"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Mục tiêu của việc lọc during-gen là gì?",
+      "options": [
+        "Để tăng thông lượng token",
+        "Để đệm các khối và kết thúc luồng sớm khi một tiếp diễn có hại đã biết xuất hiện, trước khi người dùng thấy nó",
+        "Để thay thế prompt bằng một từ chối",
+        "Để dịch đầu ra sang ngôn ngữ khác"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Aggregator quyết định hành động cuối cùng như thế nào?",
+      "options": [
+        "Bằng cách chỉ nhìn vào engine quy tắc",
+        "Bằng cách lấy mức độ nghiêm trọng tối đa từ detector, token-filter, classifier và tín hiệu quy tắc và ánh xạ nó thành block, redact, warn hoặc allow",
+        "Bằng cách trung bình hóa độ tin cậy của mọi tín hiệu",
+        "Bằng cách gọi mô hình lần thứ hai"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cổng phát ra một RequestTrace có cấu trúc cho mỗi yêu cầu?",
+      "options": [
+        "Để làm chậm hệ thống",
+        "Để thay thế logging",
+        "Để cung cấp cho người đánh giá một dấu vết kiểm toán theo từng điểm kiểm tra để một sự hồi quy ở bất kỳ lớp nào có thể được truy vết đến module đúng",
+        "Để sao chép dấu vết vào prompt"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra khi độ tin cậy của pre-gen vượt quá ngưỡng block?",
+      "options": [
+        "Mô hình vẫn được gọi để hoàn thiện",
+        "Cổng phát sinh một ngoại lệ",
+        "Cổng trả về từ chối chính sách và hoàn toàn bỏ qua during-gen và post-gen",
+        "Cổng hạ ngưỡng và thử lại"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bản demo cố tình để một số prompt trick mã hóa đến during-gen?",
+      "options": [
+        "Bởi vì trick mã hóa không phải là các cuộc tấn công thực sự",
+        "Bởi vì pipeline đầu vào không luôn chuẩn hóa chúng kịp thời; bộ lọc during-gen là lớp phòng thủ sâu mà bắt được tiếp diễn bị rò rỉ",
+        "Bởi vì engine quy tắc xử lý mã hóa",
+        "Bởi vì mô hình từ chối chúng dù sao đi nữa"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "30-dual-use-risk-cyber-bio-chem-nuclear",
+  "title": "Rủi ro sử dụng kép - Tăng cường Cyber, Sinh học, Hóa học, Hạt nhân",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Câu chuyện tăng cường sinh học 2024-2025 đã phát triển như thế nào?",
+      "options": [
+        "Nó không thay đổi trong suốt 2024-2025",
+        "Từ 'tăng cường nghiêm trọng' đến 'không có tăng cường đo lường được'",
+        "Từ 'tăng cường nhẹ' (2024) đến 'sắp giúp đỡ có ý nghĩa cho người mới tạo ra các mối đe dọa sinh học đã biết' (tháng 4 năm 2025) đến 'tăng cường 2.53x không đủ để loại trừ ASL-3' (Anthropic 2025)",
+        "Từ 'không có tăng cường' đến 'tăng cường nhẹ'"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Báo cáo về mối đe dọa cyber của Anthropic tháng 11 năm 2025 đã phát hiện điều gì?",
+      "options": [
+        "Các mô hình biên từ chối tất cả các nhiệm vụ cyber",
+        "Các mô hình mã nguồn mở vượt qua khả năng biên",
+        "Các tác nhân nhà nước liên kết với Trung Quốc đã sử dụng công cụ lập trình agentic của Claude để tự động hóa 80-90% chiến dịch tấn công mạng, với sự can thiệp của con người chỉ trong 4-6 bước",
+        "Các cuộc tấn công mạng hoàn toàn thủ công"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Các mô hình biên có khả năng nhìn nhận đang làm giảm khoảng cách thực hiện hóa học/sinh học như thế nào?",
+      "options": [
+        "Bằng cách chỉ tăng độ dài ngữ cảnh",
+        "Bằng cách thay thế tất cả thiết bị phòng thí nghiệm bằng các mô phỏng ảo",
+        "Bằng cách quan sát video phòng thí nghiệm ướt và cung cấp sửa đổi giao thức theo thời gian thực; buổi trình diễn của OpenAI vào tháng 12 năm 2025 cho thấy GPT-5 lặp lại các thí nghiệm phòng thí nghiệm ướt với hiệu suất cải thiện 79x thông qua tối ưu hóa giao thức do AI điều khiển",
+        "Bằng cách tạo ra các giao thức giả"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao tăng cường trong lĩnh vực hạt nhân vẫn bị giới hạn so với sinh học/hóa học/cyber?",
+      "options": [
+        "Các mô hình biên từ chối thảo luận về vật lý",
+        "Tất cả thông tin hạt nhân đã bị loại bỏ khỏi dữ liệu đào tạo",
+        "Hạt nhân là lĩnh vực dễ tấn công nhất bằng AI",
+        "Mô hình mối đe dọa bị chi phối bởi việc thu mua vật liệu phân hạch (một nút thắt không thông tin, về mua sắm và thiết bị), vì vậy tăng cường AI trên lớp thông tin cung cấp tăng cường hạn chế cho người mới trong thực tế"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự bất đối xứng giữa người mới và chuyên gia có ý nghĩa gì đối với các trường hợp an toàn?",
+      "options": [
+        "Chỉ giải quyết tăng cường cho người mới (bộ lọc đầu vào, từ chối, không chắc chắn) là không đủ cho kiểm soát tuyệt đối của chuyên gia; cần các biện pháp bổ sung như tăng cường khai thác, quên khả năng, và giao thức kiểm soát",
+        "Cả hai đều được giải quyết hoàn hảo bởi RLHF",
+        "Khả năng tuyệt đối của chuyên gia tự động bằng không",
+        "Chỉ tăng cường cho người mới là quan trọng"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Thí điểm 'truy cập đáng tin cậy' của OpenAI trong bối cảnh sử dụng kép cyber là gì?",
+      "options": [
+        "Một bản vá cho CVE-2025-32711",
+        "Cấp quyền truy cập cho các tổ chức an ninh đã được kiểm tra (các công ty phản ứng sự cố, chính phủ) cho công việc phòng thủ sử dụng kép, tạo ra một sự bất đối xứng truy cập có lợi cho những người bảo vệ nếu nó mở rộng",
+        "Một bản phát hành mã nguồn mở của GPT-5",
+        "Đóng tất cả quyền truy cập API"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

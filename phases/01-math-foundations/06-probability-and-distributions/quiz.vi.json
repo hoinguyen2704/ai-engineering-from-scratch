@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Sự khác biệt giữa hàm khối xác suất (PMF) và hàm mật độ xác suất (PDF) là gì?",
+      "options": [
+        "PMF luôn tổng bằng 0.5, PDF tích phân bằng 1",
+        "PMF cung cấp xác suất chính xác cho các kết quả rời rạc, trong khi PDF cung cấp mật độ cho các biến liên tục cần được tích phân qua một khoảng để có xác suất",
+        "Không có sự khác biệt; chúng là cùng một khái niệm với các tên gọi khác nhau",
+        "PMF được sử dụng cho các biến liên tục, PDF cho các biến rời rạc"
+      ],
+      "correct": 1,
+      "explanation": "Đối với các biến rời rạc, PMF cung cấp P(X=k) trực tiếp. Đối với các biến liên tục, PDF f(x) là một mật độ -- P(a<=X<=b) yêu cầu tích phân f(x) từ a đến b. Mật độ tại một điểm đơn lẻ không phải là một xác suất."
+    },
+    {
+      "stage": "pre",
+      "question": "Định lý giới hạn trung tâm (CLT) phát biểu điều gì?",
+      "options": [
+        "Giá trị trung bình của nhiều mẫu ngẫu nhiên độc lập hội tụ về một phân phối chuẩn bất kể phân phối nguồn gốc",
+        "Tất cả dữ liệu đều tuân theo phân phối chuẩn",
+        "Xác suất của các sự kiện hiếm giảm khi kích thước mẫu tăng",
+        "Tập dữ liệu lớn luôn có phương sai thấp"
+      ],
+      "correct": 0,
+      "explanation": "CLT nói rằng giá trị trung bình của nhiều biến ngẫu nhiên độc lập tiến gần đến một phân phối Gaussian, bất kể phân phối ban đầu trông như thế nào. Điều này giải thích tại sao phân phối chuẩn xuất hiện ở khắp mọi nơi."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao softmax trừ đi logit lớn nhất trước khi lấy lũy thừa (cái gọi là 'mẹo softmax')?",
+      "options": [
+        "Để làm cho tất cả xác suất bằng nhau",
+        "Để ngăn ngừa tràn số khi lấy lũy thừa các số lớn trong khi vẫn tạo ra kết quả toán học giống nhau",
+        "Để tăng tốc độ tính toán bằng cách giảm số lần lấy lũy thừa",
+        "Để chuẩn hóa các logit có trung bình bằng không"
+      ],
+      "correct": 1,
+      "explanation": "exp(100) tràn thành vô cực. Trừ đi max(logits) dịch chuyển tất cả các giá trị sao cho giá trị lớn nhất là 0. exp(0)=1 là an toàn. Phép trừ này sẽ bị hủy trong quá trình chuẩn hóa, tạo ra các xác suất giống nhau."
+    },
+    {
+      "stage": "post",
+      "question": "Mất mát cross-entropy cho phân loại đơn giản hóa thành -log(q(true_class)). Điều này có nghĩa là gì theo cách trực quan?",
+      "options": [
+        "Nhân các xác suất dự đoán với các nhãn thực",
+        "Phạt mô hình dựa trên mức độ thấp của xác suất dự đoán cho lớp đúng -- dự đoán thấp có nghĩa là mất mát cao hơn",
+        "Tính trung bình các xác suất log trên tất cả các lớp",
+        "Tính entropy của phân phối thực"
+      ],
+      "correct": 1,
+      "explanation": "Nếu mô hình dự đoán 0.9 cho lớp đúng, mất mát = -log(0.9) = 0.105 (thấp). Nếu nó dự đoán 0.01, mất mát = -log(0.01) = 4.6 (cao). Mất mát trừng phạt sự tự tin thấp vào câu trả lời đúng."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các mô hình ngôn ngữ hoạt động với xác suất log thay vì xác suất thô?",
+      "options": [
+        "Nhân nhiều xác suất nhỏ gây ra tràn số về 0; xác suất log chuyển đổi các tích thành tổng, tránh điều này",
+        "Xác suất log dễ hiểu hơn về mặt hình ảnh",
+        "Xác suất thô không thể đại diện cho các giá trị nhỏ hơn 0.01",
+        "Xác suất log là yêu cầu của kiến trúc transformer"
+      ],
+      "correct": 0,
+      "explanation": "P(câu) = P(từ1) * P(từ2) * ... nhanh chóng tràn về 0.0 với float64. Log P(câu) = log P(từ1) + log P(từ2) + ... giữ trong một khoảng hữu hạn. Các tích trở thành tổng."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "23-otel-genai-conventions",
+  "title": "Các Quy Tắc Ngữ Nghĩa GenAI của OpenTelemetry",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tên span nào đại diện cho một phiên chạy của agent trong các quy tắc GenAI?",
+      "options": [
+        "invoke_agent (có thể được thêm hậu tố gen_ai.agent.name)",
+        "agent.start",
+        "agent_loop",
+        "run_chain"
+      ],
+      "correct": 0,
+      "explanation": "invoke_agent là tên chuẩn; thuộc tính tên của agent xuất hiện trong tên span khi được thiết lập."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba loại span nào được GenAI SIG định nghĩa?",
+      "options": [
+        "Frontend, backend, db",
+        "Read, write, exec",
+        "Latency, error, throughput",
+        "Model/client, agent, tool"
+      ],
+      "correct": 3,
+      "explanation": "Model/client (gọi LLM), agent (tạo/gọi), tool (theo từng lần gọi) là các loại."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào một span invoke_agent sử dụng loại CLIENT so với INTERNAL?",
+      "options": [
+        "Luôn luôn INTERNAL",
+        "CLIENT chỉ cho HTTPS",
+        "Luôn luôn CLIENT",
+        "CLIENT cho dịch vụ agent từ xa (OpenAI Assistants, Bedrock Agents); INTERNAL cho các framework trong tiến trình (LangChain, CrewAI, ReAct cục bộ)"
+      ],
+      "correct": 3,
+      "explanation": "Các cuộc gọi agent từ xa là CLIENT; các phiên chạy agent trong tiến trình là INTERNAL."
+    },
+    {
+      "stage": "check",
+      "question": "Quy tắc mặc định cho việc ghi lại nội dung (đầu vào và đầu ra) là gì?",
+      "options": [
+        "Ghi lại mọi thứ theo mặc định",
+        "Các công cụ ghi lại KHÔNG NÊN ghi lại theo mặc định; việc ghi lại là tùy chọn thông qua các thuộc tính gen_ai.*",
+        "Chỉ ghi lại khi có lỗi",
+        "Chỉ ghi lại đầu ra, không bao giờ ghi lại đầu vào"
+      ],
+      "correct": 1,
+      "explanation": "Việc ghi lại nội dung mặc định tắt giúp bảo vệ PII và bí mật; việc chọn tham gia là rõ ràng."
+    },
+    {
+      "stage": "check",
+      "question": "Thuộc tính nào xác định corpus hoặc kho lưu trữ được tham khảo cho một lần truy xuất?",
+      "options": [
+        "gen_ai.data_source.id",
+        "gen_ai.provider.name",
+        "gen_ai.agent.name",
+        "gen_ai.request.model"
+      ],
+      "correct": 0,
+      "explanation": "gen_ai.data_source.id gán nhãn cho corpus hoặc kho lưu trữ RAG bị truy xuất."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị gì cho việc lưu trữ nội dung prompt trong sản xuất?",
+      "options": [
+        "Lưu trữ nội dung bên ngoài (S3, kho lưu trữ log) và ghi lại ID tham chiếu trên span thay vào đó",
+        "Ghi lại toàn bộ prompts trên mỗi span dưới dạng văn bản thuần túy",
+        "Mã hóa prompts trong các thuộc tính span",
+        "Không bao giờ lưu trữ bất kỳ nội dung nào"
+      ],
+      "correct": 0,
+      "explanation": "Lưu trữ bên ngoài với ID con trỏ tránh việc rò rỉ PII vào các trace mà ops có thể đọc."
+    },
+    {
+      "stage": "post",
+      "question": "Làm thế nào để bạn tham gia vào bản xem trước ổn định thử nghiệm của các quy tắc GenAI?",
+      "options": [
+        "Trả tiền cho một giấy phép",
+        "Chỉnh sửa cấu hình bộ thu thập OTel",
+        "Đặt OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental",
+        "Xây dựng lại SDK từ mã nguồn"
+      ],
+      "correct": 2,
+      "explanation": "Biến môi trường này giữ các quy tắc thử nghiệm để các thuộc tính không bị đổi tên một cách im lặng."
+    }
+  ]
+}

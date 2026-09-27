@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Entropy đo lường điều gì trong lý thuyết thông tin?",
+      "options": [
+        "Số bit trong một thông điệp nhị phân",
+        "Tỷ lệ lỗi của một kênh truyền thông",
+        "Năng lượng của một hệ thống vật lý",
+        "Mức độ bất ngờ hoặc không chắc chắn trung bình trong một phân phối xác suất"
+      ],
+      "correct": 3,
+      "explanation": "Entropy H(P) = -sum(p(x) * log(p(x))) đo lường lượng bất ngờ trung bình trên tất cả các kết quả. Entropy cao có nghĩa là không chắc chắn cao (phân phối đồng nhất). Entropy thấp có nghĩa là kết quả có thể dự đoán được."
+    },
+    {
+      "stage": "pre",
+      "question": "Mất mát cross-entropy thường được sử dụng cho cái gì trong mạng nơ-ron?",
+      "options": [
+        "Tạo ra các mẫu dữ liệu mới",
+        "Điều chỉnh trọng số mô hình để ngăn ngừa hiện tượng overfitting",
+        "Các tác vụ phân loại, đo lường độ xa của xác suất dự đoán so với nhãn thực",
+        "Các tác vụ hồi quy với đầu ra liên tục"
+      ],
+      "correct": 2,
+      "explanation": "Mất mát cross-entropy H(P,Q) = -sum(p(x)*log(q(x))) đo lường sự khác biệt giữa phân phối thực (nhãn) và phân phối dự đoán của mô hình. Đây là mất mát tiêu chuẩn cho phân loại."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao việc tối thiểu hóa cross-entropy tương đương với việc tối thiểu hóa KL divergence trong quá trình huấn luyện?",
+      "options": [
+        "Bởi vì cross-entropy và KL divergence là cùng một công thức",
+        "Bởi vì cross-entropy = entropy + KL divergence, và entropy của các nhãn thực là hằng số, vì vậy tối thiểu hóa cross-entropy sẽ tối thiểu hóa KL divergence",
+        "Bởi vì KL divergence luôn bằng không trong quá trình huấn luyện",
+        "Bởi vì entropy của mô hình bằng không khi hội tụ"
+      ],
+      "correct": 1,
+      "explanation": "H(P,Q) = H(P) + D_KL(P||Q). Vì phân phối thực P không thay đổi trong quá trình huấn luyện, H(P) là hằng số. Tối thiểu hóa H(P,Q) tương đương với tối thiểu hóa D_KL(P||Q) -- đẩy mô hình về phía phân phối thực."
+    },
+    {
+      "stage": "post",
+      "question": "Một mô hình ngôn ngữ có perplexity 50 trên một tập kiểm tra. Điều này có nghĩa là gì?",
+      "options": [
+        "Mô hình có 50 lớp",
+        "Mô hình mắc 50 lỗi mỗi câu",
+        "Trung bình, mô hình không chắc chắn như thể nó đang chọn đồng đều từ 50 token tiếp theo có thể tại mỗi bước",
+        "Mô hình đã được huấn luyện trong 50 epochs"
+      ],
+      "correct": 2,
+      "explanation": "Perplexity = e^(cross-entropy). Một perplexity là 50 có nghĩa là sự không chắc chắn của mô hình tại mỗi token tương đương với việc chọn ngẫu nhiên từ 50 tùy chọn có khả năng như nhau. Perplexity thấp hơn có nghĩa là dự đoán tốt hơn."
+    },
+    {
+      "stage": "post",
+      "question": "Thông tin tương hỗ khác với hệ số tương quan Pearson như thế nào trong việc chọn đặc trưng?",
+      "options": [
+        "Thông tin tương hỗ nhanh hơn để tính toán",
+        "Chúng luôn đưa ra cùng một thứ hạng đặc trưng",
+        "Hệ số tương quan Pearson hoạt động cho bất kỳ loại dữ liệu nào trong khi thông tin tương hỗ chỉ hoạt động cho dữ liệu liên tục",
+        "Thông tin tương hỗ phát hiện bất kỳ sự phụ thuộc thống kê nào (đường thẳng hoặc phi tuyến) trong khi tương quan chỉ phát hiện các mối quan hệ tuyến tính"
+      ],
+      "correct": 3,
+      "explanation": "Thông tin tương hỗ I(X;Y) nắm bắt tất cả các sự phụ thuộc thống kê giữa các biến, bao gồm cả phi tuyến và không đơn điệu. Hệ số tương quan Pearson chỉ đo lường sự liên kết tuyến tính, bỏ lỡ nhiều mối quan hệ quan trọng."
+    }
+  ]
+}

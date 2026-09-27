@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/28-observability-otel-traces",
+  "title": "Khả năng quan sát: OTel GenAI Spans và Metrics Prometheus",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc bài học: lợi ích thực tiễn của việc viết các spans của harness trong hình dạng thuộc tính OTel GenAI là gì?",
+      "options": [
+        "Mọi backend tương thích với OTel đều có thể đọc chúng mà không cần trình phân tích tùy chỉnh.",
+        "OTel là một tiêu chuẩn chỉ dành cho Python, vì vậy harness nhận được gợi ý kiểu.",
+        "Điều này là bắt buộc theo HIPAA.",
+        "OTel spans nén tốt hơn trên đĩa."
+      ],
+      "correct": 0,
+      "explanation": "Các quy ước là một hợp đồng với hệ sinh thái rộng lớn hơn. Honeycomb, Grafana Tempo, Jaeger và Datadog đều phân tích các thuộc tính gen_ai.* ngay lập tức."
+    },
+    {
+      "stage": "check",
+      "question": "Một ngoại lệ được ném ra trong ngữ cảnh SpanBuilder.span(). Builder của bài học ghi lại điều gì?",
+      "options": [
+        "trạng thái vẫn giữ nguyên UNSET và ngoại lệ bị nuốt lặng.",
+        "span bị loại bỏ để tránh làm ô nhiễm trace.",
+        "trạng thái=ERROR, status_message bao gồm loại và thông điệp ngoại lệ, và một sự kiện 'ngoại lệ' được thêm vào.",
+        "span được đổi tên thành 'error'."
+      ],
+      "correct": 2,
+      "explanation": "Trạng thái ERROR cộng với một sự kiện ngoại lệ phù hợp với đặc tả OTel. Ngoại lệ được ném lại để mã gọi có thể phản ứng."
+    },
+    {
+      "stage": "check",
+      "question": "Phần trình bày Prometheus cho một histogram bao gồm các dòng _bucket, _sum và _count. Tại sao số lượng bucket lại tích lũy (mỗi bucket le bao gồm tất cả các bucket nhỏ hơn)?",
+      "options": [
+        "Số lượng tích lũy giảm lỗi số thực.",
+        "Số lượng tích lũy cho phép trình thu thập tính toán số lượng theo bucket thông qua phép trừ mà không cần lưu trữ tất cả các quan sát.",
+        "Số lượng tích lũy là định dạng duy nhất mà Grafana hỗ trợ.",
+        "Chúng không tích lũy; phần trình bày của bài học là không chuẩn."
+      ],
+      "correct": 1,
+      "explanation": "Lựa chọn thiết kế của Prometheus: một backend đọc các số lượng tích lũy và tính toán sự khác biệt theo bucket. Điều này cho phép chuỗi thời gian trở thành một bộ đếm đơn giản theo bucket."
+    },
+    {
+      "stage": "check",
+      "question": "Harness bọc một quá trình thực thi công cụ trong một span. Các khóa thuộc tính nào xác định nó là một cuộc gọi công cụ theo các quy ước GenAI?",
+      "options": [
+        "operation + tool.name.",
+        "agent.harness.tool + agent.harness.call.",
+        "gen_ai.system + gen_ai.request.model.",
+        "gen_ai.tool.name + gen_ai.tool.call.id."
+      ],
+      "correct": 3,
+      "explanation": "gen_ai.tool.name và gen_ai.tool.call.id là các khóa chuẩn cho các quá trình thực thi công cụ trong các quy ước GenAI."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn truy vấn 'độ trễ p95 của các cuộc gọi read_file là gì'. Bạn truy vấn artefact nào?",
+      "options": [
+        "Trường status_message của span.",
+        "Bộ đếm tools_called_total, chia cho khoảng thời gian.",
+        "Histogram Prometheus tool_latency_ms{tool=\"read_file\"} được thu thập qua một khoảng thời gian.",
+        "Mỗi duration_ms của span trong traces.jsonl, được phân tích bởi một script."
+      ],
+      "correct": 2,
+      "explanation": "Histograms là công cụ đúng cho các phần trăm. Bộ đếm chỉ đếm; trace chứa các spans thô nhưng không được tổng hợp trước."
+    },
+    {
+      "stage": "post",
+      "question": "Một người đánh giá hỏi tại sao bài học tự làm thay vì nhập opentelemetry-sdk. Câu trả lời nào là đúng?",
+      "options": [
+        "Tự làm giúp hiểu định dạng wire; SDK có thể được thêm vào sau với cùng các khóa thuộc tính.",
+        "Tự làm nhanh hơn trong thời gian chạy.",
+        "SDK yêu cầu kết nối mạng tại thời điểm nhập.",
+        "SDK không hỗ trợ các quy ước GenAI."
+      ],
+      "correct": 0,
+      "explanation": "Các quy ước ổn định qua các triển khai. Phiên bản tự làm tồn tại để làm rõ; dây sản xuất trong SDK và tái sử dụng cùng các khóa gen_ai.*."
+    }
+  ]
+}

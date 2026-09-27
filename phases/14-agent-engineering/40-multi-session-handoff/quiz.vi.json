@@ -1,0 +1,90 @@
+{
+  "lesson": "40-multi-session-handoff",
+  "title": "Chuyển giao Đa phiên",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trường nào là trường chịu tải trong một gói chuyển giao?",
+      "options": [
+        "next_action (nếu không có, tài liệu chỉ là báo cáo trạng thái, không phải chuyển giao)",
+        "verdict_pointer",
+        "summary",
+        "commands_run"
+      ],
+      "correct": 0,
+      "explanation": "Một chuyển giao với mọi thứ ngoại trừ next_action là một báo cáo trạng thái; bước cụ thể tiếp theo là điều làm cho phiên tiếp theo trở nên hiệu quả."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao các chuyển giao được tạo ra, không phải viết tay?",
+      "options": [
+        "Các chuyển giao viết tay thường bị bỏ qua vào những ngày khó khăn; bộ tạo đọc các hiện vật từ bàn làm việc và phát ra gói, vì vậy đại lý chỉ cần rời khỏi bàn làm việc trong trạng thái mà bộ tạo có thể tóm tắt",
+        "Apache 2.0 yêu cầu điều đó",
+        "Bộ tạo nhanh hơn",
+        "Bộ tạo mã hóa tốt hơn"
+      ],
+      "correct": 0,
+      "explanation": "Tự động hóa thu hẹp khoảng cách giữa ý định và tính nhất quán."
+    },
+    {
+      "stage": "check",
+      "question": "Gói chuyển giao được gửi đi dưới hai hình thức nào?",
+      "options": [
+        "Email và Slack",
+        "PDF và PNG",
+        "YAML và TOML",
+        "handoff.md (đọc được bởi con người) và handoff.json (đọc được bởi máy, cả hai đều từ cùng một hiện vật nguồn; JSON thắng về độ phân kỳ)"
+      ],
+      "correct": 3,
+      "explanation": "Markdown cho con người, JSON cho đại lý tiếp theo; cả hai đều đến từ cùng một bộ tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Bài học phân biệt sự nén và chuyển giao như thế nào?",
+      "options": [
+        "Chúng giống nhau",
+        "Nén là có phí, chuyển giao là miễn phí",
+        "Chuyển giao yêu cầu GPU",
+        "Nén kéo dài một phiên; chuyển giao đóng một phiên một cách sạch sẽ và bắt đầu phiên tiếp theo trong ngữ cảnh mới. Gói là thứ làm cho sự chuyển tiếp đó rẻ"
+      ],
+      "correct": 3,
+      "explanation": "Khung vấn đề Hermes 20372: viết một chuyển giao gọn gàng trước khi nén tại chỗ làm giảm chất lượng, sau đó tiếp tục trong một phiên mới."
+    },
+    {
+      "stage": "check",
+      "question": "Bài học khuyến nghị khi nào nên kết thúc một phiên?",
+      "options": [
+        "Trước 50-75% ngân sách ngữ cảnh, trong khi ngữ cảnh còn nguyên vẹn; rẻ hơn để viết trước khi các hiện vật nén làm ô nhiễm trạng thái",
+        "Tại 100% ngữ cảnh, sau đó hoảng loạn",
+        "Chỉ sau khi hợp nhất",
+        "Chỉ vào nửa đêm"
+      ],
+      "correct": 0,
+      "explanation": "Kết thúc sớm giữ cho đầu vào của bộ tạo sạch sẽ."
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị cắt giảm nhật ký phản hồi xuống còn gì trong gói?",
+      "options": [
+        "K mục cuối cùng cộng với mọi mục có thoát không bằng 0, để gói vẫn nhỏ trong khi lịch sử thất bại vẫn tồn tại",
+        "N mục ngẫu nhiên",
+        "Chỉ K mục đầu tiên",
+        "Chỉ mục gần đây nhất"
+      ],
+      "correct": 0,
+      "explanation": "Cắt giảm không đối xứng: các thất bại phải tồn tại; thông tin vặt ở cuối thì rẻ để giữ lại."
+    },
+    {
+      "stage": "post",
+      "question": "Siêu dữ liệu nào giúp phối hợp giữa các phiên đa đại lý hoạt động?",
+      "options": [
+        "branch, last_known_good_commit, và status (active | superseded | archived); chỉ một chuyển giao hoạt động trên mỗi nhánh và chủ đề",
+        "Một kênh Slack chung",
+        "Một hàng đợi trung tâm",
+        "Mã hóa tuyệt mật"
+      ],
+      "correct": 0,
+      "explanation": "Các chuyển giao lỗi thời là nguyên nhân chính gây thất bại trong đa đại lý; status + branch + LKG giữ cho tập hợp hoạt động nhỏ."
+    }
+  ]
+}

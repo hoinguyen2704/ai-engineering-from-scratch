@@ -1,0 +1,78 @@
+{
+  "lesson": "29-mcp-reliability-cancellation-and-flow-control",
+  "title": "Độ tin cậy của MCP, Hủy bỏ và Kiểm soát luồng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một phản hồi biến đổi bị mất và khách hàng thử lại với một id JSON-RPC mới. Điều gì làm cho việc thử lại an toàn?",
+      "options": [
+        "Id JSON-RPC mới tự động loại bỏ trùng lặp biến đổi",
+        "Mô tả công cụ bao gồm một idempotentHint",
+        "Một khóa idempotency ứng dụng bền vững được sử dụng lại với các tham số giống hệt",
+        "Việc thử lại sử dụng cùng một kết nối HTTP"
+      ],
+      "correct": 2,
+      "explanation": "Các id JSON-RPC liên kết các thông điệp. Idempotency kinh doanh yêu cầu một khóa bền vững, một dấu vân tay tham số, và một kết quả đã được lưu trữ và cam kết."
+    },
+    {
+      "stage": "check",
+      "question": "Làm thế nào một khách hàng hủy bỏ một yêu cầu đang xử lý qua stdio trong MCP 2026-07-28?",
+      "options": [
+        "Gọi tasks/cancel cho id JSON-RPC",
+        "Gửi notifications/cancelled với id yêu cầu đang hoạt động",
+        "Đóng một luồng SSE theo yêu cầu",
+        "Gửi một yêu cầu DELETE đến điểm cuối MCP"
+      ],
+      "correct": 1,
+      "explanation": "stdio không có luồng phản hồi theo yêu cầu, vì vậy khách hàng gửi thông báo fire-and-forget notifications/cancelled."
+    },
+    {
+      "stage": "check",
+      "question": "Làm thế nào một khách hàng hủy bỏ một yêu cầu Streamable HTTP đang xử lý?",
+      "options": [
+        "Đóng luồng phản hồi SSE của yêu cầu đó",
+        "POST notifications/cancelled đến điểm cuối MCP",
+        "Chờ máy chủ gửi notifications/cancelled",
+        "Gửi Last-Event-ID với giá trị rỗng"
+      ],
+      "correct": 0,
+      "explanation": "Đối với HTTP Streamable hiện đại, việc đóng luồng phản hồi cụ thể của yêu cầu là tín hiệu hủy bỏ."
+    },
+    {
+      "stage": "check",
+      "question": "Tiến trình tiếp tục đến trước mỗi thời gian chờ không hoạt động. Thời hạn nào vẫn phải kết thúc một yêu cầu không kiểm soát?",
+      "options": [
+        "Thời gian chờ tối đa tuyệt đối được đo từ khi bắt đầu yêu cầu",
+        "Thời gian hết hạn của con trỏ phân trang tiếp theo",
+        "Khoảng thời gian giữ kết nối proxy",
+        "Khoảng thời gian polling của Task"
+      ],
+      "correct": 0,
+      "explanation": "Tiến trình hợp lệ có thể đặt lại đồng hồ không hoạt động, nhưng một thời hạn tối đa tuyệt đối phải vẫn có hiệu lực."
+    },
+    {
+      "stage": "post",
+      "question": "Một phản hồi tasks/cancel thành công chứng minh điều gì?",
+      "options": [
+        "Kết quả bền vững đã bị xóa",
+        "Công nhân đã dừng lại",
+        "Máy chủ đã xác nhận ý định hủy bỏ",
+        "Task cuối cùng phải trở thành bị hủy bỏ"
+      ],
+      "correct": 2,
+      "explanation": "Việc hủy bỏ Task là hợp tác. Task có thể vẫn đang hoạt động, hoàn thành trước, hoặc đạt trạng thái bị hủy sau một điểm kiểm tra của công nhân."
+    },
+    {
+      "stage": "post",
+      "question": "Một luồng SSE đăng ký bị ngắt sau một vài sự kiện tiến trình. Kế hoạch phục hồi nào phù hợp với MCP 2026-07-28?",
+      "options": [
+        "Tiếp tục từ Last-Event-ID và phát lại mọi biến đổi đang xử lý",
+        "Mở một luồng sự kiện GET và khôi phục Mcp-Session-Id",
+        "Giữ id yêu cầu cũ và giả định không có cập nhật nào bị mất",
+        "Mở một yêu cầu lắng nghe mới, lấy lại trạng thái có thẩm quyền, và tránh phát lại biến đổi không an toàn"
+      ],
+      "correct": 3,
+      "explanation": "Các luồng MCP hiện đại không thể tiếp tục với Last-Event-ID. Phục hồi sử dụng một yêu cầu mới cộng với việc lấy lại có thẩm quyền và an toàn thử lại rõ ràng."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "01-instruction-following-alignment-signal",
+  "title": "Theo Dõi Hướng Dẫn như Một Tín Hiệu Căn Chỉnh",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một mô hình ngôn ngữ đã được huấn luyện trước thô thường phản hồi với 'viết một hàm Python đảo ngược một danh sách' bằng một lời nhắc khác thay vì mã?",
+      "options": [
+        "Nhiệt độ của nó mặc định là bằng không",
+        "Từ vựng của nó thiếu các token Python",
+        "Nó được huấn luyện để hoàn thành văn bản kiểu web, nơi các lời nhắc tiếp tục bằng các lời nhắc khác",
+        "Nó không thể đại diện cho các chữ ký hàm mà không cần tinh chỉnh"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình thưởng InstructGPT sử dụng mất mát nào trên các nhãn sở thích cặp?",
+      "options": [
+        "Entropy chéo giữa phần thưởng dự đoán và thực tế",
+        "Sai số bình phương trung bình trên điểm số của người gán nhãn",
+        "Mất mát Hinge với một biên cố định",
+        "Bradley-Terry: -log sigmoid(r(x, y_w) - r(x, y_l))"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Hình phạt KL trong giai đoạn 3 của InstructGPT chủ yếu bảo vệ chống lại điều gì?",
+      "options": [
+        "Quên thảm khốc các thống kê của tokenizer",
+        "Bộ tối ưu tìm kiếm các chuỗi có phần thưởng cao đối kháng khai thác mô hình phần thưởng",
+        "Tràn ngập cửa sổ ngữ cảnh trong quá trình lấy mẫu",
+        "Sự không ổn định số trong các cập nhật gradient PPO"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Vấn đề nào mà PPO-ptx kết hợp vào mục tiêu RL để giảm thiểu?",
+      "options": [
+        "Thuế căn chỉnh: hồi quy trên các tiêu chuẩn mà RLHF không nhắm đến",
+        "Sự không khớp giữa tokenizer của SFT và RM",
+        "Thuật ngữ KL trở nên âm",
+        "Mô hình phần thưởng trôi dạt trong quá trình PPO"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Một InstructGPT 1.3B được ưa chuộng hơn 175B base GPT-3 khoảng 70% thời gian. Điều này nói lên điều gì về căn chỉnh và khả năng?",
+      "options": [
+        "Căn chỉnh là một trục khác với khả năng, và mô hình cơ sở đặt nền tảng khả năng",
+        "Tỷ lệ ưa thích trên 50% chứng minh phần thưởng đại diện bằng giá trị con người",
+        "Khả năng và căn chỉnh là cùng một trục ở quy mô",
+        "Các mô hình cơ sở lớn hơn luôn thua các mô hình nhỏ đã được căn chỉnh"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình phần thưởng trong InstructGPT được khởi tạo từ đâu?",
+      "options": [
+        "Mô hình đã được huấn luyện trước cơ sở với đầu LM còn nguyên vẹn",
+        "Mô hình SFT với đầu LM được thay thế bằng một đầu vô hướng",
+        "Một transformer chỉ mã hóa riêng biệt",
+        "Một hồi quy vô hướng ngẫu nhiên không có huấn luyện trước"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

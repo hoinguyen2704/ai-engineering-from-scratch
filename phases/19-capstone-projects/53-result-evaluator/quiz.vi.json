@@ -1,0 +1,78 @@
+{
+  "lesson": "53-result-evaluator",
+  "title": "Đánh Giá Kết Quả",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ đánh giá sử dụng kiểm định t ghép thay vì so sánh hai số đơn lẻ?",
+      "options": [
+        "Bởi vì numpy yêu cầu các mảng ghép",
+        "Bởi vì bộ chạy không thể phát ra một số đơn lẻ",
+        "Bởi vì việc ghép cùng một seed giữa ứng viên và cơ sở giúp tách biệt sự thay đổi cấu hình khỏi tiếng ồn khởi tạo ngẫu nhiên",
+        "Bởi vì các kiểm định t luôn được yêu cầu bởi IRB"
+      ],
+      "correct": 2,
+      "explanation": "Việc ghép theo seed loại bỏ các hiệu ứng khởi tạo ngẫu nhiên. Sự khác biệt còn lại có thể quy cho sự thay đổi cấu hình, đó là điều mà bài kiểm tra đo lường."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ đánh giá lại mang một trường hướng cho mỗi chỉ số?",
+      "options": [
+        "Bởi vì numpy cần hướng cho phương sai",
+        "Bởi vì độ chính xác và tổn thất chỉ ra theo hai hướng ngược nhau; dấu hiệu của sự cải thiện phụ thuộc vào hướng nào là tốt hơn cho chỉ số đang được so sánh",
+        "Bởi vì bộ chạy yêu cầu điều đó",
+        "Bởi vì bộ phân tích mong đợi điều đó"
+      ],
+      "correct": 1,
+      "explanation": "Các chỉ số cao hơn thì tốt hơn cải thiện khi chúng tăng lên; các chỉ số thấp hơn thì tốt hơn cải thiện khi chúng giảm xuống. Trường hướng cho biết hàm cải thiện nên áp dụng quy ước dấu nào."
+    },
+    {
+      "stage": "check",
+      "question": "Đường dẫn phán quyết trả về gì khi |cải thiện| thấp hơn ngưỡng ngay cả khi giá trị p có ý nghĩa?",
+      "options": [
+        "tiếng ồn",
+        "giảm sút",
+        "thất bại",
+        "cải thiện"
+      ],
+      "correct": 0,
+      "explanation": "Một sự thay đổi có ý nghĩa thống kê nhưng quá nhỏ để hành động vẫn được coi là tiếng ồn từ quan điểm của vòng lặp. Cổng ngưỡng chạy trước cổng ý nghĩa."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao bộ đánh giá lại biến đổi các chỉ số theo thang log trước khi tính toán cải thiện?",
+      "options": [
+        "Bởi vì giá trị p phụ thuộc vào điều đó",
+        "Bởi vì các log numpy nhanh hơn",
+        "Bởi vì bộ chạy chỉ phát ra các chỉ số theo thang log",
+        "Bởi vì độ phức tạp và các chỉ số tương tự tăng theo cấp số nhân với tổn thất; việc biến đổi sang không gian log làm cho một ngưỡng như hai phần trăm có ý nghĩa trên các chỉ số tuyến tính và log"
+      ],
+      "correct": 3,
+      "explanation": "Độ phức tạp là exp(tổn thất). Một sự thay đổi nhỏ trong tổn thất là một sự thay đổi lớn trong độ phức tạp. Việc lấy log giữ cho các cải thiện tương đối có thể so sánh với các chỉ số tuyến tính dưới một ngưỡng."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bộ trợ giúp kiểm định t ghép trả về p_value = None?",
+      "options": [
+        "Khi phương sai bằng không",
+        "Khi các trung bình bằng nhau",
+        "Khi thang chỉ số là log",
+        "Khi có ít hơn hai mẫu ghép có sẵn"
+      ],
+      "correct": 3,
+      "explanation": "Phân phối t cần ít nhất một bậc tự do. Với n nhỏ hơn hai, không có ước lượng phương sai và bộ trợ giúp trả về None để đường dẫn phán quyết có thể đánh dấu vòng chạy là tiếng ồn."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra nếu ngay cả một kết quả ứng viên có nhãn cuối khác ngoài ok?",
+      "options": [
+        "Bộ đánh giá trả về một phán quyết thất bại và ghi lại các nhãn cuối xấu trong lý do",
+        "Bộ đánh giá bỏ qua seed đó và tiếp tục",
+        "Bộ đánh giá thử lại vòng chạy",
+        "Bộ đánh giá quay lại kiểm định một bên"
+      ],
+      "correct": 0,
+      "explanation": "Một vòng chạy thất bại làm vô hiệu hóa tập hợp ứng viên. Bộ đánh giá ngắn mạch đường dẫn phán quyết và trả về thất bại với các nhãn cuối gây lỗi được liệt kê, để bộ điều phối không rút ra kết luận từ một vòng chạy bị lỗi."
+    }
+  ]
+}

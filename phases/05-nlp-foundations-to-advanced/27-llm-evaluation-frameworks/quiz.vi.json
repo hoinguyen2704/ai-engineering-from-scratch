@@ -1,0 +1,102 @@
+{
+  "lesson": "27-llm-evaluation-frameworks",
+  "title": "Đánh giá LLM — RAGAS, DeepEval, G-Eval",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao Exact Match và token-F1 không đủ để đánh giá đầu ra của LLM hiện đại?",
+      "options": [
+        "Chúng không khả vi",
+        "Chúng bỏ lỡ sự tương đương ngữ nghĩa; '29 tháng 6, 2007' so với 'June 29, 2007' đều đạt 0 EM mặc dù đúng",
+        "Chúng yêu cầu GPU",
+        "Chúng quá chậm"
+      ],
+      "correct": 1,
+      "explanation": "Exact-match/F1 không thể nhận diện các cách diễn đạt khác nhau hoặc sự khác biệt về định dạng mà con người sẽ đánh dấu là đúng."
+    },
+    {
+      "stage": "pre",
+      "question": "Chỉ số trung thành RAGAS đo lường điều gì?",
+      "options": [
+        "Độ trễ",
+        "Số token mỗi giây",
+        "Liệu mỗi tuyên bố trong câu trả lời có được suy diễn từ ngữ cảnh đã truy xuất, thông qua NLI",
+        "Tỷ lệ truy xuất"
+      ],
+      "correct": 2,
+      "explanation": "Trung thành kiểm tra từng tuyên bố câu trả lời so với ngữ cảnh đã truy xuất bằng cách sử dụng suy diễn NLI."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc hiệu chỉnh mô hình đánh giá so với nhãn người dùng là cần thiết trước khi tin tưởng vào các điểm số?",
+      "options": [
+        "Được yêu cầu bởi GDPR",
+        "Nếu hệ số tương quan Spearman giữa nhãn đánh giá và nhãn người dùng quá thấp (ví dụ: dưới 0.7), điểm số là tiếng ồn thay vì tín hiệu",
+        "Hiệu chỉnh làm cho người đánh giá nhanh hơn",
+        "Hiệu chỉnh là một vấn đề phân tách token"
+      ],
+      "correct": 1,
+      "explanation": "Nếu không có hiệu chỉnh, bạn không thể biết liệu điểm số của người đánh giá phản ánh chất lượng hay thiên lệch của mô hình."
+    },
+    {
+      "stage": "check",
+      "question": "Thiên lệch tự đánh giá trong các thiết lập LLM-as-judge là gì?",
+      "options": [
+        "Người đánh giá chạy nhanh hơn trên các đầu ra đã lưu cache",
+        "Người đánh giá bỏ qua các lời nhắc của hệ thống",
+        "Độ trễ thấp hơn",
+        "Việc sử dụng cùng một gia đình LLM để tạo ra và đánh giá làm tăng điểm số lên 10-20% so với một người đánh giá độc lập"
+      ],
+      "correct": 3,
+      "explanation": "Người tạo và người đánh giá cùng gia đình thiên lệch điểm số lên; hãy sử dụng một gia đình mô hình khác để đánh giá."
+    },
+    {
+      "stage": "check",
+      "question": "G-Eval cụ thể thêm gì so với một lời nhắc 'điểm 0-1' ngây thơ?",
+      "options": [
+        "Ngữ cảnh lớn hơn",
+        "Một tiêu chí chuỗi suy nghĩ rõ ràng với các bước đánh giá được đặt tên, tạo ra các điểm số ổn định hơn",
+        "Đánh giá đa ngôn ngữ",
+        "Chi phí thấp hơn"
+      ],
+      "correct": 1,
+      "explanation": "Các bước đánh giá có cấu trúc của G-Eval tạo ra các điểm số đáng tin cậy hơn so với các lời nhắc 'đánh giá nó' tự do."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao chỉ báo cáo điểm trung bình tổng hợp lại nguy hiểm?",
+      "options": [
+        "Tổng hợp cần GPU",
+        "Tổng hợp bỏ qua người đánh giá",
+        "Tổng hợp quá lớn",
+        "Một điểm trung bình 0.85 có thể che giấu 5% thất bại thảm khốc; luôn kiểm tra phần dưới cùng"
+      ],
+      "correct": 3,
+      "explanation": "Các điểm trung bình che giấu các thất bại ở đuôi; bề mặt phần 10% dưới cùng để phát hiện các vấn đề nghiêm trọng."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần cố định mô hình đánh giá + phiên bản trong CI?",
+      "options": [
+        "Được yêu cầu bởi Anthropic",
+        "Nâng cấp người đánh giá thay đổi mọi chỉ số; so sánh theo chiều dọc bị phá vỡ nếu không có người đánh giá đã đóng băng",
+        "Trôi token",
+        "Chi phí thấp hơn"
+      ],
+      "correct": 1,
+      "explanation": "Một nâng cấp người đánh giá âm thầm thay đổi cơ sở chỉ số; việc cố định giữ cho khả năng so sánh giữa các lần chạy."
+    },
+    {
+      "stage": "post",
+      "question": "DeepEval phù hợp ở đâu so với RAGAS?",
+      "options": [
+        "Thay thế hoàn toàn RAGAS",
+        "DeepEval là một bộ phân tách token",
+        "DeepEval là pytest-cho-LLMs (cổng CI, G-Eval, chỉ số ảo tưởng); RAGAS chuyên về giám sát RAG không tham chiếu",
+        "DeepEval chỉ được lưu trữ"
+      ],
+      "correct": 2,
+      "explanation": "DeepEval là điểm neo cho kiểm tra hồi quy CI/CD; RAGAS xử lý giám sát RAG không tham chiếu."
+    }
+  ]
+}

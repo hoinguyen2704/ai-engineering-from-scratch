@@ -1,0 +1,78 @@
+{
+  "lesson": "25-security-secrets-audit",
+  "title": "Bảo mật — Bí mật, Quay vòng API Key, Nhật ký kiểm toán, Rào cản",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mẫu tiêu chuẩn cho thông tin xác thực dịch vụ LLM năm 2026 là gì?",
+      "options": [
+        "Ghi cứng API key trong các tệp cấu hình để tăng tốc độ",
+        "Gửi email khóa cho từng kỹ sư",
+        "Lưu trữ khóa trong một kênh Slack",
+        "Kho trung tâm được truy xuất bởi cổng AI tại thời gian chạy thông qua vai trò IAM; quay vòng trong kho và tất cả ứng dụng nhận được trong vài phút"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chu kỳ quay vòng nào mà bài học khuyến nghị cho API keys, token gốc của kho và thông tin xác thực CI/CD?",
+      "options": [
+        "Trong vòng 90 ngày, tự động khi có thể, ghi lại và theo dõi khi thủ công",
+        "Chỉ khi bị rò rỉ",
+        "Không bao giờ",
+        "Mỗi 5 năm"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc phân đoạn nhất quán (phương pháp Mesh) được sử dụng để làm sạch PII?",
+      "options": [
+        "Nó mã hóa prompt cho mô hình",
+        "Nó được yêu cầu bởi ISO 27001",
+        "Giá trị nguồn giống nhau ánh xạ đến cùng một vị trí giữ chỗ, vì vậy LLM bảo tồn mã và ngữ nghĩa mối quan hệ trong toàn bộ prompt",
+        "Nó sử dụng ít bộ nhớ hơn regex"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tư thế egress nào mà bài học khuyến nghị cho các subnet dịch vụ LLM?",
+      "options": [
+        "Cho phép một tập hợp nhỏ các miền (api.openai.com, api.anthropic.com, vector DB, vault) và từ chối mọi thứ khác, với một bộ giải quyết DNS chỉ cho phép",
+        "Chặn tất cả egress bao gồm cả nhà cung cấp",
+        "Cho phép DNS nhưng chặn HTTP",
+        "Cho phép tất cả lưu lượng outbound"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sự cố chuỗi cung ứng Vercel năm 2026 đã dạy gì về thông tin xác thực CI/CD?",
+      "options": [
+        "Thông tin xác thực CI/CD có rủi ro thấp và có thể ở trong các tệp env",
+        "Bí mật CI/CD không thể bị đánh cắp",
+        "Vercel không bị ảnh hưởng",
+        "Thông tin xác thực CI/CD tương đương với sản phẩm — lưu trữ trong kho, xác định phạm vi hẹp, quay vòng mạnh mẽ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Các trường nhật ký kiểm toán nào mà bài học khuyến nghị giữ cho mỗi cuộc gọi LLM?",
+      "options": [
+        "Chỉ chi phí",
+        "Thời gian, người dùng/thuê bao, băm prompt (không phải thô), mô hình + phiên bản, số lượng token, chi phí, băm phản hồi, bất kỳ lần vi phạm rào cản nào",
+        "Chỉ prompt thô",
+        "Chỉ phản hồi"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

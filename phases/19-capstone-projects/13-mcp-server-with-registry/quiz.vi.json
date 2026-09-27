@@ -1,0 +1,78 @@
+{
+  "lesson": "13-mcp-server-with-registry",
+  "title": "Capstone 13: Máy chủ MCP không trạng thái với Registry và Quản trị",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao capstone này sử dụng cả server.json và server/discover?",
+      "options": [
+        "server.json lưu trữ các phiên, trong khi server/discover xóa chúng",
+        "Registry yêu cầu cả hai tệp chứa ngày phiên bản giống nhau",
+        "Chúng là hai tên cho cùng một bản khai công cụ",
+        "server.json công bố thông tin cài đặt và siêu dữ liệu điểm cuối, trong khi server/discover báo cáo khả năng giao thức trực tiếp"
+      ],
+      "correct": 3,
+      "explanation": "Bản ghi Registry giúp khách hàng xác định vị trí và cấu hình một máy chủ. RPC trực tiếp báo cáo những gì quá trình đang chạy hỗ trợ. Các lược đồ và miền phiên bản của chúng độc lập, nhưng danh tính đã công bố phải sử dụng không gian tên đã xác thực và khớp với serverInfo trực tiếp."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì thay thế bắt tay khởi tạo trong MCP phiên bản 2026-07-28?",
+      "options": [
+        "Mcp-Session-Id cộng với notifications/initialized",
+        "Mỗi yêu cầu mang theo phiên bản giao thức và khả năng của khách hàng, và khách hàng có thể gọi server/discover bắt buộc",
+        "Một yêu cầu GET mở một luồng máy chủ vĩnh viễn",
+        "Một cookie phiên được gửi một lần cho mỗi kết nối TCP"
+      ],
+      "correct": 1,
+      "explanation": "Giao thức là không trạng thái. Phiên bản và khả năng là siêu dữ liệu yêu cầu, trong khi server/discover cung cấp khả năng phát hiện phiên bản và khả năng trực tiếp mà không tạo ra một phiên."
+    },
+    {
+      "stage": "check",
+      "question": "Hành vi công cụ/danh sách nào hỗ trợ phát hiện an toàn và hiệu quả?",
+      "options": [
+        "Một phản hồi được lưu trữ mãi mãi mà không có phạm vi",
+        "Một thứ tự công cụ ngẫu nhiên trên mỗi bản sao",
+        "Một danh sách cục bộ kết nối được tạo trong quá trình khởi tạo",
+        "Thứ tự xác định cộng với ttlMs và một cacheScope công khai hoặc riêng tư chính xác"
+      ],
+      "correct": 3,
+      "explanation": "Thứ tự ổn định cải thiện khả năng tái tạo và lưu trữ nhanh chóng. ttlMs truyền đạt độ mới, và cacheScope ngăn chặn kết quả cụ thể của người dùng bị rò rỉ qua các bộ nhớ đệm chia sẻ."
+    },
+    {
+      "stage": "check",
+      "question": "Thiết kế HTTP Streamable nào phù hợp với giao thức không trạng thái hiện tại?",
+      "options": [
+        "Tất cả khách hàng yêu cầu định tuyến cân bằng tải dính",
+        "POST tạo ra một phiên, GET tiếp tục nó, và DELETE đóng nó lại",
+        "Một luồng GET độc lập sử dụng phát lại Last-Event-ID",
+        "Mỗi tin nhắn JSON-RPC sử dụng POST riêng của nó, với JSON hoặc SSE theo yêu cầu cho một yêu cầu"
+      ],
+      "correct": 3,
+      "explanation": "HTTP Streamable hiện tại chỉ sử dụng POST cho các tin nhắn MCP và không có phiên giao thức, luồng GET độc lập, xóa phiên, hoặc khả năng tiếp tục Last-Event-ID."
+    },
+    {
+      "stage": "post",
+      "question": "Một máy chủ sản xuất phải xác thực điều gì trước khi một trình xử lý công cụ được phê duyệt chính sách chạy?",
+      "options": [
+        "Chỉ rằng server.json liệt kê URL từ xa",
+        "Chỉ chú thích destructiveHint của công cụ",
+        "Chỉ rằng một người đã đăng một thông điệp phê duyệt",
+        "Siêu dữ liệu giao thức cộng với phát hành token, đối tượng hoặc tài nguyên, thời hạn, phạm vi, và bất kỳ phê duyệt hành động chính xác nào"
+      ],
+      "correct": 3,
+      "explanation": "Siêu dữ liệu vận chuyển, xác thực token, và chính sách là các cổng riêng biệt. Chú thích và siêu dữ liệu xuất bản không cấp quyền."
+    },
+    {
+      "stage": "post",
+      "question": "Bằng chứng nào hỗ trợ tốt nhất cho tuyên bố rằng máy chủ mở rộng mà không có phiên giao thức?",
+      "options": [
+        "Một mục từ xa trong server.json",
+        "Một lần chạy đồng thời ở mức dây giữa hai bản sao có thể thay thế mà không có phụ thuộc vào sự gắn bó",
+        "Một bài kiểm tra đơn vị xây dựng một từ điển phản hồi",
+        "Một sơ đồ cho thấy một bộ cân bằng tải"
+      ],
+      "correct": 1,
+      "explanation": "Ranh giới vận chuyển và triển khai thực tế phải được thực hiện. Việc luân phiên các yêu cầu giữa các bản sao chứng minh rằng tính đúng đắn không bị ẩn trong một quá trình hoặc phiên dính."
+    }
+  ]
+}

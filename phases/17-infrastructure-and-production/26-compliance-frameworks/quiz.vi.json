@@ -1,0 +1,78 @@
+{
+  "lesson": "26-compliance-frameworks",
+  "title": "Tuân thủ — SOC 2, HIPAA, GDPR, PCI-DSS, EU AI Act, ISO 42001",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Khi nào việc thực thi EU AI Act cho các hệ thống rủi ro cao bắt đầu?",
+      "options": [
+        "Đã được thực thi hoàn toàn vào năm 2024",
+        "Ngày 2 tháng 8 năm 2026",
+        "Ngày 2 tháng 2 năm 2025",
+        "Ngày 1 tháng 1 năm 2030"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "EU AI Act định nghĩa mức phạt tối đa hai cấp nào?",
+      "options": [
+        "Tối đa €100K cho bất kỳ vi phạm nào",
+        "Tối đa €15M hoặc 3% doanh thu toàn cầu hàng năm cho nghĩa vụ hệ thống rủi ro cao (Điều 99(4)); tối đa €35M hoặc 7% cho các thực hành AI bị cấm (Điều 99(3))",
+        "Tối đa €1M cố định cho bất kỳ vi phạm nào",
+        "Không có hình phạt tài chính, chỉ có lệnh gỡ bỏ"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc làm sạch PII sau xử lý không phải là một tư thế tuân thủ GDPR có thể bảo vệ?",
+      "options": [
+        "Mô hình đã thấy dữ liệu, vì vậy việc xóa thông tin trong lớp suy diễn thời gian thực (trước cuộc gọi LLM) là tiêu chuẩn có thể bảo vệ vào năm 2026",
+        "GDPR hoàn toàn cấm việc xóa thông tin",
+        "Quá chậm khi mở rộng",
+        "Xử lý sau giống như thời gian thực"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt thực tiễn giữa SOC 2 Type I và Type II là gì?",
+      "options": [
+        "Type I yêu cầu HIPAA BAA",
+        "Type I nghiêm ngặt hơn Type II",
+        "Type I xác nhận các kiểm soát được thiết kế và tài liệu; Type II xác nhận các kiểm soát hoạt động hiệu quả trong 6-12 tháng",
+        "Type II chỉ dành cho các công ty khởi nghiệp"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Mục tiêu của việc lập bản đồ kiểm soát giữa các khung là gì?",
+      "options": [
+        "Loại bỏ các cuộc kiểm toán",
+        "Thay thế tất cả các khung bằng ISO 42001",
+        "Một chính sách kiểm soát đáp ứng nhiều yêu cầu khung khác nhau (ví dụ: ghi nhật ký truy cập tương ứng với ISO 27001 A.5.15-5.18, GDPR Điều 32, HIPAA §164.312(a))",
+        "Nhiều kiểm soát riêng biệt hơn cho mỗi khung"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Bài học khuyến nghị gì cho các khối lượng công việc HIPAA + LLM?",
+      "options": [
+        "Chỉ sử dụng các mô hình tại chỗ, không bao giờ sử dụng mô hình quản lý",
+        "Gửi PHI đến bất kỳ nhà cung cấp nào; BAA là tùy chọn",
+        "HIPAA không áp dụng cho LLM",
+        "Không bao giờ gửi PHI đến dịch vụ AI bên ngoài mà không có BAA đã ký; tất cả ba nhà cung cấp hyperscaler và các nhà cung cấp API LLM lớn đều cung cấp BAAs"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

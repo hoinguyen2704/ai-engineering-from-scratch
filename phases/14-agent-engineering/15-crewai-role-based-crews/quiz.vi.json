@@ -1,0 +1,90 @@
+{
+  "lesson": "15-crewai-role-based-crews",
+  "title": "Nhóm Đại Diện Dựa Trên Vai Trò — Vai Trò, Nhiệm Vụ, Quy Trình",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Bốn nguyên lý cơ bản của CrewAI là gì?",
+      "options": [
+        "Công cụ, Lời nhắc, Mô hình, Bộ nhớ",
+        "Đại diện, Nhiệm vụ, Nhóm, Quy trình",
+        "Nút, Cạnh, Bộ giảm, Điểm kiểm tra",
+        "Diễn viên, Thông điệp, Hộp thư đến, Thời gian chạy"
+      ],
+      "correct": 1,
+      "explanation": "Đại diện, Nhiệm vụ, Nhóm và Quy trình là bốn nguyên lý cơ bản."
+    },
+    {
+      "stage": "pre",
+      "question": "Điểm khởi đầu sản xuất được khuyến nghị theo tài liệu CrewAI là gì?",
+      "options": [
+        "Quy trình tuần tự",
+        "Luồng",
+        "Nhóm",
+        "Quy trình phân cấp"
+      ],
+      "correct": 1,
+      "explanation": "Tài liệu nói rằng hãy bắt đầu các ứng dụng sản xuất với Luồng; kết hợp Nhóm như các bước phụ khi tính tự chủ đáng giá."
+    },
+    {
+      "stage": "check",
+      "question": "Sự khác biệt giữa Nhóm và Luồng là gì?",
+      "options": [
+        "Luồng không có đại diện",
+        "Nhóm được trả tiền, Luồng miễn phí",
+        "Nhóm tự chủ và điều khiển bởi LLM; Luồng được điều khiển bởi sự kiện, thuộc về mã, xác định và có thể kiểm tra",
+        "Nhóm chỉ chạy trên GPU"
+      ],
+      "correct": 2,
+      "explanation": "Nhóm ưu tiên tính tự chủ; Luồng ưu tiên tính xác định."
+    },
+    {
+      "stage": "check",
+      "question": "Loại bộ nhớ nào sau đây KHÔNG phải là một trong bốn loại bộ nhớ mà CrewAI cung cấp?",
+      "options": [
+        "Định lượng",
+        "Thực thể",
+        "Dài hạn",
+        "Ngắn hạn"
+      ],
+      "correct": 0,
+      "explanation": "Ngắn hạn, dài hạn, thực thể và ngữ cảnh là bốn loại. Bộ nhớ định lượng không phải là khái niệm của CrewAI."
+    },
+    {
+      "stage": "check",
+      "question": "Bloat câu chuyện nền là gì và bài học khuyến nghị xử lý nó như thế nào?",
+      "options": [
+        "Câu chuyện nền của đại diện 2000 từ làm tiêu tốn ngân sách ngữ cảnh; giữ cho chúng ngắn gọn",
+        "Lưu trữ quá nhiều nhóm; lưu trữ các nhóm cũ",
+        "Gọi Bedrock chậm; chuyển vùng",
+        "Quá nhiều công cụ; xóa bớt một số"
+      ],
+      "correct": 0,
+      "explanation": "Câu chuyện nền định hình tông và phán đoán nhưng tiêu tốn ngữ cảnh nếu quá lớn."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào quy trình phân cấp đáng để chọn hơn quy trình tuần tự?",
+      "options": [
+        "Khi bạn có 4+ chuyên gia cần một Đại diện quản lý để điều hướng giữa họ",
+        "Luôn luôn",
+        "Khi bạn có một nhiệm vụ",
+        "Khi bạn không có bất kỳ công cụ nào"
+      ],
+      "correct": 0,
+      "explanation": "Quy trình phân cấp thêm một Đại diện quản lý; chỉ có giá trị khi nhiều chuyên gia cần điều hướng động."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao bài học cảnh báo không nên sử dụng Nhóm tự do trong sản xuất?",
+      "options": [
+        "Biến động đầu ra cao và việc gỡ lỗi rất khó khăn mà không có lớp bọc Luồng",
+        "Nhóm không được hỗ trợ",
+        "Nhóm tốn kém hơn Luồng",
+        "Nhóm thiếu bộ nhớ"
+      ],
+      "correct": 0,
+      "explanation": "Tính tự chủ của Nhóm khiến việc phát lại và kiểm toán sản xuất trở nên khó khăn; hãy bọc với một Luồng khi giao hàng."
+    }
+  ]
+}

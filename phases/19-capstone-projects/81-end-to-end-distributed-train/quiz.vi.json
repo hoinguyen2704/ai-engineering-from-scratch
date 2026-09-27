@@ -1,0 +1,78 @@
+{
+  "lesson": "81-end-to-end-distributed-train",
+  "title": "Đào tạo phân tán từ đầu đến cuối",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao capstone lại quan trọng khi mỗi bài học đã có bài kiểm tra riêng?",
+      "options": [
+        "Tính hợp thành là một thuộc tính riêng biệt: các phần có thể vượt qua các bài kiểm tra đơn vị nhưng việc tích hợp lại bị deadlock, tổn thất phân kỳ, hoặc bộ nhớ tăng lên khi chúng chạy cùng nhau",
+        "Thẩm mỹ",
+        "Chậm hơn",
+        "Dễ chấm điểm hơn"
+      ],
+      "correct": 0,
+      "explanation": "Các bài kiểm tra từ đầu đến cuối phát hiện lỗi kết nối mà không phần nào kiểm tra riêng lẻ: rendezvous, thứ tự barrier, hợp đồng gather."
+    },
+    {
+      "stage": "pre",
+      "question": "Bốn bất biến nào mà bản demo xác minh?",
+      "options": [
+        "Tốc độ",
+        "Tokens mỗi giây",
+        "Phần cứng",
+        "(a) tổn thất chạy đến bước 20 mà không có NaN, (b) chuẩn của tham số mỗi rank đồng ý, (c) bộ nhớ tối ưu hóa theo rank bằng công thức ZeRO-1, (d) checkpoint bước 10 tải lại byte-equal"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi bất biến phát hiện một lỗi hợp thành khác nhau: NaN phát hiện phân kỳ, đồng ý chuẩn phát hiện trôi đồng bộ, bộ nhớ phát hiện lỗi phân mảnh, checkpoint phát hiện tính nguyên tử khi ghi."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao mô hình lại là một GPT nhỏ thay vì một MLP?",
+      "options": [
+        "Bắt buộc",
+        "Trông đẹp",
+        "GPT thêm thống kê chạy LayerNorm, hình dạng gradient embedding, và các trường hợp biên softmax+cross-entropy mà một MLP sẽ che giấu",
+        "Nhanh hơn"
+      ],
+      "correct": 2,
+      "explanation": "Đồng bộ gradient MLP đã được xác minh trong bài học 77; capstone cần một mô hình với nhiều trường hợp biên hơn để chứng minh tính hợp thành dưới các hoạt động thực tế."
+    },
+    {
+      "stage": "check",
+      "question": "Tự kết thúc có nghĩa là gì trong ngữ cảnh này?",
+      "options": [
+        "Quá trình tự tiêu diệt",
+        "Số bước cố định (20), thoát 0 khi hoàn thành, không có con người trong vòng lặp; nếu bất kỳ phần nào deadlock thì demo sẽ không bao giờ trở lại và CI sẽ phát hiện",
+        "Khôi phục sự cố",
+        "Thủ công"
+      ],
+      "correct": 1,
+      "explanation": "Một lần chạy có giới hạn với thoát 0 cho phép thiết bị kiểm tra xác nhận việc kết thúc; các vòng lặp while-True che giấu deadlock."
+    },
+    {
+      "stage": "check",
+      "question": "Bản demo kết hợp DDP và ZeRO như thế nào?",
+      "options": [
+        "Chỉ ZeRO",
+        "Cả hai cùng một lúc",
+        "Phát sóng theo kiểu DDP tại khởi tạo để đồng bộ tham số, reduce_scatter+allgather của ZeRO-1 thay thế optimiser.step; DDP gradient allreduce được bao hàm vào reduce_scatter của ZeRO",
+        "Chỉ DDP"
+      ],
+      "correct": 2,
+      "explanation": "ZeRO-1 sở hữu đồng bộ gradient thông qua reduce_scatter, vì vậy allreduce riêng biệt của DDP là không cần thiết; phát sóng tại khởi tạo là cuộc gọi DDP duy nhất còn lại."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao sản xuất sử dụng nhịp checkpoint theo thời gian thực thay vì số bước?",
+      "options": [
+        "Trông sạch hơn",
+        "Nhanh hơn",
+        "Bắt buộc bởi NCCL",
+        "Thời gian bước thay đổi theo độ dài chuỗi và số lượng microbatch; một nhịp 10 phút bắt được cùng một tính toán bất kể kích thước mô hình"
+      ],
+      "correct": 3,
+      "explanation": "Bài học sử dụng dựa trên bước để rõ ràng; các phiên chạy sản xuất thường lưu mỗi 5-15 phút theo thời gian thực."
+    }
+  ]
+}

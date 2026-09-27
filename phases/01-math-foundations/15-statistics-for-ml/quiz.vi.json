@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Giá trị p = 0.03 có ý nghĩa gì trong một bài kiểm tra giả thuyết?",
+      "options": [
+        "Có 3% xác suất thấy dữ liệu cực đoan như vậy nếu giả thuyết không đúng là đúng",
+        "Mô hình cải thiện 3%",
+        "Có 3% xác suất giả thuyết không đúng là đúng",
+        "97% dữ liệu ủng hộ giả thuyết thay thế"
+      ],
+      "correct": 0,
+      "explanation": "Giá trị p là xác suất quan sát dữ liệu cực đoan như những gì bạn nhận được, giả sử giả thuyết không đúng là đúng. Nó KHÔNG phải là xác suất rằng H0 là đúng — đây là sự hiểu lầm phổ biến nhất trong thống kê."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao bạn chia cho (n-1) thay vì n khi tính phương sai mẫu?",
+      "options": [
+        "Nó chuyển đổi phương sai thành độ lệch chuẩn",
+        "Nó chỉ áp dụng khi kích thước mẫu là lẻ",
+        "Nó làm cho việc tính toán nhanh hơn",
+        "Nó tính đến thực tế rằng trung bình mẫu không phải là trung bình quần thể thực sự (sửa đổi Bessel)"
+      ],
+      "correct": 3,
+      "explanation": "Sửa đổi Bessel (chia cho n-1) bù đắp cho độ thiên lệch do việc sử dụng trung bình mẫu thay vì trung bình quần thể thực sự. Nếu không có nó, phương sai mẫu sẽ đánh giá thấp phương sai quần thể thực sự một cách hệ thống."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn kiểm tra 20 cấu hình mô hình khác nhau với alpha = 0.05. Xác suất khoảng của ít nhất một kết quả dương giả là bao nhiêu?",
+      "options": [
+        "5%",
+        "25%",
+        "95%",
+        "64%"
+      ],
+      "correct": 3,
+      "explanation": "P(ít nhất một kết quả dương giả) = 1 - (1 - 0.05)^20 = 1 - 0.95^20 ≈ 0.64 (64%). Đây là vấn đề so sánh nhiều. Sửa đổi Bonferroni giải quyết vấn đề này bằng cách kiểm tra từng cái với alpha/20 = 0.0025."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình A đạt điểm 0.9234 và Mô hình B đạt điểm 0.9237 trên 1 triệu mẫu kiểm tra với giá trị p = 0.001. Bạn nên kết luận gì?",
+      "options": [
+        "Mô hình A tốt hơn vì nó được kiểm tra trước",
+        "Mô hình B tốt hơn đáng kể và nên được triển khai ngay lập tức",
+        "Sự khác biệt là có ý nghĩa thống kê nhưng cải thiện 0.03% có thể không có ý nghĩa thực tiễn",
+        "Bài kiểm tra không hợp lệ vì kích thước mẫu quá lớn"
+      ],
+      "correct": 2,
+      "explanation": "Với 1 triệu mẫu, ngay cả những khác biệt nhỏ cũng trở nên có ý nghĩa thống kê. Giá trị p xác nhận rằng sự khác biệt là có thật, nhưng kích thước hiệu ứng (tăng độ chính xác 0.03%) có thể không biện minh cho chi phí kỹ thuật của việc triển khai. Luôn báo cáo cả giá trị p và kích thước hiệu ứng."
+    },
+    {
+      "stage": "post",
+      "question": "Bootstrap có lợi thế gì so với kiểm tra t ghép đôi khi so sánh hai mô hình ML?",
+      "options": [
+        "Bootstrap chỉ có thể được sử dụng với mạng nơ-ron",
+        "Bootstrap luôn tạo ra các giá trị p nhỏ hơn",
+        "Bootstrap không yêu cầu giả định phân phối và hoạt động cho bất kỳ chỉ số nào (AUC, F1, trung vị)",
+        "Bootstrap cần ít mẫu hơn để đạt được ý nghĩa"
+      ],
+      "correct": 2,
+      "explanation": "Bootstrap tái mẫu ước lượng phân phối mẫu của bất kỳ thống kê nào bằng cách tái mẫu với thay thế. Khác với kiểm tra t, nó không giả định tính chuẩn. Nó hoạt động cho bất kỳ chỉ số nào — AUC, F1, precision@k, trung vị — mà không cần công thức dạng đóng."
+    }
+  ]
+}

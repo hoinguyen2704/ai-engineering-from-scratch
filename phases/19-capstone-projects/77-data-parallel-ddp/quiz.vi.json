@@ -1,0 +1,78 @@
+{
+  "lesson": "77-data-parallel-ddp",
+  "title": "Data Parallel DDP Từ Đầu",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao DDP phát sóng các tham số khi khởi tạo thay vì dựa vào cùng một hạt giống giữa các rank?",
+      "options": [
+        "Phát sóng tiết kiệm bộ nhớ",
+        "Phát sóng nhanh hơn so với việc khởi tạo hạt giống",
+        "PyTorch cấm khởi tạo với cùng một hạt giống",
+        "Khởi tạo với cùng một hạt giống bị trôi bởi float epsilon giữa các rank; phát sóng đảm bảo trọng số byte-bằng nhau trước khi bắt đầu huấn luyện"
+      ],
+      "correct": 3,
+      "explanation": "Các phép toán float trên phần cứng khác nhau (hoặc thậm chí theo thứ tự quy trình khác nhau) có thể khác nhau ở mức bit. Một phát sóng từ rank 0 là cách duy nhất để có được trọng số byte-bằng nhau ở mọi nơi."
+    },
+    {
+      "stage": "pre",
+      "question": "DDP làm gì sau khi backpropagation và trước khi optimizer.step?",
+      "options": [
+        "Allreduce-SUM gradient của mỗi tham số và chia cho world_size để có gradient trung bình",
+        "Không làm gì cả",
+        "Lưu một checkpoint",
+        "Phát sóng logits"
+      ],
+      "correct": 0,
+      "explanation": "Gradient trung bình không thay đổi theo world_size nên một learning rate được điều chỉnh ở một rank có thể hoạt động ở N rank."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao lại chia cho world_size sau allreduce-SUM thay vì sử dụng allreduce-MEAN?",
+      "options": [
+        "Allreduce-MEAN không tồn tại trong gloo",
+        "world_size không xác định",
+        "Phép chia cho world_size trên mỗi rank là một phép toán cục bộ; allreduce-MEAN sẽ được thực hiện theo cách tương tự ở phía dưới",
+        "Phép chia tạo ra NaN"
+      ],
+      "correct": 2,
+      "explanation": "Cả hai phương pháp đều cho ra cùng một phép toán. NCCL đã cung cấp allreduce-AVG từ phiên bản 2.10; gloo thì không, vì vậy hãy chia cục bộ sau khi SUM."
+    },
+    {
+      "stage": "check",
+      "question": "Gradient bucketing trong DDP sản xuất đạt được điều gì?",
+      "options": [
+        "Gộp nhiều allreduce nhỏ thành một allreduce lớn, giảm thiểu độ trễ mỗi lần gọi",
+        "Giải phóng bộ nhớ gradient",
+        "Lượng tử hóa gradient thành int8",
+        "Bỏ qua backpropagation"
+      ],
+      "correct": 0,
+      "explanation": "Một mô hình với 1B tham số có hàng ngàn tensor gradient; một allreduce cho mỗi tensor sẽ phải trả độ trễ gloo hoặc NCCL hàng ngàn lần."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao no_sync() tồn tại trong PyTorch DDP?",
+      "options": [
+        "Để chuyển đổi backend",
+        "Để tắt DDP",
+        "Để gỡ lỗi",
+        "Tích lũy gradient qua K microbatches cần bỏ qua allreduce sau backpropagation cho K-1 trong số đó; no_sync bao bọc khoảng dừng đó"
+      ],
+      "correct": 3,
+      "explanation": "Nếu không có no_sync, allreduce sẽ được kích hoạt K lần cho mỗi bước tích lũy và thông lượng sẽ giảm xuống mức tối thiểu."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao triển khai tham chiếu của bài học này đi qua từng micro-batch của mỗi rank một cách tuần tự trong một quy trình?",
+      "options": [
+        "Đây là cách duy nhất để sử dụng gloo",
+        "Quy trình đơn nhanh hơn",
+        "Nó tiết kiệm bộ nhớ",
+        "Nó cung cấp một cơ sở byte-bằng nhau: gradient trung bình tuần tự phải bằng gradient trung bình allreduced của DDP ở mỗi bước"
+      ],
+      "correct": 3,
+      "explanation": "Sự tương đương với vòng lặp tham chiếu là bài kiểm tra độ chính xác chịu tải; nếu không có nó, lỗi đồng bộ gradient sẽ ẩn cho đến bước 10000."
+    }
+  ]
+}

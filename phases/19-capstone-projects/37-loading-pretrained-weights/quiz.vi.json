@@ -1,0 +1,78 @@
+{
+  "lesson": "37-loading-pretrained-weights",
+  "title": "Tải Trọng Số Đã Được Huấn Luyện",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ tải cần một bản đồ tên?",
+      "options": [
+        "Trọng số GPT-2 đã công bố sử dụng các tên như wte, wpe, h.N.attn.c_attn; mô hình cục bộ sử dụng tok_embed, pos_embed, blocks.N.attn.qkv; bộ tải dịch một cái này sang cái kia",
+        "Tệp safetensors được mã hóa",
+        "Tensor đã được huấn luyện và tham số cục bộ chia sẻ cùng một tên",
+        "Torch yêu cầu điều đó"
+      ],
+      "correct": 0,
+      "explanation": "Hai quy ước đặt tên là những lịch sử khác nhau; bản đồ là một dict theo nghĩa đen được mở rộng theo từng lớp."
+    },
+    {
+      "stage": "check",
+      "question": "Conv1d transpose là gì, và tensor nào cần nó?",
+      "options": [
+        "Tất cả các tensor trọng số",
+        "GPT-2 đã công bố lưu trữ trọng số c_attn, c_proj và c_fc theo định dạng conv1d của tensorflow, đây là phép chuyển vị của những gì nn.Linear.weight mong đợi; bộ tải gọi .t() trên những cái đó trong quá trình gán",
+        "Chỉ có embedding",
+        "Chỉ có các tỷ lệ LayerNorm"
+      ],
+      "correct": 1,
+      "explanation": "Ba hậu tố cần chuyển vị; độ chệch và LayerNorm đã được định hình đúng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao đầu LM không có trong tệp safetensors?",
+      "options": [
+        "Nó quá lớn",
+        "Nó được tải từ một tệp riêng biệt",
+        "Nó được tính toán tại thời gian chạy từ logits",
+        "Liên kết trọng số: đầu LM chia sẻ bộ nhớ với embedding token (wte), vì vậy việc tải wte và gán lm_head.weight = tok_embed.weight sau khi tải sẽ phục hồi đầu"
+      ],
+      "correct": 3,
+      "explanation": "Việc thiết lập lm_head.weight = tok_embed.weight sau khi wte được tải phục hồi liên kết; việc sao chép thay vào đó sẽ làm tăng gấp đôi số lượng tham số."
+    },
+    {
+      "stage": "check",
+      "question": "Bộ tải làm gì khi có sự không khớp về hình dạng?",
+      "options": [
+        "Đệm tensor nhỏ hơn",
+        "Làm cho quá trình bị sập",
+        "Ghi lại sự không khớp trong LoadReport.shape_mismatch và từ chối gán, để lại tham số cục bộ không bị ảnh hưởng",
+        "Cắt ngắn tensor lớn hơn"
+      ],
+      "correct": 2,
+      "explanation": "Các mô hình tải một nửa là máy thất bại im lặng; từ chối gán giữ cho báo cáo trung thực."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao stub fixture của demo không phải là một tải xuống GPT-2 thực sự?",
+      "options": [
+        "Tệp thực không ở định dạng safetensors",
+        "Trọng số thực được mã hóa",
+        "Demo phải chạy ngoại tuyến và nhanh chóng; stub sử dụng đúng quy ước đặt tên đã được huấn luyện để mã tải là giống hệt nhau, và việc thay thế bằng một tệp thực không thay đổi gì về bộ tải",
+        "Safetensors không thể lưu trữ tensor lớn"
+      ],
+      "correct": 2,
+      "explanation": "Cùng một đường mã, tải trọng nhỏ hơn; bộ tải hoạt động trên cả hai."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao tạo một mẫu trước và sau khi tải?",
+      "options": [
+        "Để đo tốc độ suy diễn",
+        "Để thiết lập hạt giống ngẫu nhiên",
+        "Nếu các mẫu sau khi tải giống hệt các mẫu trước khi tải, thì việc tải không thay đổi mô hình, điều này có nghĩa là bản đồ đã im lặng bỏ lỡ mọi tensor",
+        "Để khởi động bộ nhớ cache GPU"
+      ],
+      "correct": 2,
+      "explanation": "Việc tạo mẫu sanity là cổng rẻ nhất: một dấu vân tay mẫu không thay đổi sẽ phơi bày một tải bị hỏng mà tóm tắt LoadReport sẽ không phát hiện được."
+    }
+  ]
+}

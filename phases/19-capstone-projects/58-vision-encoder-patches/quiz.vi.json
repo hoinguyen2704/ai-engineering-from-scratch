@@ -1,0 +1,78 @@
+{
+  "lesson": "58-vision-encoder-patches",
+  "title": "Các Mảnh Mã Hóa Hình Ảnh",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao Vision Transformer sử dụng các mảnh thay vì cung cấp một pixel cho mỗi token?",
+      "options": [
+        "Các mảnh là yêu cầu của PyTorch",
+        "Chuỗi pixel-per-token làm tăng tính toán Attention theo cấp số bậc hai và mất khả năng xử lý ở các độ phân giải điển hình",
+        "Các mảnh cải thiện chất lượng hình ảnh",
+        "Nó tránh việc sử dụng một tokenizer"
+      ],
+      "correct": 1,
+      "explanation": "Một hình ảnh 224x224 có 150528 token pixel. Attention là bậc hai theo chiều dài, vì vậy việc chia thành các mảnh 16x16 giảm chuỗi xuống còn 196 token và làm cho mô hình có thể xử lý."
+    },
+    {
+      "stage": "pre",
+      "question": "Mối quan hệ giữa Conv2d với kernel = stride = patch_size và flatten-then-linear là gì?",
+      "options": [
+        "Conv2d thêm tính phi tuyến",
+        "Chúng tạo ra các đầu ra khác nhau",
+        "Conv2d là cách nhanh hơn để viết cùng một phép chiếu tuyến tính trên mỗi mảnh",
+        "Flatten-then-linear là không thể"
+      ],
+      "correct": 2,
+      "explanation": "Mỗi vị trí đầu ra của Conv2d thực hiện phép nhân điểm giữa các pixel của mảnh với một bộ lọc, điều này giống hệt với flatten-then-linear."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao embedding vị trí sinusoidal 2D là xác định thay vì được học?",
+      "options": [
+        "Các tín hiệu sin/cos cố định nội suy sạch sẽ đến các lưới mà mô hình chưa thấy, điều này hữu ích khi độ phân giải thay đổi",
+        "Cần khởi tạo ngẫu nhiên",
+        "Nó tiết kiệm không gian đĩa",
+        "Các vị trí đã học là bất hợp pháp"
+      ],
+      "correct": 0,
+      "explanation": "Các vị trí sinusoidal cố định là xác định trên các độ phân giải và cho phép cùng một bộ mã hóa chạy trên các đầu vào mà nó chưa được đào tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Độ dài chuỗi đầu ra của một hình ảnh 224x224 với patch_size=16 và một token CLS là gì?",
+      "options": [
+        "224",
+        "256",
+        "196",
+        "197"
+      ],
+      "correct": 3,
+      "explanation": "224/16 = 14, vì vậy 14x14 = 196 mảnh, cộng thêm một token CLS cho tổng cộng 197 token."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao việc tái tạo (unfold sau đó unflatten) là một kiểm tra hợp lý hữu ích trên đầu vào mảnh?",
+      "options": [
+        "Nó tăng tốc độ suy diễn",
+        "Việc đưa pixel qua patch-flatten mà không có phép chiếu phải bằng với đầu vào; nếu không, có nghĩa là toán học unfold là sai",
+        "Nó cải thiện độ chính xác",
+        "Nó là yêu cầu của ONNX"
+      ],
+      "correct": 1,
+      "explanation": "Bước mảnh là khả thi mà không cần phép chiếu. Nếu việc đi vòng lại bị lệch, logic unfold bị lỗi và phần còn lại của bộ mã hóa không an toàn."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì thay đổi khi bạn hoán đổi một embedding vị trí đã học cho vị trí sinusoidal 2D trong bài học này?",
+      "options": [
+        "Không có gì thay đổi",
+        "Các vị trí sinusoidal là ngẫu nhiên theo từng bước",
+        "Các vị trí đã học có thể phù hợp với một độ phân giải cố định tốt hơn một chút; các vị trí sinusoidal chuyển giao sang các độ phân giải mới mà không cần đào tạo lại",
+        "Các vị trí sinusoidal tốn nhiều tham số hơn"
+      ],
+      "correct": 2,
+      "explanation": "Các vị trí đã học linh hoạt ở một độ phân giải. Các vị trí sinusoidal không tốn tham số nào và sống sót qua các thay đổi độ phân giải."
+    }
+  ]
+}

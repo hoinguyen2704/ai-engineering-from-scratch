@@ -1,0 +1,102 @@
+{
+  "lesson": "17-chatbots-rule-to-neural",
+  "title": "Chatbots — Từ Dựa Trên Quy Tắc đến Neural đến Đại LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Máy trạng thái điền slot trong một chatbot dựa trên quy tắc làm gì?",
+      "options": [
+        "Chọn câu trả lời lưu loát nhất",
+        "Nhúng tin nhắn của người dùng",
+        "Theo dõi các tham số cần thiết (ngày, điểm đến, số tiền) còn thiếu và yêu cầu chúng theo thứ tự",
+        "Phát hiện sự châm biếm"
+      ],
+      "correct": 2,
+      "explanation": "Điền slot thu thập các tham số có cấu trúc mà một trình xử lý tác vụ cần một cách lặp đi lặp lại."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao chatbot dựa trên truy xuất lại kháng với ảo giác?",
+      "options": [
+        "Nó sử dụng BM25",
+        "Nó sử dụng nhúng",
+        "Nó từ chối tất cả các truy vấn",
+        "Nó trả về một phản hồi có sẵn từ một tập hợp đã được chọn lọc thay vì tạo ra văn bản mới"
+      ],
+      "correct": 3,
+      "explanation": "Truy xuất đưa ra các câu trả lời đã được viết trước; không có sự tạo ra có nghĩa là không có nội dung giả mạo."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xác định vòng lặp đại lý LLM so với một cuộc gọi LLM một lần?",
+      "options": [
+        "Một bộ điều khiển xen kẽ các cuộc gọi LLM với các lệnh công cụ cho đến khi mô hình trả về câu trả lời cuối cùng hoặc ngân sách bước bị đạt",
+        "Sử dụng softmax",
+        "Sử dụng giải mã tham lam",
+        "Cửa sổ ngữ cảnh lớn hơn"
+      ],
+      "correct": 0,
+      "explanation": "Các đại lý thêm một vòng lặp lập kế hoạch-hành động-quan sát với các cuộc gọi công cụ và một điều kiện kết thúc."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao định tuyến hỗn hợp (quy tắc + truy xuất + đại lý LLM) là mặc định sản xuất năm 2026?",
+      "options": [
+        "Nó tránh nhúng",
+        "Không có kiến trúc đơn lẻ nào xử lý tốt mọi yêu cầu; quy tắc bao phủ các hành động phá hoại, truy xuất bao phủ các câu hỏi thường gặp, các đại lý xử lý các truy vấn mở có thể gây nhầm lẫn",
+        "Nó rẻ hơn để duy trì",
+        "Nó loại bỏ nhu cầu đánh giá"
+      ],
+      "correct": 1,
+      "explanation": "Các hệ thống hỗn hợp sử dụng các quy tắc xác định cho các hành động rủi ro và dành các đại lý LLM cho các truy vấn mở."
+    },
+    {
+      "stage": "check",
+      "question": "Tiêm prompt là gì?",
+      "options": [
+        "Một loại tấn công tokenizer",
+        "Văn bản do người dùng cung cấp (trực tiếp) hoặc văn bản do tài liệu cung cấp (gián tiếp) cố gắng ghi đè lên prompt của hệ thống hoặc chiếm đoạt hành vi của đại lý",
+        "Một biến thể của SQL injection mà thôi",
+        "Tiêm các token vào nhúng"
+      ],
+      "correct": 1,
+      "explanation": "Tiêm prompt viết lại hành vi của đại lý thông qua văn bản không đáng tin cậy trong đầu vào của người dùng hoặc đầu ra của công cụ."
+    },
+    {
+      "stage": "post",
+      "question": "Rủi ro nào trong OWASP Top 10 (Ứng dụng LLM 2025) được xếp hạng là LLM01?",
+      "options": [
+        "SQL injection",
+        "Kiểm soát truy cập bị hỏng",
+        "Giải mã không an toàn",
+        "Tiêm prompt (trực tiếp và gián tiếp)"
+      ],
+      "correct": 3,
+      "explanation": "Tiêm prompt là LLM01 trong OWASP Top 10 Ứng dụng LLM (2025)."
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu giảm thiểu nào giảm thiểu tiêm prompt gián tiếp bằng cách tách kế hoạch khỏi thực thi?",
+      "options": [
+        "Kế hoạch-Xác minh-Thực thi: đại lý lập kế hoạch trước, xác minh từng hành động theo kế hoạch, sau đó thực thi — ngăn chặn đầu ra công cụ tiêm các hành động không được lên kế hoạch mới",
+        "Ngữ cảnh ngắn hơn",
+        "Nhiệt độ thấp hơn",
+        "Mô hình lớn hơn"
+      ],
+      "correct": 0,
+      "explanation": "PVE kiểm tra từng bước theo kế hoạch đã thỏa thuận, vì vậy các hướng dẫn được tiêm từ đầu ra công cụ sẽ bị từ chối."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các hành động phá hoại (thanh toán, xóa) phải đi qua một luồng có cấu trúc ngay cả trong hệ thống đại lý LLM?",
+      "options": [
+        "Không thể gọi công cụ",
+        "Tìm kiếm beam không an toàn",
+        "Sự tạo ra tự tin, tiêm prompt, và sự mở rộng phạm vi có nghĩa là LLM không thể là thẩm quyền duy nhất cho các tác động không thể đảo ngược",
+        "LLM chậm"
+      ],
+      "correct": 2,
+      "explanation": "Ảo giác và tiêm làm cho các hành động không thể đảo ngược thông qua các đại lý LLM thuần túy không an toàn; yêu cầu các luồng xác nhận xác định."
+    }
+  ]
+}

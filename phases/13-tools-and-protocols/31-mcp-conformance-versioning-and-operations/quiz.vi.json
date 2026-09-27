@@ -1,0 +1,78 @@
+{
+  "lesson": "31-mcp-conformance-versioning-and-operations",
+  "title": "Kỹ Thuật Tuân Thủ MCP: Phiên Bản, Bằng Chứng và Hoạt Động",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao một cuộc gọi SDK tools/list thành công không đủ bằng chứng tuân thủ?",
+      "options": [
+        "Giá trị chuẩn hóa có thể ẩn các trường wire, hành vi phiên bản, thay đổi proxy và phản hồi không hợp lệ",
+        "SDK không thể gọi các công cụ MCP",
+        "Một cuộc gọi thành công luôn chọn kỷ nguyên di sản",
+        "Tuân thủ chỉ áp dụng cho các nhà xuất bản Registry"
+      ],
+      "correct": 0,
+      "explanation": "Tuân thủ phải kiểm tra yêu cầu và phản hồi thô, kỷ nguyên phiên bản đã chọn, trung gian và biến đổi SDK."
+    },
+    {
+      "stage": "check",
+      "question": "Một probe hiện đại trả về lỗi JSON-RPC -32021. Khách hàng có khả năng dự phòng nên làm gì?",
+      "options": [
+        "Ngay lập tức gửi khởi tạo cho kỷ nguyên di sản",
+        "Xem đối tác như ngoại tuyến",
+        "Giữ kỷ nguyên hiện đại và sửa chữa hoặc báo cáo tuyên bố khả năng bị thiếu",
+        "Bỏ qua lỗi và thử lại mà không có khả năng"
+      ],
+      "correct": 2,
+      "explanation": "Một lỗi hiện đại được công nhận chứng minh hành vi hiện đại. Đây là bằng chứng sửa chữa, không phải là quyền để hạ cấp."
+    },
+    {
+      "stage": "check",
+      "question": "Khách hàng hiện đại nên xử lý kết quả với resultType hoàn chỉnh và một trường bổ sung không quen thuộc như thế nào?",
+      "options": [
+        "Thay đổi resultType thành input_required",
+        "Từ chối mọi kết quả chứa một khóa không xác định",
+        "Chấp nhận loại kết quả đã biết và bảo tồn hoặc cố ý bỏ qua trường bổ sung theo vai trò của nó",
+        "Xem trường không quen thuộc như một bắt tay di sản"
+      ],
+      "correct": 2,
+      "explanation": "Các trường bổ sung hỗ trợ khả năng tương thích phía trước. Chúng khác với một bộ phân loại vòng đời không xác định."
+    },
+    {
+      "stage": "check",
+      "question": "Phản hồi JSON-RPC cần thiết cho một thông báo không có id là gì?",
+      "options": [
+        "Một kết quả server/discover",
+        "Không có phản hồi JSON-RPC",
+        "Một kết quả hoàn chỉnh với nội dung null",
+        "Một lỗi với id null"
+      ],
+      "correct": 1,
+      "explanation": "Thông báo là một chiều. Bộ tuần tự vận chuyển cuối cùng không được phát ra một thành công hoặc lỗi JSON-RPC."
+    },
+    {
+      "stage": "post",
+      "question": "Bằng chứng nào tốt nhất chứng minh rằng một proxy đã bảo tồn lỗi giao thức nguồn?",
+      "options": [
+        "Bằng chứng trạng thái và nội dung đầu vào, nguồn gốc và đầu ra đã bị chỉnh sửa với các bản tóm tắt ổn định",
+        "Một ảnh chụp màn hình của bảng điều khiển gateway",
+        "Chỉ lớp ngoại lệ SDK",
+        "Thời gian hoạt động của quy trình proxy"
+      ],
+      "correct": 0,
+      "explanation": "Bằng chứng ba ranh giới tiết lộ sự sụp đổ trạng thái, viết lại nội dung và bước nhảy chính xác nơi hành vi thay đổi."
+    },
+    {
+      "stage": "post",
+      "question": "Một ứng viên không đạt yêu cầu bản sao âm tính và phiên bản trước đó không có bằng chứng tiếp nhận hoặc sức khỏe. Cổng phát hành nên làm gì?",
+      "options": [
+        "Chọn phiên bản Registry mới nhất",
+        "Thăng cấp vì các bản sao vàng đã vượt qua",
+        "Quay lại gói được gán là mới nhất",
+        "Giữ lại phát hành cho đến khi một mục tiêu quay lại đủ điều kiện hoặc một ứng viên đã được sửa chữa được chứng minh"
+      ],
+      "correct": 3,
+      "explanation": "Một lần quay lại mà không có bằng chứng tiếp nhận và sức khỏe chính xác là một phát hành chưa được xác minh khác, vì vậy hành động an toàn là giữ lại."
+    }
+  ]
+}

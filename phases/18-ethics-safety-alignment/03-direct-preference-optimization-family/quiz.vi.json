@@ -1,0 +1,78 @@
+{
+  "lesson": "03-direct-preference-optimization-family",
+  "title": "Gia Đình Tối Ưu Hóa Sở Thích Trực Tiếp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao DPO có thể bỏ qua việc đào tạo một mô hình phần thưởng rõ ràng?",
+      "options": [
+        "Dữ liệu sở thích không yêu cầu một phần thưởng vô hướng",
+        "DPO đào tạo mô hình phần thưởng của riêng nó một cách ngầm trong một vòng tối ưu hóa thứ hai",
+        "Giá trị tối ưu RLHF dạng đóng cho phép bạn biểu diễn phần thưởng như một tỷ lệ log của các chính sách, điều này thay thế vào tổn thất Bradley-Terry",
+        "Sở thích Bradley-Terry tình cờ không thay đổi theo hàm phần thưởng"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chế độ thất bại nào mà IPO (Azar et al., 2024) chủ yếu giải quyết trong DPO?",
+      "options": [
+        "Yêu cầu dữ liệu ghép cặp",
+        "Phụ thuộc vào một chính sách tham chiếu",
+        "Thiên lệch độ dài của phản hồi được chọn",
+        "Khoảng cách phần thưởng ngầm không giới hạn từ xác suất sở thích nhỏ"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bạn sẽ chọn KTO thay vì DPO?",
+      "options": [
+        "Khi bạn có nhãn đơn không ghép cặp (mong muốn / không mong muốn) và muốn sử dụng tiện ích tránh mất mát",
+        "Khi bạn chỉ có dữ liệu ghép cặp với biên độ mạnh",
+        "Khi bạn phải đảm bảo không có độ trôi phần thưởng ngầm",
+        "Khi bạn muốn loại bỏ hoàn toàn hình phạt KL"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tính chất nào là duy nhất đối với SimPO so với DPO?",
+      "options": [
+        "Nó loại bỏ chính sách tham chiếu và chuẩn hóa log-likelihood theo độ dài chuỗi",
+        "Nó sử dụng tổn thất tỷ lệ cược với NLL",
+        "Nó loại bỏ log-sigmoid Bradley-Terry để chuyển đổi đồng nhất",
+        "Nó giữ chính sách tham chiếu và thêm một biên độ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Vấn đề 'Phản Hồi Được Chọn Giảm Giá' trong DPO mà BPO nhắm đến là gì?",
+      "options": [
+        "Phản hồi được chọn được lấy mẫu với xác suất thấp trong suy diễn",
+        "Phản hồi được chọn trở nên dài hơn phản hồi bị từ chối",
+        "DPO có thể làm giảm log-prob tuyệt đối của phản hồi được chọn miễn là log-prob bị từ chối giảm nhanh hơn",
+        "Phản hồi được chọn không có trong hỗ trợ của chính sách tham chiếu"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Rafailov et al. (NeurIPS 2024) về các quy luật mở rộng cho các thuật toán căn chỉnh trực tiếp cho thấy:",
+      "options": [
+        "DPO tối ưu hóa quá mức nhưng IPO và SimPO thì không",
+        "DAAs loại bỏ Goodhart theo thiết kế",
+        "Sự tối ưu hóa quá mức biến mất khi dữ liệu ghép cặp vượt quá 100k ví dụ",
+        "DAAs thể hiện hình dạng tối ưu hóa quá mức giống như Gao et al. với đỉnh và sụp đổ trên phần thưởng vàng"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "20-shadow-canary-progressive",
+  "title": "Lưu lượng bóng, Triển khai Canary và Triển khai Tiến bộ cho LLMs",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cách đúng để sắp xếp bóng, canary và thử nghiệm A/B cho việc triển khai LLM là gì?",
+      "options": [
+        "Bỏ qua bóng hoàn toàn",
+        "Bóng (so sánh không tác động), sau đó là canary (lưu lượng trực tiếp tiến bộ với cổng), sau đó là A/B cho các lựa chọn khác biệt khi đã xác nhận tính ổn định",
+        "Canary trước, sau đó là bóng, sau đó là A/B",
+        "A/B trước, sau đó là bóng, sau đó là canary"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Tập hợp năm chỉ số nào mà bài học sử dụng để kiểm soát tiến trình canary?",
+      "options": [
+        "Nhiệt độ GPU, tốc độ quạt, độ sâu hàng đợi, chi phí, độ trễ",
+        "Chỉ thông lượng",
+        "Các phân vị độ trễ, chi phí mỗi yêu cầu, tỷ lệ lỗi/từ chối, phân phối độ dài đầu ra, tỷ lệ phản hồi của người dùng",
+        "Độ chính xác chỉ trên đánh giá ngoại tuyến"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Khoảng độ biến thiên độ chính xác giữa các lần chạy mà bài học đề cập cho các đầu vào giống nhau trên LLM là bao nhiêu?",
+      "options": [
+        "Dưới 0.1%",
+        "Lên đến khoảng 15%, do tính không kết hợp của GPU FP cộng với biến thiên kích thước lô",
+        "Luôn luôn 50%",
+        "Đầu ra giống hệt nhau giữa các lần chạy"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chế độ bóng dùng để làm gì, theo cách diễn đạt của bài học?",
+      "options": [
+        "Một bài kiểm tra chất lượng hoàn chỉnh thay thế cho các đánh giá",
+        "Một bài kiểm tra khói phát hiện các chi phí tăng vọt, hồi quy độ dài, thay đổi từ chối và lỗi nghiêm trọng — không phải là một đảm bảo chất lượng",
+        "Thay thế cho việc quay lại",
+        "Bước cuối cùng trong triển khai sản xuất"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Thiết kế quay lại đúng theo bài học là gì?",
+      "options": [
+        "SSH thủ công đến từng pod",
+        "Triển khai lại với bản tóm tắt mô hình mới, mất vài giờ",
+        "Chuyển đổi cờ chính sách và quay lại bản tóm tắt mô hình đã ghim trong vài giây — không cần triển khai lại",
+        "Chờ đến cửa sổ phát hành tiếp theo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao chi phí được liệt kê là một cổng bên cạnh độ trễ và chất lượng?",
+      "options": [
+        "Một mô hình tốt hơn 20% có thể tốn gấp 3 lần cho mỗi cuộc gọi; việc vận chuyển mà không có cổng chi phí sẽ phá vỡ kinh tế đơn vị",
+        "Chi phí là như nhau giữa các nhà cung cấp",
+        "Chi phí được tự động giới hạn bởi mọi nhà cung cấp",
+        "Chi phí là một chỉ số tự mãn"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

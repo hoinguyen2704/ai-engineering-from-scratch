@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Mất mát đối kháng của CLIP là đối xứng (hình ảnh đến văn bản + văn bản đến hình ảnh). Tại sao lại cần cả hai hướng?",
+      "options": [
+        "Tính ổn định số",
+        "Đối xứng là yêu cầu của PyTorch",
+        "Bởi vì mất mát phải tổng bằng không",
+        "Bạn muốn cả hai truy vấn hoạt động trong quá trình suy diễn: truy xuất văn bản đến hình ảnh và truy xuất hình ảnh đến văn bản. Đào tạo chỉ một hướng làm giảm đáng kể độ chính xác của hướng còn lại"
+      ],
+      "correct": 3,
+      "explanation": "Không gian nhúng cần phải đối xứng giữa các phương thức vì các tác vụ hạ nguồn truy vấn theo cả hai hướng. Phân loại không có điểm (zero-shot classification) là từ văn bản đến hình ảnh (phân loại hình ảnh dựa trên các văn bản mô tả). Truy xuất có thể đi theo cả hai hướng. Đào tạo chỉ với i2t hoặc chỉ t2i làm cho hướng còn lại yếu đi."
+    },
+    {
+      "stage": "pre",
+      "question": "Phân loại không có điểm với CLIP hoạt động bằng cách nào... ?",
+      "options": [
+        "Mã hóa các gợi ý như 'một bức ảnh của một con chó' cho mỗi lớp ứng viên, mã hóa hình ảnh kiểm tra, và lấy argmax của độ tương đồng cosine giữa nhúng hình ảnh và tất cả các nhúng văn bản lớp",
+        "Tìm kiếm trong cơ sở dữ liệu các ví dụ đã được gán nhãn",
+        "Tinh chỉnh bộ mã hóa hình ảnh trên lớp",
+        "Chạy một đầu phân loại đã được đào tạo trên ImageNet"
+      ],
+      "correct": 0,
+      "explanation": "Không có điểm nghĩa là không có đào tạo cụ thể cho tác vụ: các biểu diễn của mô hình đã cho phép bạn so sánh hình ảnh với các mô tả văn bản tùy ý. Viết một gợi ý cho mỗi lớp, mã hóa tất cả các gợi ý và hình ảnh kiểm tra, độ tương đồng cosine, argmax. 'Mẹo' duy nhất là kỹ thuật gợi ý — sử dụng nhiều mẫu cho mỗi lớp và trung bình các nhúng của chúng có thể tăng 1-3 điểm top-1 trên ImageNet."
+    },
+    {
+      "stage": "post",
+      "question": "SigLIP thay thế softmax của CLIP bằng một mất mát sigmoid cho mỗi cặp. Lợi ích của điều đó là gì?",
+      "options": [
+        "Độ chính xác tốt hơn chỉ trên COCO",
+        "Các hạt nhân GPU nhanh hơn",
+        "Giảm sử dụng bộ nhớ",
+        "Mất mát sigmoid là cho mỗi cặp, vì vậy nó không phụ thuộc vào lô như một mẫu chuẩn hóa. SigLIP đào tạo tốt ở kích thước lô nhỏ hơn nơi mà mất mát softmax của CLIP thiếu các ví dụ tiêu cực"
+      ],
+      "correct": 3,
+      "explanation": "Mất mát chéo entropy đối xứng của CLIP là một softmax trên toàn bộ lô, vì vậy các ví dụ tiêu cực hiệu quả = kích thước_lô - 1. Các lô nhỏ làm cho nó thiếu. SigLIP là cho mỗi cặp: mỗi cặp (hình ảnh, chú thích) nhận được một quyết định nhị phân (khớp hay không). Không có chuẩn hóa ở cấp độ lô, vì vậy SigLIP hoạt động ở lô 128 trong khi CLIP cần 8192. Ở quy mô tương đương, SigLIP ngang bằng hoặc vượt qua CLIP."
+    },
+    {
+      "stage": "post",
+      "question": "Một thực hành báo cáo 88% top-1 không có điểm trên CIFAR-10 với CLIP ViT-B/32 và 90% với cùng một mô hình sử dụng 80 mẫu gợi ý cho mỗi lớp. Tại sao việc trung bình mẫu lại hữu ích?",
+      "options": [
+        "Nó giảm phương sai trong logit_scale",
+        "Nó gấp đôi tập dữ liệu",
+        "80 là con số kỳ diệu cho CLIP",
+        "Các mẫu khác nhau kích hoạt các khía cạnh khác nhau của phân phối đã học của bộ mã hóa văn bản; việc trung bình làm mịn nhúng lớp qua đa tạp của các mô tả ngôn ngữ tự nhiên khả thi của lớp, tạo ra một tâm điểm mạnh mẽ hơn"
+      ],
+      "correct": 3,
+      "explanation": "Mỗi mẫu là một tín hiệu ngôn ngữ tự nhiên khác nhau. 'một bức ảnh của một con chó' nhấn mạnh một khía cạnh; 'một bức ảnh mờ của một con chó' một khía cạnh khác; 'một bản phác thảo của một con chó' một khía cạnh khác nữa. Trung bình các nhúng văn bản cho một đại diện mượt mà hơn của khái niệm 'chó' mà ít nhạy cảm với các đặc điểm riêng lẻ của từng gợi ý. Bài báo CLIP của OpenAI đã công bố 80 mẫu mà nâng cao zero-shot trên ImageNet khoảng 2 điểm."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao các VLM hiện đại (LLaVA, Qwen-VL, InternVL) sử dụng bộ mã hóa hình ảnh thuộc gia đình CLIP thay vì ResNet được giám sát trên ImageNet?",
+      "options": [
+        "ResNets không thể nhìn thấy màu sắc",
+        "Các đặc trưng của CLIP được căn chỉnh với ngôn ngữ tự nhiên, vì vậy LLM có thể lý luận về chúng với ít sự thích nghi hơn; các đặc trưng được giám sát trên ImageNet chưa bao giờ được đào tạo với các chú thích và cần các lớp chiếu nặng để kết nối với văn bản",
+        "Đó là yêu cầu cấp phép",
+        "Các bộ mã hóa CLIP nhanh hơn"
+      ],
+      "correct": 1,
+      "explanation": "Một VLM kết hợp một bộ mã hóa hình ảnh với một mô hình ngôn ngữ và đào tạo một chiếu nhỏ. Các bộ mã hóa kiểu CLIP đã được đào tạo với văn bản, vì vậy đầu ra của chúng đã sống trong một không gian mà LLM có thể tiêu thụ với một vài lớp tuyến tính thích nghi. Các bộ mã hóa được giám sát trên ImageNet không có khái niệm về cấu trúc ngôn ngữ tự nhiên và yêu cầu các MLP cầu nối lớn hơn nhiều để làm việc với một LLM. Đây là lý do tại sao mọi VLM SOTA đều sử dụng một tháp hình ảnh thuộc gia đình CLIP."
+    }
+  ]
+}

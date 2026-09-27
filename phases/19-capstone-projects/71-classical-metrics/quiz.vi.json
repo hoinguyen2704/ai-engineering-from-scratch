@@ -1,0 +1,78 @@
+{
+  "lesson": "71-classical-metrics",
+  "title": "Các chỉ số cổ điển",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao bộ phân tách (tokenizer) được chọn ở lớp chỉ số thay vì lớp chạy (runner)?",
+      "options": [
+        "Bộ phân tách là cụ thể cho mô hình và lớp chạy không thể nhìn thấy mô hình",
+        "Bộ phân tách xác định cái gì được coi là một sự khớp token; việc thay đổi nó sẽ thay đổi tiêu chuẩn",
+        "Các triển khai chỉ số là O(n) bất kể lựa chọn bộ phân tách",
+        "Numpy yêu cầu một bộ phân tách tại thời điểm nhập"
+      ],
+      "correct": 1,
+      "explanation": "BLEU và F1 nhạy cảm với việc phân tách token. Ràng buộc bộ phân tách với chỉ số làm cho điểm số có thể tái tạo và cho phép bạn chỉ vào quy tắc."
+    },
+    {
+      "stage": "pre",
+      "question": "Độ chính xác n-gram đã sửa đổi làm gì mà độ chính xác n-gram thông thường không làm?",
+      "options": [
+        "Nó cắt giảm mỗi số lượng n-gram ứng viên theo số lượng tối đa thấy trong bất kỳ tham chiếu nào",
+        "Nó chạy nhanh hơn độ chính xác thông thường",
+        "Nó sử dụng một cơ sở log khác",
+        "Nó trả về một giá trị từ 0 đến 100 thay vì từ 0 đến 1"
+      ],
+      "correct": 0,
+      "explanation": "Cắt giảm theo giới hạn tham chiếu ngăn một ứng viên làm tăng điểm số của nó bằng cách lặp lại một từ có độ chính xác cao nhiều lần."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao BLEU sử dụng hình phạt độ ngắn (brevity penalty)?",
+      "options": [
+        "Các ứng viên dài làm cho trung bình hình học không ổn định về mặt số học",
+        "Hình phạt độ ngắn thay thế giới hạn số lượng n-gram",
+        "Nó bù đắp cho việc làm mịn cộng thêm một",
+        "Nếu không có nó, một ứng viên rất ngắn khớp với một vài từ sẽ nhận được độ chính xác cao và BLEU không công bằng cao"
+      ],
+      "correct": 3,
+      "explanation": "Độ chính xác một mình thưởng cho các đầu ra ngắn. BP giảm trọng số các ứng viên ngắn hơn tham chiếu bằng cách sử dụng exp(1 - r/c)."
+    },
+    {
+      "stage": "check",
+      "question": "ROUGE-L so sánh cái gì?",
+      "options": [
+        "Khoảng cách Levenshtein giữa chuỗi ứng viên và tham chiếu",
+        "Độ chính xác 4-gram so với bất kỳ 4-gram tham chiếu nào",
+        "Chuỗi con chung dài nhất của các chuỗi token ứng viên và tham chiếu",
+        "Chỉ số Jaccard cấp ký tự"
+      ],
+      "correct": 2,
+      "explanation": "ROUGE-L sử dụng độ dài LCS, sau đó tính toán độ chính xác (LCS/cand-len) và độ hồi tưởng (LCS/ref-len) kết hợp với F-beta."
+    },
+    {
+      "stage": "check",
+      "question": "F1 cấp token trả về 1.0 cho trường hợp nào?",
+      "options": [
+        "Khi dự đoán và mục tiêu chia sẻ chính xác một token",
+        "Khi dự đoán là một tập hợp lớn hơn của mục tiêu với tiếng ồn bổ sung",
+        "Khi dự đoán là rỗng và mục tiêu không rỗng",
+        "Khi dự đoán và mục tiêu đều rỗng"
+      ],
+      "correct": 3,
+      "explanation": "Theo quy ước, rỗng-rỗng là một sự khớp hoàn hảo. Bất kỳ mục tiêu không rỗng nào với một dự đoán rỗng là 0.0."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao phân phối theo metric_name thay vì category trong hàm điểm?",
+      "options": [
+        "Lớp chạy không có quyền truy cập vào trường category",
+        "Nó cho phép cùng một category sử dụng các chỉ số khác nhau trong các nhiệm vụ và giữ cho bộ phân phối không phụ thuộc vào chỉ số",
+        "Category khó xác thực hơn metric_name",
+        "metric_name ngắn hơn category"
+      ],
+      "correct": 1,
+      "explanation": "metric_name là hợp đồng. Một nhiệm vụ tóm tắt có thể sử dụng rouge_l trên một bản ghi và bleu_4 trên bản ghi khác; bộ phân phối không cần phải quan tâm."
+    }
+  ]
+}

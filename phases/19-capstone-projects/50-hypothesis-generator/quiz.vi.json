@@ -1,0 +1,78 @@
+{
+  "lesson": "50-hypothesis-generator",
+  "title": "Máy Tạo Giả Thuyết",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tại sao máy tạo ra hàng đợi xếp hạng thay vì một giả thuyết duy nhất?",
+      "options": [
+        "Bởi vì trình chạy cần độ sâu để có thể lấy giả thuyết tiếp theo khi giả thuyết đầu tiên thất bại",
+        "Bởi vì mô hình giả chỉ phát ra danh sách",
+        "Bởi vì embedding yêu cầu nhiều hơn một đầu vào",
+        "Bởi vì parser không thể đọc một khối duy nhất"
+      ],
+      "correct": 0,
+      "explanation": "Mục đích của việc tạo ra một hàng đợi là để phân bổ chi phí lấy mẫu qua vòng lặp. Khi giả thuyết đầu tiên thất bại, trình chạy lấy giả thuyết tiếp theo mà không cần một lần lấy mẫu mới."
+    },
+    {
+      "stage": "pre",
+      "question": "Nhiệt độ ramp đạt được điều gì trong mỗi lần chạy?",
+      "options": [
+        "Nó mở rộng phân phối lấy mẫu để các bản nháp sau có thể xa hơn từ hạt giống",
+        "Nó tăng kích thước embedding",
+        "Nó nâng cao độ dung nạp của parser",
+        "Nó gấp ba giá trị hạt giống"
+      ],
+      "correct": 0,
+      "explanation": "Nhiệt độ cao hơn mở rộng phân phối lấy mẫu. Ramp khuyến khích mỗi lần chạy trôi xa hơn để bộ lọc mới có điều gì đó để làm."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào bộ lọc mới từ chối một bản nháp?",
+      "options": [
+        "Khi điểm xếp hạng của nó thấp hơn ngưỡng",
+        "Khi khoảng cách cosine tối thiểu của nó đến bất kỳ người sống sót trước đó thấp hơn ngưỡng mới",
+        "Khi parser của nó vượt qua nhưng số lượng thẻ của nó sai",
+        "Khi lượt bản nháp của nó lớn hơn độ dài hàng đợi"
+      ],
+      "correct": 1,
+      "explanation": "Mới là khoảng cách tối thiểu đến những người sống sót trước đó. Nếu khoảng cách đó thấp hơn ngưỡng, bản nháp là một bản sao gần và bị loại bỏ."
+    },
+    {
+      "stage": "check",
+      "question": "Ba thành phần nào kết hợp trong điểm xếp hạng?",
+      "options": [
+        "Độ trễ, thông lượng, chi phí",
+        "Mới, tính cụ thể, khả năng kiểm tra",
+        "Nhiệt độ, hạt giống, chỉ số lượt",
+        "Biến, chỉ số, độ dài cơ sở"
+      ],
+      "correct": 1,
+      "explanation": "Điểm xếp hạng là tổng trọng số của mới, tính cụ thể và khả năng kiểm tra. Mỗi điểm phụ nằm giữa không và một."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao mô hình ngôn ngữ giả được khóa trên một bucket nhiệt độ thay vì số thực thô?",
+      "options": [
+        "Bởi vì các bucket làm cho lịch trình rời rạc nên một thay đổi nhiệt độ nhỏ có thể chọn một bản nháp kịch bản khác",
+        "Bởi vì embedding yêu cầu điều đó",
+        "Bởi vì parser cần một số nguyên",
+        "Bởi vì số thực không thể được băm"
+      ],
+      "correct": 0,
+      "explanation": "Các bucket làm cho lịch trình liên tục trở nên rời rạc. Hai nhiệt độ liền kề có thể ánh xạ đến các bucket khác nhau và kéo các bản nháp khác nhau từ ngân hàng kịch bản, đó là cách mà mô hình giả mô phỏng việc lấy mẫu đa dạng."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì xảy ra nếu mọi bản nháp từ mô hình giả đều thất bại với parser?",
+      "options": [
+        "Máy tạo ra một lỗi nghiêm trọng",
+        "Hàng đợi trống và mỗi lượt ghi lại một lý do từ chối phân tích để chế độ thất bại có thể được kiểm tra",
+        "Ngưỡng mới tự động được hạ thấp",
+        "Trình chạy thử lại với một prompt mới"
+      ],
+      "correct": 1,
+      "explanation": "Các lỗi của parser được ghi lại dưới dạng nhật ký với lý do từ chối phân tích. Hàng đợi có thể trở lại trống mà không làm hỏng vòng lặp, và các nhật ký giải thích lý do tại sao."
+    }
+  ]
+}

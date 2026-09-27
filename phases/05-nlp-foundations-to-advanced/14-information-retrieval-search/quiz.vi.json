@@ -1,0 +1,102 @@
+{
+  "lesson": "14-information-retrieval-search",
+  "title": "Truy xuất thông tin và Tìm kiếm",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "BM25 đánh giá tài liệu dựa trên điều gì?",
+      "options": [
+        "Tần suất từ, IDF, và sự hiện diện của các từ truy vấn được chuẩn hóa theo độ dài tài liệu",
+        "Khoảng cách chỉnh sửa đến truy vấn",
+        "Cosine nhúng đến truy vấn",
+        "PageRank trên tập hợp tài liệu"
+      ],
+      "correct": 0,
+      "explanation": "BM25 cân nhắc độ bão hòa TF, IDF, và chuẩn hóa độ dài để đánh giá các sự trùng khớp từ vựng."
+    },
+    {
+      "stage": "pre",
+      "question": "Điểm yếu chính của truy xuất chỉ dựa trên nhúng mà BM25 phát hiện là gì?",
+      "options": [
+        "Truy vấn đa ngôn ngữ",
+        "Độ trễ",
+        "Sự trùng khớp chính xác của từ khóa và định danh (mã sản phẩm, chuỗi lỗi, thực thể được đặt tên) mà nhúng ngữ nghĩa có thể bỏ lỡ",
+        "Tài liệu dài"
+      ],
+      "correct": 2,
+      "explanation": "Nhúng dày đặc có thể làm mờ các định danh và chuỗi chính xác; BM25 xác định chúng một cách chính xác."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao Reciprocal Rank Fusion (RRF) bỏ qua điểm số thô từ mỗi bộ truy xuất?",
+      "options": [
+        "BM25 và điểm số dày đặc sống trong các thang đo khác nhau; việc chỉ sử dụng vị trí xếp hạng giúp việc kết hợp trở nên vững chắc với việc hiệu chỉnh",
+        "Tăng tốc độ sắp xếp",
+        "RRF yêu cầu xác suất",
+        "Điểm số thô là bất hợp pháp để sử dụng"
+      ],
+      "correct": 0,
+      "explanation": "RRF sử dụng 1/(k + xếp hạng), vì vậy các thang đo của hai hệ thống điểm số không cần phải khớp nhau."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao chỉ chạy một bộ xếp hạng chéo trên 30 kết quả kết hợp hàng đầu?",
+      "options": [
+        "Các bộ mã hóa chéo chậm theo từng cặp; việc phân bổ chúng trên một nhóm ứng viên nhỏ mang lại độ chính xác cao với độ trễ chấp nhận được",
+        "Các bộ xếp hạng làm giảm độ hồi tưởng",
+        "Các bộ mã hóa chéo là cần thiết ở mỗi bước",
+        "Top-30 là yêu cầu của FAISS"
+      ],
+      "correct": 0,
+      "explanation": "Các bộ mã hóa chéo đánh giá truy vấn + tài liệu một cách đồng thời; chỉ chạy chúng trên nhóm ứng viên kết hợp nhỏ giúp giữ độ trễ trong tầm kiểm soát."
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số nào là quan trọng nhất để tối ưu hóa cho các bộ truy xuất RAG?",
+      "options": [
+        "Thông lượng",
+        "Recall@k, vì người đọc không thể trả lời nếu đoạn văn đúng không có trong top-k",
+        "BLEU",
+        "Độ trễ"
+      ],
+      "correct": 1,
+      "explanation": "Nếu đoạn văn đúng không có trong top-k được truy xuất, người đọc chắc chắn sẽ thất bại."
+    },
+    {
+      "stage": "post",
+      "question": "Theo kinh nghiệm ngành năm 2026, hầu hết các lỗi RAG trong sản xuất xuất phát từ đâu?",
+      "options": [
+        "Tiếp nhận và phân đoạn, không phải mô hình; ngữ cảnh kém làm hỏng các người đọc tốt",
+        "Độ dài của prompt",
+        "Tuning bộ xếp hạng",
+        "Lựa chọn LLM"
+      ],
+      "correct": 0,
+      "explanation": "Khoảng 80% lỗi RAG xuất phát từ chất lượng phân đoạn và tiếp nhận, không phải từ mô hình sinh."
+    },
+    {
+      "stage": "post",
+      "question": "Mô hình truy xuất 'parent-doc' là gì?",
+      "options": [
+        "Chọn tài liệu dài nhất",
+        "Chỉ sử dụng nhúng tài liệu cha",
+        "Truy xuất các đoạn nhỏ con để có độ chính xác, sau đó mở rộng đến khối cha khi nhiều con từ cùng một cha xuất hiện, bảo tồn ngữ cảnh",
+        "Chỉ nhúng các tài liệu cha"
+      ],
+      "correct": 2,
+      "explanation": "Truy xuất ở cấp độ con rất chính xác; mở rộng đến cha bảo tồn ngữ cảnh xung quanh mà người đọc cần."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào bạn nên triển khai truy xuất ba chiều (BM25 + dày đặc + SPLADE)?",
+      "options": [
+        "Luôn luôn",
+        "Khi cơ sở hạ tầng hỗ trợ các chỉ mục thưa học được và các truy vấn pha trộn danh từ riêng với ý định ngữ nghĩa",
+        "Chỉ trên dưới 1000 tài liệu",
+        "Chỉ cho các tập hợp tài liệu chỉ tiếng Anh"
+      ],
+      "correct": 1,
+      "explanation": "Truy xuất ba chiều vượt trội hơn hai chiều trong các tiêu chuẩn năm 2026 cho các truy vấn từ vựng-ngữ nghĩa pha trộn, với cơ sở hạ tầng SPLADE."
+    }
+  ]
+}

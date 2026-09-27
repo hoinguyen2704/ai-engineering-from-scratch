@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/39-instruction-tuning-sft",
+  "title": "Tinh chỉnh Hướng dẫn bằng Tinh chỉnh Giám sát",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Trước khi đọc: bạn đưa một mô hình cơ bản vanilla câu lệnh 'Thủ đô của Pháp là gì?'. Nó trả lời 'Còn Ý và Tây Ban Nha thì sao?'. Điều gì chẩn đoán tốt nhất khoảng cách này?",
+      "options": [
+        "Mô hình thiếu thông tin về Paris.",
+        "Mô hình có hành vi của mô hình ngôn ngữ nhưng không có hợp đồng định dạng theo hướng dẫn.",
+        "Mô hình cần một từ vựng lớn hơn.",
+        "Mô hình cơ bản phải được đặt lại và huấn luyện lại."
+      ],
+      "correct": 1,
+      "explanation": "Mô hình cơ bản có thể mở rộng văn bản nhưng chưa bao giờ được chỉ ra rằng một hướng dẫn mong đợi một phản hồi tương ứng. SFT dạy hợp đồng định dạng: xem hướng dẫn, phát ra phản hồi."
+    },
+    {
+      "stage": "check",
+      "question": "Hàm collate đặt labels[i] = -100 ở các vị trí hướng dẫn và các vị trí padding. Tại sao PyTorch cross-entropy xử lý các vị trí này đúng cách?",
+      "options": [
+        "PyTorch chuẩn hóa theo độ dài chuỗi nên các vị trí bị che khuất sẽ bị hủy bỏ.",
+        "ignore_index=-100 được tôn trọng bởi F.cross_entropy: các vị trí đó đóng góp không có tổn thất và không có gradient.",
+        "Cross-entropy âm thầm bỏ qua bất kỳ mục tiêu âm nào.",
+        "Đầu ra của mô hình ở các vị trí đó được tự động đặt thành NaN."
+      ],
+      "correct": 1,
+      "explanation": "ignore_index là một tham số được tài liệu hóa của F.cross_entropy. Các mục tiêu bằng với nó không đóng góp vào tổn thất và không đóng góp vào gradient. -100 là giá trị mặc định thông thường."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao `shifted_loss` cắt `logits[:, :-1, :]` và `labels[:, 1:]` thay vì sử dụng chúng ở cùng một vị trí?",
+      "options": [
+        "Đó là một tối ưu hóa tùy chọn; việc sử dụng nhãn cùng vị trí cũng hoạt động.",
+        "Để tự động loại bỏ vị trí padding cuối cùng.",
+        "Bởi vì mô hình ở vị trí i dự đoán token ở vị trí i+1 theo mục tiêu tiếp theo-token nguyên nhân.",
+        "Để làm cho các tensor có cùng kích thước sau bước collate."
+      ],
+      "correct": 2,
+      "explanation": "Causal LM huấn luyện vị trí i để dự đoán token i+1. Cắt này căn chỉnh dự đoán ở vị trí i với nhãn vàng ở vị trí i+1, đây là mục tiêu tiếp theo-token tiêu chuẩn."
+    },
+    {
+      "stage": "check",
+      "question": "Bạn huấn luyện mà không có mặt nạ: nhãn bằng với input_ids mà không có -100. Mô hình huấn luyện nhưng độ chính xác trên phản hồi kém hơn so với khi có mặt nạ. Nguyên nhân có khả năng nhất?",
+      "options": [
+        "Mô hình không thể học token biên giới mà không có mặt nạ.",
+        "Bộ tối ưu hóa quá khớp với các token phản hồi.",
+        "Cross-entropy không ổn định khi tổn thất bao gồm các đặc biệt.",
+        "Hầu hết tín hiệu gradient đi vào việc dự đoán hướng dẫn (khu vực bị che khuất lớn nhất đã kìm hãm nó)."
+      ],
+      "correct": 3,
+      "explanation": "Khi các vị trí hướng dẫn được tính vào tổn thất, chúng chiếm ưu thế trong gradient vì thường có nhiều hơn chúng so với các token phản hồi. Tỷ lệ học hiệu quả trên phần bạn quan tâm (phản hồi) giảm, và mô hình dành dung lượng để tái tạo các đầu vào mà người dùng luôn cung cấp."
+    },
+    {
+      "stage": "post",
+      "question": "Độ chính xác là 0.85 trên tập dữ liệu giữ lại. Một người đánh giá nói rằng mô hình diễn đạt lại các câu trả lời đúng và độ chính xác bỏ lỡ những câu đó. Bạn thêm chỉ số nào để nắm bắt điều này?",
+      "options": [
+        "Độ dài chuỗi trung bình.",
+        "Cross-entropy của tham chiếu dưới mô hình.",
+        "F1 cấp token so với tham chiếu, điều này ghi nhận sự chồng chéo ngay cả khi không giống hệt ký tự.",
+        "Tổn thất trên tập dữ liệu giữ lại."
+      ],
+      "correct": 2,
+      "explanation": "F1 cấp token (được tính giữa các token dự đoán và tham chiếu sau khi chuẩn hóa) ghi nhận mô hình vì đã đúng phần lớn câu trả lời ngay cả khi hình thức bề mặt khác nhau. Đây là nhiệm vụ của bài học 41."
+    },
+    {
+      "stage": "post",
+      "question": "Bạn muốn sử dụng mô hình SFT trong một chatbot hỗ trợ hội thoại nhiều lượt. Thay đổi tối thiểu nào cần thiết cho dữ liệu và mặt nạ?",
+      "options": [
+        "Không có: các mô hình SFT luôn xử lý nhiều lượt ngay từ đầu.",
+        "Thêm một dấu hiệu NGƯỜI DÙNG và TRỢ GIÚP cho mỗi lượt, nối các lượt lại với nhau, và che khuất mọi thứ ngoại trừ lượt trợ giúp hiện đang được huấn luyện.",
+        "Chuyển tổn thất sang lỗi bình phương trung bình.",
+        "Tăng từ vựng."
+      ],
+      "correct": 1,
+      "explanation": "SFT nhiều lượt tổng quát mẫu một lượt đơn. Mỗi lượt nhận một dấu hiệu vai trò. Mặt nạ là hợp nhất của tất cả các vị trí không phải trợ giúp cộng với padding. Mục tiêu huấn luyện không thay đổi."
+    }
+  ]
+}

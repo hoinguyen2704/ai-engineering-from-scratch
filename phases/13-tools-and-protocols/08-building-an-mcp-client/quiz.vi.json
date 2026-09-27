@@ -1,0 +1,78 @@
+{
+  "lesson": "08-building-an-mcp-client",
+  "title": "Xây dựng một khách hàng MCP: Khám phá, Định tuyến và Dự phòng Hai Thời Kỳ",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một khách hàng stdio hai thời kỳ nên gửi gì trước tiên?",
+      "options": [
+        "Mcp-Session-Id",
+        "server/discover",
+        "khởi tạo",
+        "HTTP GET"
+      ],
+      "correct": 1,
+      "explanation": "Khám phá probe tạo ra một ranh giới rõ ràng giữa siêu dữ liệu theo yêu cầu hiện đại và khởi tạo kế thừa."
+    },
+    {
+      "stage": "check",
+      "question": "Một probe khám phá trả về -32022 với một phiên bản được hỗ trợ lẫn nhau. Khách hàng nên làm gì?",
+      "options": [
+        "Thử lại khám phá hiện đại ở phiên bản được hỗ trợ",
+        "Gửi khởi tạo",
+        "Mở HTTP GET",
+        "Bỏ qua máy chủ"
+      ],
+      "correct": 0,
+      "explanation": "-32022 được công nhận là bằng chứng hiện đại, vì vậy khách hàng giữ hiện đại và thử lại."
+    },
+    {
+      "stage": "check",
+      "question": "Điều kiện nào là đủ để chọn thời kỳ kế thừa?",
+      "options": [
+        "Bất kỳ lỗi -32601 nào",
+        "Đối tác nằm trong danh sách cho phép kế thừa",
+        "Đối tác được cho phép và một probe khởi tạo có giới hạn trả về kết quả kế thừa hợp lệ được hỗ trợ",
+        "Một thời gian chờ khám phá tự nó"
+      ],
+      "correct": 2,
+      "explanation": "Danh sách cho phép cho phép một probe, nhưng chỉ một kết quả khởi tạo dương tính hợp lệ về mặt cấu trúc cho một phiên bản kế thừa đã cấu hình mới chứng minh được thời kỳ kế thừa."
+    },
+    {
+      "stage": "check",
+      "question": "Khách hàng nên xử lý hai công cụ có tên là tìm kiếm như thế nào?",
+      "options": [
+        "Im lặng ghi đè một cái",
+        "Tin tưởng vào thứ tự khởi động",
+        "Tiền tố hoặc từ chối theo chính sách đã công bố",
+        "Tạo một phiên giao thức"
+      ],
+      "correct": 2,
+      "explanation": "Tiền tố hoặc từ chối rõ ràng giữ cho định tuyến rõ ràng và xác định."
+    },
+    {
+      "stage": "post",
+      "question": "Một kết quả kế thừa bỏ qua resultType sau khi khách hàng thương lượng một thời kỳ kế thừa. Nó được diễn giải như thế nào?",
+      "options": [
+        "Như input_required",
+        "Như hoàn chỉnh",
+        "Như một lỗi vận chuyển",
+        "Như server/discover"
+      ],
+      "correct": 1,
+      "explanation": "Khách hàng coi resultType vắng mặt từ các phiên bản giao thức trước đó là hoàn chỉnh."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì phải xảy ra sau khi mất kết nối vận chuyển hiện đại trước khi định tuyến tiếp tục?",
+      "options": [
+        "Kết nối lại, khám phá lại và liệt kê lại",
+        "Tiếp tục với Last-Event-ID",
+        "Echo Mcp-Session-Id",
+        "Tái sử dụng siêu dữ liệu kết nối cũ"
+      ],
+      "correct": 0,
+      "explanation": "Khách hàng xây dựng lại sổ sách đối tác và chỉ thử lại các thao tác an toàn với các id yêu cầu mới."
+    }
+  ]
+}

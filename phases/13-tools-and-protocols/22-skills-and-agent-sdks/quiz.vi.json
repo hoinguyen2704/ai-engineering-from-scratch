@@ -1,0 +1,78 @@
+{
+  "lesson": "22-skills-and-agent-sdks",
+  "title": "Kỹ Năng Đại Diện: Hợp Đồng Di Động và Ranh Giới Thời Gian Chạy",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một nhóm có phương pháp đánh giá tái sử dụng và một API hiện có cung cấp dữ liệu yêu cầu kéo. Thiết kế nào phân bổ mỗi mối quan tâm cho nguyên thủy đúng theo chính sách thời gian chạy?",
+      "options": [
+        "Đặt phương pháp đánh giá vào Kỹ Năng Đại Diện và công khai API thông qua công cụ MCP",
+        "Thay thế API bằng một lời nhắc người dùng dài hơn",
+        "Đặt cả phương pháp và triển khai API vào AGENTS.md",
+        "Sử dụng một hook vòng đời như nguồn duy nhất của hướng dẫn đánh giá"
+      ],
+      "correct": 0,
+      "explanation": "Một kỹ năng mang lại kiến thức quy trình có thể tái sử dụng, trong khi MCP công khai một khả năng bên ngoài. Chúng có thể kết hợp. AGENTS.md thì tốt hơn cho các mặc định toàn bộ kho, và một hook phản hồi các sự kiện vòng đời thay vì thay thế bất kỳ lớp nào."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một trình xác thực cần yêu cầu tên SKILL.md khớp với thư mục chứa nó?",
+      "options": [
+        "Nó đảm bảo mọi máy chủ hỗ trợ cùng một cú pháp gọi",
+        "Nó cung cấp một danh tính ổn định cho việc khám phá và đóng gói thay vì hai tên mâu thuẫn",
+        "Nó làm cho tiêu đề Markdown được hiển thị đúng",
+        "Nó cho phép kỹ năng bỏ qua quyền truy cập của máy chủ"
+      ],
+      "correct": 1,
+      "explanation": "Các công cụ khám phá thường chỉ mục một kỹ năng theo cả thư mục và frontmatter. Việc khớp chúng ngăn chặn các mục danh mục không rõ ràng và các đường dẫn cài đặt bị hỏng. Nó không cấp quyền hoặc chuẩn hóa giao diện gọi của máy chủ."
+    },
+    {
+      "stage": "check",
+      "question": "Một SKILL.md chứa một trường mà chỉ một thời gian chạy hiểu. Diễn giải di động là gì?",
+      "options": [
+        "Di chuyển trường vào tên kỹ năng",
+        "Xem nó như một phần mở rộng máy chủ và xác thực nó chỉ theo chính sách máy chủ rõ ràng",
+        "Trường đó lặng lẽ trở thành một phần của tiêu chuẩn cốt lõi",
+        "Mỗi thời gian chạy phải triển khai nó trước khi tải kỹ năng"
+      ],
+      "correct": 1,
+      "explanation": "Siêu dữ liệu cốt lõi di động và các phần mở rộng thời gian chạy máy chủ là các hợp đồng riêng biệt. Một bộ điều hợp có thể nhận ra một phần mở rộng, nhưng một trình xác thực cốt lõi không nên tuyên bố rằng trường đó có ngữ nghĩa phổ quát."
+    },
+    {
+      "stage": "check",
+      "question": "Nguyên thủy nào đại diện tốt nhất cho một kiểm tra phải chạy sau mỗi lần gọi công cụ?",
+      "options": [
+        "Một tài nguyên MCP",
+        "Một lời nhắc một lần",
+        "Một từ điển kho",
+        "Một hook vòng đời"
+      ],
+      "correct": 3,
+      "explanation": "Yêu cầu xác định là thời gian sự kiện, vì vậy một hook vòng đời là cơ chế đúng. Một kỹ năng có thể giải thích một quy trình làm việc và MCP có thể công khai một khả năng, nhưng không cái nào tự động kích hoạt sau mỗi lần gọi công cụ."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào AGENTS.md là nơi tốt hơn so với Kỹ Năng Đại Diện?",
+      "options": [
+        "Khi một dịch vụ bên ngoài cần một cuộc gọi API được xác thực",
+        "Khi một kịch bản cần được thực thi bên ngoài nhà tù không gian làm việc",
+        "Khi các quy ước nên áp dụng trong toàn bộ công việc trong một kho",
+        "Khi hướng dẫn chỉ nên tải cho một nhiệm vụ chuyên gia hiếm hoi"
+      ],
+      "correct": 2,
+      "explanation": "AGENTS.md truyền đạt ngữ cảnh kho bền vững như các lệnh xây dựng và quy ước lập trình. Các quy trình cụ thể cho nhiệm vụ phù hợp với kỹ năng, các hoạt động bên ngoài phù hợp với công cụ, và không tệp hướng dẫn nào nên được sử dụng để thoát khỏi một sandbox."
+    },
+    {
+      "stage": "post",
+      "question": "Một Kỹ Năng Đại Diện hợp lệ tự nó cấp cho điều gì?",
+      "options": [
+        "Một lệnh gạch chéo phổ quát trong mọi máy chủ đại diện",
+        "Hướng dẫn quy trình có thể khám phá, tùy thuộc vào chính sách thời gian chạy của máy chủ",
+        "Quyền thực thi mọi kịch bản được đóng gói",
+        "Truy cập mạng tự động"
+      ],
+      "correct": 1,
+      "explanation": "Đối tượng di động cung cấp siêu dữ liệu và hướng dẫn. Khám phá, giao diện gọi, truy cập công cụ, phê duyệt và thực thi kịch bản vẫn là trách nhiệm của thời gian chạy, vì vậy tính hợp lệ không tương đương với quyền hạn."
+    }
+  ]
+}

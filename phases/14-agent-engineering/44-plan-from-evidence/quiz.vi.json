@@ -1,0 +1,78 @@
+{
+  "lesson": "44-plan-from-evidence",
+  "title": "Lập kế hoạch từ Bằng chứng",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì phân biệt kế hoạch thực hiện với danh sách công việc?",
+      "options": [
+        "Một khuyến nghị mô hình",
+        "Một số bước cố định",
+        "Nhiều văn bản hơn",
+        "Một đồ thị phụ thuộc với bằng chứng và chứng minh"
+      ],
+      "correct": 3,
+      "explanation": "Các phụ thuộc, biên lai và chứng minh hoàn thành làm cho kế hoạch có thể thực hiện và tiếp tục."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao cần định nghĩa một hợp đồng chung trước khi thực hiện?",
+      "options": [
+        "Để tránh tài liệu",
+        "Để trì hoãn tất cả công việc",
+        "Để các bề mặt phụ thuộc không phát minh ra hành vi mâu thuẫn",
+        "Để chỉ một tác nhân có thể làm việc"
+      ],
+      "correct": 2,
+      "explanation": "Một hợp đồng cố định mở khóa công việc song song an toàn trên các bề mặt phụ thuộc."
+    },
+    {
+      "stage": "check",
+      "question": "Chu kỳ phụ thuộc thường tiết lộ điều gì?",
+      "options": [
+        "Tính song song tốt",
+        "Một quyết định chưa được giải quyết ẩn hoặc phân rã xấu",
+        "Thực thi nhanh",
+        "Bằng chứng mạnh mẽ"
+      ],
+      "correct": 1,
+      "explanation": "Các mục công việc chu kỳ không thể thiết lập một điểm khởi đầu hợp lệ."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào hai mục công việc có thể chia sẻ một làn sóng thực hiện?",
+      "options": [
+        "Khi các phụ thuộc của chúng đã hoàn tất và chúng độc lập với nhau",
+        "Khi chúng chạm vào cùng một tệp",
+        "Khi không mục nào có bằng chứng",
+        "Khi cả hai đều quan trọng"
+      ],
+      "correct": 0,
+      "explanation": "Một làn sóng chứa tất cả công việc độc lập hiện tại không bị chặn."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần gắn bằng chứng vào mỗi mục công việc?",
+      "options": [
+        "Để cho thấy lý do thay đổi thuộc về đâu và cho phép bằng chứng mới sửa đổi nó",
+        "Để thay thế các bài kiểm tra",
+        "Để trang trí kế hoạch",
+        "Để thỏa mãn một mục tiêu token"
+      ],
+      "correct": 0,
+      "explanation": "Bằng chứng phải biện minh và có khả năng thay đổi kế hoạch."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì làm cho một kế hoạch có thể tiếp tục?",
+      "options": [
+        "Một người làm việc cho mọi thứ",
+        "Một lời nhắc ban đầu dài",
+        "Các mục nhỏ với trạng thái, hiện vật, phụ thuộc và bằng chứng",
+        "Lịch sử trò chuyện"
+      ],
+      "correct": 2,
+      "explanation": "Trạng thái mục bền vững cho phép một phiên khác tiếp tục mà không cần phát hiện lại."
+    }
+  ]
+}

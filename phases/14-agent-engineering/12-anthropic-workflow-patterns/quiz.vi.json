@@ -1,0 +1,90 @@
+{
+  "lesson": "12-anthropic-workflow-patterns",
+  "title": "Mô Hình Quy Trình của Anthropic: Đơn Giản Hơn So Với Phức Tạp",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Anthropic phân biệt quy trình với tác nhân như thế nào?",
+      "options": [
+        "Quy trình là đồ thị được định nghĩa trước thuộc sở hữu của kỹ sư; tác nhân là hướng dẫn công cụ động thuộc sở hữu của mô hình",
+        "Quy trình không có trạng thái; tác nhân có trạng thái",
+        "Quy trình chạy trên CPU; tác nhân cần GPU",
+        "Quy trình sử dụng embedding; tác nhân sử dụng công cụ"
+      ],
+      "correct": 0,
+      "explanation": "Quy trình = đường dẫn mã được định nghĩa trước mà kỹ sư sở hữu; tác nhân = mô hình sở hữu đồ thị."
+    },
+    {
+      "stage": "pre",
+      "question": "Ba khả năng của LLM được tăng cường hỗ trợ tất cả năm mô hình là gì?",
+      "options": [
+        "Tìm kiếm (retrieval), công cụ (hành động), bộ nhớ (tồn tại)",
+        "Vector, KV, đồ thị",
+        "Lập kế hoạch, thực hiện, phản ánh",
+        "Embedding, fine-tuning, RAG"
+      ],
+      "correct": 0,
+      "explanation": "Đơn vị nguyên tử là một LLM với retrieval, công cụ và bộ nhớ được kết nối."
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình quy trình nào KHÔNG phải là một trong năm mô hình quy trình của Anthropic?",
+      "options": [
+        "Người đánh giá-tối ưu hóa",
+        "Chưng cất gradient",
+        "Chuỗi prompt",
+        "Định tuyến"
+      ],
+      "correct": 1,
+      "explanation": "Năm mô hình là chuỗi prompt, định tuyến, phân tán, người điều phối-công nhân, người đánh giá-tối ưu hóa. Chưng cất gradient là một khái niệm đào tạo."
+    },
+    {
+      "stage": "check",
+      "question": "Hai hình dạng nào mà phân tán xuất hiện?",
+      "options": [
+        "Đồng bộ và không đồng bộ",
+        "Có trạng thái và không có trạng thái",
+        "Nóng và lạnh",
+        "Phân đoạn (các phần khác nhau) và bỏ phiếu (cùng một prompt N lần, tổng hợp)"
+      ],
+      "correct": 3,
+      "explanation": "Phân tán là phân đoạn hoặc bỏ phiếu; cả hai đều mở rộng N cuộc gọi và tổng hợp."
+    },
+    {
+      "stage": "check",
+      "question": "Mô hình quy trình nào là sự tổng quát của Self-Refine?",
+      "options": [
+        "Người điều phối-công nhân",
+        "Người đánh giá-tối ưu hóa",
+        "Chuỗi prompt",
+        "Định tuyến"
+      ],
+      "correct": 1,
+      "explanation": "Người đánh giá-tối ưu hóa là tên gọi của Anthropic cho mô hình lặp đi lặp lại Self-Refine / CRITIC."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào quy trình vượt trội hơn tác nhân theo bài học?",
+      "options": [
+        "Luôn luôn",
+        "Chỉ trên GPU",
+        "Trong các nhiệm vụ có thể dự đoán, giới hạn chi phí, hoặc giới hạn tuân thủ mà đồ thị có thể được liệt kê và kiểm toán",
+        "Chỉ cho trò chuyện"
+      ],
+      "correct": 2,
+      "explanation": "Quy trình rẻ hơn, dễ dàng gỡ lỗi và có thể kiểm toán; chọn chúng khi các bước có thể biết được."
+    },
+    {
+      "stage": "post",
+      "question": "Điểm khởi đầu mặc định được khuyến nghị của bài học là gì?",
+      "options": [
+        "Một khung đa tác nhân",
+        "Fine-tune mô hình",
+        "Xây dựng một MCTS tùy chỉnh",
+        "Gọi API trực tiếp; thêm khung chỉ khi trạng thái bền vững, đồng thời tác nhân, hoặc định dạng vai trò xứng đáng với chi phí"
+      ],
+      "correct": 3,
+      "explanation": "Schluntz và Zhang: bắt đầu đơn giản; thêm độ phức tạp của khung chỉ khi có lý do."
+    }
+  ]
+}

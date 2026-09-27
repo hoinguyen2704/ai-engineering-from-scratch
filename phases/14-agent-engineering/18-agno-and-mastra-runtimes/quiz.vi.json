@@ -1,0 +1,90 @@
+{
+  "lesson": "18-agno-and-mastra-runtimes",
+  "title": "Thời gian chạy của tác nhân sản xuất",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Cặp ngôn ngữ nào được bài học khuyến nghị cho mỗi thời gian chạy?",
+      "options": [
+        "Agno cho TypeScript, Mastra cho Python",
+        "Cả hai đều ưu tiên Go",
+        "Agno cho Python, Mastra cho TypeScript",
+        "Cả hai đều ưu tiên Rust"
+      ],
+      "correct": 2,
+      "explanation": "Agno là Python (hình dạng FastAPI); Mastra là TypeScript (hình dạng Vercel AI SDK)."
+    },
+    {
+      "stage": "pre",
+      "question": "Hình dạng triển khai sản xuất được khuyến nghị của Agno là gì?",
+      "options": [
+        "Một daemon có trạng thái lâu dài",
+        "Chỉ là một worker cron không máy chủ",
+        "Một backend FastAPI không trạng thái theo phiên; mỗi yêu cầu khởi động một tác nhân mới và trạng thái phiên sống trong một DB",
+        "Một máy chủ chỉ sử dụng WebSocket"
+      ],
+      "correct": 2,
+      "explanation": "FastAPI không trạng thái cho mỗi yêu cầu; trạng thái phiên được lưu trữ bên ngoài trong một DB."
+    },
+    {
+      "stage": "check",
+      "question": "Ba nguyên thủy của Mastra là gì?",
+      "options": [
+        "Node, Edge, State",
+        "Plan, Worker, Solver",
+        "Agents, Tools, Workflows",
+        "Actor, Message, Inbox"
+      ],
+      "correct": 2,
+      "explanation": "Agents (LLM + vai trò), Tools (kiểu Zod), và Workflows là ba nguyên thủy của Mastra."
+    },
+    {
+      "stage": "check",
+      "question": "Chi phí khởi tạo tác nhân mà Agno nhắm đến theo tài liệu của nó là gì?",
+      "options": [
+        "Khoảng 1 giây và 1 GiB cho mỗi tác nhân",
+        "Khoảng 2 micro giây với khoảng 3.75 KiB cho mỗi tác nhân",
+        "Khoảng 200 mili giây và 100 MiB cho mỗi tác nhân",
+        "Khoảng 10 phút và 4 GiB cho mỗi tác nhân"
+      ],
+      "correct": 1,
+      "explanation": "Tài liệu của Agno đề cập khoảng 2 micro giây và khoảng 3.75 KiB cho mỗi tác nhân."
+    },
+    {
+      "stage": "check",
+      "question": "Router Mô hình Thống nhất của Mastra cung cấp gì?",
+      "options": [
+        "Một lớp DB vector",
+        "Một bề mặt client duy nhất cho hàng ngàn mô hình từ nhiều nhà cung cấp",
+        "Một điểm kiểm tra đồ thị",
+        "Một hàng đợi cho các cuộc gọi công cụ"
+      ],
+      "correct": 1,
+      "explanation": "Router Mô hình Thống nhất của Mastra đề cập đến hơn 3,300 mô hình từ 94 nhà cung cấp."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào việc chọn Agno vì lý do hiệu suất là không đúng?",
+      "options": [
+        "Khi sử dụng Langfuse",
+        "Khi khối lượng công việc là một cuộc gọi tác nhân chậm cho mỗi yêu cầu và chi phí không phải là nút thắt cổ chai",
+        "Khi sử dụng Python 3.13",
+        "Khi triển khai lên AWS"
+      ],
+      "correct": 1,
+      "explanation": "2 micro giây quan trọng ở quy mô chat fan-in, không phải cho một cuộc gọi chậm đơn lẻ cho mỗi yêu cầu."
+    },
+    {
+      "stage": "post",
+      "question": "Bề mặt cấp phép nào bạn nên đọc kỹ trước khi fork Mastra?",
+      "options": [
+        "Không có tệp cấp phép",
+        "Các thư mục ee/ có sẵn mã nguồn thay vì Apache 2.0 và hạn chế việc sử dụng thương mại",
+        "Tất cả Mastra đều là GPL",
+        "Mastra yêu cầu CLA nhưng không cần xem xét cấp phép"
+      ],
+      "correct": 1,
+      "explanation": "Mastra là Apache 2.0 ngoại trừ ee/ mà có sẵn mã nguồn; kiểm tra các hạn chế trước khi fork."
+    }
+  ]
+}

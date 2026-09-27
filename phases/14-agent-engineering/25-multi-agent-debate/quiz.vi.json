@@ -1,0 +1,90 @@
+{
+  "lesson": "25-multi-agent-debate",
+  "title": "Tranh luận và Hợp tác Đa tác nhân",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Giao thức Society of Minds có N mô hình thực hiện điều gì?",
+      "options": [
+        "Đề xuất câu trả lời độc lập, sau đó qua R vòng đọc và phê bình các đề xuất của nhau cho đến khi chúng hội tụ",
+        "Đào tạo trên một tập dữ liệu chung",
+        "Mỗi mô hình chạy một chuẩn khác nhau",
+        "Thương lượng giá cả"
+      ],
+      "correct": 0,
+      "explanation": "N người đề xuất, R vòng, phê bình chéo, hội tụ là tranh luận điển hình của Du et al."
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao tranh luận giữa các mô hình (ví dụ: ChatGPT + Bard) lại vượt trội hơn so với tranh luận giữa một mô hình?",
+      "options": [
+        "Nó rẻ hơn",
+        "Các nhà cung cấp khác nhau thương lượng giá cả",
+        "Các nhà cung cấp chia sẻ trọng số",
+        "Sự không đồng nhất giảm thiểu các điểm mù chung nên phê bình chéo phát hiện nhiều lỗi hơn"
+      ],
+      "correct": 3,
+      "explanation": "Trộn lẫn các mô hình mang lại phân phối lỗi độc lập, điều này nâng cao trần của tranh luận."
+    },
+    {
+      "stage": "check",
+      "question": "Lợi thế chính về chi phí token của một topo thưa so với lưới đầy đủ là gì?",
+      "options": [
+        "Mỗi người tranh luận chỉ đọc một tập hợp các đồng nghiệp, do đó số lượng phê bình giảm trong khi độ chính xác thường tương đương",
+        "Nó loại bỏ LLM",
+        "Topo thưa gấp đôi số vòng",
+        "Topo thưa không yêu cầu mô hình"
+      ],
+      "correct": 0,
+      "explanation": "Topo thưa (sao, vòng, trung tâm và nhánh) giảm số lượng phê bình mà không làm mất độ chính xác trên nhiều nhiệm vụ."
+    },
+    {
+      "stage": "check",
+      "question": "Trường hợp nào mà bài học liệt kê là nơi tranh luận gây hại?",
+      "options": [
+        "Một tìm kiếm thông tin đơn giản, vì một lần tìm kiếm rẻ hơn năm lần tranh luận",
+        "Lý luận mở",
+        "Tính hợp lệ của nước đi cờ vua",
+        "Tạo tiểu sử"
+      ],
+      "correct": 0,
+      "explanation": "Các tìm kiếm tầm thường nhạy cảm với độ trễ và chi phí không được hưởng lợi từ tranh luận N x R."
+    },
+    {
+      "stage": "check",
+      "question": "Sụp đổ hội tụ là gì?",
+      "options": [
+        "Sự cố quy trình",
+        "Lỗi bắt tay TLS",
+        "Mất mạng",
+        "Tất cả các tác nhân hội tụ vào câu trả lời sai đầu tiên; giảm thiểu bằng cách yêu cầu các vòng bất đồng"
+      ],
+      "correct": 3,
+      "explanation": "Sự đồng thuận sớm về một câu trả lời sai được giảm thiểu bằng cách buộc các đề xuất vòng 1 khác biệt."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao sự đồng nhất của prompt lại làm suy yếu tranh luận?",
+      "options": [
+        "Nó vi phạm Apache 2.0",
+        "Nó vượt qua người giám sát",
+        "Các prompt giống hệt nhau tạo ra các câu trả lời gần như giống hệt nhau, loại bỏ tín hiệu phê bình chéo",
+        "Nó sử dụng quá nhiều token"
+      ],
+      "correct": 2,
+      "explanation": "Các prompt đa dạng (và lý tưởng là các mô hình đa dạng) giữ cho phân phối đề xuất rộng."
+    },
+    {
+      "stage": "post",
+      "question": "Mẫu sản xuất nào là một biến thể tranh luận theo bài học?",
+      "options": [
+        "RAG đơn lẻ thuần túy",
+        "Chỉ mục vector",
+        "Người điều phối Anthropic với các bước tổng hợp",
+        "Lịch trình chỉ Cron"
+      ],
+      "correct": 2,
+      "explanation": "Người điều phối với tổng hợp là một mẫu hình dạng tranh luận trong sản xuất."
+    }
+  ]
+}

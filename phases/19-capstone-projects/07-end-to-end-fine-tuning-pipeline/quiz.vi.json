@@ -1,0 +1,90 @@
+{
+  "lesson": "07-end-to-end-fine-tuning-pipeline",
+  "title": "Capstone 07 — Quy trình tinh chỉnh từ đầu đến cuối (Dữ liệu đến SFT đến DPO đến phục vụ)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Kiểm tra ô nhiễm bảo vệ điều gì trong quá trình chuẩn bị dữ liệu?",
+      "options": [
+        "Sự trôi dạt của Tokenizer giữa các giai đoạn SFT và DPO",
+        "Sự rò rỉ tập kiểm tra từ các chuẩn mực công khai như MMLU-Pro và MT-Bench-v2 vào dữ liệu huấn luyện",
+        "Sự không tương thích của driver GPU giữa huấn luyện và phục vụ",
+        "Sự chênh lệch phiên bản GGUF giữa các bản dựng llama.cpp"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Tại sao quy trình lại kết hợp SFT rồi đến DPO (hoặc GRPO) thay vì chỉ DPO?",
+      "options": [
+        "DPO không thể chạy trên trọng số đã định lượng",
+        "Axolotl không triển khai DPO",
+        "SFT thiết lập hành vi miền trên các hoàn thành có nhãn trong khi DPO hoặc GRPO căn chỉnh mô hình theo các cặp sở thích hoặc phần thưởng có thể xác minh",
+        "DPO yêu cầu một kiến trúc mô hình cơ sở riêng biệt"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "EAGLE-3 đóng góp gì cho giai đoạn phục vụ vLLM?",
+      "options": [
+        "Một chính sách OPA cho các cuộc gọi công cụ",
+        "Một bước tự động loại bỏ dữ liệu trùng lặp",
+        "Một lớp lưu trữ prompt mới",
+        "Các đầu dự thảo dự đoán N token phía trước; mục tiêu xác minh trong một lần đi qua cho thông lượng 2-3x"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Chỉ số nào báo cáo mức độ phù hợp của một dự thảo giải mã suy đoán với mô hình mục tiêu?",
+      "options": [
+        "Tỷ lệ chấp nhận",
+        "Perplexity",
+        "PSI",
+        "Delta bao phủ"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Bộ ba quants nào mà quy trình cung cấp để linh hoạt trong triển khai?",
+      "options": [
+        "GPTQ-INT4-Marlin, AWQ-INT4, và GGUF-Q4_K_M",
+        "FP32, FP16, BF16",
+        "Chỉ INT8 trên ba runtime",
+        "ONNX, CoreML, TFLite"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quy ước khung nào mà thẻ mô hình 2026 tuân theo trong capstone này?",
+      "options": [
+        "Chỉ phần đầu YAML của HuggingFace",
+        "Định dạng thẻ mô hình của OpenAI",
+        "Datasheets cho Datasets",
+        "Mẫu Khung Mở Mô Hình (MOF) 2026 bao gồm dữ liệu, huấn luyện, đánh giá, an toàn, giấy phép và khả năng tái sản xuất"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Chỉ số HPA nào được sử dụng để tự động mở rộng các bản sao phục vụ?",
+      "options": [
+        "Nhiệt độ GPU",
+        "Sử dụng CPU",
+        "Thời gian chờ hàng đợi",
+        "Số byte ra mạng"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

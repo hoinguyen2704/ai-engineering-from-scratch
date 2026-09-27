@@ -1,0 +1,78 @@
+{
+  "lesson": "43-frame-the-task-before-code",
+  "title": "Định Hình Nhiệm Vụ Trước Khi Lập Trình",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Đơn vị đầu tiên của công việc lập trình-đại lý đáng tin cậy nên là gì?",
+      "options": [
+        "Một khung nhiệm vụ được hỗ trợ bởi chứng cứ từ kho lưu trữ",
+        "Một cuộc gọi mô hình",
+        "Một chỉnh sửa",
+        "Một yêu cầu kéo"
+      ],
+      "correct": 0,
+      "explanation": "Khung nhiệm vụ thiết lập các sự thật, ranh giới, điều chưa biết và bằng chứng trước khi thực hiện."
+    },
+    {
+      "stage": "check",
+      "question": "Câu nào sau đây là một sự thật từ kho lưu trữ?",
+      "options": [
+        "Bài kiểm tra phản hồi trùng lặp mong đợi 409 tại tests/test_accounts.py:44",
+        "API có thể sử dụng 409",
+        "409 cảm thấy thông thường",
+        "API nên sử dụng 409"
+      ],
+      "correct": 0,
+      "explanation": "Một sự thật mang lại một biên lai cụ thể có thể được kiểm tra."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao phải đặt tên cho các đường dẫn bị cấm?",
+      "options": [
+        "Để chọn một mô hình",
+        "Để xác định không gian tiêu cực của sự thay đổi",
+        "Để làm cho lời nhắc dài hơn",
+        "Để tránh chạy các bài kiểm tra"
+      ],
+      "correct": 1,
+      "explanation": "Các đường dẫn được phép đơn độc không chỉ ra công việc liền kề nào hấp dẫn phải được giữ nguyên."
+    },
+    {
+      "stage": "check",
+      "question": "Khi nào một điều chưa biết của con người nên tạm dừng đại lý?",
+      "options": [
+        "Bất cứ khi nào có tệp nào đó không quen thuộc",
+        "Trước mỗi lệnh",
+        "Chỉ sau khi triển khai",
+        "Khi nó thay đổi hành vi sản phẩm, rủi ro, quyền hạn hoặc chi phí không thể đảo ngược"
+      ],
+      "correct": 3,
+      "explanation": "Các lựa chọn có hậu quả lớn yêu cầu một điểm kiểm tra rõ ràng trước khi chúng bị chôn vùi trong mã."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì làm cho bằng chứng chấp nhận trở nên mạnh mẽ?",
+      "options": [
+        "Nó được viết sau khi lập trình",
+        "Nó sử dụng nhiều công cụ",
+        "Nó chỉ ra lệnh hoặc quan sát chính xác và tuyên bố mà nó chứng minh",
+        "Nó nói rằng các bài kiểm tra đã vượt qua"
+      ],
+      "correct": 2,
+      "explanation": "Bằng chứng cụ thể cho phép một phiên khác tái tạo việc hoàn thành nhiệm vụ."
+    },
+    {
+      "stage": "post",
+      "question": "Khi nào việc trinh sát là đủ?",
+      "options": [
+        "Khi cửa sổ ngữ cảnh đầy đủ",
+        "Khi mọi quyết định đã lên kế hoạch có bằng chứng, quyền hạn được ủy quyền hoặc một điều chưa biết rõ ràng",
+        "Sau một lần tìm kiếm",
+        "Sau khi đọc mọi tệp"
+      ],
+      "correct": 1,
+      "explanation": "Việc trinh sát dừng lại khi các quyết định được xác định hoặc rõ ràng chưa được giải quyết."
+    }
+  ]
+}

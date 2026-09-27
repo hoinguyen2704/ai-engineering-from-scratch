@@ -1,0 +1,78 @@
+{
+  "lesson": "50-choose-the-smallest-testable-slice",
+  "title": "Chọn Lát Thử Nghiệm Nhỏ Nhất",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Điều gì làm cho một lát nhỏ trở nên hữu ích?",
+      "options": [
+        "Nó có ít mã",
+        "Nó tránh được sự không chắc chắn thực sự",
+        "Nó có thể thay đổi một quyết định quan trọng",
+        "Nó có giao diện người dùng tinh tế"
+      ],
+      "correct": 2,
+      "explanation": "Kích thước chỉ quan trọng liên quan đến bằng chứng quyết định."
+    },
+    {
+      "stage": "check",
+      "question": "Điều gì cần được xác định trước khi so sánh các lát ứng viên?",
+      "options": [
+        "Một tên phát hành",
+        "Một khung",
+        "Một kiến trúc cuối cùng",
+        "Tập hợp bằng chứng cần thiết"
+      ],
+      "correct": 3,
+      "explanation": "Tính đủ điều kiện phụ thuộc vào việc bao phủ các giả định rủi ro cần bằng chứng."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một mẫu bảng điều khiển rẻ tiền có thể là mức tối thiểu sai?",
+      "options": [
+        "Nó quá dễ đảo ngược",
+        "Nó có người dùng",
+        "Nó có thể loại bỏ dữ liệu và sự không chắc chắn về hoạt động khỏi bài kiểm tra",
+        "Bảng điều khiển luôn xấu"
+      ],
+      "correct": 2,
+      "explanation": "Một lát tránh cơ chế rủi ro không thể trả lời quyết định."
+    },
+    {
+      "stage": "check",
+      "question": "Phản ứng đúng với một lát có điểm cao nhưng thiếu bằng chứng cần thiết là gì?",
+      "options": [
+        "Từ chối nó vì không đủ điều kiện",
+        "Tăng điểm của nó",
+        "Chọn nó",
+        "Gọi nó là sản xuất"
+      ],
+      "correct": 0,
+      "explanation": "Sự bao phủ là một cổng trước khi tối ưu hóa."
+    },
+    {
+      "stage": "post",
+      "question": "Tại sao cần thêm một quy tắc dừng?",
+      "options": [
+        "Để tránh đo lường",
+        "Để xác định bằng chứng nào sẽ gây ra việc định hình lại, sửa đổi hoặc từ bỏ",
+        "Để giới hạn tài liệu",
+        "Để làm cho mọi kết quả hỗ trợ ý tưởng"
+      ],
+      "correct": 1,
+      "explanation": "Một thí nghiệm phải có khả năng thay đổi quyết định."
+    },
+    {
+      "stage": "post",
+      "question": "Lát nào thường an toàn hơn cho việc kiểm tra chẩn đoán?",
+      "options": [
+        "Tự khắc phục sản xuất",
+        "Một phát lại chỉ đọc qua các sự cố đại diện",
+        "Một quá trình di chuyển",
+        "Một nền tảng đầy đủ"
+      ],
+      "correct": 1,
+      "explanation": "Phát lại có thể kiểm tra các điều chưa biết cốt lõi với hậu quả thấp hơn và khả năng đảo ngược cao."
+    }
+  ]
+}

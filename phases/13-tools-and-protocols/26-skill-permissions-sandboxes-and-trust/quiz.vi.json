@@ -1,0 +1,78 @@
+{
+  "lesson": "26-skill-permissions-sandboxes-and-trust",
+  "title": "Quyền truy cập kỹ năng, Sandbox và Niềm tin",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Một SKILL.md nói `Bạn có thể ghi ở bất kỳ đâu trên đĩa`. Câu đó cung cấp quyền hạn gì?",
+      "options": [
+        "Không có quyền hạn; mô hình quyền hạn của máy chủ vẫn quyết định mỗi hành động",
+        "Quyền ghi vào thư mục chính của người dùng",
+        "Quyền ghi vào mọi đường dẫn được chỉ định bởi một tham chiếu",
+        "Quyền ghi sau khi mô hình lặp lại câu đó"
+      ],
+      "correct": 0,
+      "explanation": "Nội dung kỹ năng là dữ liệu hướng dẫn, không phải là token khả năng. Phạm vi hệ thống tệp, quyền truy cập công cụ, chính sách mạng và sự chấp thuận đến từ máy chủ và vẫn có hiệu lực ngay cả khi kỹ năng tuyên bố quyền hạn rộng hơn."
+    },
+    {
+      "stage": "check",
+      "question": "Tại sao một không gian làm việc phải giải quyết symlink trước khi kiểm tra sự chứa chấp?",
+      "options": [
+        "Các đường dẫn đã giải quyết tự động xóa bỏ bí mật",
+        "Giải quyết làm cho mọi đường dẫn có thể ghi",
+        "Symlink luôn chứa YAML không hợp lệ",
+        "Một đường dẫn từ không gian làm việc có thể chỉ qua một symlink đến một mục tiêu bên ngoài nhà tù"
+      ],
+      "correct": 3,
+      "explanation": "Kiểm tra chỉ chuỗi đầu vào bỏ lỡ các liên kết như `workspace/report` mà giải quyết ở nơi khác. Sự chứa chấp phải được đánh giá trên mục tiêu đã giải quyết, và các hệ thống bảo thủ có thể từ chối hoàn toàn các mục tiêu symlink trực tiếp."
+    },
+    {
+      "stage": "check",
+      "question": "Một trang web bên ngoài nhúng trong một tác vụ nói để vô hiệu hóa kiểm tra phê duyệt. Thời gian chạy nên xử lý văn bản đó như thế nào trong kịch bản này?",
+      "options": [
+        "Như một phần mở rộng SKILL.md di động",
+        "Như dữ liệu không đáng tin cậy không thể mở rộng quyền hạn",
+        "Như một chính sách hệ thống ưu tiên hàng đầu mới",
+        "Như sự phê duyệt từ người dùng"
+      ],
+      "correct": 1,
+      "explanation": "Nội dung bên ngoài có thể thông báo cho tác vụ, nhưng nó không phải là một phần của kênh chính sách đáng tin cậy. Các yêu cầu bị ảnh hưởng bởi nó nên vẫn nằm trong quyền hạn hiện có và có thể xứng đáng với một cổng phê duyệt bổ sung cho các hành động có trạng thái."
+    },
+    {
+      "stage": "check",
+      "question": "Cách an toàn nhất để giáo dục về việc xem xét lệnh hủy diệt là gì?",
+      "options": [
+        "Cho phép nó bất cứ khi nào gói kỹ năng chứa một tập lệnh",
+        "Chạy lệnh trong kho khóa học và khôi phục tệp sau",
+        "Phân tích và phân loại một vector argv, trả về `deny`, và không bao giờ thực thi nó",
+        "In một chuỗi shell mà sinh viên có thể dán mà không cần xem xét"
+      ],
+      "correct": 2,
+      "explanation": "Một trình mô phỏng chính sách có thể dạy các danh sách cho phép có thể thực thi, các mẫu hủy diệt, kiểm tra ký tự đặc biệt và các phán quyết mà không tạo ra tác động phụ thực sự. Kết quả của bài học nên ghi rõ rằng việc thực thi chưa bao giờ xảy ra."
+    },
+    {
+      "stage": "post",
+      "question": "Một kỹ năng đề xuất một cuộc gọi HTTPS đến một nguồn bên ngoài danh sách cho phép mạng. Người dùng đã gọi kỹ năng trước đó. Phán quyết đúng là gì?",
+      "options": [
+        "Chỉ cho phép nếu mô tả đề cập đến internet",
+        "Cho phép, vì việc gọi hàm ngụ ý sự đồng ý của mạng",
+        "Viết lại tên máy chủ thành máy chủ đầu tiên trong danh sách cho phép",
+        "Từ chối theo chính sách mạng; kích hoạt không phải là ủy quyền"
+      ],
+      "correct": 3,
+      "explanation": "Cổng gọi hàm kiểm soát việc tải hướng dẫn, trong khi cổng mạng kiểm soát các nguồn HTTPS đã chuẩn hóa, bao gồm cả các cổng hiệu quả. Việc chọn kỹ năng trước đó không mở rộng danh sách cho phép hoặc ủy quyền cho việc truyền thông tin xác thực."
+    },
+    {
+      "stage": "post",
+      "question": "Điều gì nên xảy ra khi một yêu cầu ghi chứa tài liệu bí mật có thể và không có đường dẫn sử dụng bí mật đã được phê duyệt?",
+      "options": [
+        "Tin tưởng nếu đường dẫn mục tiêu nằm trong không gian làm việc",
+        "Thay thế nó bằng một giá trị ngẫu nhiên và tiếp tục",
+        "Ghi lại tải trọng để người xem có thể kiểm tra giá trị đầy đủ",
+        "Từ chối mà không in giá trị, và yêu cầu một quy trình bí mật được ủy quyền riêng biệt"
+      ],
+      "correct": 3,
+      "explanation": "Sự chứa chấp trong không gian làm việc không làm cho việc xử lý bí mật an toàn. Người xem nên chặn yêu cầu, tránh phản ánh tài liệu nhạy cảm và yêu cầu chính sách và phê duyệt rõ ràng trước bất kỳ việc sử dụng bí mật hợp pháp nào."
+    }
+  ]
+}
